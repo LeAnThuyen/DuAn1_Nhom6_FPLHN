@@ -1,6 +1,7 @@
 ﻿using _1_DAL_DataAccessLayer.Context;
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,39 +10,39 @@ using System.Threading.Tasks;
 
 namespace _1_DAL_DataAccessLayer.DALServices
 {
-    public class ChatLieuServie : IChatLieuServices
+    public class HoaDonBanServices : IServicesHoaDon
     {
+
         private DatabaseContext _DBcontext;
-        private List<ChatLieu> _lstchatlieu;
-        public ChatLieuServie()
+        private List<HoaDonBan> _lsthoadonban;
+        public HoaDonBanServices()
         {
             _DBcontext = new DatabaseContext();
-            _lstchatlieu = new List<ChatLieu>();
+            _lsthoadonban = new List<HoaDonBan>();
         }
-        public bool addchatlieu(ChatLieu cl)
+        public bool addhdb(HoaDonBan hdb)
         {
-            _DBcontext.ChatLieus.Add(cl);
+            _DBcontext.HoaDonBans.Add(hdb);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool deletechatlieu(ChatLieu cl)
+        public bool deletehdb(HoaDonBan hdb)
         {
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.HoaDonBans.Remove(hdb);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public List<ChatLieu> getlstchatlieufromDB()
+        public List<HoaDonBan> getlsthdbfromDB()
         {
-            _lstchatlieu = _DBcontext.ChatLieus.ToList();
-            return _lstchatlieu;
+            _lsthoadonban = _DBcontext.HoaDonBans.AsNoTracking().ToList();
+            return _lsthoadonban;
         }
 
-        public bool updatechatlieu(ChatLieu cl)
+        public bool updatehdb(HoaDonBan hdb)
         {
-
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.HoaDonBans.Update(hdb);
             _DBcontext.SaveChanges();
             return true;
         }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace _1_DAL_DataAccessLayer.IDALServices
 {
-    public interface IChatLieuServices
+   public interface IServicesVatChua
     {
 
-        List<ChatLieu> getlstchatlieufromDB();
-        bool addchatlieu(ChatLieu cl);
-        bool deletechatlieu(ChatLieu cl);
-        bool updatechatlieu(ChatLieu cl);
+        List<VatChua> getlstvatchuafromDB();
+        bool addvatchua(VatChua vt);
+        bool deletevatchua(VatChua vt);
+        bool updatevatchua(VatChua vt);
     }
 }

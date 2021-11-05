@@ -9,39 +9,38 @@ using System.Threading.Tasks;
 
 namespace _1_DAL_DataAccessLayer.DALServices
 {
-    public class ChatLieuServie : IChatLieuServices
+    public class NhaSanXuatServices : IServicesNhaSanXuat
     {
         private DatabaseContext _DBcontext;
-        private List<ChatLieu> _lstchatlieu;
-        public ChatLieuServie()
+        private List<NhaSanXuat> _lstnsx;
+        public NhaSanXuatServices()
         {
             _DBcontext = new DatabaseContext();
-            _lstchatlieu = new List<ChatLieu>();
+            _lstnsx = new List<NhaSanXuat>();
         }
-        public bool addchatlieu(ChatLieu cl)
+        public bool addnhasanxuat(NhaSanXuat nsx)
         {
-            _DBcontext.ChatLieus.Add(cl);
+            _DBcontext.NhaSanXuats.Add(nsx);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool deletechatlieu(ChatLieu cl)
+        public bool deletenhasanxuat(NhaSanXuat nsx)
         {
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.NhaSanXuats.Remove(nsx);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public List<ChatLieu> getlstchatlieufromDB()
+        public List<NhaSanXuat> getlstnxsfromDB()
         {
-            _lstchatlieu = _DBcontext.ChatLieus.ToList();
-            return _lstchatlieu;
+            _lstnsx = _DBcontext.NhaSanXuats.ToList();
+            return _lstnsx;
         }
 
-        public bool updatechatlieu(ChatLieu cl)
+        public bool updatenhasanxuat(NhaSanXuat nsx)
         {
-
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.NhaSanXuats.Update(nsx);
             _DBcontext.SaveChanges();
             return true;
         }

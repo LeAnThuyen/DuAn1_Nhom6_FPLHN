@@ -9,39 +9,40 @@ using System.Threading.Tasks;
 
 namespace _1_DAL_DataAccessLayer.DALServices
 {
-    public class ChatLieuServie : IChatLieuServices
+    public class HangHoaServices : IServicesHangHoa
     {
+
         private DatabaseContext _DBcontext;
-        private List<ChatLieu> _lstchatlieu;
-        public ChatLieuServie()
+        private List<HangHoa> _lsthanghoa;
+
+        public HangHoaServices()
         {
             _DBcontext = new DatabaseContext();
-            _lstchatlieu = new List<ChatLieu>();
+            _lsthanghoa = new List<HangHoa>();
         }
-        public bool addchatlieu(ChatLieu cl)
+        public bool addhanghoa(HangHoa hh)
         {
-            _DBcontext.ChatLieus.Add(cl);
+            _DBcontext.HangHoas.Add(hh);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool deletechatlieu(ChatLieu cl)
+        public bool deletehanghoa(HangHoa hh)
         {
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.HangHoas.Remove(hh);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public List<ChatLieu> getlstchatlieufromDB()
+        public List<HangHoa> getlsthanghoafromDB()
         {
-            _lstchatlieu = _DBcontext.ChatLieus.ToList();
-            return _lstchatlieu;
+            _lsthanghoa = _DBcontext.HangHoas.ToList();
+            return _lsthanghoa;
         }
 
-        public bool updatechatlieu(ChatLieu cl)
+        public bool updatehanghoa(HangHoa hh)
         {
-
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.HangHoas.Remove(hh);
             _DBcontext.SaveChanges();
             return true;
         }

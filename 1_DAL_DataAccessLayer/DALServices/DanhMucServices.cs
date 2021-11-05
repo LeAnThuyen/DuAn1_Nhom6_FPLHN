@@ -9,39 +9,38 @@ using System.Threading.Tasks;
 
 namespace _1_DAL_DataAccessLayer.DALServices
 {
-    public class ChatLieuServie : IChatLieuServices
+    public class DanhMucServices : IServicesDanhMuc
     {
         private DatabaseContext _DBcontext;
-        private List<ChatLieu> _lstchatlieu;
-        public ChatLieuServie()
+        private List<DanhMuc> _lstdanhmuc;
+        public DanhMucServices()
         {
             _DBcontext = new DatabaseContext();
-            _lstchatlieu = new List<ChatLieu>();
+            _lstdanhmuc = new List<DanhMuc>();
         }
-        public bool addchatlieu(ChatLieu cl)
+        public bool adddanhmuc(DanhMuc dm)
         {
-            _DBcontext.ChatLieus.Add(cl);
+            _DBcontext.DanhMucs.Add(dm);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool deletechatlieu(ChatLieu cl)
+        public bool deletedanhmuc(DanhMuc dm)
         {
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.DanhMucs.Add(dm);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public List<ChatLieu> getlstchatlieufromDB()
+        public List<DanhMuc> getlstdanhmucfromDB()
         {
-            _lstchatlieu = _DBcontext.ChatLieus.ToList();
-            return _lstchatlieu;
+           _lstdanhmuc=_DBcontext.DanhMucs.ToList();
+            return _lstdanhmuc;
         }
 
-        public bool updatechatlieu(ChatLieu cl)
+        public bool updatedanhmuc(DanhMuc dm)
         {
-
-            _DBcontext.ChatLieus.Remove(cl);
+            _DBcontext.DanhMucs.Update(dm);
             _DBcontext.SaveChanges();
             return true;
         }
