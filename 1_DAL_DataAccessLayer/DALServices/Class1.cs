@@ -10,5 +10,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
     {
         public int abc { get; set; }
         public int abcx { get; set; }
+
+        public int abcxy { get; set; }
     }
 }
