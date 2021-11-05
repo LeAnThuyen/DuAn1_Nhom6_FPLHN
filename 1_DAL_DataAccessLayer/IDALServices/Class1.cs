@@ -8,6 +8,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
 {
     class Class1
     {
-        public int ditmecuocdoi3a { get; set; }
+        public int ditmecuocdoi { get; set; }
     }
 }
