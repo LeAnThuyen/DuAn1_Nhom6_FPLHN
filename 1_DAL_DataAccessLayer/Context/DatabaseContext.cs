@@ -12,7 +12,7 @@ namespace _1_DAL_DataAccessLayer.Context
         public DatabaseContext()
         {
         }
-
+         
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
