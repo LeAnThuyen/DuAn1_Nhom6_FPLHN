@@ -14,5 +14,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addchatlieu(ChatLieu cl);
         bool deletechatlieu(ChatLieu cl);
         bool updatechatlieu(ChatLieu cl);
+        bool save(ChatLieu cl);
     }
 }

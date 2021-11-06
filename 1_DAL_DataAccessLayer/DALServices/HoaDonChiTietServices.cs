@@ -18,18 +18,18 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lsthoadonchitiet = new List<HoaDonChiTiet>();
+            getlsthdctfromDB();
         }
         public bool addhdct(HoaDonChiTiet hdct)
         {
             _DBcontext.HoaDonChiTiets.Add(hdct);
-            _DBcontext.SaveChanges();
-            return true;
+                   return true;
         }
 
         public bool deletehdct(HoaDonChiTiet hdct)
         {
             _DBcontext.HoaDonChiTiets.Remove(hdct);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
 
@@ -39,10 +39,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsthoadonchitiet;
         }
 
+        public bool save(HoaDonChiTiet hdct)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatehdct(HoaDonChiTiet hdct)
         {
             _DBcontext.HoaDonChiTiets.Update(hdct);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
     }

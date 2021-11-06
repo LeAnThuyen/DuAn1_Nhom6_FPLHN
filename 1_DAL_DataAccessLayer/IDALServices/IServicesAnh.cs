@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addanh(Anh img);
         bool deleteanh(Anh img);
         bool updateanh(Anh img);
+        bool save(Anh img);
     }
 }

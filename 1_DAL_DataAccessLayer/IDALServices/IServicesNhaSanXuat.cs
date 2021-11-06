@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addnhasanxuat(NhaSanXuat nsx);
         bool deletenhasanxuat(NhaSanXuat nsx);
         bool updatenhasanxuat(NhaSanXuat nsx);
+        bool save(NhaSanXuat xx);
     }
 }

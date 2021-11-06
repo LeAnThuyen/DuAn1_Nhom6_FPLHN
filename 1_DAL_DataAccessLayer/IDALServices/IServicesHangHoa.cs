@@ -14,5 +14,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addhanghoa(HangHoa hh);
         bool deletehanghoa(HangHoa hh);
         bool updatehanghoa(HangHoa hh);
+        bool save(HangHoa hh);
     }
 }

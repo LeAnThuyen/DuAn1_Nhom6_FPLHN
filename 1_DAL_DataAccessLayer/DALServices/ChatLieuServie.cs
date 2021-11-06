@@ -17,18 +17,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstchatlieu = new List<ChatLieu>();
+            getlstchatlieufromDB();
         }
         public bool addchatlieu(ChatLieu cl)
         {
             _DBcontext.ChatLieus.Add(cl);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
         public bool deletechatlieu(ChatLieu cl)
         {
             _DBcontext.ChatLieus.Remove(cl);
-            _DBcontext.SaveChanges();
+            
             return true;
         }
 
@@ -38,11 +39,17 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstchatlieu;
         }
 
+        public bool save(ChatLieu cl)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatechatlieu(ChatLieu cl)
         {
 
             _DBcontext.ChatLieus.Remove(cl);
-            _DBcontext.SaveChanges();
+        
             return true;
         }
     }

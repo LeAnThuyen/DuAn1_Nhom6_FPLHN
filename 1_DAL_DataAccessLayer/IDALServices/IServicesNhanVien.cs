@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addnhanvien(NhanVien nv);
         bool deletenhanvien(NhanVien nv);
         bool updatenhanvien(NhanVien nv);
+        bool save(NhanVien nv);
     }
 }

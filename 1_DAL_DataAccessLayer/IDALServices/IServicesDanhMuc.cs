@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool adddanhmuc(DanhMuc dm);
         bool deletedanhmuc(DanhMuc dm);
         bool updatedanhmuc(DanhMuc dm);
+        bool save(DanhMuc dm);
     }
 }

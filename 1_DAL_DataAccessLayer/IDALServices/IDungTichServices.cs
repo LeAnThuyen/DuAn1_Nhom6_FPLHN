@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool adddungtich(DungTich dt);
         bool deletedungtich(DungTich dt);
         bool updatedungtich(DungTich dt);
+        bool save(DungTich dt);
     }
 }

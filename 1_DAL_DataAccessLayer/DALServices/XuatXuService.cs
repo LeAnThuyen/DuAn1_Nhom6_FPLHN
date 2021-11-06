@@ -17,30 +17,37 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstxuatxu = new List<XuatXu>();
+            getlstxuatxufromDB();
         }
         public bool addxuatxu(XuatXu xx)
         {
             _DBcontext.XuatXus.Add(xx);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
 
         public bool deletexuatxu(XuatXu xx)
         {
             _DBcontext.XuatXus.Remove(xx);
-            _DBcontext.SaveChanges();
+       
             return true;
         }
-            public List<XuatXu> getlstchatlieufromDB()
+            public List<XuatXu> getlstxuatxufromDB()
         {
             _lstxuatxu = _DBcontext.XuatXus.ToList();
             return _lstxuatxu;
         }
 
+        public bool save(XuatXu xx)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatexuatxu(XuatXu xx)
         {
                 _DBcontext.XuatXus.Update(xx);
-                _DBcontext.SaveChanges();
+              
                 return true;
             }
     }

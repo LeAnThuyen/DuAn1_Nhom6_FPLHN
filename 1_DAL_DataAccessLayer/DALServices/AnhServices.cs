@@ -18,18 +18,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstanh = new List<Anh>();
+            getlstanhfromDB();
         }
         public bool addanh(Anh img)
         {
             _DBcontext.Anhs.Add(img);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
 
         public bool deleteanh(Anh img)
         {
             _DBcontext.Anhs.Remove(img);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
@@ -39,10 +40,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstanh;
         }
 
+        public bool save(Anh img)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updateanh(Anh img)
         {
             _DBcontext.Anhs.Update(img);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
     }

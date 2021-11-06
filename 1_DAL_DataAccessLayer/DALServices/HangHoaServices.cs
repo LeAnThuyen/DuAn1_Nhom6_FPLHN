@@ -19,18 +19,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lsthanghoa = new List<HangHoa>();
+            getlsthanghoafromDB();
         }
         public bool addhanghoa(HangHoa hh)
         {
             _DBcontext.HangHoas.Add(hh);
-            _DBcontext.SaveChanges();
+    
             return true;
         }
 
         public bool deletehanghoa(HangHoa hh)
         {
             _DBcontext.HangHoas.Remove(hh);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
@@ -40,10 +41,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsthanghoa;
         }
 
+        public bool save(HangHoa hh)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatehanghoa(HangHoa hh)
         {
             _DBcontext.HangHoas.Remove(hh);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
     }

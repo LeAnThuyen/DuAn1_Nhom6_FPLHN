@@ -17,31 +17,38 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstnhomhuong = new List<NhomHuong>();
+            getlstnhomhuongfromDB();
         }
         public bool addnhomhuong(NhomHuong nh)
         {
             _DBcontext.NhomHuongs.Add(nh);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
 
         public bool deletenhomhuong(NhomHuong nh)
         {
             _DBcontext.NhomHuongs.Remove(nh);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
 
-        public List<NhomHuong> getlstvatchuafromDB()
+        public List<NhomHuong> getlstnhomhuongfromDB()
         {
             _lstnhomhuong = _DBcontext.NhomHuongs.ToList();
             return _lstnhomhuong;
         }
 
+        public bool save(NhomHuong nh)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatenhomhuong(NhomHuong nh)
         {
             _DBcontext.NhomHuongs.Update(nh);
-            _DBcontext.SaveChanges();
+        
             return true;
         }
     }

@@ -10,9 +10,10 @@ namespace _1_DAL_DataAccessLayer.IDALServices
    public interface IServicesNhomHuong
     {
 
-        List<NhomHuong> getlstvatchuafromDB();
+        List<NhomHuong> getlstnhomhuongfromDB();
         bool addnhomhuong(NhomHuong nh);
         bool deletenhomhuong(NhomHuong nh);
         bool updatenhomhuong(NhomHuong nh);
+        bool save(NhomHuong nh);
     }
 }

@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addchitiet(ChiTietHangHoa cthh);
         bool deletechitiet(ChiTietHangHoa cthh);
         bool updatechitiet(ChiTietHangHoa cthh);
+        bool save(ChiTietHangHoa cthh);
     }
 }

@@ -17,18 +17,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstnsx = new List<NhaSanXuat>();
+            getlstnxsfromDB();
         }
         public bool addnhasanxuat(NhaSanXuat nsx)
         {
             _DBcontext.NhaSanXuats.Add(nsx);
-            _DBcontext.SaveChanges();
+        
             return true;
         }
 
         public bool deletenhasanxuat(NhaSanXuat nsx)
         {
             _DBcontext.NhaSanXuats.Remove(nsx);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
@@ -38,10 +39,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstnsx;
         }
 
+        public bool save(NhaSanXuat xx)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatenhasanxuat(NhaSanXuat nsx)
         {
             _DBcontext.NhaSanXuats.Update(nsx);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
     }

@@ -14,5 +14,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addvatchua(VatChua vt);
         bool deletevatchua(VatChua vt);
         bool updatevatchua(VatChua vt);
+        bool save(VatChua vt);
     }
 }

@@ -18,18 +18,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstnhanvien = new List<NhanVien>();
+            getlstnhanvienfromDB();
         }
         public bool addnhanvien(NhanVien nv)
         {
             _DBcontext.NhanViens.Add(nv);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
 
         public bool deletenhanvien(NhanVien nv)
         {
             _DBcontext.NhanViens.Add(nv);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
 
@@ -39,10 +40,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstnhanvien;
         }
 
+        public bool save(NhanVien nv)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatenhanvien(NhanVien nv)
         {
             _DBcontext.NhanViens.Update(nv);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
     }

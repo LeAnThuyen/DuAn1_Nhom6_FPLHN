@@ -19,18 +19,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lsthoadonban = new List<HoaDonBan>();
+            getlsthdbfromDB();
         }
         public bool addhdb(HoaDonBan hdb)
         {
             _DBcontext.HoaDonBans.Add(hdb);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
         public bool deletehdb(HoaDonBan hdb)
         {
             _DBcontext.HoaDonBans.Remove(hdb);
-            _DBcontext.SaveChanges();
+     
             return true;
         }
 
@@ -40,10 +41,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsthoadonban;
         }
 
+        public bool save(HoaDonBan hdb)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatehdb(HoaDonBan hdb)
         {
             _DBcontext.HoaDonBans.Update(hdb);
-            _DBcontext.SaveChanges();
+        
             return true;
         }
     }

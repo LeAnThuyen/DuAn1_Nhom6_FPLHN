@@ -19,18 +19,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstchitiethanghoa = new List<ChiTietHangHoa>();
+            getlstchitietthanghoafromDB();
         }
         public bool addchitiet(ChiTietHangHoa cthh)
         {
             _DBcontext.ChiTietHangHoas.Add(cthh);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
 
         public bool deletechitiet(ChiTietHangHoa cthh)
         {
             _DBcontext.ChiTietHangHoas.Remove(cthh);
-            _DBcontext.SaveChanges();
+        
             return true;
         }
 
@@ -40,10 +41,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstchitiethanghoa;
         }
 
+        public bool save(ChiTietHangHoa cthh)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatechitiet(ChiTietHangHoa cthh)
         {
             _DBcontext.ChiTietHangHoas.Update(cthh);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
     }

@@ -17,18 +17,19 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstdanhmuc = new List<DanhMuc>();
+            getlstdanhmucfromDB();
         }
         public bool adddanhmuc(DanhMuc dm)
         {
             _DBcontext.DanhMucs.Add(dm);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
 
         public bool deletedanhmuc(DanhMuc dm)
         {
             _DBcontext.DanhMucs.Add(dm);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
 
@@ -38,10 +39,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lstdanhmuc;
         }
 
+        public bool save(DanhMuc dm)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatedanhmuc(DanhMuc dm)
         {
             _DBcontext.DanhMucs.Update(dm);
-            _DBcontext.SaveChanges();
+         
             return true;
         }
     }

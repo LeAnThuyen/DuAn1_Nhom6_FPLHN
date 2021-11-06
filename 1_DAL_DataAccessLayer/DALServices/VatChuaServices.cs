@@ -17,19 +17,20 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lsvatchua = new List<VatChua>();
+            getlstvatchuafromDB();
         }
 
         public bool addvatchua(VatChua vt)
         {
             _DBcontext.VatChuas.Add(vt);
-            _DBcontext.SaveChanges();
+     
             return true;
         }
 
         public bool deletevatchua(VatChua vt)
         {
             _DBcontext.VatChuas.Remove(vt);
-            _DBcontext.SaveChanges();
+          
             return true;
         }
 
@@ -39,10 +40,16 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsvatchua;
         }
 
+        public bool save(VatChua vt)
+        {
+            _DBcontext.SaveChanges();
+            return true;
+        }
+
         public bool updatevatchua(VatChua vt)
         {
             _DBcontext.VatChuas.Update(vt);
-            _DBcontext.SaveChanges();
+           
             return true;
         }
     }

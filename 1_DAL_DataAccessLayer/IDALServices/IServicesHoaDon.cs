@@ -13,5 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addhdb(HoaDonBan hdb);
         bool deletehdb(HoaDonBan hdb);
         bool updatehdb(HoaDonBan hdb);
+        bool save(HoaDonBan hdb);
     }
 }
