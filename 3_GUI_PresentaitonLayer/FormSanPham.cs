@@ -1,4 +1,5 @@
-﻿using _2_BUS_BussinessLayer.Services;
+﻿using _1_DAL_DataAccessLayer.Models;
+using _2_BUS_BussinessLayer.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace _3_GUI_PresentaitonLayer
         private void menuChatLieu_Click_1(object sender, EventArgs e)
         {
             ChatLieu frmChatLieu = new ChatLieu(); //Khởi tạo đối tượng
-            frmChatLieu.ShowDialog(); //Hiển thị
+           // frmChatLieu.ShowDialog(); //Hiển thị
         }
 
         private void menuDungTich_Click_1(object sender, EventArgs e)

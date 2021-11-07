@@ -17,7 +17,9 @@ namespace _3_GUI_PresentaitonLayer
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormSanPham());
+            Application.Run(new Frmlogin());
+         
+
         }
     }
 }
