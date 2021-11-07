@@ -1,33 +1,26 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>_3_GUI_PresentaitonLayer</RootNamespace>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\2_BUS_BussinessLayer\2_BUS_BussinessLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="Properties\" />
-=======
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
->>>>>>> 5555e1dd3e7ab9dee4c9de6e0ed118fb83479492
-  </ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<Compile Update="Anh.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="DungTich.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormSanPham.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Frmlogin.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="NhomHuong.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="VatChua.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="XuatXu.cs">
+			<SubType>Form</SubType>
+		</Compile>
+	</ItemGroup>
 </Project>
