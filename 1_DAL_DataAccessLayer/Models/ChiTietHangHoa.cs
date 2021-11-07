@@ -21,6 +21,8 @@ namespace _1_DAL_DataAccessLayer.Models
         public int IdthongTinHangHoa { get; set; }
         [StringLength(50)]
         public string SoLuong { get; set; }
+        [StringLength(50)]
+        public string Mavach { get; set; }
         public double? DonGiaNhap { get; set; }
         public double? DonGiaBan { get; set; }
         [Column(TypeName = "datetime")]
@@ -40,8 +42,7 @@ namespace _1_DAL_DataAccessLayer.Models
         public int? IdquocGia { get; set; }
         [Column("IDDungTich")]
         public int? IddungTich { get; set; }
-        [Column("IDHoaDonChiTiet")]
-        public int? IdhoaDonChiTiet { get; set; }
+      
         [Column("IDAnh")]
         public int? Idanh { get; set; }
         [Column("IDVatChua")]

@@ -115,7 +115,7 @@ namespace _1_DAL_DataAccessLayer.Context
             {
                 entity.Property(e => e.IdhangHoa).ValueGeneratedNever();
 
-                entity.Property(e => e.IdhoaDonChiTiet).IsFixedLength(true);
+                //entity.Property(e => e.IdhoaDonChiTiet).IsFixedLength(true);
 
                 entity.HasOne(d => d.IddanhMucNavigation)
                     .WithMany(p => p.HangHoas)
