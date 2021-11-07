@@ -41,6 +41,7 @@ namespace _2_BUS_BussinessLayer.Services
             _iServicesHangHoa = new HangHoaServices();
             _lsViewHangHoas = new List<ViewHangHoa>();
             _lsHangHoas = new List<HangHoa>();
+            GetsList();
 
         }
         public bool AddSP(HangHoa HangHoa)
@@ -68,6 +69,7 @@ namespace _2_BUS_BussinessLayer.Services
                     join g in _iServicesDanhMuc.getlstdanhmucfromDB() on a.IddanhMuc equals g.IddanhMuc
                     join h in _iChatLieuServices.getlstchatlieufromDB() on c.IdchatLieu equals h.IdchatLieu
                     join i in _iDungTichServices.getlstdungtichfromDB() on c.IddungTich equals i.IddungTich
+                    join k in _iServicesVatChua.getlstvatchuafromDB() on c.IdvatChua equals k.IdvatChua
                     select new ViewHangHoa()
                     {
                         HangHoa = a,
@@ -78,7 +80,8 @@ namespace _2_BUS_BussinessLayer.Services
                         XuatXu = f,
                         DanhMuc = g,
                         ChatLieu = h,
-                        DungTich = i
+                        DungTich = i,
+                        VatChua=k
                     }
                 ).ToList();
             return _lsViewHangHoas;
