@@ -17,6 +17,7 @@ namespace _2_BUS_BussinessLayer.IServices
         public bool UpdateSPChiTiet(ChiTietHangHoa ChiTietHangHoa);
         public bool RemoveSPChiTiet(ChiTietHangHoa ChiTietHangHoa);
         public List<ViewHangHoa> GetsList();
-        void Save();
+        void SaveChiTietHangHoa(ChiTietHangHoa ChiTietHangHoa);
+        void SaveHangHoa(HangHoa HangHoa);
     }
 }

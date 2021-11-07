@@ -24,6 +24,7 @@ namespace _2_BUS_BussinessLayer.Services
         private IChatLieuServices _iChatLieuServices;
         private IServicesHangHoa _iServicesHangHoa;
         private List<HangHoa> _lsHangHoas;
+        private List<ChiTietHangHoa> _lsChiTietHangHoas;
         private List<ViewHangHoa> _lsViewHangHoas;
 
         public QlyHangHoaServices()
@@ -51,44 +52,72 @@ namespace _2_BUS_BussinessLayer.Services
 
         public bool AddSpChiTiet(ChiTietHangHoa ChiTietHangHoa)
         {
-            throw new NotImplementedException();
+            _lsChiTietHangHoas.Add(ChiTietHangHoa);
+            _iChiTietHangHoa.addchitiet(ChiTietHangHoa);
+            return true;
         }
 
         public List<ViewHangHoa> GetsList()
         {
-            _lsViewHangHoas = ( from a in _iServicesHangHoa.getlsthanghoafromDB() 
-                                        join b in _iServicesNhaSanXuat.getlstnxsfromDB() on a.IdnhaSanXuat equals b.IdnhaSanXuat
-                                        join c in _iChiTietHangHoa.getlstchitietthanghoafromDB() on a.IdhangHoa equals c.IdthongTinHangHoa
-                                        join d in _iServicesAnh.getlstanhfromDB() on c.Idanh equals d.Idanh
-                                        join e in _iServicesNhomHuong.getlstnhomhuongfromDB() on c.IdnhomHuong equals e.IdnhomHuong
-                                        
-                )
+            _lsViewHangHoas = (from a in _iServicesHangHoa.getlsthanghoafromDB()
+                    join b in _iServicesNhaSanXuat.getlstnxsfromDB() on a.IdnhaSanXuat equals b.IdnhaSanXuat
+                    join c in _iChiTietHangHoa.getlstchitietthanghoafromDB() on a.IdhangHoa equals c.IdthongTinHangHoa
+                    join d in _iServicesAnh.getlstanhfromDB() on c.Idanh equals d.Idanh
+                    join e in _iServicesNhomHuong.getlstnhomhuongfromDB() on c.IdnhomHuong equals e.IdnhomHuong
+                    join f in _iServicesXuatXu.getlstxuatxufromDB() on c.IdquocGia equals f.IdquocGia
+                    join g in _iServicesDanhMuc.getlstdanhmucfromDB() on a.IddanhMuc equals g.IddanhMuc
+                    join h in _iChatLieuServices.getlstchatlieufromDB() on c.IdchatLieu equals h.IdchatLieu
+                    join i in _iDungTichServices.getlstdungtichfromDB() on c.IddungTich equals i.IddungTich
+                    select new ViewHangHoa()
+                    {
+                        HangHoa = a,
+                        NhaSanXuat = b,
+                        ChiTietHangHoa = c,
+                        Anh = d,
+                        NhomHuong = e,
+                        XuatXu = f,
+                        DanhMuc = g,
+                        ChatLieu = h,
+                        DungTich = i
+                    }
+                ).ToList();
             return _lsViewHangHoas;
         }
 
         public bool RemoveSP(HangHoa HangHoa)
         {
-            throw new NotImplementedException();
+            _lsHangHoas.Remove(HangHoa);
+            _iServicesHangHoa.deletehanghoa(HangHoa);
+            return true;
         }
 
         public bool RemoveSPChiTiet(ChiTietHangHoa ChiTietHangHoa)
         {
-            throw new NotImplementedException();
+            _lsChiTietHangHoas.Remove(ChiTietHangHoa);
+            _iChiTietHangHoa.deletechitiet(ChiTietHangHoa);
+            return true;
         }
 
-        public void Save()
+        public void SaveChiTietHangHoa(ChiTietHangHoa ChiTietHangHoa)
         {
-            throw new NotImplementedException();
+            _iChiTietHangHoa.save(ChiTietHangHoa);
+        }
+
+        public void SaveHangHoa(HangHoa HangHoa)
+        {
+            _iServicesHangHoa.save(HangHoa);
         }
 
         public bool UpdateSP(HangHoa HangHoa)
         {
-            throw new NotImplementedException();
+            _iServicesHangHoa.updatehanghoa(HangHoa);
+            return true;
         }
 
         public bool UpdateSPChiTiet(ChiTietHangHoa ChiTietHangHoa)
         {
-            throw new NotImplementedException();
+            _iChiTietHangHoa.updatechitiet(ChiTietHangHoa);
+            return true;
         }
     }
 }
