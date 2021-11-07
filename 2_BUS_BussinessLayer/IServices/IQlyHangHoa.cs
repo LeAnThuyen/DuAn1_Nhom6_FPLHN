@@ -10,6 +10,7 @@ namespace _2_BUS_BussinessLayer.IServices
 {
     public interface IQlyHangHoa
     {
+        
         public bool AddSP(HangHoa HangHoa);
         public bool UpdateSP(HangHoa HangHoa);
         public bool RemoveSP(HangHoa HangHoa);

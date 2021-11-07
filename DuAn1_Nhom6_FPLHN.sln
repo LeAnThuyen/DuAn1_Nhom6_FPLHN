@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1_DAL_DataAccessLayer", "1_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2_BUS_BussinessLayer", "2_BUS_BussinessLayer\2_BUS_BussinessLayer.csproj", "{3C145054-67BC-4B41-8816-4AA6E57C5DEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_GUI_PresentaionLayers", "3_GUI_PresentaionLayers\3_GUI_PresentaionLayers.csproj", "{BE8AA654-85AE-46AD-A98C-C448D53B826F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_GUI_PresentaionLayers", "3_GUI_PresentaionLayers\3_GUI_PresentaionLayers.csproj", "{BE8AA654-85AE-46AD-A98C-C448D53B826F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
