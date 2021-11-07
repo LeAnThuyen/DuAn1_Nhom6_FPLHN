@@ -1,26 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup>
-		<Compile Update="Anh.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="DungTich.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="FormSanPham.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="Frmlogin.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="NhomHuong.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="VatChua.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="XuatXu.cs">
-			<SubType>Form</SubType>
-		</Compile>
-	</ItemGroup>
+  <PropertyGroup>
+    <ProjectGuid>{3181DDCA-A0C8-445A-A97A-E6A06D334517}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Anh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DungTich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Frmlogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NhomHuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VatChua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="XuatXu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2_BUS_BussinessLayer\2_BUS_BussinessLayer.csproj">
+      <Project>{3c145054-67bc-4b41-8816-4aa6e57c5deb}</Project>
+      <Name>2_BUS_BussinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
