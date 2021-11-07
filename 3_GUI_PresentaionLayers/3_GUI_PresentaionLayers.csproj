@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
+    <PackageReference Include="ZXing.Net" Version="0.16.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\2_BUS_BussinessLayer\2_BUS_BussinessLayer.csproj" />
   </ItemGroup>
 
