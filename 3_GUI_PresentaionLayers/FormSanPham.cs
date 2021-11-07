@@ -124,7 +124,27 @@ namespace _3_GUI_PresentaionLayers
 
         private void dgrid_sanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            int idhh = Convert.ToInt32(dgrid_sanpham.Rows[e.RowIndex].Cells[0].Value);
+            string mahh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
+            string mavach =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
+            
+            string tenhh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[3].Value);
+            string nsx =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[4].Value);
+            string danhmuc=Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[5].Value);
+            string trangthai =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[6].Value);
+            string soluong =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[7].Value);
+            string dongianhap =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[8].Value);
+            string dongiaban =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[9].Value);
+            DateTime ngaynhapkho  =Convert.ToDateTime( dgrid_sanpham.Rows[e.RowIndex].Cells[10].Value);
+            string tencl =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[11].Value);
+            string tenvt =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[12].Value);
+            string nhomhuong =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[13].Value);
+            string tenquocgia =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
+            string sodungtich =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
+            string anh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
+            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh);
+            frmBackView.ShowDialog();
+           
         }
     }
 }
