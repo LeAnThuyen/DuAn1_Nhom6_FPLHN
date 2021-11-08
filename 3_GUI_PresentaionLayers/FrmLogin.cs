@@ -26,9 +26,12 @@ namespace _3_GUI_PresentaionLayers
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
-      
-        
 
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           
+        }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -145,6 +148,12 @@ namespace _3_GUI_PresentaionLayers
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void tmr_time_Tick(object sender, EventArgs e)
+        {
+            DateTime tn = DateTime.Now;
+            lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
         }
     }
 }
