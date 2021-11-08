@@ -33,14 +33,14 @@ namespace _3_GUI_PresentaionLayers
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.panelhome = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTime = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
+            this.lblTime = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.bntMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCloseChildForm = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -48,8 +48,10 @@ namespace _3_GUI_PresentaionLayers
             this.button1 = new System.Windows.Forms.Button();
             this.btnSanPham = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPer = new System.Windows.Forms.Label();
             this.tmr_time = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelhome.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,44 +73,59 @@ namespace _3_GUI_PresentaionLayers
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lblTime);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.tbDark);
+            this.panel1.Controls.Add(this.lblTime);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1222, 798);
             this.panel1.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(180, 159);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(868, 459);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 65;
+            this.pictureBox1.TabStop = false;
+            // 
+            // tbDark
+            // 
+            this.tbDark.AutoSize = true;
+            this.tbDark.Location = new System.Drawing.Point(14, 14);
+            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbDark.Name = "tbDark";
+            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
+            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbDark.Size = new System.Drawing.Size(45, 22);
+            this.tbDark.TabIndex = 64;
+            this.tbDark.UseVisualStyleBackColor = true;
+            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged);
+            // 
             // lblTime
             // 
             this.lblTime.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTime.ForeColor = System.Drawing.Color.Gray;
-            this.lblTime.Location = new System.Drawing.Point(0, 3);
+            this.lblTime.Location = new System.Drawing.Point(475, 2);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(323, 46);
             this.lblTime.TabIndex = 63;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(194, 144);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(868, 459);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitle.Controls.Add(this.lblTitle);
             this.panelTitle.Controls.Add(this.bntMinimize);
             this.panelTitle.Controls.Add(this.btnMaximize);
             this.panelTitle.Controls.Add(this.btnClose);
             this.panelTitle.Controls.Add(this.btnCloseChildForm);
-            this.panelTitle.Controls.Add(this.lblTitle);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Name = "panelTitle";
@@ -181,21 +198,10 @@ namespace _3_GUI_PresentaionLayers
             this.btnCloseChildForm.UseVisualStyleBackColor = true;
             this.btnCloseChildForm.Click += new System.EventHandler(this.button5_Click_1);
             // 
-            // lblTitle
-            // 
-            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTitle.Location = new System.Drawing.Point(584, 23);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(54, 18);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "HOME";
-            // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMenu.Controls.Add(this.button4);
             this.panelMenu.Controls.Add(this.button3);
             this.panelMenu.Controls.Add(this.button2);
@@ -218,7 +224,7 @@ namespace _3_GUI_PresentaionLayers
             this.button4.Location = new System.Drawing.Point(0, 256);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(176, 48);
+            this.button4.Size = new System.Drawing.Size(174, 48);
             this.button4.TabIndex = 5;
             this.button4.Text = "Sản Phẩm";
             this.button4.UseVisualStyleBackColor = true;
@@ -232,7 +238,7 @@ namespace _3_GUI_PresentaionLayers
             this.button3.Location = new System.Drawing.Point(0, 208);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(176, 48);
+            this.button3.Size = new System.Drawing.Size(174, 48);
             this.button3.TabIndex = 4;
             this.button3.Text = "Sản Phẩm";
             this.button3.UseVisualStyleBackColor = true;
@@ -246,10 +252,11 @@ namespace _3_GUI_PresentaionLayers
             this.button2.Location = new System.Drawing.Point(0, 160);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(176, 48);
+            this.button2.Size = new System.Drawing.Size(174, 48);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Sản Phẩm";
+            this.button2.Text = "Bán Hàng ";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -260,10 +267,11 @@ namespace _3_GUI_PresentaionLayers
             this.button1.Location = new System.Drawing.Point(0, 112);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(176, 48);
+            this.button1.Size = new System.Drawing.Size(174, 48);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Sản Phẩm";
+            this.button1.Text = "Hóa Đơn";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnSanPham
             // 
@@ -275,7 +283,7 @@ namespace _3_GUI_PresentaionLayers
             this.btnSanPham.Location = new System.Drawing.Point(0, 64);
             this.btnSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.btnSanPham.Name = "btnSanPham";
-            this.btnSanPham.Size = new System.Drawing.Size(176, 48);
+            this.btnSanPham.Size = new System.Drawing.Size(174, 48);
             this.btnSanPham.TabIndex = 1;
             this.btnSanPham.Text = "Sản Phẩm";
             this.btnSanPham.UseVisualStyleBackColor = true;
@@ -284,29 +292,45 @@ namespace _3_GUI_PresentaionLayers
             // panelLogo
             // 
             this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.panelLogo.Controls.Add(this.label1);
+            this.panelLogo.Controls.Add(this.lblPer);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Margin = new System.Windows.Forms.Padding(2);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(176, 64);
+            this.panelLogo.Size = new System.Drawing.Size(174, 64);
             this.panelLogo.TabIndex = 0;
             // 
-            // label1
+            // lblPer
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PERSOFT";
+            this.lblPer.AutoSize = true;
+            this.lblPer.Font = new System.Drawing.Font("Ink Free", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblPer.Location = new System.Drawing.Point(21, 11);
+            this.lblPer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPer.Name = "lblPer";
+            this.lblPer.Size = new System.Drawing.Size(135, 42);
+            this.lblPer.TabIndex = 1;
+            this.lblPer.Text = "Persoft";
             // 
             // tmr_time
             // 
             this.tmr_time.Enabled = true;
             this.tmr_time.Interval = 1000;
             this.tmr_time.Tick += new System.EventHandler(this.tmr_time_Tick);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(573, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(50, 20);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.Text = "Home";
             // 
             // FrmLogin
             // 
@@ -320,6 +344,7 @@ namespace _3_GUI_PresentaionLayers
             this.Text = "Frmlogin";
             this.panelhome.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelTitle.ResumeLayout(false);
             this.panelTitle.PerformLayout();
@@ -340,16 +365,18 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnSanPham;
         private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Button btnCloseChildForm;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button bntMinimize;
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer tmr_time;
+        private RJControls.RJToggleButton tbDark;
+        private System.Windows.Forms.Label lblPer;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

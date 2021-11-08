@@ -1,4 +1,6 @@
-﻿using AForge.Video.DirectShow;
+﻿using _1_DAL_DataAccessLayer.DALServices;
+using _2_BUS_BussinessLayer.Services;
+using AForge.Video.DirectShow;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +17,7 @@ namespace _3_GUI_PresentaionLayers
 {
     public partial class FrmBackView : Form
     {
-
+        #region
         private string mahh = "";
         private int id ;
         private string tenhh = "";
@@ -33,12 +35,20 @@ namespace _3_GUI_PresentaionLayers
         private string tennquocgia = "";
         private string sodungtich = "";
         private string anh = "";
+        private DateTime? hsd ;
+        private string model = "";
+        #endregion
+        private QlyHangHoaServices _qlhhser;
+        private HangHoaServices _hhser;
+        private ChiTietHangHoaServices _cthhser;
+     
 
         public FrmBackView(int id,string mahh,string tenhh, string nsx,string danhmuc, string trangthai, string mavach,string soluong,
            string gianhap, string giaban,DateTime ngaynhap, string tenchatlieu, string tenvatchua, string nhomhuong, string tenquocgia,
-           string sodungtich, string anh)
+           string sodungtich, string anh, DateTime hsd, string model)
         {
             InitializeComponent();
+            #region
             this.mahh = mahh;
             this.id = id;
             this.tenhh = tenhh;
@@ -56,8 +66,10 @@ namespace _3_GUI_PresentaionLayers
             this.tennquocgia = tenquocgia;
             this.sodungtich = sodungtich;
             this.anh = anh;
+            this.hsd = hsd;
+            this.model = model;
             cbo_mahh.Text = mahh;
-            txt_tenhh.Text = tenhh;
+            cbo_tenhh.Text = tenhh;
             cbo_nsx.Text = nsx;
             cbo_danhmuc.Text = danhmuc;
             chk_conhang.Checked =trangthai=="Còn Hàng";
@@ -72,44 +84,23 @@ namespace _3_GUI_PresentaionLayers
             cbo_tennhomhuong.Text = nhomhuong;
             cbo_tenquocgia.Text = tenquocgia;
             cbo_soduntich.Text = sodungtich;
-            txt_anh.Text = anh;
-        }
-        FilterInfoCollection filterInfoCollection;
-        VideoCaptureDevice videoCaptureDevice;
-       
-        private void FrmBackView_Load(object sender, EventArgs e)
-        {
-            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach (FilterInfo device in filterInfoCollection)
-                cbo_webcam.Items.Add(device.Name);
-            cbo_webcam.SelectedIndex = 0;
+            cbo_anh.Text = anh;
+            dtp_hsd.Value = hsd;
+            txt_model.Text = model;
+            #endregion
+            _qlhhser = new QlyHangHoaServices();
+            _hhser = new HangHoaServices();
+            _cthhser = new ChiTietHangHoaServices();
 
-        }
-        private void cbo_tenquocgia_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            Image img1 = Image.FromFile(cbo_anh.Text);
+            pic_anhhanghoa.Image = img1;
 
         }
 
-        private void btn_cammera_Click(object sender, EventArgs e)
+        public void Alert(string mess)
         {
-          
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbo_webcam.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
-        }
-        private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
-        {
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            BarcodeReader reader = new BarcodeReader();
-            var result = reader.Decode(bitmap);
-            if (result != null)
-            {
-                txt_mavach.Invoke(new MethodInvoker(delegate ()
-                {
-                    txt_mavach.Text = result.ToString();
-                }));
-            }
-            pic_cammera.Image = bitmap;
+            FrmAlert frmAlert = new FrmAlert();
+            frmAlert.showAlert(mess);
         }
 
         private void FrmBackView_FormClosing(object sender, FormClosingEventArgs e)
@@ -117,16 +108,28 @@ namespace _3_GUI_PresentaionLayers
             
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
+       
+
+       
+        private void pic_hanghoa_DoubleClick(object sender, EventArgs e)
+        {
+            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1, "", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
+            frm_EditHangHoa.Show();
+            this.Alert("Hãy Thêm Mới 1 Sản Phẩm Thôi Nào !");
+            // this.Hide();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
-            if (videoCaptureDevice.IsRunning)
-            {
-                videoCaptureDevice.Stop();
-            }
-                
-
-
         }
+        
+        private void cbo_anh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Image img1 = Image.FromFile(cbo_anh.Text);
+            pic_anhhanghoa.Image = img1;
+        }
+
+       
     }
 }

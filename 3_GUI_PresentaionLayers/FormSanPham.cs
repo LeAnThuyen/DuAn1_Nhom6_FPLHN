@@ -60,7 +60,11 @@ namespace _3_GUI_PresentaionLayers
         }
         #endregion
 
-
+        public void Alert(string mess)
+        {
+            FrmAlert frmAlert = new FrmAlert();
+            frmAlert.showAlert(mess);
+        }
         void loaddata()
         {
             ArrayList row = new ArrayList();
@@ -70,7 +74,7 @@ namespace _3_GUI_PresentaionLayers
             row.Add("Sửa");
             row.Add("Xóa");
 
-            dgrid_sanpham.ColumnCount = 17;
+            dgrid_sanpham.ColumnCount = 19;
             dgrid_sanpham.Columns[0].Name = "IDHH";
             dgrid_sanpham.Columns[0].Visible = false;
             dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
@@ -83,13 +87,24 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[8].Name = "Gía Nhập";
             dgrid_sanpham.Columns[9].Name = "Gía Bán";
             dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+         //   dgrid_sanpham.Columns[10].Visible = false;
             dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
             dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
             dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
             dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
             dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
             dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
-           // combobox
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
             DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
             cbo.HeaderText = "Chức Năng";
             cbo.Name = "cbo";
@@ -105,26 +120,19 @@ namespace _3_GUI_PresentaionLayers
             btn.Name = "btn";
             btn.UseColumnTextForButtonValue = true;
             dgrid_sanpham.Columns.Add(btn);
-            //ảnh
-            DataGridViewImageColumn img = new DataGridViewImageColumn();
-            img.HeaderText = "Ảnh Hàng Hóa";
-            img.Name = "img_nv";
-            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
-
-            dgrid_sanpham.Columns.Add(img);
-            dgrid_sanpham.Columns["img_nv"].Width = 100;
-            dgrid_sanpham.RowTemplate.Height = 80;
-            dgrid_sanpham.Rows.Clear();
+           
             foreach (var x in qlhhser.GetsList())
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
-                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan);
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan,x.ChiTietHangHoa.HanSuDung,x.ChiTietHangHoa.Model);
             }
 
+            
         }
 
         private void dgrid_sanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+          
             int idhh = Convert.ToInt32(dgrid_sanpham.Rows[e.RowIndex].Cells[0].Value);
             string mahh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
             string mavach =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
@@ -143,9 +151,45 @@ namespace _3_GUI_PresentaionLayers
             string tenquocgia =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
             string sodungtich =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
             string anh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
-            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh);
-            frmBackView.ShowDialog();
+            DateTime hsd =Convert.ToDateTime( dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
+            string model =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
+            this.Alert("Chào Mừng Bạn Đến Với Thông Tin Chi Tiết Sản Phẩm");s
+            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh,hsd,model);
            
+            frmBackView.Show();
+           
+
+
+
+        }
+        private void dgrid_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        
+        }
+        private void dgrid_sanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime tn = DateTime.Now;
+            lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
+        private void tbDark_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tbDark.Checked)
+            {
+                this.BackColor = Color.RosyBrown;
+
+            }
+            else
+            {
+                this.BackColor = Color.DarkOliveGreen;
+
+            }
         }
     }
 }

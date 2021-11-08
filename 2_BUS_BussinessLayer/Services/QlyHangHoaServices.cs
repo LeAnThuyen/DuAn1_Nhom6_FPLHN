@@ -41,19 +41,20 @@ namespace _2_BUS_BussinessLayer.Services
             _iServicesHangHoa = new HangHoaServices();
             _lsViewHangHoas = new List<ViewHangHoa>();
             _lsHangHoas = new List<HangHoa>();
+            _lsChiTietHangHoas = new List<ChiTietHangHoa>();
             GetsList();
 
         }
         public bool AddSP(HangHoa HangHoa)
         {
-            _lsHangHoas.Add(HangHoa);
+          
             _iServicesHangHoa.addhanghoa(HangHoa);
             return true;
         }
 
         public bool AddSpChiTiet(ChiTietHangHoa ChiTietHangHoa)
         {
-            _lsChiTietHangHoas.Add(ChiTietHangHoa);
+           
             _iChiTietHangHoa.addchitiet(ChiTietHangHoa);
             return true;
         }

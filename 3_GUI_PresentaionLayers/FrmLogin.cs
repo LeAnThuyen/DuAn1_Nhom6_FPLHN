@@ -27,7 +27,11 @@ namespace _3_GUI_PresentaionLayers
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
-
+        public void Alert(string mess)
+        {
+            FrmAlert frmAlert = new FrmAlert();
+            frmAlert.showAlert(mess);
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
            
@@ -115,6 +119,7 @@ namespace _3_GUI_PresentaionLayers
         private void btnSanPham_Click_1(object sender, EventArgs e)
         {
             OpenChildForm(new FormSanPham(), sender);
+            lblTitle.Text = "FormSanPham";
         }
 
 
@@ -154,6 +159,36 @@ namespace _3_GUI_PresentaionLayers
         {
             DateTime tn = DateTime.Now;
             lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
+        private void tbDark_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (tbDark.Checked)
+            {
+                this.BackColor = Color.RosyBrown;
+
+            }
+            else
+            {
+                this.BackColor = Color.DarkOliveGreen;
+
+            }
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            lblPer.ForeColor = lblPer.ForeColor == Color.Transparent ? Color.Red : Color.Transparent;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormHoaDonChiTiet(), sender);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new BanHang(), sender);
         }
     }
 }

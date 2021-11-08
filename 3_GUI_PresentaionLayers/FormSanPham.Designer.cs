@@ -29,6 +29,7 @@ namespace _3_GUI_PresentaionLayers
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label10 = new System.Windows.Forms.Label();
             this.menuChatLieu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDungTich = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,9 +39,15 @@ namespace _3_GUI_PresentaionLayers
             this.manuAnh = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgrid_sanpham = new System.Windows.Forms.DataGridView();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,26 +121,81 @@ namespace _3_GUI_PresentaionLayers
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dgrid_sanpham);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 216);
+            this.panel1.Location = new System.Drawing.Point(0, 224);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1219, 547);
+            this.panel1.Size = new System.Drawing.Size(1219, 539);
             this.panel1.TabIndex = 82;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1219, 64);
+            this.panel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.label1.Location = new System.Drawing.Point(965, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(239, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nháy Đúp 1 Dòng Để Xem Chi Tiết";
             // 
             // dgrid_sanpham
             // 
             this.dgrid_sanpham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_sanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgrid_sanpham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgrid_sanpham.Location = new System.Drawing.Point(0, 0);
+            this.dgrid_sanpham.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgrid_sanpham.Location = new System.Drawing.Point(0, 64);
             this.dgrid_sanpham.Name = "dgrid_sanpham";
             this.dgrid_sanpham.RowHeadersWidth = 51;
             this.dgrid_sanpham.RowTemplate.Height = 29;
             this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_sanpham.Size = new System.Drawing.Size(1219, 547);
+            this.dgrid_sanpham.Size = new System.Drawing.Size(1219, 475);
             this.dgrid_sanpham.TabIndex = 0;
+            this.dgrid_sanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellClick);
+            this.dgrid_sanpham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellContentClick);
             this.dgrid_sanpham.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellDoubleClick);
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.ForeColor = System.Drawing.Color.Transparent;
+            this.lblTime.Location = new System.Drawing.Point(896, 38);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(323, 46);
+            this.lblTime.TabIndex = 91;
+            // 
+            // tbDark
+            // 
+            this.tbDark.AutoSize = true;
+            this.tbDark.Location = new System.Drawing.Point(0, 31);
+            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbDark.Name = "tbDark";
+            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
+            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbDark.Size = new System.Drawing.Size(45, 22);
+            this.tbDark.TabIndex = 90;
+            this.tbDark.UseVisualStyleBackColor = true;
+            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormSanPham
             // 
@@ -141,6 +203,8 @@ namespace _3_GUI_PresentaionLayers
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1219, 763);
+            this.Controls.Add(this.tbDark);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.menuStrip1);
@@ -148,6 +212,8 @@ namespace _3_GUI_PresentaionLayers
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -165,5 +231,10 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgrid_sanpham;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTime;
+        private RJControls.RJToggleButton tbDark;
+        private System.Windows.Forms.Timer timer1;
     }
 }
