@@ -29,9 +29,11 @@ namespace _3_GUI_PresentaionLayers
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.panelhome = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTime = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.bntMinimize = new System.Windows.Forms.Button();
@@ -47,6 +49,7 @@ namespace _3_GUI_PresentaionLayers
             this.btnSanPham = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.tmr_time = new System.Windows.Forms.Timer(this.components);
             this.panelhome.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,12 +72,23 @@ namespace _3_GUI_PresentaionLayers
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblTime);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1222, 798);
             this.panel1.TabIndex = 2;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.ForeColor = System.Drawing.Color.Gray;
+            this.lblTime.Location = new System.Drawing.Point(0, 3);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(323, 46);
+            this.lblTime.TabIndex = 63;
             // 
             // pictureBox1
             // 
@@ -288,6 +302,12 @@ namespace _3_GUI_PresentaionLayers
             this.label1.TabIndex = 0;
             this.label1.Text = "PERSOFT";
             // 
+            // tmr_time
+            // 
+            this.tmr_time.Enabled = true;
+            this.tmr_time.Interval = 1000;
+            this.tmr_time.Tick += new System.EventHandler(this.tmr_time_Tick);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -329,5 +349,7 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer tmr_time;
     }
 }
