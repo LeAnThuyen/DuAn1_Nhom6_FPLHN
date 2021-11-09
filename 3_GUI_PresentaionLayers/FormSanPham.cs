@@ -153,7 +153,7 @@ namespace _3_GUI_PresentaionLayers
             string anh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
             DateTime hsd =Convert.ToDateTime( dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
             string model =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
-            this.Alert("Chào Mừng Bạn Đến Với Thông Tin Chi Tiết Sản Phẩm");s
+            this.Alert("Chào Mừng Bạn Đến Với Thông Tin Chi Tiết Sản Phẩm");
             FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh,hsd,model);
            
             frmBackView.Show();
