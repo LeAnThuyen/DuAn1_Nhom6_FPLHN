@@ -19,7 +19,7 @@ namespace _3_GUI_PresentaionLayers.RJControls
         private Color offBackColor = Color.Gray;
         private Color offToggleColor = Color.Gainsboro;
         private bool solidStyle = true;
-
+         
         //Properties
         [Category("RJ Code Advance")]
         public Color OnBackColor
