@@ -30,6 +30,7 @@ namespace _3_GUI_PresentaionLayers
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_EditHangHoa));
             this.label16 = new System.Windows.Forms.Label();
             this.chk_hethang = new System.Windows.Forms.CheckBox();
             this.chk_conhang = new System.Windows.Forms.CheckBox();
@@ -70,15 +71,19 @@ namespace _3_GUI_PresentaionLayers
             this.San = new System.Windows.Forms.Label();
             this.cbo_tenhh = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl_them = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btn_them = new System.Windows.Forms.Button();
             this.cbo_anh = new System.Windows.Forms.ComboBox();
             this.txt_model = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dtp_hsd = new System.Windows.Forms.DateTimePicker();
+            this.pic_exit = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_cammera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_anhhanghoa)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_exit)).BeginInit();
             this.SuspendLayout();
             // 
             // label16
@@ -103,6 +108,7 @@ namespace _3_GUI_PresentaionLayers
             this.chk_hethang.TabIndex = 69;
             this.chk_hethang.Text = "Hết Hàng";
             this.chk_hethang.UseVisualStyleBackColor = true;
+            this.chk_hethang.CheckedChanged += new System.EventHandler(this.chk_hethang_CheckedChanged);
             // 
             // chk_conhang
             // 
@@ -115,6 +121,7 @@ namespace _3_GUI_PresentaionLayers
             this.chk_conhang.TabIndex = 68;
             this.chk_conhang.Text = "Còn Hàng";
             this.chk_conhang.UseVisualStyleBackColor = true;
+            this.chk_conhang.CheckedChanged += new System.EventHandler(this.chk_conhang_CheckedChanged);
             // 
             // label15
             // 
@@ -262,6 +269,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_mavach.Name = "txt_mavach";
             this.txt_mavach.Size = new System.Drawing.Size(151, 27);
             this.txt_mavach.TabIndex = 48;
+            this.txt_mavach.TextChanged += new System.EventHandler(this.txt_mavach_TextChanged);
             // 
             // label5
             // 
@@ -458,25 +466,44 @@ namespace _3_GUI_PresentaionLayers
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.RosyBrown;
-            this.panel1.Controls.Add(this.lbl_them);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btn_them);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 869);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1424, 46);
             this.panel1.TabIndex = 82;
             // 
-            // lbl_them
+            // button3
             // 
-            this.lbl_them.AutoSize = true;
-            this.lbl_them.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl_them.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_them.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_them.Location = new System.Drawing.Point(658, 10);
-            this.lbl_them.Name = "lbl_them";
-            this.lbl_them.Size = new System.Drawing.Size(61, 27);
-            this.lbl_them.TabIndex = 0;
-            this.lbl_them.Text = "Thêm";
-            this.lbl_them.DoubleClick += new System.EventHandler(this.lbl_them_DoubleClick);
+            this.button3.Location = new System.Drawing.Point(793, 14);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 29);
+            this.button3.TabIndex = 89;
+            this.button3.Text = "Lưu";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(658, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 29);
+            this.button2.TabIndex = 89;
+            this.button2.Text = "Sửa";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btn_them
+            // 
+            this.btn_them.Location = new System.Drawing.Point(510, 14);
+            this.btn_them.Name = "btn_them";
+            this.btn_them.Size = new System.Drawing.Size(94, 29);
+            this.btn_them.TabIndex = 89;
+            this.btn_them.Text = "Thêm";
+            this.btn_them.UseVisualStyleBackColor = true;
+            this.btn_them.Click += new System.EventHandler(this.btn_them_Click);
             // 
             // cbo_anh
             // 
@@ -522,12 +549,24 @@ namespace _3_GUI_PresentaionLayers
             this.dtp_hsd.Size = new System.Drawing.Size(149, 27);
             this.dtp_hsd.TabIndex = 88;
             // 
+            // pic_exit
+            // 
+            this.pic_exit.Image = ((System.Drawing.Image)(resources.GetObject("pic_exit.Image")));
+            this.pic_exit.Location = new System.Drawing.Point(1336, 0);
+            this.pic_exit.Name = "pic_exit";
+            this.pic_exit.Size = new System.Drawing.Size(88, 52);
+            this.pic_exit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_exit.TabIndex = 89;
+            this.pic_exit.TabStop = false;
+            this.pic_exit.Click += new System.EventHandler(this.pic_exit_Click);
+            // 
             // Frm_EditHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1424, 915);
+            this.Controls.Add(this.pic_exit);
             this.Controls.Add(this.dtp_hsd);
             this.Controls.Add(this.txt_model);
             this.Controls.Add(this.label8);
@@ -574,12 +613,11 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label1);
             this.Name = "Frm_EditHangHoa";
             this.Text = "FrmBackView";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBackView_FormClosing);
             this.Load += new System.EventHandler(this.FrmBackView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_cammera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_anhhanghoa)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_exit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,6 +669,9 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtp_hsd;
-        private System.Windows.Forms.Label lbl_them;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_them;
+        private System.Windows.Forms.PictureBox pic_exit;
     }
 }
