@@ -1,6 +1,7 @@
 ﻿using _1_DAL_DataAccessLayer.Context;
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public List<HangHoa> getlsthanghoafromDB()
         {
-            _lsthanghoa = _DBcontext.HangHoas.ToList();
+            _lsthanghoa = _DBcontext.HangHoas.AsNoTracking().ToList();
             return _lsthanghoa;
         }
 
@@ -49,7 +50,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public bool updatehanghoa(HangHoa hh)
         {
-            _DBcontext.HangHoas.Remove(hh);
+            _DBcontext.HangHoas.Update(hh);
           
             return true;
         }

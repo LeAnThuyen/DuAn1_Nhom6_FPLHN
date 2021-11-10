@@ -1,4 +1,5 @@
 ﻿using _1_DAL_DataAccessLayer.DALServices;
+using _1_DAL_DataAccessLayer.Models;
 using _2_BUS_BussinessLayer.Services;
 using AForge.Video.DirectShow;
 using System;
@@ -38,10 +39,23 @@ namespace _3_GUI_PresentaionLayers
         private DateTime? hsd ;
         private string model = "";
         #endregion
-        private QlyHangHoaServices _qlhhser;
-        private HangHoaServices _hhser;
-        private ChiTietHangHoaServices _cthhser;
      
+        private ChiTietHangHoaServices _cthhser;
+        private string a="";
+        private QlyHangHoaServices _qlhhser;
+  
+    
+        private DanhMucServices _dmser;
+        private NhaSanXuatServices _nsxser;
+        private HangHoaServices _hhser;
+        private NhomHuongServices _nhser;
+        private DungTichServices _dtser;
+        private XuatXuService _xxser;
+        private VatChuaServices _vtser;
+        private ChatLieuServie _clser;
+        private HangHoa hh;
+        private ChiTietHangHoa cthh;
+        private AnhServices _imgser;
 
         public FrmBackView(int id,string mahh,string tenhh, string nsx,string danhmuc, string trangthai, string mavach,string soluong,
            string gianhap, string giaban,DateTime ngaynhap, string tenchatlieu, string tenvatchua, string nhomhuong, string tenquocgia,
@@ -51,6 +65,7 @@ namespace _3_GUI_PresentaionLayers
             #region
             this.mahh = mahh;
             this.id = id;
+         
             this.tenhh = tenhh;
             this.nsx = nsx;
             this.danhmuc = danhmuc;
@@ -88,15 +103,44 @@ namespace _3_GUI_PresentaionLayers
             dtp_hsd.Value = hsd;
             txt_model.Text = model;
             #endregion
+            //_qlhhser = new QlyHangHoaServices();
+            //_hhser = new HangHoaServices();
+            //_cthhser = new ChiTietHangHoaServices();
             _qlhhser = new QlyHangHoaServices();
             _hhser = new HangHoaServices();
             _cthhser = new ChiTietHangHoaServices();
+            _dmser = new DanhMucServices();
+            _nsxser = new NhaSanXuatServices();
+            _nhser = new NhomHuongServices();
+            _dtser = new DungTichServices();
+            _xxser = new XuatXuService();
+            _vtser = new VatChuaServices();
+            _clser = new ChatLieuServie();
+            _imgser = new AnhServices();
+
+            hh = new HangHoa();
 
             Image img1 = Image.FromFile(cbo_anh.Text);
             pic_anhhanghoa.Image = img1;
 
         }
+        private void chk_conhang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_conhang.Checked)
+            {
+                a = Convert.ToString(chk_conhang.Text);
+                chk_hethang.Checked = false;
+            }
+        }
 
+        private void chk_hethang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_hethang.Checked)
+            {
+                a = Convert.ToString(chk_hethang.Text);
+                chk_conhang.Checked = false;
+            }
+        }
         public void Alert(string mess)
         {
             FrmAlert frmAlert = new FrmAlert();
@@ -113,10 +157,14 @@ namespace _3_GUI_PresentaionLayers
        
         private void pic_hanghoa_DoubleClick(object sender, EventArgs e)
         {
-            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1, "", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
+            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,0 ,"", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
             frm_EditHangHoa.Show();
-            this.Alert("Hãy Thêm Mới 1 Sản Phẩm Thôi Nào !");
-            // this.Hide();
+           
+            this.Close();
+            for (int i = 0; i < 1; i++)
+            {
+                this.Alert("Hãy Thêm Mới 1 Sản Phẩm Thôi Nào !");
+            }
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -130,6 +178,54 @@ namespace _3_GUI_PresentaionLayers
             pic_anhhanghoa.Image = img1;
         }
 
+      
+
+        private void pic_updatehh_DoubleClick(object sender, EventArgs e)
+        {
+        
+           
+            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault(), _cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == _hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault())
+                .Select(c => c.IdthongTinHangHoa).FirstOrDefault(),cbo_mahh.Text ,cbo_tenhh.Text,cbo_nsx.Text,cbo_danhmuc.Text,a,txt_mavach.Text+" ",txt_soluong.Text,txt_gianhap.Text,txt_giaban.Text,dtp_ngaynhap.Value,cbo_tencl.Text,cbo_tenvatchua.Text,cbo_tennhomhuong.Text,cbo_tenquocgia.Text,cbo_soduntich.Text,cbo_anh.Text,dtp_hsd.Value,txt_model.Text);
+            frm_EditHangHoa.Show();
+            this.Close();
+            for (int i = 0; i < 1; i++)
+            {
+                this.Alert("Tiến Hành Cập Nhật !");
+            }
+
+
+        }
+
        
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("bạn có muốn xóa hay không", "Thông Báo", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                hh.IdhangHoa = id;
+                hh.MaHangHoa = cbo_mahh.Text;
+                hh.TenHangHoa = cbo_tenhh.Text;
+                hh.IdnhaSanXuat = _nsxser.getlstnxsfromDB().Where(c => c.TenNhaSanXuat == cbo_nsx.Text).Select(c => c.IdnhaSanXuat).FirstOrDefault();
+                hh.TrangThai =0;
+                hh.IddanhMuc = _dmser.getlstdanhmucfromDB().Where(c => c.TenDanhMuc == cbo_danhmuc.Text).Select(c => c.IddanhMuc).FirstOrDefault();           
+                _qlhhser.UpdateSP(hh);
+                _qlhhser.SaveHangHoa(hh);
+               
+                for (int i = 0; i < 1; i++)
+                {
+                    this.Alert("Xóa Thành Công");
+
+                }
+                return;
+            };
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+            
+        }
     }
 }
