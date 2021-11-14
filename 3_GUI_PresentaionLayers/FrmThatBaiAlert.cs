@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace _3_GUI_PresentaionLayers
 {
-   
-    public partial class FrmAlert : Form
+    public partial class FrmThatBaiAlert : Form
     {
-        public FrmAlert()
+        public FrmThatBaiAlert()
         {
             InitializeComponent();
         }
@@ -26,7 +25,7 @@ namespace _3_GUI_PresentaionLayers
             start,
             close
         }
-        private FrmAlert.enmAction action;
+        private FrmThatBaiAlert.enmAction action;
         private int x, y;
 
         private void button1_Click(object sender, EventArgs e)
@@ -84,7 +83,7 @@ namespace _3_GUI_PresentaionLayers
                 if (frmAlert == null)
                 {
                     this.Name = fname;
-                    this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width +15 ;
+                    this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
                     this.y = Screen.PrimaryScreen.WorkingArea.Height - this.Height * i;
                     this.Location = new Point(this.x, this.y);
                     break;

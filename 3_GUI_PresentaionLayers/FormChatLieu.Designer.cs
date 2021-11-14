@@ -1,11 +1,10 @@
 ﻿
 namespace _3_GUI_PresentaionLayers
 {
-    partial class form
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+    partial class FormChatLieu
+    {/// <summary>
+     /// Required designer variable.
+     /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>

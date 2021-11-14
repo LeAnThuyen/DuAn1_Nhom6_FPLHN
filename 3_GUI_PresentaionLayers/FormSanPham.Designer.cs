@@ -30,6 +30,7 @@ namespace _3_GUI_PresentaionLayers
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSanPham));
             this.label10 = new System.Windows.Forms.Label();
             this.menuChatLieu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDungTich = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,15 +41,21 @@ namespace _3_GUI_PresentaionLayers
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pic_search = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgrid_sanpham = new System.Windows.Forms.DataGridView();
             this.lblTime = new System.Windows.Forms.Label();
             this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cbo_loc = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -132,12 +139,37 @@ namespace _3_GUI_PresentaionLayers
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.cbo_loc);
+            this.panel2.Controls.Add(this.pic_search);
+            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1219, 64);
             this.panel2.TabIndex = 1;
+            // 
+            // pic_search
+            // 
+            this.pic_search.Image = ((System.Drawing.Image)(resources.GetObject("pic_search.Image")));
+            this.pic_search.Location = new System.Drawing.Point(225, 16);
+            this.pic_search.Name = "pic_search";
+            this.pic_search.Size = new System.Drawing.Size(58, 36);
+            this.pic_search.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_search.TabIndex = 2;
+            this.pic_search.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(207, 27);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "Tìm Kiếm Theo Mã Sản Phẩm";
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
             // 
@@ -197,6 +229,25 @@ namespace _3_GUI_PresentaionLayers
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // cbo_loc
+            // 
+            this.cbo_loc.FormattingEnabled = true;
+            this.cbo_loc.Location = new System.Drawing.Point(329, 24);
+            this.cbo_loc.Name = "cbo_loc";
+            this.cbo_loc.Size = new System.Drawing.Size(151, 28);
+            this.cbo_loc.TabIndex = 3;
+            this.cbo_loc.SelectedIndexChanged += new System.EventHandler(this.txt_loc_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(495, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -214,7 +265,9 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,5 +289,9 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label lblTime;
         private RJControls.RJToggleButton tbDark;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pic_search;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cbo_loc;
     }
 }

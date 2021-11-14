@@ -1,4 +1,8 @@
-﻿using System;
+﻿using _1_DAL_DataAccessLayer.DALServices;
+using _1_DAL_DataAccessLayer.Models;
+using _2_BUS_BussinessLayer.IServices;
+using _2_BUS_BussinessLayer.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,21 +11,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using _1_DAL_DataAccessLayer.Models;
-using _2_BUS_BussinessLayer.IServices;
-using _2_BUS_BussinessLayer.Services;
 
 namespace _3_GUI_PresentaionLayers
 {
-    public partial class form : Form
+    public partial class FormChatLieu : Form
     {
         private IQlyChatLieu _iQlyChatLieu;
-        public form()
+        private ChatLieuServie _clser;
+        private ChatLieu chatLieu;
+        public FormChatLieu()
         {
             InitializeComponent();
             _iQlyChatLieu = new QLyChatLieuServices();
-            css();
+            _clser = new ChatLieuServie();
+            chatLieu = new ChatLieu();
             LoadData();
+            css();
         }
 
         void css()
@@ -57,6 +62,7 @@ namespace _3_GUI_PresentaionLayers
             buttonColumn.HeaderText = "Xác nhận";
             buttonColumn.Text = "OK";
             buttonColumn.Name = "OK";
+            buttonColumn.UseColumnTextForButtonValue = true;
 
             dgridChatLieu.Columns.Add(dcColumn);
             dgridChatLieu.Columns.Add(buttonColumn);
@@ -77,14 +83,14 @@ namespace _3_GUI_PresentaionLayers
                         return;
                     }
 
-                    ChatLieu ChatLieu = new ChatLieu()
+                    ChatLieu ChatLieu1 = new ChatLieu()
                     {
                         IdchatLieu = _iQlyChatLieu.GetsList().Max(x => x.IdchatLieu) + 1,
                         MaChatLieu = "CL0001" + _iQlyChatLieu.GetsList().Max(x => x.IdchatLieu) + 1,
                         TenChatLieu = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString(),
                         TrangThai = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? 1 : 0
                     };
-                    _iQlyChatLieu.addNV(ChatLieu);
+                    _iQlyChatLieu.addNV(ChatLieu1);
                     LoadData();
 
                     MessageBox.Show("Thêm thành công");
@@ -102,7 +108,7 @@ namespace _3_GUI_PresentaionLayers
                     ChatLieu ChatLieu1 = new ChatLieu()
                     {
                         TenChatLieu = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridChatLieu.Rows[rowIndex].Cells[3].Value=="Đang sử dụng"?1:0
+                        TrangThai = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? 1 : 0
                     };
 
                     _iQlyChatLieu.updateNV(ChatLieu1);
@@ -135,5 +141,4 @@ namespace _3_GUI_PresentaionLayers
             txtTenChatLieu.Text = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString();
         }
     }
-
 }
