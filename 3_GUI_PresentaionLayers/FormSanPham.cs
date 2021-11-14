@@ -198,7 +198,7 @@ namespace _3_GUI_PresentaionLayers
             btn.UseColumnTextForButtonValue = true;
             dgrid_sanpham.Columns.Add(btn);
             dgrid_sanpham.Rows.Clear();
-            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.MaHangHoa.StartsWith(textBox1.Text)))
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.MaHangHoa.StartsWith(txt_timkiem.Text)))
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
                     x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
@@ -530,32 +530,10 @@ namespace _3_GUI_PresentaionLayers
 
             }
         }
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "Tìm Kiếm Theo Mã Sản Phẩm")
-            {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.Red;
+       
+      
 
-            }
-        }
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            loaddatafortimkiem(textBox1.Text);
-            return;
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "")
-            {
-                textBox1.Text = "Tìm Kiếm Theo Mã Sản Phẩm";
-                textBox1.ForeColor = Color.Black;
-                loaddata();
-                return;
-            }
-        }
-
+        
         private void txt_loc_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbo_loc.Text == "Giá")
@@ -642,5 +620,1813 @@ namespace _3_GUI_PresentaionLayers
 
             }
         }
+
+        #region
+        //lọc
+        void loaddatafornam()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 0))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //nữ
+        void loaddatafornu()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 1))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //unisex
+        void loaddataforuni()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 3))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //LV
+        void loaddataforlv()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 0))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //Gucci
+        void loaddataforgucci()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 2))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //Roja
+        void loaddataforRoja()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 2))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //Morra
+        void loaddataforMorra()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 3))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //Chanel
+        void loaddataforchanel()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 4))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+
+        //50ml
+        void loaddatafor50ml()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 0))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //100ml
+        void loaddatafor100ml()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 1))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //150ml
+        void loaddatafor150ml()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 3))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //200ml
+        void loaddatafor200ml()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 3))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //duoi500k
+        void loaddataforchuoi500()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan < 500))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //51
+        void loaddatafor51()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 500000 && c.ChiTietHangHoa.DonGiaBan < 1000000))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //12
+        void loaddatafor12()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 1000000 && c.ChiTietHangHoa.DonGiaBan < 2000000))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //tren2
+        void loaddatafortren2()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 2000000))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //buoi
+        void loaddataforbuoi()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 2))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //lavender
+        void loaddataforlavender()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 1))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        //hoa ly
+        void loaddataforhoaly()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[0].Name = "IDHH";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[5].Name = "Danh Mục";
+            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[7].Name = "Số Lượng";
+            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[9].Name = "Gía Bán";
+            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
+            dgrid_sanpham.Columns[11].Visible = false;
+            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Visible = false;
+            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Visible = false;
+            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Visible = false;
+            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Visible = false;
+            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Visible = false;
+            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Visible = false;
+            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Visible = false;
+            // combobox
+            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            cbo.HeaderText = "Chức Năng";
+            cbo.Name = "cbo";
+            cbo.Items.AddRange(row.ToArray());
+            dgrid_sanpham.Columns.Add(cbo);
+
+            ////
+
+            ////button
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Text = "Xác Nhận";
+            btn.HeaderText = "Xác Nhận";
+            btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            dgrid_sanpham.Columns.Add(btn);
+            dgrid_sanpham.Rows.Clear();
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 3))
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        #endregion
+
+
+
+
+        private void txt_timkiem_KeyUp(object sender, KeyEventArgs e)
+        {
+            loaddatafortimkiem(txt_timkiem.Text);
+        }
+
+        private void txt_timkiem_Leave(object sender, EventArgs e)
+        {
+            if (txt_timkiem.Text == "")
+            {
+              
+                
+                loaddata();
+                return;
+            }
+        }
+        #region
+        private void chk_locnam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_locnam.Checked)
+            {
+                loaddatafornam();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+             
+            }
+        }
+
+        private void chk_locnu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_locnu.Checked)
+            {
+                loaddatafornu();
+                chk_locnam.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+            
+        }
+
+        private void chk_unisex_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_unisex.Checked)
+            {
+                loaddataforuni();
+                chk_locnu.Checked = false;
+                chk_locnam.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+
+            
+        }
+
+        private void chk_LV_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_LV.Checked)
+            {
+
+                loaddataforlv();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_locnam.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+
+            }
+           
+        }
+
+        private void chk_gucci_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_gucci.Checked)
+            {
+
+                loaddataforgucci();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_locnam.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+
+            }
+           
+        }
+
+        private void chk_Roja_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_Roja.Checked)
+            {
+                loaddataforRoja();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_locnam.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)//morra
+        {
+            if (checkBox3.Checked)
+            {
+                loaddataforMorra();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                chk_locnam.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+
+        }
+
+        private void chk_chanel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_chanel.Checked)
+            {
+                loaddataforchanel();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_locnam.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+
+            }
+           
+        }
+
+        private void chk_50ml_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_50ml.Checked)
+            {
+
+                loaddatafor50ml();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_locnam.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+            
+        }
+
+        private void chk_100ml_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_100ml.Checked)
+            {
+
+                loaddatafor100ml();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_locnam.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+
+            }
+            
+        }
+
+        private void chk_150ml_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_150ml.Checked)
+            {
+                loaddatafor150ml();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_locnam.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+
+
+
+
+        private void chk_200ml_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_200ml.Checked)
+            {
+
+                loaddatafor200ml();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_locnam.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+
+        }
+
+        private void chk_under500_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_under500.Checked)
+            {
+
+                loaddataforchuoi500();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_locnam.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+        private void chk51_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk51.Checked)
+            {
+
+                loaddatafor51();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk_locnam.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+        private void chk_12_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_12.Checked)
+            {
+
+                loaddatafor12();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_locnam.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+        private void chk_tren2tr_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_tren2tr.Checked)
+            {
+                loaddatafortren2();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_locnam.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+            
+        }
+
+        private void chk_buoi_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chk_buoi.Checked)
+            {
+                loaddataforbuoi();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_locnam.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+            
+        }
+
+        private void chk_Lavender_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_Lavender.Checked)
+            {
+
+                loaddataforlavender();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_locnam.Checked = false;
+                chk_hoaly.Checked = false;
+            }
+           
+        }
+
+        private void chk_hoaly_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_Lavender.Checked)
+            {
+
+                loaddataforhoaly();
+                chk_locnu.Checked = false;
+                chk_unisex.Checked = false;
+                chk_LV.Checked = false;
+                chk_gucci.Checked = false;
+                chk_Roja.Checked = false;
+                checkBox3.Checked = false;
+                chk_chanel.Checked = false;
+                chk_50ml.Checked = false;
+                chk_100ml.Checked = false;
+                chk_150ml.Checked = false;
+                chk_200ml.Checked = false;
+                chk_under500.Checked = false;
+                chk51.Checked = false;
+                chk_12.Checked = false;
+                chk_tren2tr.Checked = false;
+                chk_buoi.Checked = false;
+                chk_Lavender.Checked = false;
+                chk_locnam.Checked = false;
+            }
+           
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
     }
 }

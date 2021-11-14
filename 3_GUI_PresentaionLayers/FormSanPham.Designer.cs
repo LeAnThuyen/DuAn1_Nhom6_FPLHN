@@ -41,12 +41,13 @@ namespace _3_GUI_PresentaionLayers
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txt_timkiem = new System.Windows.Forms.TextBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbo_loc = new System.Windows.Forms.ComboBox();
-            this.pic_search = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgrid_sanpham = new System.Windows.Forms.DataGridView();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -61,18 +62,42 @@ namespace _3_GUI_PresentaionLayers
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.chk_hoaly = new System.Windows.Forms.CheckBox();
+            this.chk_Lavender = new System.Windows.Forms.CheckBox();
+            this.chk_buoi = new System.Windows.Forms.CheckBox();
+            this.chk_tren2tr = new System.Windows.Forms.CheckBox();
+            this.chk_12 = new System.Windows.Forms.CheckBox();
+            this.chk51 = new System.Windows.Forms.CheckBox();
+            this.chk_under500 = new System.Windows.Forms.CheckBox();
+            this.chk_200ml = new System.Windows.Forms.CheckBox();
+            this.chk_150ml = new System.Windows.Forms.CheckBox();
+            this.chk_100ml = new System.Windows.Forms.CheckBox();
+            this.chk_50ml = new System.Windows.Forms.CheckBox();
+            this.chk_chanel = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.chk_Roja = new System.Windows.Forms.CheckBox();
+            this.chk_gucci = new System.Windows.Forms.CheckBox();
+            this.chk_LV = new System.Windows.Forms.CheckBox();
+            this.chk_unisex = new System.Windows.Forms.CheckBox();
+            this.chk_locnu = new System.Windows.Forms.CheckBox();
+            this.chk_locnam = new System.Windows.Forms.CheckBox();
+            this.rjTextBox4 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
+            this.rjTextBox3 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
+            this.rjTextBox1 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
+            this.rjTextBox2 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label10
@@ -139,7 +164,7 @@ namespace _3_GUI_PresentaionLayers
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1219, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1669, 28);
             this.menuStrip1.TabIndex = 62;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -148,42 +173,72 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dgrid_sanpham);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 224);
+            this.panel1.Location = new System.Drawing.Point(0, 274);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1219, 539);
+            this.panel1.Size = new System.Drawing.Size(1669, 539);
             this.panel1.TabIndex = 82;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Controls.Add(this.txt_timkiem);
+            this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.pictureBox4);
             this.panel2.Controls.Add(this.pictureBox5);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.cbo_loc);
-            this.panel2.Controls.Add(this.pic_search);
-            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Location = new System.Drawing.Point(177, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1219, 70);
+            this.panel2.Size = new System.Drawing.Size(1492, 64);
             this.panel2.TabIndex = 1;
+            // 
+            // txt_timkiem
+            // 
+            this.txt_timkiem.Location = new System.Drawing.Point(13, 28);
+            this.txt_timkiem.Name = "txt_timkiem";
+            this.txt_timkiem.PlaceholderText = "Tìm Kiếm Theo Mã Sản Phẩm";
+            this.txt_timkiem.Size = new System.Drawing.Size(208, 27);
+            this.txt_timkiem.TabIndex = 94;
+            this.txt_timkiem.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_timkiem_KeyUp);
+            this.txt_timkiem.Leave += new System.EventHandler(this.txt_timkiem_Leave);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(227, 18);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(57, 37);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 93;
+            this.pictureBox6.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(856, 16);
+            this.pictureBox4.Location = new System.Drawing.Point(1133, 19);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(86, 36);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 91;
             this.pictureBox4.TabStop = false;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(881, 19);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(86, 36);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 91;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.DoubleClick += new System.EventHandler(this.pictureBox5_DoubleClick);
+            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(733, 16);
+            this.pictureBox3.Location = new System.Drawing.Point(1010, 19);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(86, 36);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -194,7 +249,7 @@ namespace _3_GUI_PresentaionLayers
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(495, 16);
+            this.pictureBox1.Location = new System.Drawing.Point(502, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(58, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -204,39 +259,18 @@ namespace _3_GUI_PresentaionLayers
             // cbo_loc
             // 
             this.cbo_loc.FormattingEnabled = true;
-            this.cbo_loc.Location = new System.Drawing.Point(329, 24);
+            this.cbo_loc.Location = new System.Drawing.Point(328, 25);
             this.cbo_loc.Name = "cbo_loc";
             this.cbo_loc.Size = new System.Drawing.Size(151, 28);
             this.cbo_loc.TabIndex = 3;
             this.cbo_loc.SelectedIndexChanged += new System.EventHandler(this.txt_loc_SelectedIndexChanged);
-            // 
-            // pic_search
-            // 
-            this.pic_search.Image = ((System.Drawing.Image)(resources.GetObject("pic_search.Image")));
-            this.pic_search.Location = new System.Drawing.Point(225, 16);
-            this.pic_search.Name = "pic_search";
-            this.pic_search.Size = new System.Drawing.Size(58, 36);
-            this.pic_search.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pic_search.TabIndex = 2;
-            this.pic_search.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(207, 27);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Tìm Kiếm Theo Mã Sản Phẩm";
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.label1.Location = new System.Drawing.Point(965, 32);
+            this.label1.Location = new System.Drawing.Point(1239, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 20);
             this.label1.TabIndex = 0;
@@ -246,13 +280,12 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.dgrid_sanpham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_sanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgrid_sanpham.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgrid_sanpham.Location = new System.Drawing.Point(0, 70);
+            this.dgrid_sanpham.Location = new System.Drawing.Point(185, 61);
             this.dgrid_sanpham.Name = "dgrid_sanpham";
             this.dgrid_sanpham.RowHeadersWidth = 51;
             this.dgrid_sanpham.RowTemplate.Height = 29;
             this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_sanpham.Size = new System.Drawing.Size(1219, 469);
+            this.dgrid_sanpham.Size = new System.Drawing.Size(1484, 478);
             this.dgrid_sanpham.TabIndex = 0;
             this.dgrid_sanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellClick);
             this.dgrid_sanpham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellContentClick);
@@ -265,16 +298,16 @@ namespace _3_GUI_PresentaionLayers
             // 
             // hScrollBar3
             // 
-            this.hScrollBar3.Location = new System.Drawing.Point(950, 33);
+            this.hScrollBar3.Location = new System.Drawing.Point(1206, 49);
             this.hScrollBar3.Name = "hScrollBar3";
-            this.hScrollBar3.Size = new System.Drawing.Size(269, 25);
+            this.hScrollBar3.Size = new System.Drawing.Size(269, 31);
             this.hScrollBar3.TabIndex = 106;
             this.hScrollBar3.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar3_Scroll);
             // 
             // tbDark
             // 
             this.tbDark.AutoSize = true;
-            this.tbDark.Location = new System.Drawing.Point(6, 6);
+            this.tbDark.Location = new System.Drawing.Point(7, 1);
             this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
             this.tbDark.Name = "tbDark";
             this.tbDark.OffBackColor = System.Drawing.Color.Gray;
@@ -290,7 +323,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(894, 33);
+            this.label7.Location = new System.Drawing.Point(1150, 49);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 20);
@@ -299,17 +332,17 @@ namespace _3_GUI_PresentaionLayers
             // 
             // hScrollBar2
             // 
-            this.hScrollBar2.Location = new System.Drawing.Point(950, 65);
+            this.hScrollBar2.Location = new System.Drawing.Point(1206, 81);
             this.hScrollBar2.Name = "hScrollBar2";
-            this.hScrollBar2.Size = new System.Drawing.Size(269, 25);
+            this.hScrollBar2.Size = new System.Drawing.Size(269, 31);
             this.hScrollBar2.TabIndex = 105;
             this.hScrollBar2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar2_Scroll);
             // 
             // hScrollBar1
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(950, 1);
+            this.hScrollBar1.Location = new System.Drawing.Point(1206, 17);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(269, 25);
+            this.hScrollBar1.Size = new System.Drawing.Size(269, 31);
             this.hScrollBar1.TabIndex = 104;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
@@ -318,7 +351,7 @@ namespace _3_GUI_PresentaionLayers
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(56, 0);
+            this.label3.Location = new System.Drawing.Point(119, 5);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 26);
@@ -329,7 +362,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(894, 1);
+            this.label5.Location = new System.Drawing.Point(1150, 17);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 20);
@@ -341,7 +374,7 @@ namespace _3_GUI_PresentaionLayers
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(56, 49);
+            this.label4.Location = new System.Drawing.Point(119, 54);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 26);
@@ -352,7 +385,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(894, 65);
+            this.label6.Location = new System.Drawing.Point(1150, 81);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 20);
@@ -362,7 +395,7 @@ namespace _3_GUI_PresentaionLayers
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(329, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(392, 7);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(120, 60);
@@ -382,28 +415,339 @@ namespace _3_GUI_PresentaionLayers
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.hScrollBar2);
             this.panel3.Controls.Add(this.hScrollBar1);
-            this.panel3.Location = new System.Drawing.Point(0, 31);
+            this.panel3.Location = new System.Drawing.Point(185, 32);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1219, 187);
+            this.panel3.Size = new System.Drawing.Size(1484, 186);
             this.panel3.TabIndex = 83;
             // 
-            // pictureBox5
+            // panel4
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(604, 16);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(86, 36);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 91;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.DoubleClick += new System.EventHandler(this.pictureBox5_DoubleClick);
+            this.panel4.BackColor = System.Drawing.Color.PeachPuff;
+            this.panel4.Controls.Add(this.chk_hoaly);
+            this.panel4.Controls.Add(this.chk_Lavender);
+            this.panel4.Controls.Add(this.chk_buoi);
+            this.panel4.Controls.Add(this.chk_tren2tr);
+            this.panel4.Controls.Add(this.chk_12);
+            this.panel4.Controls.Add(this.chk51);
+            this.panel4.Controls.Add(this.chk_under500);
+            this.panel4.Controls.Add(this.chk_200ml);
+            this.panel4.Controls.Add(this.chk_150ml);
+            this.panel4.Controls.Add(this.chk_100ml);
+            this.panel4.Controls.Add(this.chk_50ml);
+            this.panel4.Controls.Add(this.chk_chanel);
+            this.panel4.Controls.Add(this.checkBox3);
+            this.panel4.Controls.Add(this.chk_Roja);
+            this.panel4.Controls.Add(this.chk_gucci);
+            this.panel4.Controls.Add(this.chk_LV);
+            this.panel4.Controls.Add(this.chk_unisex);
+            this.panel4.Controls.Add(this.chk_locnu);
+            this.panel4.Controls.Add(this.chk_locnam);
+            this.panel4.Controls.Add(this.rjTextBox4);
+            this.panel4.Controls.Add(this.rjTextBox3);
+            this.panel4.Controls.Add(this.rjTextBox1);
+            this.panel4.Controls.Add(this.rjTextBox2);
+            this.panel4.Location = new System.Drawing.Point(-5, 29);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(192, 784);
+            this.panel4.TabIndex = 109;
+            // 
+            // chk_hoaly
+            // 
+            this.chk_hoaly.AutoSize = true;
+            this.chk_hoaly.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chk_hoaly.Location = new System.Drawing.Point(11, 753);
+            this.chk_hoaly.Name = "chk_hoaly";
+            this.chk_hoaly.Size = new System.Drawing.Size(76, 24);
+            this.chk_hoaly.TabIndex = 8;
+            this.chk_hoaly.Text = "Hoa Ly";
+            this.chk_hoaly.UseVisualStyleBackColor = true;
+            this.chk_hoaly.CheckedChanged += new System.EventHandler(this.chk_hoaly_CheckedChanged);
+            // 
+            // chk_Lavender
+            // 
+            this.chk_Lavender.AutoSize = true;
+            this.chk_Lavender.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chk_Lavender.Location = new System.Drawing.Point(11, 723);
+            this.chk_Lavender.Name = "chk_Lavender";
+            this.chk_Lavender.Size = new System.Drawing.Size(91, 24);
+            this.chk_Lavender.TabIndex = 8;
+            this.chk_Lavender.Text = "Lavender";
+            this.chk_Lavender.UseVisualStyleBackColor = true;
+            this.chk_Lavender.CheckedChanged += new System.EventHandler(this.chk_Lavender_CheckedChanged);
+            // 
+            // chk_buoi
+            // 
+            this.chk_buoi.AutoSize = true;
+            this.chk_buoi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chk_buoi.Location = new System.Drawing.Point(11, 693);
+            this.chk_buoi.Name = "chk_buoi";
+            this.chk_buoi.Size = new System.Drawing.Size(62, 24);
+            this.chk_buoi.TabIndex = 8;
+            this.chk_buoi.Text = "Bưởi";
+            this.chk_buoi.UseVisualStyleBackColor = true;
+            this.chk_buoi.CheckedChanged += new System.EventHandler(this.chk_buoi_CheckedChanged);
+            // 
+            // chk_tren2tr
+            // 
+            this.chk_tren2tr.AutoSize = true;
+            this.chk_tren2tr.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chk_tren2tr.Location = new System.Drawing.Point(11, 627);
+            this.chk_tren2tr.Name = "chk_tren2tr";
+            this.chk_tren2tr.Size = new System.Drawing.Size(156, 24);
+            this.chk_tren2tr.TabIndex = 8;
+            this.chk_tren2tr.Text = "Trên 2.000.000VND";
+            this.chk_tren2tr.UseVisualStyleBackColor = true;
+            this.chk_tren2tr.CheckedChanged += new System.EventHandler(this.chk_tren2tr_CheckedChanged);
+            // 
+            // chk_12
+            // 
+            this.chk_12.AutoSize = true;
+            this.chk_12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chk_12.Location = new System.Drawing.Point(11, 587);
+            this.chk_12.Name = "chk_12";
+            this.chk_12.Size = new System.Drawing.Size(184, 24);
+            this.chk_12.TabIndex = 8;
+            this.chk_12.Text = "1.000.00-2.000.000VND";
+            this.chk_12.UseVisualStyleBackColor = true;
+            this.chk_12.CheckedChanged += new System.EventHandler(this.chk_12_CheckedChanged);
+            // 
+            // chk51
+            // 
+            this.chk51.AutoSize = true;
+            this.chk51.Location = new System.Drawing.Point(11, 547);
+            this.chk51.Name = "chk51";
+            this.chk51.Size = new System.Drawing.Size(173, 24);
+            this.chk51.TabIndex = 8;
+            this.chk51.Text = "500.00-1.000.000VND";
+            this.chk51.UseVisualStyleBackColor = true;
+            this.chk51.CheckedChanged += new System.EventHandler(this.chk51_CheckedChanged);
+            // 
+            // chk_under500
+            // 
+            this.chk_under500.AutoSize = true;
+            this.chk_under500.Location = new System.Drawing.Point(11, 517);
+            this.chk_under500.Name = "chk_under500";
+            this.chk_under500.Size = new System.Drawing.Size(142, 24);
+            this.chk_under500.TabIndex = 8;
+            this.chk_under500.Text = "Dưới 500.00VND";
+            this.chk_under500.UseVisualStyleBackColor = true;
+            this.chk_under500.CheckedChanged += new System.EventHandler(this.chk_under500_CheckedChanged);
+            // 
+            // chk_200ml
+            // 
+            this.chk_200ml.AutoSize = true;
+            this.chk_200ml.Location = new System.Drawing.Point(11, 439);
+            this.chk_200ml.Name = "chk_200ml";
+            this.chk_200ml.Size = new System.Drawing.Size(72, 24);
+            this.chk_200ml.TabIndex = 7;
+            this.chk_200ml.Text = "200ml";
+            this.chk_200ml.UseVisualStyleBackColor = true;
+            this.chk_200ml.CheckedChanged += new System.EventHandler(this.chk_200ml_CheckedChanged);
+            // 
+            // chk_150ml
+            // 
+            this.chk_150ml.AutoSize = true;
+            this.chk_150ml.Location = new System.Drawing.Point(11, 409);
+            this.chk_150ml.Name = "chk_150ml";
+            this.chk_150ml.Size = new System.Drawing.Size(72, 24);
+            this.chk_150ml.TabIndex = 7;
+            this.chk_150ml.Text = "150ml";
+            this.chk_150ml.UseVisualStyleBackColor = true;
+            this.chk_150ml.CheckedChanged += new System.EventHandler(this.chk_150ml_CheckedChanged);
+            // 
+            // chk_100ml
+            // 
+            this.chk_100ml.AutoSize = true;
+            this.chk_100ml.Location = new System.Drawing.Point(11, 379);
+            this.chk_100ml.Name = "chk_100ml";
+            this.chk_100ml.Size = new System.Drawing.Size(72, 24);
+            this.chk_100ml.TabIndex = 7;
+            this.chk_100ml.Text = "100ml";
+            this.chk_100ml.UseVisualStyleBackColor = true;
+            this.chk_100ml.CheckedChanged += new System.EventHandler(this.chk_100ml_CheckedChanged);
+            // 
+            // chk_50ml
+            // 
+            this.chk_50ml.AutoSize = true;
+            this.chk_50ml.Location = new System.Drawing.Point(11, 349);
+            this.chk_50ml.Name = "chk_50ml";
+            this.chk_50ml.Size = new System.Drawing.Size(64, 24);
+            this.chk_50ml.TabIndex = 7;
+            this.chk_50ml.Text = "50ml";
+            this.chk_50ml.UseVisualStyleBackColor = true;
+            this.chk_50ml.CheckedChanged += new System.EventHandler(this.chk_50ml_CheckedChanged);
+            // 
+            // chk_chanel
+            // 
+            this.chk_chanel.AutoSize = true;
+            this.chk_chanel.Location = new System.Drawing.Point(11, 285);
+            this.chk_chanel.Name = "chk_chanel";
+            this.chk_chanel.Size = new System.Drawing.Size(76, 24);
+            this.chk_chanel.TabIndex = 7;
+            this.chk_chanel.Text = "Chanel";
+            this.chk_chanel.UseVisualStyleBackColor = true;
+            this.chk_chanel.CheckedChanged += new System.EventHandler(this.chk_chanel_CheckedChanged);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(11, 248);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(71, 24);
+            this.checkBox3.TabIndex = 7;
+            this.checkBox3.Text = "Morra";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // chk_Roja
+            // 
+            this.chk_Roja.AutoSize = true;
+            this.chk_Roja.Location = new System.Drawing.Point(11, 204);
+            this.chk_Roja.Name = "chk_Roja";
+            this.chk_Roja.Size = new System.Drawing.Size(61, 24);
+            this.chk_Roja.TabIndex = 7;
+            this.chk_Roja.Text = "Roja";
+            this.chk_Roja.UseVisualStyleBackColor = true;
+            this.chk_Roja.CheckedChanged += new System.EventHandler(this.chk_Roja_CheckedChanged);
+            // 
+            // chk_gucci
+            // 
+            this.chk_gucci.AutoSize = true;
+            this.chk_gucci.Location = new System.Drawing.Point(11, 165);
+            this.chk_gucci.Name = "chk_gucci";
+            this.chk_gucci.Size = new System.Drawing.Size(67, 24);
+            this.chk_gucci.TabIndex = 7;
+            this.chk_gucci.Text = "Gucci";
+            this.chk_gucci.UseVisualStyleBackColor = true;
+            this.chk_gucci.CheckedChanged += new System.EventHandler(this.chk_gucci_CheckedChanged);
+            // 
+            // chk_LV
+            // 
+            this.chk_LV.AutoSize = true;
+            this.chk_LV.Location = new System.Drawing.Point(11, 123);
+            this.chk_LV.Name = "chk_LV";
+            this.chk_LV.Size = new System.Drawing.Size(117, 24);
+            this.chk_LV.TabIndex = 7;
+            this.chk_LV.Text = "Louis Vuitton";
+            this.chk_LV.UseVisualStyleBackColor = true;
+            this.chk_LV.CheckedChanged += new System.EventHandler(this.chk_LV_CheckedChanged);
+            // 
+            // chk_unisex
+            // 
+            this.chk_unisex.AutoSize = true;
+            this.chk_unisex.Location = new System.Drawing.Point(11, 70);
+            this.chk_unisex.Name = "chk_unisex";
+            this.chk_unisex.Size = new System.Drawing.Size(74, 24);
+            this.chk_unisex.TabIndex = 6;
+            this.chk_unisex.Text = "Unisex";
+            this.chk_unisex.UseVisualStyleBackColor = true;
+            this.chk_unisex.CheckedChanged += new System.EventHandler(this.chk_unisex_CheckedChanged);
+            // 
+            // chk_locnu
+            // 
+            this.chk_locnu.AutoSize = true;
+            this.chk_locnu.Location = new System.Drawing.Point(11, 40);
+            this.chk_locnu.Name = "chk_locnu";
+            this.chk_locnu.Size = new System.Drawing.Size(81, 24);
+            this.chk_locnu.TabIndex = 5;
+            this.chk_locnu.Text = "Cho Nữ";
+            this.chk_locnu.UseVisualStyleBackColor = true;
+            this.chk_locnu.CheckedChanged += new System.EventHandler(this.chk_locnu_CheckedChanged);
+            // 
+            // chk_locnam
+            // 
+            this.chk_locnam.AutoSize = true;
+            this.chk_locnam.Location = new System.Drawing.Point(11, 10);
+            this.chk_locnam.Name = "chk_locnam";
+            this.chk_locnam.Size = new System.Drawing.Size(93, 24);
+            this.chk_locnam.TabIndex = 4;
+            this.chk_locnam.Text = "Cho Nam";
+            this.chk_locnam.UseVisualStyleBackColor = true;
+            this.chk_locnam.CheckedChanged += new System.EventHandler(this.chk_locnam_CheckedChanged);
+            // 
+            // rjTextBox4
+            // 
+            this.rjTextBox4.BackColor = System.Drawing.Color.PeachPuff;
+            this.rjTextBox4.BorderColor = System.Drawing.Color.DarkRed;
+            this.rjTextBox4.BorderFocusColor = System.Drawing.Color.Gray;
+            this.rjTextBox4.BorderSize = 2;
+            this.rjTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rjTextBox4.ForeColor = System.Drawing.Color.White;
+            this.rjTextBox4.Location = new System.Drawing.Point(2, 636);
+            this.rjTextBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.rjTextBox4.Multiline = false;
+            this.rjTextBox4.Name = "rjTextBox4";
+            this.rjTextBox4.Padding = new System.Windows.Forms.Padding(6);
+            this.rjTextBox4.PasswordChar = false;
+            this.rjTextBox4.Size = new System.Drawing.Size(188, 33);
+            this.rjTextBox4.TabIndex = 3;
+            this.rjTextBox4.Texts = "";
+            this.rjTextBox4.UnderlinedStyle = true;
+            // 
+            // rjTextBox3
+            // 
+            this.rjTextBox3.BackColor = System.Drawing.Color.PeachPuff;
+            this.rjTextBox3.BorderColor = System.Drawing.Color.DarkRed;
+            this.rjTextBox3.BorderFocusColor = System.Drawing.Color.Gray;
+            this.rjTextBox3.BorderSize = 2;
+            this.rjTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rjTextBox3.ForeColor = System.Drawing.Color.White;
+            this.rjTextBox3.Location = new System.Drawing.Point(2, 451);
+            this.rjTextBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.rjTextBox3.Multiline = false;
+            this.rjTextBox3.Name = "rjTextBox3";
+            this.rjTextBox3.Padding = new System.Windows.Forms.Padding(6);
+            this.rjTextBox3.PasswordChar = false;
+            this.rjTextBox3.Size = new System.Drawing.Size(188, 33);
+            this.rjTextBox3.TabIndex = 3;
+            this.rjTextBox3.Texts = "";
+            this.rjTextBox3.UnderlinedStyle = true;
+            // 
+            // rjTextBox1
+            // 
+            this.rjTextBox1.BackColor = System.Drawing.Color.PeachPuff;
+            this.rjTextBox1.BorderColor = System.Drawing.Color.DarkRed;
+            this.rjTextBox1.BorderFocusColor = System.Drawing.Color.Gray;
+            this.rjTextBox1.BorderSize = 2;
+            this.rjTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rjTextBox1.ForeColor = System.Drawing.Color.White;
+            this.rjTextBox1.Location = new System.Drawing.Point(-1, 297);
+            this.rjTextBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.rjTextBox1.Multiline = false;
+            this.rjTextBox1.Name = "rjTextBox1";
+            this.rjTextBox1.Padding = new System.Windows.Forms.Padding(6);
+            this.rjTextBox1.PasswordChar = false;
+            this.rjTextBox1.Size = new System.Drawing.Size(191, 33);
+            this.rjTextBox1.TabIndex = 3;
+            this.rjTextBox1.Texts = "";
+            this.rjTextBox1.UnderlinedStyle = true;
+            // 
+            // rjTextBox2
+            // 
+            this.rjTextBox2.BackColor = System.Drawing.Color.PeachPuff;
+            this.rjTextBox2.BorderColor = System.Drawing.Color.DarkRed;
+            this.rjTextBox2.BorderFocusColor = System.Drawing.Color.Gray;
+            this.rjTextBox2.BorderSize = 2;
+            this.rjTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rjTextBox2.ForeColor = System.Drawing.Color.White;
+            this.rjTextBox2.Location = new System.Drawing.Point(2, 70);
+            this.rjTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.rjTextBox2.Multiline = false;
+            this.rjTextBox2.Name = "rjTextBox2";
+            this.rjTextBox2.Padding = new System.Windows.Forms.Padding(6);
+            this.rjTextBox2.PasswordChar = false;
+            this.rjTextBox2.Size = new System.Drawing.Size(190, 33);
+            this.rjTextBox2.TabIndex = 3;
+            this.rjTextBox2.Texts = "";
+            this.rjTextBox2.UnderlinedStyle = true;
             // 
             // FormSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.ClientSize = new System.Drawing.Size(1219, 763);
+            this.ClientSize = new System.Drawing.Size(1669, 813);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label10);
@@ -414,15 +758,17 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,8 +787,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.DataGridView dgrid_sanpham;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pic_search;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cbo_loc;
         private System.Windows.Forms.Timer timer2;
@@ -460,5 +804,31 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox txt_timkiem;
+        private System.Windows.Forms.CheckBox chk_12;
+        private System.Windows.Forms.CheckBox chk51;
+        private System.Windows.Forms.CheckBox chk_under500;
+        private System.Windows.Forms.CheckBox chk_200ml;
+        private System.Windows.Forms.CheckBox chk_150ml;
+        private System.Windows.Forms.CheckBox chk_100ml;
+        private System.Windows.Forms.CheckBox chk_50ml;
+        private System.Windows.Forms.CheckBox chk_chanel;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox chk_Roja;
+        private System.Windows.Forms.CheckBox chk_gucci;
+        private System.Windows.Forms.CheckBox chk_LV;
+        private System.Windows.Forms.CheckBox chk_unisex;
+        private System.Windows.Forms.CheckBox chk_locnu;
+        private System.Windows.Forms.CheckBox chk_locnam;
+        private RJControls.RJTextBox rjTextBox3;
+        private RJControls.RJTextBox rjTextBox1;
+        private RJControls.RJTextBox rjTextBox2;
+        private System.Windows.Forms.CheckBox chk_tren2tr;
+        private RJControls.RJTextBox rjTextBox4;
+        private System.Windows.Forms.CheckBox chk_hoaly;
+        private System.Windows.Forms.CheckBox chk_Lavender;
+        private System.Windows.Forms.CheckBox chk_buoi;
     }
 }
