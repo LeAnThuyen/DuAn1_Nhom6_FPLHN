@@ -1,6 +1,7 @@
 ﻿using _1_DAL_DataAccessLayer.Context;
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         }
             public List<XuatXu> getlstxuatxufromDB()
         {
-            _lstxuatxu = _DBcontext.XuatXus.ToList();
+            _lstxuatxu = _DBcontext.XuatXus.AsNoTracking().ToList();
             return _lstxuatxu;
         }
 

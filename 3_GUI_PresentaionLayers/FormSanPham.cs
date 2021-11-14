@@ -31,7 +31,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuDungTich_Click_1(object sender, EventArgs e)
         {
-            DungTich frmDungTich = new DungTich(); //Khởi tạo đối tượng
+            FrmDungTich frmDungTich = new FrmDungTich(); //Khởi tạo đối tượng
             frmDungTich.ShowDialog(); //Hiển thị
         }
 
@@ -49,7 +49,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuXuatXu_Click_1(object sender, EventArgs e)
         {
-            XuatXu frmXuatXu = new XuatXu(); //Khởi tạo đối tượng
+            FrmXuatXu frmXuatXu = new FrmXuatXu(); //Khởi tạo đối tượng
             frmXuatXu.ShowDialog(); //Hiển thị
         }
 

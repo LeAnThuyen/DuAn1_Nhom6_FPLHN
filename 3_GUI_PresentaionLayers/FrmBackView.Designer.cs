@@ -399,7 +399,6 @@ namespace _3_GUI_PresentaionLayers
             this.pic_hanghoa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_hanghoa.TabIndex = 78;
             this.pic_hanghoa.TabStop = false;
-      
             this.pic_hanghoa.DoubleClick += new System.EventHandler(this.pic_hanghoa_DoubleClick);
             // 
             // pic_danhmuc
@@ -620,7 +619,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmBackView";
-            this.Text = "FrmBackView";
+            this.Text = "d";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBackView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pic_hanghoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_danhmuc)).EndInit();
