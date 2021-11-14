@@ -30,9 +30,9 @@ namespace _3_GUI_PresentaionLayers
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHoaDonChiTiet));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.lblTime = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,7 +41,6 @@ namespace _3_GUI_PresentaionLayers
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.tmrTime = new System.Windows.Forms.Timer(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -73,8 +72,15 @@ namespace _3_GUI_PresentaionLayers
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
+            this.dgrid_sanpham = new System.Windows.Forms.DataGridView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -98,16 +104,6 @@ namespace _3_GUI_PresentaionLayers
             this.textBox16.Size = new System.Drawing.Size(167, 27);
             this.textBox16.TabIndex = 105;
             this.textBox16.Text = "Tìm Kiếm";
-            // 
-            // lblTime
-            // 
-            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTime.ForeColor = System.Drawing.Color.White;
-            this.lblTime.Location = new System.Drawing.Point(947, 12);
-            this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(323, 46);
-            this.lblTime.TabIndex = 104;
             // 
             // button4
             // 
@@ -191,12 +187,6 @@ namespace _3_GUI_PresentaionLayers
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(121, 27);
             this.textBox11.TabIndex = 87;
-            // 
-            // tmrTime
-            // 
-            this.tmrTime.Enabled = true;
-            this.tmrTime.Interval = 1000;
-            this.tmrTime.Tick += new System.EventHandler(this.tmrTime_Tick);
             // 
             // label16
             // 
@@ -505,15 +495,71 @@ namespace _3_GUI_PresentaionLayers
             this.tbDark.UseVisualStyleBackColor = true;
             this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged);
             // 
+            // dgrid_sanpham
+            // 
+            this.dgrid_sanpham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_sanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrid_sanpham.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgrid_sanpham.Location = new System.Drawing.Point(0, 885);
+            this.dgrid_sanpham.Name = "dgrid_sanpham";
+            this.dgrid_sanpham.RowHeadersWidth = 51;
+            this.dgrid_sanpham.RowTemplate.Height = 29;
+            this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrid_sanpham.Size = new System.Drawing.Size(1270, 10);
+            this.dgrid_sanpham.TabIndex = 107;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1115, 7);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(120, 60);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 110;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.Color.Gray;
+            this.label17.Location = new System.Drawing.Point(813, 43);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 26);
+            this.label17.TabIndex = 109;
+            this.label17.Text = "label17";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.ForeColor = System.Drawing.Color.Gray;
+            this.label18.Location = new System.Drawing.Point(813, 7);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 26);
+            this.label18.TabIndex = 108;
+            this.label18.Text = "label18";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormHoaDonChiTiet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1270, 895);
+            this.Controls.Add(this.dgrid_sanpham);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.tbDark);
             this.Controls.Add(this.textBox16);
-            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -556,6 +602,8 @@ namespace _3_GUI_PresentaionLayers
             this.Text = "FormHoaDonChiTiet";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -565,7 +613,6 @@ namespace _3_GUI_PresentaionLayers
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -574,7 +621,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Timer tmrTime;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label15;
@@ -606,5 +652,10 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private RJControls.RJToggleButton tbDark;
+        private System.Windows.Forms.DataGridView dgrid_sanpham;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Timer timer1;
     }
 }

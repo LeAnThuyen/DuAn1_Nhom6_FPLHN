@@ -31,10 +31,11 @@ namespace _3_GUI_PresentaionLayers
             }
         }
 
-        private void tmrTime_Tick(object sender, EventArgs e)
+      
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime tn = DateTime.Now;
-            lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
+            label18.Text = DateTime.Now.ToLongTimeString();
+            label17.Text = DateTime.Now.ToLongDateString();
         }
     }
 }

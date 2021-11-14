@@ -35,8 +35,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuDungTich_Click_1(object sender, EventArgs e)
         {
-            FrmDungTich frmDungTich = new FrmDungTich(); //Khởi tạo đối tượng
-            frmDungTich.ShowDialog(); //Hiển thị
+           
         }
 
         private void menuNhomHuong_Click_1(object sender, EventArgs e)
@@ -53,8 +52,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuXuatXu_Click_1(object sender, EventArgs e)
         {
-            FrmXuatXu frmXuatXu = new FrmXuatXu(); //Khởi tạo đối tượng
-            frmXuatXu.ShowDialog(); //Hiển thị
+           
         }
 
         private void manuAnh_Click_1(object sender, EventArgs e)
@@ -517,11 +515,7 @@ namespace _3_GUI_PresentaionLayers
            
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DateTime tn = DateTime.Now;
-            lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
-        }
+       
 
         private void tbDark_CheckedChanged(object sender, EventArgs e)
         {
@@ -590,6 +584,63 @@ namespace _3_GUI_PresentaionLayers
                 return;
             }
 
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            label3.Text = DateTime.Now.ToLongTimeString();
+            label4.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(hScrollBar1.Value, hScrollBar2.Value, hScrollBar3.Value);
+        }
+
+        private void hScrollBar3_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(hScrollBar1.Value, hScrollBar2.Value, hScrollBar3.Value);
+        }
+
+        private void hScrollBar2_Scroll(object sender, ScrollEventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(hScrollBar1.Value, hScrollBar2.Value, hScrollBar3.Value);
+          
+        }
+
+        private void pictureBox3_DoubleClick(object sender, EventArgs e)
+        {
+            FrmAddDataFormExcelToDB frmAddDataFormExcelToDB = new FrmAddDataFormExcelToDB();
+            for (int a = 0; a < 2; a++)
+            {
+                this.Alert("Hãy Tiến Hành Thêm Số Lượng Lớn Thôi Nào !");
+
+            }
+            frmAddDataFormExcelToDB.Show();
+            this.Close();
+            return;
+        }
+
+        private void pictureBox4_DoubleClick(object sender, EventArgs e)
+        {
+            ReportFileToPDF reportFileToPDF = new ReportFileToPDF();
+            reportFileToPDF.Show();
+            for (int a = 0; a < 1; a++)
+            {
+                this.Alert("Hãy Tiến Hành Xuát Ra File PDF Thôi Nào !");
+
+            }
+        }
+
+        private void pictureBox5_DoubleClick(object sender, EventArgs e)
+        {
+            FormSendRequest formSendRequest = new FormSendRequest();
+            formSendRequest.Show();
+            for (int a = 0; a < 1; a++)
+            {
+                this.Alert("Hãy Tiến Hành Gửi Yêu Cầu Thôi Nào !");
+
+            }
         }
     }
 }

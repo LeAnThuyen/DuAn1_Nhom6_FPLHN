@@ -24,7 +24,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         public bool addchitiet(ChiTietHangHoa cthh)
         {
             _DBcontext.ChiTietHangHoas.Add(cthh);
-         
+            _DBcontext.SaveChanges();
             return true;
         }
 

@@ -82,6 +82,7 @@ namespace _3_GUI_PresentaionLayers
             this.label16 = new System.Windows.Forms.Label();
             this.pic_updatehh = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pic_mavach = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_hanghoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_danhmuc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_nsx)).BeginInit();
@@ -94,6 +95,7 @@ namespace _3_GUI_PresentaionLayers
             ((System.ComponentModel.ISupportInitialize)(this.pic_anhhanghoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_updatehh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mavach)).BeginInit();
             this.SuspendLayout();
             // 
             // chk_hethang
@@ -405,6 +407,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_hanghoa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_hanghoa.TabIndex = 78;
             this.pic_hanghoa.TabStop = false;
+         
             this.pic_hanghoa.DoubleClick += new System.EventHandler(this.pic_hanghoa_DoubleClick);
             // 
             // pic_danhmuc
@@ -590,8 +593,18 @@ namespace _3_GUI_PresentaionLayers
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 78;
             this.pictureBox1.TabStop = false;
-       
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            // 
+            // pic_mavach
+            // 
+            this.pic_mavach.Image = ((System.Drawing.Image)(resources.GetObject("pic_mavach.Image")));
+            this.pic_mavach.Location = new System.Drawing.Point(413, 474);
+            this.pic_mavach.Name = "pic_mavach";
+            this.pic_mavach.Size = new System.Drawing.Size(26, 29);
+            this.pic_mavach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_mavach.TabIndex = 86;
+            this.pic_mavach.TabStop = false;
+            this.pic_mavach.DoubleClick += new System.EventHandler(this.pic_mavach_DoubleClick);
             // 
             // FrmBackView
             // 
@@ -599,6 +612,7 @@ namespace _3_GUI_PresentaionLayers
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1424, 875);
+            this.Controls.Add(this.pic_mavach);
             this.Controls.Add(this.cbo_anh);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txt_model);
@@ -650,7 +664,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmBackView";
-            this.Text = "d";
+            this.Text = "FrmBackView";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBackView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pic_hanghoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_danhmuc)).EndInit();
@@ -664,6 +678,7 @@ namespace _3_GUI_PresentaionLayers
             ((System.ComponentModel.ISupportInitialize)(this.pic_anhhanghoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_updatehh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_mavach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -721,5 +736,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pic_updatehh;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pic_mavach;
     }
 }

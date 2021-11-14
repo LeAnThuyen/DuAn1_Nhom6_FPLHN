@@ -17,11 +17,7 @@ namespace _3_GUI_PresentaionLayers
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DateTime tn = DateTime.Now;
-            lblTime.Text = tn.ToString("dd/MM/yyyy HH:mm:ss");
-        }
+      
 
         private void tbDark_CheckedChanged(object sender, EventArgs e)
         {
@@ -35,6 +31,12 @@ namespace _3_GUI_PresentaionLayers
                 this.BackColor = Color.DarkOliveGreen;
 
             }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            label26.Text = DateTime.Now.ToLongTimeString();
+            label25.Text = DateTime.Now.ToLongDateString();
         }
     }
 }

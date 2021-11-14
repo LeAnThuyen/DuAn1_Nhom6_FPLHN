@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 using ZXing;
 
 namespace _3_GUI_PresentaionLayers
@@ -158,13 +159,14 @@ namespace _3_GUI_PresentaionLayers
         private void pic_hanghoa_DoubleClick(object sender, EventArgs e)
         {
             Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,0 ,"", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
-            frm_EditHangHoa.Show();
-           
-            this.Close();
             for (int i = 0; i < 1; i++)
             {
                 this.Alert("Hãy Thêm Mới 1 Sản Phẩm Thôi Nào !");
             }
+            frm_EditHangHoa.Show();
+           
+            this.Close();
+           
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -186,12 +188,13 @@ namespace _3_GUI_PresentaionLayers
            
             Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault(), _cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == _hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault())
                 .Select(c => c.IdthongTinHangHoa).FirstOrDefault(),cbo_mahh.Text ,cbo_tenhh.Text,cbo_nsx.Text,cbo_danhmuc.Text,a,txt_mavach.Text+" ",txt_soluong.Text,txt_gianhap.Text,txt_giaban.Text,dtp_ngaynhap.Value,cbo_tencl.Text,cbo_tenvatchua.Text,cbo_tennhomhuong.Text,cbo_tenquocgia.Text,cbo_soduntich.Text,cbo_anh.Text,dtp_hsd.Value,txt_model.Text);
-            frm_EditHangHoa.Show();
-            this.Close();
             for (int i = 0; i < 1; i++)
             {
                 this.Alert("Tiến Hành Cập Nhật !");
             }
+            frm_EditHangHoa.Show();
+            this.Close();
+           
 
 
         }
@@ -226,6 +229,22 @@ namespace _3_GUI_PresentaionLayers
                 return;
             }
             
+        }
+
+      
+
+        private void pic_mavach_DoubleClick(object sender, EventArgs e)
+        {
+            FrmCreateNewBarCode frmCreateNewBarCode = new FrmCreateNewBarCode(id,Convert.ToInt32( _cthhser.getlstchitietthanghoafromDB().Where(c=>c.IdhangHoa==id).Select(c=>c.IdhangHoa).FirstOrDefault()), cbo_mahh.Text, cbo_tenhh.Text, cbo_nsx.Text, cbo_danhmuc.Text, trangthai, mavach, txt_soluong.Text, txt_gianhap.Text, txt_giaban.Text, dtp_ngaynhap.Value, cbo_tencl.Text, cbo_tenvatchua.Text, cbo_tennhomhuong.Text, cbo_tenquocgia.Text, cbo_soduntich.Text, cbo_anh.Text, dtp_hsd.Value, txt_model.Text);
+            for (int i = 0; i < 1; i++)
+            {
+                this.Alert("Tiến Hành Tạo Mã Vạch Thôi Nào");
+
+            }
+            frmCreateNewBarCode.Show();
+            this.Close();
+           
+            return;
         }
     }
 }

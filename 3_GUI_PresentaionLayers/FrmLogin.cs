@@ -118,8 +118,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void btnSanPham_Click_1(object sender, EventArgs e)
         {
-            OpenChildForm(new FormSanPham(), sender);
-            lblTitle.Text = "FormSanPham";
+            OpenChildForm(new FrmThongBao(), sender);
         }
 
 
@@ -183,12 +182,92 @@ namespace _3_GUI_PresentaionLayers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormHoaDonChiTiet(), sender);
+            OpenChildForm(new FormSanPham(), sender);
+            lblTitle.Text = "FormSanPham";
+         
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             OpenChildForm(new BanHang(), sender);
+        }
+        int x = 112, y = 23, a = 1;
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            timer3.Start();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormHoaDonChiTiet(), sender);
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Đăng Xuất Hay Không ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                FormDangNhap formDangNhap = new FormDangNhap();
+                formDangNhap.Show();
+                this.Close();
+
+              
+              
+                for (int i = 0; i < 2; i++)
+                {
+                    this.Alert("Tạm Biệt Và Hẹn Gặp Lại Bạn Sớm Nhất <3");
+
+                }
+                return;
+            };
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            if (pictureBox1.Visible == true)
+            {
+                pictureBox1.Visible = false;
+                pictureBox2.Visible = true;
+            }
+            else if (pictureBox2.Visible == true)
+            {
+                pictureBox2.Visible = false;
+                pictureBox3.Visible = true;
+            }
+            else if (pictureBox3.Visible == true)
+            {
+                pictureBox3.Visible = false;
+                pictureBox1.Visible = true;
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                x += a;
+                lblTitle.Location = new Point(x, y);
+                if (x >= 742)
+                {
+                    a = -1;
+                    lblTitle.ForeColor = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+                }
+                if (x <= 23)
+                {
+                    a = 1;
+                    lblTitle.ForeColor = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+                }
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }

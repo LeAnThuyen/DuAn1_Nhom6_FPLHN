@@ -25,7 +25,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         public bool addhanghoa(HangHoa hh)
         {
             _DBcontext.HangHoas.Add(hh);
-    
+            _DBcontext.SaveChanges();
             return true;
         }
 
@@ -51,7 +51,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         public bool updatehanghoa(HangHoa hh)
         {
             _DBcontext.HangHoas.Update(hh);
-          
+            _DBcontext.SaveChanges();
             return true;
         }
     }

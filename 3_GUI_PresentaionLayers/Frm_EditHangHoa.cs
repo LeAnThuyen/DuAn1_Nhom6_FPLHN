@@ -2,6 +2,7 @@
 using _1_DAL_DataAccessLayer.Models;
 using _2_BUS_BussinessLayer.Services;
 using AForge.Video.DirectShow;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,10 +58,10 @@ namespace _3_GUI_PresentaionLayers
         private int zen;
         private int zennsx;
         private int zendanhmuc;
-
+        private string ok;
         public Frm_EditHangHoa(int id, int idcthh, string mahh, string tenhh, string nsx, string danhmuc, string trangthai, string mavach, string soluong,
-        string gianhap, string giaban, DateTime ngaynhap, string tenchatlieu, string tenvatchua, string nhomhuong, string tenquocgia,
-        string sodungtich, string anh, DateTime hsd, string model)
+            string gianhap, string giaban, DateTime ngaynhap, string tenchatlieu, string tenvatchua, string nhomhuong, string tenquocgia,
+            string sodungtich, string anh, DateTime hsd, string model)
         {
             InitializeComponent();
             _qlhhser = new QlyHangHoaServices();
@@ -87,6 +88,7 @@ namespace _3_GUI_PresentaionLayers
             loadquocgia();
             loadduntich();
             loaddpath();
+            loadsugesstion();
             #region
             this.mahh = mahh;
             this.id = id;
@@ -177,7 +179,7 @@ namespace _3_GUI_PresentaionLayers
             {
                 cbo_tenhh.Items.Add(x.TenHangHoa);
             }
-            cbo_tenhh.SelectedIndex = 0;
+            
         }
         void loadanhmuc()
         {
@@ -254,6 +256,7 @@ namespace _3_GUI_PresentaionLayers
             videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbo_webcam.SelectedIndex].MonikerString);
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
+            //timer1.Start();
         }
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
@@ -268,8 +271,10 @@ namespace _3_GUI_PresentaionLayers
                 }));
             }
             pic_cammera.Image = bitmap;
+          
+            
         }
-
+      
         private void FrmBackView_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -278,13 +283,8 @@ namespace _3_GUI_PresentaionLayers
         private void btn_close_Click(object sender, EventArgs e)
         {
 
-            if (videoCaptureDevice.IsRunning)
-            {
-                videoCaptureDevice.Stop();
-            }
 
-
-
+      
         }
 
 
@@ -510,6 +510,83 @@ namespace _3_GUI_PresentaionLayers
             }
           
         }
+       
+       
+        private void cbo_tenhh_TextChanged(object sender, EventArgs e)
+        {
+           
+
+        }
+        public void loadsugesstion()
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = "Data Source=TANA\\SQLEXPRESS;Initial Catalog=duan1;Persist Security Info=True;User ID=thuyen;Password=123";
+
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("select TenHangHoa FROM HangHoa", connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            SqlDataReader dr = sqlCommand.ExecuteReader();
+
+            AutoCompleteStringCollection col = new AutoCompleteStringCollection();
+           
+            while (dr.Read())
+            {
+                col.Add(dr.GetString(0));
+            }
+
+
+            cbo_tenhh.AutoCompleteCustomSource = col;
+            connection.Close();
+        }
+        private void cbo_tenhh_KeyUp(object sender, KeyEventArgs e)
+        {
+           for(int i = 0; i < _hhser.getlsthanghoafromDB().Count; i++)
+            {
+                if(cbo_tenhh.Text== _hhser.getlsthanghoafromDB()[i].TenHangHoa)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tái Sử Dụng 1 Số Thuộc Tính Cơ Bản Của Sản Phầm Cùng Tên Này Không ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        zen = Convert.ToInt32(_hhser.getlsthanghoafromDB().Where(c => c.TenHangHoa == cbo_tenhh.Text).Select(c => c.IddanhMuc).FirstOrDefault());
+                        zendanhmuc = Convert.ToInt32(_hhser.getlsthanghoafromDB().Where(c => c.TenHangHoa == cbo_tenhh.Text).Select(c => c.IdhangHoa).FirstOrDefault());
+
+
+                        zennsx = Convert.ToInt32(_hhser.getlsthanghoafromDB().Where(c => c.TenHangHoa == tenhh).Select(c => c.IdnhaSanXuat).FirstOrDefault());
+                        cbo_danhmuc.Text = Convert.ToString(_dmser.getlstdanhmucfromDB().Where(c => c.IddanhMuc == zen).Select(c => c.TenDanhMuc).FirstOrDefault());
+                        cbo_nsx.Text = Convert.ToString(_nsxser.getlstnxsfromDB().Where(c => c.IdnhaSanXuat == zennsx).Select(c => c.TenNhaSanXuat).FirstOrDefault());
+                        txt_giaban.Text = Convert.ToString(_cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == zendanhmuc).Select(c => c.DonGiaBan).FirstOrDefault());
+                        txt_gianhap.Text = Convert.ToString(_cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == zendanhmuc).Select(c => c.DonGiaNhap).FirstOrDefault());
+                        txt_model.Text = Convert.ToString(_cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == zendanhmuc).Select(c => c.Model).FirstOrDefault());
+                        for (int a = 0; a < 2; a++)
+                        {
+                            this.Alert("Bạn Đã Sử Dụng Thành Công");
+
+                        }
+                        return;
+                    };
+
+                    if (dialogResult == DialogResult.No)
+                    {
+                        for (int a = 0; a < 2; a++)
+                        {
+                            this.AlertErr(" Sử Dụng Thất Bại");
+
+                        }
+                        return;
+                    }
+
+                }
+            }
+        }
+
+        private void pictureBox3_DoubleClick(object sender, EventArgs e)
+        {
+
+          
+        }
+
+      
     }
     
 }

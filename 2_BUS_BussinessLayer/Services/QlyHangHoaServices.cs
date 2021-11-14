@@ -56,6 +56,7 @@ namespace _2_BUS_BussinessLayer.Services
         {
            
             _iChiTietHangHoa.addchitiet(ChiTietHangHoa);
+            
             return true;
         }
 

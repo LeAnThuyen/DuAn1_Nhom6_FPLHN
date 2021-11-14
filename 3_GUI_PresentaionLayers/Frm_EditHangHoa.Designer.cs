@@ -457,11 +457,15 @@ namespace _3_GUI_PresentaionLayers
             // 
             // cbo_tenhh
             // 
+            this.cbo_tenhh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbo_tenhh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cbo_tenhh.FormattingEnabled = true;
             this.cbo_tenhh.Location = new System.Drawing.Point(374, 534);
             this.cbo_tenhh.Name = "cbo_tenhh";
             this.cbo_tenhh.Size = new System.Drawing.Size(151, 28);
             this.cbo_tenhh.TabIndex = 81;
+            this.cbo_tenhh.TextChanged += new System.EventHandler(this.cbo_tenhh_TextChanged);
+            this.cbo_tenhh.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbo_tenhh_KeyUp);
             // 
             // panel1
             // 

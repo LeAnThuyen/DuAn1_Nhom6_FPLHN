@@ -154,7 +154,7 @@ namespace _3_GUI_PresentaionLayers
             this.chkOFF.Text = "Ngừng sử dụng";
             this.chkOFF.UseVisualStyleBackColor = true;
             // 
-            // form
+            // FormChatLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,7 +173,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "form";
+            this.Name = "FormChatLieu";
             this.Text = "ChatLieu";
             ((System.ComponentModel.ISupportInitialize)(this.dgridChatLieu)).EndInit();
             this.ResumeLayout(false);

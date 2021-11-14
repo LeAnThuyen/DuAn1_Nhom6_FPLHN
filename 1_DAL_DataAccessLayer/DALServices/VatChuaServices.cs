@@ -23,7 +23,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         public bool addvatchua(VatChua vt)
         {
             _DBcontext.VatChuas.Add(vt);
-     
+            _DBcontext.SaveChanges();
             return true;
         }
 

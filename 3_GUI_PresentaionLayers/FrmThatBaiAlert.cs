@@ -78,9 +78,9 @@ namespace _3_GUI_PresentaionLayers
             for (int i = 0; i < 10; i++)
             {
                 fname = "alert" + i.ToString();
-                FrmAlert frmAlert = (FrmAlert)Application.OpenForms[fname];
+                FrmThatBaiAlert frmThatBaiAlert = (FrmThatBaiAlert)Application.OpenForms[fname];
 
-                if (frmAlert == null)
+                if (frmThatBaiAlert == null)
                 {
                     this.Name = fname;
                     this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
