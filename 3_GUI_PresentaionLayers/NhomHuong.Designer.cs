@@ -159,6 +159,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(510, 321);
             this.Controls.Add(this.chkOFF);
             this.Controls.Add(this.ckbON);
@@ -171,8 +172,8 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NhomHuong";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NhomHuong";
             ((System.ComponentModel.ISupportInitialize)(this.dgridNhomHuong)).EndInit();
             this.ResumeLayout(false);

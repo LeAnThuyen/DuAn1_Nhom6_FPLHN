@@ -172,8 +172,8 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "VatChua";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VatChua";
             ((System.ComponentModel.ISupportInitialize)(this.dgridVatChua)).EndInit();
             this.ResumeLayout(false);

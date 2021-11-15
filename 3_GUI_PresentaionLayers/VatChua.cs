@@ -141,6 +141,7 @@ namespace _3_GUI_PresentaionLayers
             if ((rowIndex > _iQlyVatChua.GetsList().Count) || rowIndex < 0) return;
             txtMaCL.Text = dgridVatChua.Rows[rowIndex].Cells[1].Value.ToString();
             txtTenChatLieu.Text = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString();
+            chkOFF.Checked = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? true : false;
         }
     }
 }
