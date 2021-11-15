@@ -133,6 +133,7 @@ namespace _3_GUI_PresentaionLayers
             if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
             txtMaCL.Text = dgridNhomHuong.Rows[rowIndex].Cells[1].Value.ToString();
             txtTenChatLieu.Text = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString();
+            chkOFF.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? true : false;
         }
     }
 }
