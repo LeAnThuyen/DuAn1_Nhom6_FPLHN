@@ -223,6 +223,7 @@ namespace _3_GUI_PresentaionLayers
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 91;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.DoubleClick += new System.EventHandler(this.pictureBox4_DoubleClick_1);
             // 
             // pictureBox5
             // 

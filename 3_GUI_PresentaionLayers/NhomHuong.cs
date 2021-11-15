@@ -38,6 +38,7 @@ namespace _3_GUI_PresentaionLayers
         {
             dgridNhomHuong.ColumnCount = 4;
             dgridNhomHuong.Columns[0].Name = "ID";
+            dgridNhomHuong.Columns[0].Visible = false;
             dgridNhomHuong.Columns[1].Name = "Mã chất liệu";
             dgridNhomHuong.Columns[2].Name = "Tên chất chất liệu";
             dgridNhomHuong.Columns[3].Name = "Trạng thái";
@@ -87,6 +88,7 @@ namespace _3_GUI_PresentaionLayers
                     LoadData();
 
                     MessageBox.Show("Thêm thành công");
+                    return;
                 }
 
                 if (dgridNhomHuong.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Sửa")
@@ -106,6 +108,7 @@ namespace _3_GUI_PresentaionLayers
 
                     _iQlyNhomHuong.updateNV(NhomHuong);
                     LoadData();
+                    return;
                 }
 
                 if (dgridNhomHuong.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Xóa")
@@ -121,6 +124,7 @@ namespace _3_GUI_PresentaionLayers
                         x.IdnhomHuong == Convert.ToInt32(dgridNhomHuong.Rows[rowIndex].Cells[0].Value.ToString()));
                     _iQlyNhomHuong.removeNV(NhpmHuong);
                     LoadData();
+                    return;
                 }
 
                 LoadData();
@@ -130,9 +134,9 @@ namespace _3_GUI_PresentaionLayers
         private void dgridNhomHuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = dgridNhomHuong.Rows[rowIndex].Cells[1].Value.ToString();
-            txtTenChatLieu.Text = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString();
+            if ((rowIndex == _iQlyNhomHuong.GetsList().Count) || rowIndex ==-1) return;
+            txtMaCL.Text =Convert.ToString( dgridNhomHuong.Rows[rowIndex].Cells[1].Value);
+            txtTenChatLieu.Text =Convert.ToString( dgridNhomHuong.Rows[rowIndex].Cells[2].Value);
         }
     }
 }

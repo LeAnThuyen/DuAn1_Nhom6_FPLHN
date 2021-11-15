@@ -30,12 +30,14 @@ namespace _3_GUI_PresentaionLayers
         #region
         private void menuChatLieu_Click_1(object sender, EventArgs e)
         {
-          
+            FormChatLieu formChatLieu = new FormChatLieu();
+            formChatLieu.ShowDialog();
         }
 
         private void menuDungTich_Click_1(object sender, EventArgs e)
         {
-           
+            FormDungTich formDungTich = new FormDungTich();
+            formDungTich.ShowDialog();
         }
 
         private void menuNhomHuong_Click_1(object sender, EventArgs e)
@@ -52,12 +54,13 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuXuatXu_Click_1(object sender, EventArgs e)
         {
-           
+            FormXuatXu formXuatXu = new FormXuatXu();
+            formXuatXu.ShowDialog();
         }
 
         private void manuAnh_Click_1(object sender, EventArgs e)
         {
-            Anh frmAnh = new Anh(); //Khởi tạo đối tượng
+            FrmAnh frmAnh = new FrmAnh(); //Khởi tạo đối tượng
             frmAnh.ShowDialog(); //Hiển thị
         }
         #endregion
@@ -2417,16 +2420,35 @@ namespace _3_GUI_PresentaionLayers
            
         }
 
+
+
+
+
+
+
+
+
+
         #endregion
 
-
-
-
-
-
-
-
-
-
+        private void pictureBox4_DoubleClick_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("bạn có muốn chọn chức năng Xuất File PDF hay không", "Thông Báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                ReportFileToPDF reportFileToPDF = new ReportFileToPDF();
+                reportFileToPDF.Show();
+                for (int i = 0; i < 1; i++)
+                {
+                    this.Alert("Chào Mừng Bạn Đến Với Xuất PDF");
+                }
+                return;
+            }
+            if (dialogResult == DialogResult.No)
+            {
+                
+                return;
+            }
+        }
     }
 }

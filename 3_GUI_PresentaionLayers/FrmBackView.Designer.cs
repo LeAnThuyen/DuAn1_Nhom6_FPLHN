@@ -211,6 +211,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_giaban.Location = new System.Drawing.Point(1041, 435);
             this.txt_giaban.Margin = new System.Windows.Forms.Padding(2);
             this.txt_giaban.Name = "txt_giaban";
+            this.txt_giaban.ReadOnly = true;
             this.txt_giaban.Size = new System.Drawing.Size(149, 27);
             this.txt_giaban.TabIndex = 54;
             // 
@@ -230,6 +231,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_gianhap.Location = new System.Drawing.Point(1041, 395);
             this.txt_gianhap.Margin = new System.Windows.Forms.Padding(2);
             this.txt_gianhap.Name = "txt_gianhap";
+            this.txt_gianhap.ReadOnly = true;
             this.txt_gianhap.Size = new System.Drawing.Size(149, 27);
             this.txt_gianhap.TabIndex = 52;
             // 
@@ -249,6 +251,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_soluong.Location = new System.Drawing.Point(241, 598);
             this.txt_soluong.Margin = new System.Windows.Forms.Padding(2);
             this.txt_soluong.Name = "txt_soluong";
+            this.txt_soluong.ReadOnly = true;
             this.txt_soluong.Size = new System.Drawing.Size(149, 27);
             this.txt_soluong.TabIndex = 50;
             // 
@@ -268,6 +271,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_mavach.Location = new System.Drawing.Point(241, 476);
             this.txt_mavach.Margin = new System.Windows.Forms.Padding(2);
             this.txt_mavach.Name = "txt_mavach";
+            this.txt_mavach.ReadOnly = true;
             this.txt_mavach.Size = new System.Drawing.Size(149, 27);
             this.txt_mavach.TabIndex = 48;
             // 
@@ -407,7 +411,6 @@ namespace _3_GUI_PresentaionLayers
             this.pic_hanghoa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_hanghoa.TabIndex = 78;
             this.pic_hanghoa.TabStop = false;
-         
             this.pic_hanghoa.DoubleClick += new System.EventHandler(this.pic_hanghoa_DoubleClick);
             // 
             // pic_danhmuc
@@ -542,6 +545,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.txt_model.Location = new System.Drawing.Point(1041, 723);
             this.txt_model.Name = "txt_model";
+            this.txt_model.ReadOnly = true;
             this.txt_model.Size = new System.Drawing.Size(151, 27);
             this.txt_model.TabIndex = 83;
             // 

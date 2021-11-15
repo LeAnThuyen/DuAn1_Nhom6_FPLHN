@@ -80,6 +80,14 @@ namespace _3_GUI_PresentaionLayers
             p4.Visible = false;
             p5.Visible = false;
             p6.Visible = false;
+            chk0.Visible = false;
+            chk1.Visible = false;
+            chk2.Visible = false;
+            chk3.Visible = false;
+            chk4.Visible = false;
+            chk5.Visible = false;
+            chk6.Visible = false;
+          
          
         }
         public void Alert(string mess)
@@ -166,7 +174,15 @@ namespace _3_GUI_PresentaionLayers
             p4.Visible = true;
             p5.Visible = true;
             p6.Visible = true;
-        
+            chk0.Visible = true;
+            chk1.Visible = true;
+            chk2.Visible = true;
+            chk3.Visible = true;
+            chk4.Visible = true;
+            chk5.Visible = true;
+            chk6.Visible = true;
+
+
             StringBuilder builder = new StringBuilder();
                 t1.Text= Convert.ToString(builder.Append(RandomString(4, true)));
                 
@@ -327,7 +343,7 @@ namespace _3_GUI_PresentaionLayers
 
             if (dialogResult == DialogResult.Yes)
             {
-                Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(id, idcthh, mahh, tenhh, nsx, danhmuc, trangthai,Convert.ToString(sender), soluong, gianhap, giaban, Convert.ToDateTime(ngaynhap), tenchatlieu, tenvatchua, nhomhuong, tennquocgia, sodungtich, anh, Convert.ToDateTime(hsd), model);
+                Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(id, idcthh, mahh, tenhh, nsx, danhmuc, trangthai,txt_QRcode.Text, soluong, gianhap, giaban, Convert.ToDateTime(ngaynhap), tenchatlieu, tenvatchua, nhomhuong, tennquocgia, sodungtich, anh, Convert.ToDateTime(hsd), model);
                 frm_EditHangHoa.Show();
                // this.Close();
                 for (int i = 0; i < 2; i++)
