@@ -17,9 +17,16 @@ namespace _3_GUI_PresentaionLayers
             InitializeComponent();
         }
 
-      
 
-        private void tbDark_CheckedChanged(object sender, EventArgs e)
+
+       
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void tbDark_CheckedChanged_1(object sender, EventArgs e)
         {
             if (tbDark.Checked)
             {
@@ -33,10 +40,10 @@ namespace _3_GUI_PresentaionLayers
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            label26.Text = DateTime.Now.ToLongTimeString();
-            label25.Text = DateTime.Now.ToLongDateString();
+            label1.Text = DateTime.Now.ToLongTimeString();
+            label17.Text = DateTime.Now.ToLongDateString();
         }
     }
 }

@@ -43,6 +43,7 @@ namespace _3_GUI_PresentaionLayers
         {
             dgridChatLieu.ColumnCount = 4;
             dgridChatLieu.Columns[0].Name = "ID";
+            dgridChatLieu.Columns[0].Visible = false;
             dgridChatLieu.Columns[1].Name = "Mã chất liệu";
             dgridChatLieu.Columns[2].Name = "Tên chất chất liệu";
             dgridChatLieu.Columns[3].Name = "Trạng thái";
@@ -94,6 +95,7 @@ namespace _3_GUI_PresentaionLayers
                     LoadData();
 
                     MessageBox.Show("Thêm thành công");
+                    return;
                 }
 
                 if (dgridChatLieu.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Sửa")
@@ -113,6 +115,7 @@ namespace _3_GUI_PresentaionLayers
 
                     _iQlyChatLieu.updateNV(ChatLieu1);
                     LoadData();
+                    return;
                 }
 
                 if (dgridChatLieu.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Xóa")
@@ -128,6 +131,7 @@ namespace _3_GUI_PresentaionLayers
                         x.IdchatLieu == Convert.ToInt32(dgridChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
                     _iQlyChatLieu.removeNV(ChatLieu);
                     LoadData();
+                    return;
                 }
 
                 LoadData();
@@ -137,8 +141,8 @@ namespace _3_GUI_PresentaionLayers
         {
             int rowIndex = e.RowIndex;
             if ((rowIndex > _iQlyChatLieu.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = dgridChatLieu.Rows[rowIndex].Cells[1].Value.ToString();
-            txtTenChatLieu.Text = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString();
+            txtMaCL.Text =Convert.ToString( dgridChatLieu.Rows[rowIndex].Cells[1].Value);
+            txtTenChatLieu.Text =Convert.ToString( dgridChatLieu.Rows[rowIndex].Cells[2].Value);
         }
     }
 }
