@@ -2417,16 +2417,72 @@ namespace _3_GUI_PresentaionLayers
            
         }
 
+
+
+
+
+
+
+
+
+
         #endregion
+        void InHoaDon()
+        {
+            ppDSanPham.Document = pDSanPham;
+            ppDSanPham.ShowDialog();
+        }
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            InHoaDon();
+        }
 
+        private void pDSanPham_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+           
+            var w = pDSanPham.DefaultPageSettings.PaperSize.Width;
+            //Lấy tên cửa hàng
 
+            e.Graphics.DrawString(
+                "PerSoft Perfume".ToUpper(), new Font("Courier New", 12, FontStyle.Bold), Brushes.Black, new PointF(100, 20));
+            e.Graphics.DrawString(
+                "Danh sách sản phẩm".ToUpper(), new Font("Courier New", 18, FontStyle.Bold), Brushes.Black, new PointF(300, 110));
+            //Mã hóa đơn
 
+            //e.Graphics.DrawString(
+            //    String.Format("NV{0}", _i),
+            //    new Font("Courier New", 12, FontStyle.Bold),
+            //    Brushes.Black, new PointF(w / 2 + 200, 20));
 
+            ////Dịa chỉ sdt
+            //e.Graphics.DrawString(
+            //    String.Format("{0} - {1}", ten, ten),
+            //    new Font("Courier New", 8, FontStyle.Bold),
+            //    Brushes.Black, new PointF(100, 45));
 
+            //Ngày giờ xuất sản phẩm
 
+            e.Graphics.DrawString(
+                String.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy HH:MM")),
+                new Font("Courier New", 12, FontStyle.Bold),
+                Brushes.Black, new PointF(w / 2 + 200, 45));
 
+            Pen blackPEn = new Pen(Color.Black, 1);
+            var y = 70;
 
+            Point p1 = new Point(10, y);
+            Point p2 = new Point(w - 10, y);
+            e.Graphics.DrawLine(blackPEn, p1, p2);
 
+            Bitmap bitmap = new Bitmap(this.dgrid_sanpham.Width, this.dgrid_sanpham.Height);
+            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.Columns[7].Visible = false;
+            dgrid_sanpham.Columns[6].Visible = false;
+            dgrid_sanpham.Columns[5].Visible = false;
+            dgrid_sanpham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgrid_sanpham.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dgrid_sanpham.Width, this.dgrid_sanpham.Height));
+            e.Graphics.DrawImage(bitmap, 20, 200);
 
+        }
     }
 }
