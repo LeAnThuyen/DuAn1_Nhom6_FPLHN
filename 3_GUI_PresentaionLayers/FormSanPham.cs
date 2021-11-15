@@ -2420,35 +2420,51 @@ namespace _3_GUI_PresentaionLayers
            
         }
 
-
-
-
-
-
-
-
-
-
         #endregion
-
-        private void pictureBox4_DoubleClick_1(object sender, EventArgs e)
+        void InHoaDon()
         {
-            DialogResult dialogResult = MessageBox.Show("bạn có muốn chọn chức năng Xuất File PDF hay không", "Thông Báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                ReportFileToPDF reportFileToPDF = new ReportFileToPDF();
-                reportFileToPDF.Show();
-                for (int i = 0; i < 1; i++)
-                {
-                    this.Alert("Chào Mừng Bạn Đến Với Xuất PDF");
-                }
-                return;
-            }
-            if (dialogResult == DialogResult.No)
-            {
-                
-                return;
-            }
+            ppDSanPham.Document = pDSanPham;
+            ppDSanPham.ShowDialog();
         }
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            InHoaDon();
+        }
+
+        private void pDSanPham_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+           
+            var w = pDSanPham.DefaultPageSettings.PaperSize.Width;
+            //Lấy tên cửa hàng
+
+            e.Graphics.DrawString(
+                "PerSoft Perfume".ToUpper(), new Font("Courier New", 12, FontStyle.Bold), Brushes.Black, new PointF(100, 20));
+            e.Graphics.DrawString(
+                "Danh sách sản phẩm".ToUpper(), new Font("Courier New", 18, FontStyle.Bold), Brushes.Black, new PointF(300, 110));
+            //Mã hóa đơn
+
+            //e.Graphics.DrawString(
+            //    String.Format("NV{0}", _i),
+            //    new Font("Courier New", 12, FontStyle.Bold),
+            //    Brushes.Black, new PointF(w / 2 + 200, 20));
+
+            ////Dịa chỉ sdt
+            //e.Graphics.DrawString(
+            //    String.Format("{0} - {1}", ten, ten),
+            //    new Font("Courier New", 8, FontStyle.Bold),
+            //    Brushes.Black, new PointF(100, 45));
+
+            //Ngày giờ xuất sản phẩm
+
+            e.Graphics.DrawString(
+                String.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy HH:MM")),
+                new Font("Courier New", 12, FontStyle.Bold),
+                Brushes.Black, new PointF(w / 2 + 200, 45));
+
+            Pen blackPEn = new Pen(Color.Black, 1);
+            var y = 70;
+
+
+
     }
 }

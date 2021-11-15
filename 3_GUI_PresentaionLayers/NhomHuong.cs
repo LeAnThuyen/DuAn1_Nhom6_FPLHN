@@ -134,9 +134,9 @@ namespace _3_GUI_PresentaionLayers
         private void dgridNhomHuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if ((rowIndex == _iQlyNhomHuong.GetsList().Count) || rowIndex ==-1) return;
-            txtMaCL.Text =Convert.ToString( dgridNhomHuong.Rows[rowIndex].Cells[1].Value);
-            txtTenChatLieu.Text =Convert.ToString( dgridNhomHuong.Rows[rowIndex].Cells[2].Value);
+            if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
+            txtMaCL.Text = dgridNhomHuong.Rows[rowIndex].Cells[1].Value.ToString();
+            txtTenChatLieu.Text = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString();
         }
     }
 }

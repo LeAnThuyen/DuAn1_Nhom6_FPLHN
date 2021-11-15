@@ -143,8 +143,8 @@ namespace _3_GUI_PresentaionLayers
         {
             int rowIndex = e.RowIndex;
             if ((rowIndex > _iQlyVatChua.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = Convert.ToString(dgridVatChua.Rows[rowIndex].Cells[1].Value);
-            txtTenChatLieu.Text = Convert.ToString(dgridVatChua.Rows[rowIndex].Cells[2].Value);
+            txtMaCL.Text = dgridVatChua.Rows[rowIndex].Cells[1].Value.ToString();
+            txtTenChatLieu.Text = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString();
         }
     }
 }

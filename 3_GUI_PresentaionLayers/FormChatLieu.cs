@@ -141,8 +141,8 @@ namespace _3_GUI_PresentaionLayers
         {
             int rowIndex = e.RowIndex;
             if ((rowIndex > _iQlyChatLieu.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text =Convert.ToString( dgridChatLieu.Rows[rowIndex].Cells[1].Value);
-            txtTenChatLieu.Text =Convert.ToString( dgridChatLieu.Rows[rowIndex].Cells[2].Value);
+            txtMaCL.Text = dgridChatLieu.Rows[rowIndex].Cells[1].Value.ToString();
+            txtTenChatLieu.Text = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString();
         }
     }
 }

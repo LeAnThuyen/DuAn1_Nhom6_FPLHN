@@ -52,7 +52,6 @@ namespace _3_GUI_PresentaionLayers
             this.dgrid_sanpham = new System.Windows.Forms.DataGridView();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.hScrollBar3 = new System.Windows.Forms.HScrollBar();
-            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.label7 = new System.Windows.Forms.Label();
             this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
@@ -82,10 +81,8 @@ namespace _3_GUI_PresentaionLayers
             this.chk_unisex = new System.Windows.Forms.CheckBox();
             this.chk_locnu = new System.Windows.Forms.CheckBox();
             this.chk_locnam = new System.Windows.Forms.CheckBox();
-            this.rjTextBox4 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
-            this.rjTextBox3 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
-            this.rjTextBox1 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
-            this.rjTextBox2 = new _3_GUI_PresentaionLayers.RJControls.RJTextBox();
+            this.pDSanPham = new System.Drawing.Printing.PrintDocument();
+            this.ppDSanPham = new System.Windows.Forms.PrintPreviewDialog();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -223,7 +220,6 @@ namespace _3_GUI_PresentaionLayers
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 91;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.DoubleClick += new System.EventHandler(this.pictureBox4_DoubleClick_1);
             // 
             // pictureBox5
             // 
@@ -304,21 +300,6 @@ namespace _3_GUI_PresentaionLayers
             this.hScrollBar3.Size = new System.Drawing.Size(269, 31);
             this.hScrollBar3.TabIndex = 106;
             this.hScrollBar3.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar3_Scroll);
-            // 
-            // tbDark
-            // 
-            this.tbDark.AutoSize = true;
-            this.tbDark.Location = new System.Drawing.Point(7, 1);
-            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tbDark.Name = "tbDark";
-            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
-            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.tbDark.Size = new System.Drawing.Size(45, 22);
-            this.tbDark.TabIndex = 90;
-            this.tbDark.UseVisualStyleBackColor = true;
-            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged);
             // 
             // label7
             // 
@@ -408,7 +389,6 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.tbDark);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.pictureBox2);
@@ -443,10 +423,6 @@ namespace _3_GUI_PresentaionLayers
             this.panel4.Controls.Add(this.chk_unisex);
             this.panel4.Controls.Add(this.chk_locnu);
             this.panel4.Controls.Add(this.chk_locnam);
-            this.panel4.Controls.Add(this.rjTextBox4);
-            this.panel4.Controls.Add(this.rjTextBox3);
-            this.panel4.Controls.Add(this.rjTextBox1);
-            this.panel4.Controls.Add(this.rjTextBox2);
             this.panel4.Location = new System.Drawing.Point(-5, 29);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(192, 784);
@@ -666,81 +642,19 @@ namespace _3_GUI_PresentaionLayers
             this.chk_locnam.UseVisualStyleBackColor = true;
             this.chk_locnam.CheckedChanged += new System.EventHandler(this.chk_locnam_CheckedChanged);
             // 
-            // rjTextBox4
+            // pDSanPham
             // 
-            this.rjTextBox4.BackColor = System.Drawing.Color.PeachPuff;
-            this.rjTextBox4.BorderColor = System.Drawing.Color.DarkRed;
-            this.rjTextBox4.BorderFocusColor = System.Drawing.Color.Gray;
-            this.rjTextBox4.BorderSize = 2;
-            this.rjTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rjTextBox4.ForeColor = System.Drawing.Color.White;
-            this.rjTextBox4.Location = new System.Drawing.Point(2, 636);
-            this.rjTextBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.rjTextBox4.Multiline = false;
-            this.rjTextBox4.Name = "rjTextBox4";
-            this.rjTextBox4.Padding = new System.Windows.Forms.Padding(6);
-            this.rjTextBox4.PasswordChar = false;
-            this.rjTextBox4.Size = new System.Drawing.Size(188, 33);
-            this.rjTextBox4.TabIndex = 3;
-            this.rjTextBox4.Texts = "";
-            this.rjTextBox4.UnderlinedStyle = true;
+            this.pDSanPham.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDSanPham_PrintPage);
             // 
-            // rjTextBox3
+            // ppDSanPham
             // 
-            this.rjTextBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.rjTextBox3.BorderColor = System.Drawing.Color.DarkRed;
-            this.rjTextBox3.BorderFocusColor = System.Drawing.Color.Gray;
-            this.rjTextBox3.BorderSize = 2;
-            this.rjTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rjTextBox3.ForeColor = System.Drawing.Color.White;
-            this.rjTextBox3.Location = new System.Drawing.Point(2, 451);
-            this.rjTextBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.rjTextBox3.Multiline = false;
-            this.rjTextBox3.Name = "rjTextBox3";
-            this.rjTextBox3.Padding = new System.Windows.Forms.Padding(6);
-            this.rjTextBox3.PasswordChar = false;
-            this.rjTextBox3.Size = new System.Drawing.Size(188, 33);
-            this.rjTextBox3.TabIndex = 3;
-            this.rjTextBox3.Texts = "";
-            this.rjTextBox3.UnderlinedStyle = true;
-            // 
-            // rjTextBox1
-            // 
-            this.rjTextBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.rjTextBox1.BorderColor = System.Drawing.Color.DarkRed;
-            this.rjTextBox1.BorderFocusColor = System.Drawing.Color.Gray;
-            this.rjTextBox1.BorderSize = 2;
-            this.rjTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rjTextBox1.ForeColor = System.Drawing.Color.White;
-            this.rjTextBox1.Location = new System.Drawing.Point(-1, 297);
-            this.rjTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.rjTextBox1.Multiline = false;
-            this.rjTextBox1.Name = "rjTextBox1";
-            this.rjTextBox1.Padding = new System.Windows.Forms.Padding(6);
-            this.rjTextBox1.PasswordChar = false;
-            this.rjTextBox1.Size = new System.Drawing.Size(191, 33);
-            this.rjTextBox1.TabIndex = 3;
-            this.rjTextBox1.Texts = "";
-            this.rjTextBox1.UnderlinedStyle = true;
-            // 
-            // rjTextBox2
-            // 
-            this.rjTextBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.rjTextBox2.BorderColor = System.Drawing.Color.DarkRed;
-            this.rjTextBox2.BorderFocusColor = System.Drawing.Color.Gray;
-            this.rjTextBox2.BorderSize = 2;
-            this.rjTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rjTextBox2.ForeColor = System.Drawing.Color.White;
-            this.rjTextBox2.Location = new System.Drawing.Point(2, 70);
-            this.rjTextBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.rjTextBox2.Multiline = false;
-            this.rjTextBox2.Name = "rjTextBox2";
-            this.rjTextBox2.Padding = new System.Windows.Forms.Padding(6);
-            this.rjTextBox2.PasswordChar = false;
-            this.rjTextBox2.Size = new System.Drawing.Size(190, 33);
-            this.rjTextBox2.TabIndex = 3;
-            this.rjTextBox2.Texts = "";
-            this.rjTextBox2.UnderlinedStyle = true;
+            this.ppDSanPham.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.ppDSanPham.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.ppDSanPham.ClientSize = new System.Drawing.Size(400, 300);
+            this.ppDSanPham.Enabled = true;
+            this.ppDSanPham.Icon = ((System.Drawing.Icon)(resources.GetObject("ppDSanPham.Icon")));
+            this.ppDSanPham.Name = "ppDSanPham";
+            this.ppDSanPham.Visible = false;
             // 
             // FormSanPham
             // 
@@ -831,5 +745,7 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.CheckBox chk_hoaly;
         private System.Windows.Forms.CheckBox chk_Lavender;
         private System.Windows.Forms.CheckBox chk_buoi;
+        private System.Drawing.Printing.PrintDocument pDSanPham;
+        private System.Windows.Forms.PrintPreviewDialog ppDSanPham;
     }
 }
