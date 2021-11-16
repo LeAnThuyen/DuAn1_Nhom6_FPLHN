@@ -23,7 +23,7 @@ namespace _1_DAL_DataAccessLayer.Models
         [Column("IDHoaDon")]
         public int? IdhoaDon { get; set; }
         [Column("IDHangHoa")]
-        public int? IdhangHoa { get; set; }
+       
         public int? TrangThai { get; set; }
         [Column("IDThongTinHangHoa")]
         public int? IdthongTinHangHoa { get; set; }
