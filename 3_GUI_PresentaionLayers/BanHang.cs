@@ -17,9 +17,23 @@ namespace _3_GUI_PresentaionLayers
             InitializeComponent();
         }
 
+        private void OpenChildForm(Form childForm, object btnSender)
+        {
+
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelhome.Controls.Add(childForm);
+            this.panelhome.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
 
 
-       
+
+        }
+
+    
+
 
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -44,6 +58,22 @@ namespace _3_GUI_PresentaionLayers
         {
             label1.Text = DateTime.Now.ToLongTimeString();
             label17.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dịtMẹMàyToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormThongTinBanHang(), sender);
+           
+        }
+
+        private void thôngTinToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormMoRong(), sender);
         }
     }
 }
