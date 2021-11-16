@@ -81,7 +81,7 @@ namespace _3_GUI_PresentaionLayers
                         IdvatChua = _iQlyVatChua.GetsList().Max(x => x.IdvatChua) + 1,
                         MaVatChua = "CL0001" + _iQlyVatChua.GetsList().Max(x => x.IdvatChua) + 1,
                         TenVatChua = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? 1 : 0
+                        TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
                     };
                     _iQlyVatChua.addNV(VatChua);
                     LoadData();
@@ -91,7 +91,7 @@ namespace _3_GUI_PresentaionLayers
                     return;
                 }
 
-                if (dgridVatChua.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Sửa")
+                if (Convert.ToString(dgridVatChua.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Sửa")
                 {
                     var x = MessageBox.Show("Bạn có chắc chắn muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
@@ -103,7 +103,7 @@ namespace _3_GUI_PresentaionLayers
                     _1_DAL_DataAccessLayer.Models.VatChua VatChua = new _1_DAL_DataAccessLayer.Models.VatChua()
                     {
                         TenVatChua = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? 1 : 0
+                        TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
                     };
 
                     _iQlyVatChua.updateNV(VatChua);
@@ -111,7 +111,7 @@ namespace _3_GUI_PresentaionLayers
                     return;
                 }
 
-                if (dgridVatChua.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString() == "Xóa")
+                if (Convert.ToString(dgridVatChua.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Xóa")
                 {
                     var x = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
@@ -145,6 +145,7 @@ namespace _3_GUI_PresentaionLayers
             if ((rowIndex > _iQlyVatChua.GetsList().Count) || rowIndex < 0) return;
             txtMaCL.Text = dgridVatChua.Rows[rowIndex].Cells[1].Value.ToString();
             txtTenChatLieu.Text = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString();
+            chkOFF.Checked = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? true : false;
         }
     }
 }
