@@ -284,6 +284,9 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Property<double?>("TongSoTien")
                         .HasColumnType("float");
 
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("int");
+
                     b.HasKey("IdhoaDon");
 
                     b.HasIndex("IdkhachHang");

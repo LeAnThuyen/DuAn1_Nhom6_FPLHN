@@ -150,6 +150,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.PeachPuff;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuChatLieu,
@@ -170,7 +171,7 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dgrid_sanpham);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 274);
+            this.panel1.Location = new System.Drawing.Point(0, 412);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1669, 539);
             this.panel1.TabIndex = 82;
@@ -178,6 +179,7 @@ namespace _3_GUI_PresentaionLayers
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txt_timkiem);
             this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.pictureBox4);
@@ -186,9 +188,9 @@ namespace _3_GUI_PresentaionLayers
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.cbo_loc);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(177, 0);
+            this.panel2.Location = new System.Drawing.Point(191, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1492, 64);
+            this.panel2.Size = new System.Drawing.Size(1478, 64);
             this.panel2.TabIndex = 1;
             // 
             // txt_timkiem
@@ -277,12 +279,12 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.dgrid_sanpham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_sanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgrid_sanpham.Location = new System.Drawing.Point(185, 61);
+            this.dgrid_sanpham.Location = new System.Drawing.Point(191, 61);
             this.dgrid_sanpham.Name = "dgrid_sanpham";
             this.dgrid_sanpham.RowHeadersWidth = 51;
             this.dgrid_sanpham.RowTemplate.Height = 29;
             this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_sanpham.Size = new System.Drawing.Size(1484, 478);
+            this.dgrid_sanpham.Size = new System.Drawing.Size(1478, 478);
             this.dgrid_sanpham.TabIndex = 0;
             this.dgrid_sanpham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellClick);
             this.dgrid_sanpham.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_sanpham_CellContentClick);
@@ -396,14 +398,15 @@ namespace _3_GUI_PresentaionLayers
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.hScrollBar2);
             this.panel3.Controls.Add(this.hScrollBar1);
-            this.panel3.Location = new System.Drawing.Point(185, 32);
+            this.panel3.Location = new System.Drawing.Point(191, 32);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1484, 186);
+            this.panel3.Size = new System.Drawing.Size(1478, 186);
             this.panel3.TabIndex = 83;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.PeachPuff;
+            this.panel4.BackColor = System.Drawing.Color.Lavender;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.chk_hoaly);
             this.panel4.Controls.Add(this.chk_Lavender);
             this.panel4.Controls.Add(this.chk_buoi);
@@ -423,9 +426,9 @@ namespace _3_GUI_PresentaionLayers
             this.panel4.Controls.Add(this.chk_unisex);
             this.panel4.Controls.Add(this.chk_locnu);
             this.panel4.Controls.Add(this.chk_locnam);
-            this.panel4.Location = new System.Drawing.Point(-5, 29);
+            this.panel4.Location = new System.Drawing.Point(1, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(192, 784);
+            this.panel4.Size = new System.Drawing.Size(191, 925);
             this.panel4.TabIndex = 109;
             // 
             // chk_hoaly
@@ -661,7 +664,7 @@ namespace _3_GUI_PresentaionLayers
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.ClientSize = new System.Drawing.Size(1669, 813);
+            this.ClientSize = new System.Drawing.Size(1669, 951);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);

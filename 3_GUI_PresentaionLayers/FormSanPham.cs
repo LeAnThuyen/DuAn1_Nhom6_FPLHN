@@ -80,7 +80,7 @@ namespace _3_GUI_PresentaionLayers
             FrmAlert frmAlert = new FrmAlert();
             frmAlert.showAlert(mess);
         }
-       public void loaddata()
+        public void loaddata()
         {
             ArrayList row = new ArrayList();
 
@@ -102,7 +102,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[8].Name = "Gía Nhập";
             dgrid_sanpham.Columns[9].Name = "Gía Bán";
             dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
-         //   dgrid_sanpham.Columns[10].Visible = false;
+            //   dgrid_sanpham.Columns[10].Visible = false;
             dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
             dgrid_sanpham.Columns[11].Visible = false;
             dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
@@ -136,15 +136,15 @@ namespace _3_GUI_PresentaionLayers
             btn.UseColumnTextForButtonValue = true;
             dgrid_sanpham.Columns.Add(btn);
             dgrid_sanpham.Rows.Clear();
-            foreach (var x in qlhhser.GetsList().Where(c=>c.HangHoa.TrangThai==1))
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1))
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
-                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan,x.ChiTietHangHoa.HanSuDung,x.ChiTietHangHoa.Model);
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
             }
 
-            
+
         }
-      
+
         void loaddatafortimkiem(string ma)
         {
             ArrayList row = new ArrayList();
@@ -212,35 +212,35 @@ namespace _3_GUI_PresentaionLayers
 
         private void dgrid_sanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
             int idhh = Convert.ToInt32(dgrid_sanpham.Rows[e.RowIndex].Cells[0].Value);
-            string mahh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
-            string mavach =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
-            
-            string tenhh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[3].Value);
-            string nsx =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[4].Value);
-            string danhmuc=Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[5].Value);
-            string trangthai =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[6].Value);
-            string soluong =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[7].Value);
-            string dongianhap =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[8].Value);
-            string dongiaban =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[9].Value);
-            DateTime ngaynhapkho  =Convert.ToDateTime( dgrid_sanpham.Rows[e.RowIndex].Cells[10].Value);
-            string tencl =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[11].Value);
-            string tenvt =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[12].Value);
-            string nhomhuong =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[13].Value);
-            string tenquocgia =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
-            string sodungtich =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
-            string anh =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
-            DateTime hsd =Convert.ToDateTime( dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
-            string model =Convert.ToString( dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
+            string mahh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
+            string mavach = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
+
+            string tenhh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[3].Value);
+            string nsx = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[4].Value);
+            string danhmuc = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[5].Value);
+            string trangthai = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[6].Value);
+            string soluong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[7].Value);
+            string dongianhap = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[8].Value);
+            string dongiaban = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[9].Value);
+            DateTime ngaynhapkho = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[10].Value);
+            string tencl = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[11].Value);
+            string tenvt = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[12].Value);
+            string nhomhuong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[13].Value);
+            string tenquocgia = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
+            string sodungtich = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
+            string anh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
+            DateTime hsd = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
+            string model = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
             this.Alert("Chào Mừng Bạn Đến Với Thông Tin Chi Tiết Sản Phẩm");
-            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh,hsd,model);
-          
-         
+            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh, hsd, model);
+
+
 
             frmBackView.Show();
-          
-           
+
+
 
 
 
@@ -302,8 +302,8 @@ namespace _3_GUI_PresentaionLayers
             btn.UseColumnTextForButtonValue = true;
             dgrid_sanpham.Columns.Add(btn);
             dgrid_sanpham.Rows.Clear();
-           
-            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 ).OrderByDescending(c=>c.ChiTietHangHoa.DonGiaBan))
+
+            foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1).OrderByDescending(c => c.ChiTietHangHoa.DonGiaBan))
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
                     x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
@@ -510,15 +510,15 @@ namespace _3_GUI_PresentaionLayers
 
         private void dgrid_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-        
+
+
         }
         private void dgrid_sanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
-       
+
 
         private void tbDark_CheckedChanged(object sender, EventArgs e)
         {
@@ -533,10 +533,10 @@ namespace _3_GUI_PresentaionLayers
 
             }
         }
-       
-      
 
-        
+
+
+
         private void txt_loc_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbo_loc.Text == "Giá")
@@ -586,7 +586,7 @@ namespace _3_GUI_PresentaionLayers
         private void hScrollBar2_Scroll(object sender, ScrollEventArgs e)
         {
             panel3.BackColor = Color.FromArgb(hScrollBar1.Value, hScrollBar2.Value, hScrollBar3.Value);
-          
+
         }
 
         private void pictureBox3_DoubleClick(object sender, EventArgs e)
@@ -1875,8 +1875,8 @@ namespace _3_GUI_PresentaionLayers
         {
             if (txt_timkiem.Text == "")
             {
-              
-                
+
+
                 loaddata();
                 return;
             }
@@ -1905,7 +1905,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_buoi.Checked = false;
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
-             
+
             }
         }
 
@@ -1933,7 +1933,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-            
+
         }
 
         private void chk_unisex_CheckedChanged(object sender, EventArgs e)
@@ -1961,7 +1961,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_hoaly.Checked = false;
             }
 
-            
+
         }
 
         private void chk_LV_CheckedChanged(object sender, EventArgs e)
@@ -1990,7 +1990,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_hoaly.Checked = false;
 
             }
-           
+
         }
 
         private void chk_gucci_CheckedChanged(object sender, EventArgs e)
@@ -2019,7 +2019,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_hoaly.Checked = false;
 
             }
-           
+
         }
 
         private void chk_Roja_CheckedChanged(object sender, EventArgs e)
@@ -2046,7 +2046,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)//morra
@@ -2101,7 +2101,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_hoaly.Checked = false;
 
             }
-           
+
         }
 
         private void chk_50ml_CheckedChanged(object sender, EventArgs e)
@@ -2130,7 +2130,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-            
+
         }
 
         private void chk_100ml_CheckedChanged(object sender, EventArgs e)
@@ -2160,7 +2160,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_hoaly.Checked = false;
 
             }
-            
+
         }
 
         private void chk_150ml_CheckedChanged(object sender, EventArgs e)
@@ -2187,7 +2187,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
 
@@ -2249,7 +2249,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
         private void chk51_CheckedChanged(object sender, EventArgs e)
@@ -2277,7 +2277,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
         private void chk_12_CheckedChanged(object sender, EventArgs e)
@@ -2305,7 +2305,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
         private void chk_tren2tr_CheckedChanged(object sender, EventArgs e)
@@ -2333,7 +2333,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-            
+
         }
 
         private void chk_buoi_CheckedChanged(object sender, EventArgs e)
@@ -2361,7 +2361,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_hoaly.Checked = false;
             }
-            
+
         }
 
         private void chk_Lavender_CheckedChanged(object sender, EventArgs e)
@@ -2389,7 +2389,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_locnam.Checked = false;
                 chk_hoaly.Checked = false;
             }
-           
+
         }
 
         private void chk_hoaly_CheckedChanged(object sender, EventArgs e)
@@ -2417,7 +2417,7 @@ namespace _3_GUI_PresentaionLayers
                 chk_Lavender.Checked = false;
                 chk_locnam.Checked = false;
             }
-           
+
         }
 
         #endregion
@@ -2433,7 +2433,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void pDSanPham_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-           
+
             var w = pDSanPham.DefaultPageSettings.PaperSize.Width;
             //Lấy tên cửa hàng
 
@@ -2466,5 +2466,11 @@ namespace _3_GUI_PresentaionLayers
 
 
 
+        }
+
+        private void FormSanPham_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

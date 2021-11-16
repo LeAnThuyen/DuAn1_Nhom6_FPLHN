@@ -13,16 +13,25 @@
     <Compile Update="FormDungTich.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormHoaDonBanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormHoaDonChiTiet.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormLoading.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormMoRong.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormSendRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormThongTinBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormXuatXu.cs">
@@ -41,6 +50,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmCreateNewBarCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FRMDatHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmLogin.cs">

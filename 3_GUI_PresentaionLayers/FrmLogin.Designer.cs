@@ -76,7 +76,7 @@ namespace _3_GUI_PresentaionLayers
             this.panelhome.Location = new System.Drawing.Point(176, 0);
             this.panelhome.Margin = new System.Windows.Forms.Padding(2);
             this.panelhome.Name = "panelhome";
-            this.panelhome.Size = new System.Drawing.Size(1671, 871);
+            this.panelhome.Size = new System.Drawing.Size(1671, 1003);
             this.panelhome.TabIndex = 5;
             // 
             // panel1
@@ -89,7 +89,7 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1671, 807);
+            this.panel1.Size = new System.Drawing.Size(1671, 939);
             this.panel1.TabIndex = 2;
             // 
             // pictureBox3
@@ -266,7 +266,7 @@ namespace _3_GUI_PresentaionLayers
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(176, 871);
+            this.panelMenu.Size = new System.Drawing.Size(176, 1003);
             this.panelMenu.TabIndex = 3;
             // 
             // button4
@@ -393,12 +393,12 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1847, 871);
+            this.ClientSize = new System.Drawing.Size(1847, 1003);
             this.Controls.Add(this.panelhome);
             this.Controls.Add(this.panelMenu);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Frmlogin";
+            this.Text = "s";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.panelhome.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
