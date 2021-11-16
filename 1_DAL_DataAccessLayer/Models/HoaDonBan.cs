@@ -33,6 +33,7 @@ namespace _1_DAL_DataAccessLayer.Models
         [Column("IDUser")]
         public int? Iduser { get; set; }
 
+        public int TrangThai { get; set; }
         [ForeignKey(nameof(IdkhachHang))]
         [InverseProperty(nameof(KhachHang.HoaDonBans))]
         public virtual KhachHang IdkhachHangNavigation { get; set; }
