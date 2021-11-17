@@ -5,14 +5,14 @@ using _1_DAL_DataAccessLayer.Models;
 
 #nullable disable
 
-namespace _1_DAL_DataAccessLayer.Context
+namespace _1_DAL_DataAccessLayer.Models
 {
     public partial class DatabaseContext : DbContext
     {
         public DatabaseContext()
         {
         }
-         
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
@@ -23,12 +23,12 @@ namespace _1_DAL_DataAccessLayer.Context
         public virtual DbSet<ChiTietHangHoa> ChiTietHangHoas { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<DiemTieuDung> DiemTieuDungs { get; set; }
-        public virtual DbSet<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
         public virtual DbSet<DungTich> DungTiches { get; set; }
         public virtual DbSet<HangHoa> HangHoas { get; set; }
         public virtual DbSet<HoaDonBan> HoaDonBans { get; set; }
         public virtual DbSet<HoaDonChiTiet> HoaDonChiTiets { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
         public virtual DbSet<NhaSanXuat> NhaSanXuats { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<NhomHuong> NhomHuongs { get; set; }
@@ -41,7 +41,7 @@ namespace _1_DAL_DataAccessLayer.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=TANA\\SQLEXPRESS;Initial Catalog=duan1_ok;Persist Security Info=True;User ID=thuyen;Password=123");
+                optionsBuilder.UseSqlServer("Data Source=TANA\\SQLEXPRESS;Initial Catalog=dcmmm;Persist Security Info=True;User ID=thuyen;Password=123");
             }
         }
 
@@ -105,11 +105,11 @@ namespace _1_DAL_DataAccessLayer.Context
             modelBuilder.Entity<DiemTieuDung>(entity =>
             {
                 entity.Property(e => e.IddiemTieuDung).ValueGeneratedNever();
-                entity.HasOne(d => d.IdlichSuDiemNavigation)
-                 .WithMany(p => p.DiemTieuDungs)
-                 .HasForeignKey(d => d.IdlichSuDiem)
-                 .HasConstraintName("FK_DiemTieuDung_LichSuTieuDungDiem");
 
+                entity.HasOne(d => d.IdlichSuDiemNavigation)
+                    .WithMany(p => p.DiemTieuDungs)
+                    .HasForeignKey(d => d.IdlichSuDiem)
+                    .HasConstraintName("FK_DiemTieuDung_LichSuTieuDungDiem");
             });
 
             modelBuilder.Entity<DungTich>(entity =>
@@ -120,8 +120,6 @@ namespace _1_DAL_DataAccessLayer.Context
             modelBuilder.Entity<HangHoa>(entity =>
             {
                 entity.Property(e => e.IdhangHoa).ValueGeneratedNever();
-
-                //entity.Property(e => e.IdhoaDonChiTiet).IsFixedLength(true);
 
                 entity.HasOne(d => d.IddanhMucNavigation)
                     .WithMany(p => p.HangHoas)
@@ -138,6 +136,8 @@ namespace _1_DAL_DataAccessLayer.Context
             {
                 entity.Property(e => e.IdhoaDon).ValueGeneratedNever();
 
+                entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.IdkhachHangNavigation)
                     .WithMany(p => p.HoaDonBans)
                     .HasForeignKey(d => d.IdkhachHang)
@@ -146,7 +146,7 @@ namespace _1_DAL_DataAccessLayer.Context
                 entity.HasOne(d => d.IduserNavigation)
                     .WithMany(p => p.HoaDonBans)
                     .HasForeignKey(d => d.Iduser)
-                    .HasConstraintName("FK_HoaDonBan_Users");
+                    .HasConstraintName("FK_HoaDonBan_NhanVien");
             });
 
             modelBuilder.Entity<HoaDonChiTiet>(entity =>
@@ -174,6 +174,16 @@ namespace _1_DAL_DataAccessLayer.Context
                     .HasConstraintName("FK_KhachHang_DiemTieuDung");
             });
 
+            modelBuilder.Entity<LichSuTieuDungDiem>(entity =>
+            {
+                entity.Property(e => e.IdlichSuDiem).ValueGeneratedNever();
+
+                entity.HasOne(d => d.IdhoaDonNavigation)
+                    .WithMany(p => p.LichSuTieuDungDiems)
+                    .HasForeignKey(d => d.IdhoaDon)
+                    .HasConstraintName("FK_LichSuTieuDungDiem_HoaDonBan");
+            });
+
             modelBuilder.Entity<NhaSanXuat>(entity =>
             {
                 entity.Property(e => e.IdnhaSanXuat).ValueGeneratedNever();
@@ -181,15 +191,12 @@ namespace _1_DAL_DataAccessLayer.Context
 
             modelBuilder.Entity<NhanVien>(entity =>
             {
-                entity.HasKey(e => e.Iduser)
-                    .HasName("PK_Users");
-
                 entity.Property(e => e.Iduser).ValueGeneratedNever();
 
                 entity.HasOne(d => d.IdroleNavigation)
                     .WithMany(p => p.NhanViens)
                     .HasForeignKey(d => d.Idrole)
-                    .HasConstraintName("FK_Users_Roles");
+                    .HasConstraintName("FK_NhanVien_Roles");
             });
 
             modelBuilder.Entity<NhomHuong>(entity =>
@@ -210,10 +217,6 @@ namespace _1_DAL_DataAccessLayer.Context
             modelBuilder.Entity<XuatXu>(entity =>
             {
                 entity.Property(e => e.IdquocGia).ValueGeneratedNever();
-            });
-            modelBuilder.Entity<LichSuTieuDungDiem>(entity =>
-            {
-                entity.Property(e => e.IdlichSuDiem).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);
