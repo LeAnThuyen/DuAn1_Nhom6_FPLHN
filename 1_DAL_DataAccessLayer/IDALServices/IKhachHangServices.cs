@@ -10,7 +10,7 @@ namespace _1_DAL_DataAccessLayer.IDALServices
   public interface IKhachHangServices
     {
 
-        List<KhachHang> getlstnhanvien();
+        List<KhachHang> getlstkhachhangformDB();
         bool addkhachhang(KhachHang kh);
         bool updatekhachhang(KhachHang kh);
         bool deletekhachhang(KhachHang kh);

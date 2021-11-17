@@ -18,6 +18,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstkhachhang = new List<KhachHang>();
+            getlstkhachhangformDB();
         }
         public bool addkhachhang(KhachHang kh)
         {
@@ -33,7 +34,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return true;
         }
 
-        public List<KhachHang> getlstnhanvien()
+        public List<KhachHang> getlstkhachhangformDB()
         {
             _lstkhachhang = _DBcontext.KhachHangs.AsNoTracking().ToList();
             return _lstkhachhang;

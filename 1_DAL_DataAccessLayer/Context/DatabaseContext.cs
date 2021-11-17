@@ -23,6 +23,7 @@ namespace _1_DAL_DataAccessLayer.Context
         public virtual DbSet<ChiTietHangHoa> ChiTietHangHoas { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<DiemTieuDung> DiemTieuDungs { get; set; }
+        public virtual DbSet<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
         public virtual DbSet<DungTich> DungTiches { get; set; }
         public virtual DbSet<HangHoa> HangHoas { get; set; }
         public virtual DbSet<HoaDonBan> HoaDonBans { get; set; }
@@ -40,7 +41,7 @@ namespace _1_DAL_DataAccessLayer.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=TANA\\SQLEXPRESS;Initial Catalog=duan1;Persist Security Info=True;User ID=thuyen;Password=123");
+                optionsBuilder.UseSqlServer("Data Source=TANA\\SQLEXPRESS;Initial Catalog=duan1_ok;Persist Security Info=True;User ID=thuyen;Password=123");
             }
         }
 
@@ -104,6 +105,11 @@ namespace _1_DAL_DataAccessLayer.Context
             modelBuilder.Entity<DiemTieuDung>(entity =>
             {
                 entity.Property(e => e.IddiemTieuDung).ValueGeneratedNever();
+                entity.HasOne(d => d.IdlichSuDiemNavigation)
+                 .WithMany(p => p.DiemTieuDungs)
+                 .HasForeignKey(d => d.IdlichSuDiem)
+                 .HasConstraintName("FK_DiemTieuDung_LichSuTieuDungDiem");
+
             });
 
             modelBuilder.Entity<DungTich>(entity =>
@@ -204,6 +210,10 @@ namespace _1_DAL_DataAccessLayer.Context
             modelBuilder.Entity<XuatXu>(entity =>
             {
                 entity.Property(e => e.IdquocGia).ValueGeneratedNever();
+            });
+            modelBuilder.Entity<LichSuTieuDungDiem>(entity =>
+            {
+                entity.Property(e => e.IdlichSuDiem).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -177,21 +177,19 @@ namespace _1_DAL_DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasColumnName("IDDiemTieuDung");
 
-                    b.Property<string>("MaDiem")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int?>("IdlichSuDiem")
+                        .HasColumnType("int")
+                        .HasColumnName("IDLichSuDiem");
 
                     b.Property<double?>("SoDiem")
                         .HasColumnType("float");
-
-                    b.Property<string>("TenDiem")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("TrangThai")
                         .HasColumnType("int");
 
                     b.HasKey("IddiemTieuDung");
+
+                    b.HasIndex("IdlichSuDiem");
 
                     b.ToTable("DiemTieuDung");
                 });
@@ -275,6 +273,9 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Property<DateTime?>("NgayNhanHang")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime?>("NgayShipHang")
+                        .HasColumnType("datetime");
+
                     b.Property<double?>("Thue")
                         .HasColumnType("float");
 
@@ -307,10 +308,6 @@ namespace _1_DAL_DataAccessLayer.Migrations
 
                     b.Property<double?>("GiamGia")
                         .HasColumnType("float");
-
-                    b.Property<int?>("IdhangHoa")
-                        .HasColumnType("int")
-                        .HasColumnName("IDHangHoa");
 
                     b.Property<int?>("IdhoaDon")
                         .HasColumnType("int")
@@ -356,9 +353,6 @@ namespace _1_DAL_DataAccessLayer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("GioiTinh")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IddiemTieuDung")
                         .HasColumnType("int")
                         .HasColumnName("IDDiemTieuDung");
@@ -367,17 +361,10 @@ namespace _1_DAL_DataAccessLayer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("NamSinh")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SoCmnd")
+                    b.Property<string>("SoDienThoai")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("SoCMND");
-
-                    b.Property<string>("SoDienThoai")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TenKhachHang")
                         .HasMaxLength(50)
@@ -391,6 +378,32 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.HasIndex("IddiemTieuDung");
 
                     b.ToTable("KhachHang");
+                });
+
+            modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.LichSuTieuDungDiem", b =>
+                {
+                    b.Property<int>("IdlichSuDiem")
+                        .HasColumnType("int")
+                        .HasColumnName("IDLichSuDiem");
+
+                    b.Property<int?>("IdhoaDon")
+                        .HasColumnType("int")
+                        .HasColumnName("IDHoaDon");
+
+                    b.Property<DateTime?>("NgaySuDung")
+                        .HasColumnType("datetime");
+
+                    b.Property<double?>("SoDiemTieu")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("TrangThai")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdlichSuDiem");
+
+                    b.HasIndex("IdhoaDon");
+
+                    b.ToTable("LichSuTieuDungDiem");
                 });
 
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.NhaSanXuat", b =>
@@ -618,6 +631,16 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Navigation("IdvatChuaNavigation");
                 });
 
+            modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.DiemTieuDung", b =>
+                {
+                    b.HasOne("_1_DAL_DataAccessLayer.Models.LichSuTieuDungDiem", "IdlichSuDiemNavigation")
+                        .WithMany("DiemTieuDungs")
+                        .HasForeignKey("IdlichSuDiem")
+                        .HasConstraintName("FK_DiemTieuDung_LichSuTieuDungDiem");
+
+                    b.Navigation("IdlichSuDiemNavigation");
+                });
+
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.HangHoa", b =>
                 {
                     b.HasOne("_1_DAL_DataAccessLayer.Models.DanhMuc", "IddanhMucNavigation")
@@ -679,6 +702,15 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Navigation("IddiemTieuDungNavigation");
                 });
 
+            modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.LichSuTieuDungDiem", b =>
+                {
+                    b.HasOne("_1_DAL_DataAccessLayer.Models.HoaDonBan", "IdhoaDonNavigation")
+                        .WithMany("LichSuTieuDungDiems")
+                        .HasForeignKey("IdhoaDon");
+
+                    b.Navigation("IdhoaDonNavigation");
+                });
+
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.NhanVien", b =>
                 {
                     b.HasOne("_1_DAL_DataAccessLayer.Models.Role", "IdroleNavigation")
@@ -727,11 +759,18 @@ namespace _1_DAL_DataAccessLayer.Migrations
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.HoaDonBan", b =>
                 {
                     b.Navigation("HoaDonChiTiets");
+
+                    b.Navigation("LichSuTieuDungDiems");
                 });
 
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.KhachHang", b =>
                 {
                     b.Navigation("HoaDonBans");
+                });
+
+            modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.LichSuTieuDungDiem", b =>
+                {
+                    b.Navigation("DiemTieuDungs");
                 });
 
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.NhaSanXuat", b =>
