@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _1_DAL_DataAccessLayer.DALServices;
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
 using _2_BUS_BussinessLayer.IServices;
@@ -14,49 +15,114 @@ namespace _2_BUS_BussinessLayer.Services
     {
         private IServicesHoaDon _iServicesHoaDon;
         private IServicesHoaDonChiTiet _iServicesHoaDonChiTiet;
-       
+        private IKhachHangServices _iKhachHangServices;
+        private IDiemTieuDungServices _iDiemTieuDungServices;
+        private IServicesNhanVien _iNhanVienServices;
+        private IRolesServices _iRolesServices;
+        private IServicesChiTietHangHoa _iChiTietHangHoa;
+        private IServicesHangHoa _iServicesHangHoa;
+        private ILichSuDiemTieuDung _iLichSuDiemTieuDung;
+        
+        private List<ViewHoaDon> _lstViewHoaDons;
+        private List<HoaDonBan> _lstHoaDonBans;
+        private List<HoaDonChiTiet> _lstHoaDonChiTiets;
+
         public QlyHoaDonServices()
         {
-            
+            _iServicesHoaDon = new HoaDonBanServices();
+            _iServicesHoaDonChiTiet = new HoaDonChiTietServices();
+            _iKhachHangServices = new KhachHangService();
+            _iDiemTieuDungServices = new DiemTieuDungServices();
+            _iNhanVienServices = new NhanVienServices();
+            _iRolesServices = new RolesServices();
+            _iChiTietHangHoa = new ChiTietHangHoaServices();
+            _iServicesHangHoa = new HangHoaServices();
+            _iLichSuDiemTieuDung = new LichSuTieuDiemTieuDungService();
+            _lstViewHoaDons = new List<ViewHoaDon>();
+            GetsList();
+            GetsListHD();
+            GetsListHDCT();
         }
+
         public bool addHD(HoaDonBan HoaDonBan)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDon.addhdb(HoaDonBan);
+            _lstHoaDonBans.Add(HoaDonBan);
+            return true;
         }
 
         public bool addHDCT(HoaDonChiTiet HoaDonChiTiet)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDonChiTiet.addhdct(HoaDonChiTiet);
+            _lstHoaDonChiTiets.Add(HoaDonChiTiet);
+            return true;
         }
 
         public List<ViewHoaDon> GetsList()
         {
-            throw new NotImplementedException();
+            _lstViewHoaDons = (from a in _iServicesHoaDon.getlsthdbfromDB()
+                    join b in _iServicesHoaDonChiTiet.getlsthdctfromDB() on a.IdhoaDon equals b.IdhoaDon
+                    join c in _iKhachHangServices.getlstkhachhangformDB() on a.IdkhachHang equals c.IdkhachHang
+                    join d in _iDiemTieuDungServices.getlstDiemTieuDungfromDB() on c.IddiemTieuDung equals d
+                        .IddiemTieuDung
+                    join e in _iNhanVienServices.getlstnhanvienfromDB() on a.Iduser equals e.Iduser
+                    join f in _iRolesServices.getListRole() on e.Idrole equals f.Idrole
+                    join g in _iChiTietHangHoa.getlstchitietthanghoafromDB() on b.IdthongTinHangHoa equals g
+                        .IdthongTinHangHoa
+                    join h in _iServicesHangHoa.getlsthanghoafromDB() on g.IdhangHoa equals h.IdhangHoa
+                    join i in _iLichSuDiemTieuDung.getlstDiemTieuDungfromDB() on d.IdlichSuDiem equals i.IdlichSuDiem
+                    select new ViewHoaDon()
+                    {
+                        HoaDonBan = a,
+                        HoaDonChiTiet = b,
+                        KhachHang = c,
+                        DiemTieuDung = d,
+                        NhanVien = e,
+                        Role = f,
+                        ChiTietHangHoa = g,
+                        HangHoa = h,
+                        LichSuTieuDungDiem = i
+                    }
+                ).ToList();
+
+
+            return _lstViewHoaDons;
         }
 
         public List<HoaDonBan> GetsListHD()
         {
-            throw new NotImplementedException();
+            _lstHoaDonBans = _iServicesHoaDon.getlsthdbfromDB();
+            return _lstHoaDonBans;
         }
 
         public List<HoaDonChiTiet> GetsListHDCT()
         {
-            throw new NotImplementedException();
+            _lstHoaDonChiTiets = _iServicesHoaDonChiTiet.getlsthdctfromDB();
+            return _lstHoaDonChiTiets;
         }
 
         public bool removeHD(HoaDonBan HoaDonBan)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDon.deletehdb(HoaDonBan);
+            _lstHoaDonBans.Add(HoaDonBan);
+            return true;
         }
 
         public bool removeHDCT(HoaDonChiTiet HoaDonChiTiet)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDonChiTiet.deletehdct(HoaDonChiTiet);
+            _lstHoaDonChiTiets.Add(HoaDonChiTiet);
+            return true;
         }
 
-        public void Save()
+        public void SaveHD(HoaDonBan HoaDonBan)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDon.save(HoaDonBan);
+        }
+
+        public void SaveHDCT(HoaDonChiTiet HoaDonChiTiet)
+        {
+            _iServicesHoaDonChiTiet.save(HoaDonChiTiet); 
         }
 
         public void SenderDataHD()
@@ -71,12 +137,16 @@ namespace _2_BUS_BussinessLayer.Services
 
         public bool updateHD(HoaDonBan HoaDonBan)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDon.updatehdb(HoaDonBan);
+            _lstHoaDonBans.Add(HoaDonBan);
+            return true;
         }
 
         public bool updateHDCTV(HoaDonChiTiet HoaDonChiTiet)
         {
-            throw new NotImplementedException();
+            _iServicesHoaDonChiTiet.updatehdct(HoaDonChiTiet);
+            _lstHoaDonChiTiets.Add(HoaDonChiTiet);
+            return true;
         }
     }
 }

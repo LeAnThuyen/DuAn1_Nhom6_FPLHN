@@ -17,6 +17,7 @@ namespace _2_BUS_BussinessLayer.ModelViews
         public Role Role { get; set; }
         public ChiTietHangHoa ChiTietHangHoa { get; set; }
         public HangHoa HangHoa { get; set; }
+        public LichSuTieuDungDiem LichSuTieuDungDiem { get; set; }
 
     }
 }
