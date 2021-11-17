@@ -105,11 +105,6 @@ namespace _1_DAL_DataAccessLayer.Models
             modelBuilder.Entity<DiemTieuDung>(entity =>
             {
                 entity.Property(e => e.IddiemTieuDung).ValueGeneratedNever();
-
-                entity.HasOne(d => d.IdlichSuDiemNavigation)
-                    .WithMany(p => p.DiemTieuDungs)
-                    .HasForeignKey(d => d.IdlichSuDiem)
-                    .HasConstraintName("FK_DiemTieuDung_LichSuTieuDungDiem");
             });
 
             modelBuilder.Entity<DungTich>(entity =>
@@ -177,6 +172,11 @@ namespace _1_DAL_DataAccessLayer.Models
             modelBuilder.Entity<LichSuTieuDungDiem>(entity =>
             {
                 entity.Property(e => e.IdlichSuDiem).ValueGeneratedNever();
+
+                entity.HasOne(d => d.IddiemTieuDungNavigation)
+                    .WithMany(p => p.LichSuTieuDungDiems)
+                    .HasForeignKey(d => d.IddiemTieuDung)
+                    .HasConstraintName("FK_LichSuTieuDungDiem_DiemTieuDung");
 
                 entity.HasOne(d => d.IdhoaDonNavigation)
                     .WithMany(p => p.LichSuTieuDungDiems)
