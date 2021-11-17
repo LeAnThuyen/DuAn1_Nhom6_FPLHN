@@ -23,7 +23,8 @@ namespace _2_BUS_BussinessLayer.IServices
         List<HoaDonChiTiet> GetsListHDCT();
 
         void SenderDataHDCT();
-        void Save();
+        void SaveHD(HoaDonBan HoaDonBan);
+        void SaveHDCT(HoaDonChiTiet HoaDonChiTiet);
         //Hóa đơn tổng
         List<ViewHoaDon> GetsList();
     }
