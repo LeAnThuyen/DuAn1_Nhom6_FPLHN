@@ -28,11 +28,11 @@ namespace _1_DAL_DataAccessLayer.Models
         public string Email { get; set; }
         [StringLength(100)]
         public string DiaChi { get; set; }
-        [Column("SoCMND")]
+  
         [StringLength(50)]
       
         public string SoDienThoai { get; set; }
-        public bool? TrangThai { get; set; }
+        public int? TrangThai { get; set; }
         [Column("IDDiemTieuDung")]
         public int? IddiemTieuDung { get; set; }
 
