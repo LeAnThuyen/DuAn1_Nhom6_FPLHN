@@ -14,6 +14,7 @@ namespace _1_DAL_DataAccessLayer.Models
         public HoaDonBan()
         {
             HoaDonChiTiets = new HashSet<HoaDonChiTiet>();
+            LichSuTieuDungDiems = new HashSet<LichSuTieuDungDiem>();
         }
 
         [Key]
@@ -25,6 +26,8 @@ namespace _1_DAL_DataAccessLayer.Models
         public DateTime? NgayLap { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? NgayNhanHang { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? NgayShipHang { get; set; }
         public double? Tien { get; set; }
         public double? Thue { get; set; }
         public double? TongSoTien { get; set; }
@@ -42,5 +45,9 @@ namespace _1_DAL_DataAccessLayer.Models
         public virtual NhanVien IduserNavigation { get; set; }
         [InverseProperty(nameof(HoaDonChiTiet.IdhoaDonNavigation))]
         public virtual ICollection<HoaDonChiTiet> HoaDonChiTiets { get; set; }
+        [InverseProperty(nameof(LichSuTieuDungDiem.IdhoaDonNavigation))]
+        public virtual ICollection<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
     }
+
 }
+
