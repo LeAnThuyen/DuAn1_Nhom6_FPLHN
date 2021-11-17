@@ -23,11 +23,8 @@ namespace _1_DAL_DataAccessLayer.Models
         public string TenHangHoa { get; set; }
         [StringLength(50)]
         public string MaHangHoa { get; set; }
-      
         [Column("IDNhaSanXuat")]
         public int? IdnhaSanXuat { get; set; }
-        
-      
         public int? TrangThai { get; set; }
         [Column("IDDanhMuc")]
         public int? IddanhMuc { get; set; }

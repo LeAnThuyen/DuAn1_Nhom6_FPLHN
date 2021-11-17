@@ -11,6 +11,11 @@ namespace _1_DAL_DataAccessLayer.Models
     [Table("DiemTieuDung")]
     public partial class DiemTieuDung
     {
+        public DiemTieuDung()
+        {
+            KhachHangs = new HashSet<KhachHang>();
+        }
+
         [Key]
         [Column("IDDiemTieuDung")]
         public int IddiemTieuDung { get; set; }
@@ -24,11 +29,5 @@ namespace _1_DAL_DataAccessLayer.Models
         public virtual LichSuTieuDungDiem IdlichSuDiemNavigation { get; set; }
         [InverseProperty(nameof(KhachHang.IddiemTieuDungNavigation))]
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
-
     }
-
-
-
-
 }
-

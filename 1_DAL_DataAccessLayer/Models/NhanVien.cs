@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace _1_DAL_DataAccessLayer.Models
 {
+
     [Table("NhanVien")]
     public partial class NhanVien
     {

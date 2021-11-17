@@ -21,11 +21,11 @@ namespace _1_DAL_DataAccessLayer.Models
         public double? GiamGia { get; set; }
         public double? ThanhTien { get; set; }
         [Column("IDHoaDon")]
-        public int? IdhoaDon { get; set; }     
-       
+        public int? IdhoaDon { get; set; }
+        public int? TrangThai { get; set; }
         [Column("IDThongTinHangHoa")]
         public int? IdthongTinHangHoa { get; set; }
-        public int? TrangThai { get; set; }
+
         [ForeignKey(nameof(IdhoaDon))]
         [InverseProperty(nameof(HoaDonBan.HoaDonChiTiets))]
         public virtual HoaDonBan IdhoaDonNavigation { get; set; }

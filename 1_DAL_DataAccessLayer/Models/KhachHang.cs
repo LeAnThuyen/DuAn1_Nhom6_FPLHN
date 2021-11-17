@@ -23,16 +23,13 @@ namespace _1_DAL_DataAccessLayer.Models
         public string MaKhachHang { get; set; }
         [StringLength(50)]
         public string TenKhachHang { get; set; }
-   
         [StringLength(50)]
         public string Email { get; set; }
         [StringLength(100)]
         public string DiaChi { get; set; }
-  
         [StringLength(50)]
-      
         public string SoDienThoai { get; set; }
-        public int? TrangThai { get; set; }
+        public bool? TrangThai { get; set; }
         [Column("IDDiemTieuDung")]
         public int? IddiemTieuDung { get; set; }
 

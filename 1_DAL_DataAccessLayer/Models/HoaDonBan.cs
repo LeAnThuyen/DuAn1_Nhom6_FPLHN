@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace _1_DAL_DataAccessLayer.Models
 {
+
     [Table("HoaDonBan")]
     public partial class HoaDonBan
     {
@@ -26,8 +27,6 @@ namespace _1_DAL_DataAccessLayer.Models
         public DateTime? NgayLap { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? NgayNhanHang { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? NgayShipHang { get; set; }
         public double? Tien { get; set; }
         public double? Thue { get; set; }
         public double? TongSoTien { get; set; }
@@ -35,8 +34,10 @@ namespace _1_DAL_DataAccessLayer.Models
         public int? IdkhachHang { get; set; }
         [Column("IDUser")]
         public int? Iduser { get; set; }
+        public int? TrangThai { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? NgayShipHang { get; set; }
 
-        public int TrangThai { get; set; }
         [ForeignKey(nameof(IdkhachHang))]
         [InverseProperty(nameof(KhachHang.HoaDonBans))]
         public virtual KhachHang IdkhachHangNavigation { get; set; }
@@ -48,6 +49,4 @@ namespace _1_DAL_DataAccessLayer.Models
         [InverseProperty(nameof(LichSuTieuDungDiem.IdhoaDonNavigation))]
         public virtual ICollection<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
     }
-
 }
-

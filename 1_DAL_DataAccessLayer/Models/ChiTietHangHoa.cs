@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace _1_DAL_DataAccessLayer.Models
 {
+
     [Table("ChiTietHangHoa")]
     public partial class ChiTietHangHoa
     {
@@ -42,7 +43,6 @@ namespace _1_DAL_DataAccessLayer.Models
         public int? IdquocGia { get; set; }
         [Column("IDDungTich")]
         public int? IddungTich { get; set; }
-      
         [Column("IDAnh")]
         public int? Idanh { get; set; }
         [Column("IDVatChua")]
