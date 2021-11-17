@@ -14,6 +14,7 @@ namespace _1_DAL_DataAccessLayer.Models
         public DiemTieuDung()
         {
             KhachHangs = new HashSet<KhachHang>();
+            LichSuTieuDungDiems = new HashSet<LichSuTieuDungDiem>();
         }
 
         [Key]
@@ -21,13 +22,10 @@ namespace _1_DAL_DataAccessLayer.Models
         public int IddiemTieuDung { get; set; }
         public double? SoDiem { get; set; }
         public int? TrangThai { get; set; }
-        [Column("IDLichSuDiem")]
-        public int? IdlichSuDiem { get; set; }
 
-        [ForeignKey(nameof(IdlichSuDiem))]
-        [InverseProperty(nameof(LichSuTieuDungDiem.DiemTieuDungs))]
-        public virtual LichSuTieuDungDiem IdlichSuDiemNavigation { get; set; }
         [InverseProperty(nameof(KhachHang.IddiemTieuDungNavigation))]
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
+        [InverseProperty(nameof(LichSuTieuDungDiem.IddiemTieuDungNavigation))]
+        public virtual ICollection<LichSuTieuDungDiem> LichSuTieuDungDiems { get; set; }
     }
 }
