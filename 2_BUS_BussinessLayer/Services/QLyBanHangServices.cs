@@ -23,7 +23,7 @@ namespace _2_BUS_BussinessLayer.Services
         private IServicesAnh ianhser;
         private IDungTichServices idtser;
         private List<ViewBanHang> _lstbanhang;
-
+    
         public QLyBanHangServices()
         {
             ihdctser = new HoaDonChiTietServices();
@@ -34,8 +34,9 @@ namespace _2_BUS_BussinessLayer.Services
             ianhser = new AnhServices();
             idtser = new DungTichServices();
             ikhser = new KhachHangService();
+            //idiemser = new DiemTieuDungServices();
             idiemser = new DiemTieuDungServices();
-            _lstbanhang = new List<ViewBanHang>();
+             _lstbanhang = new List<ViewBanHang>();
             GetsList();
         }
 
