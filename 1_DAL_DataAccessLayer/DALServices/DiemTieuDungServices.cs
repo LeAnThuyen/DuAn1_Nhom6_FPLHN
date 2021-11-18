@@ -8,12 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using _1_DAL_DataAccessLayer.IDALServices;
-using _1_DAL_DataAccessLayer.Models;
+
 
 namespace _1_DAL_DataAccessLayer.DALServices
 {
-    public class DiemTieuDungServices : IDiemTieuDungServices
+    public class DiemTieuDungServices : IServiceDiemTieuDung
     {
         private DatabaseContext _DBcontext;
         private List<DiemTieuDung> _lstDiemTieuDungs;
@@ -22,39 +21,44 @@ namespace _1_DAL_DataAccessLayer.DALServices
         {
             _DBcontext = new DatabaseContext();
             _lstDiemTieuDungs = new List<DiemTieuDung>();
-            getlstDiemTieuDungfromDB();
+            getlstdiemfromDB();
         }
-        public bool addDiemTieuDung(DiemTieuDung DiemTieuDung)
+
+        public bool adddiem(DiemTieuDung diem)
         {
-            _DBcontext.DiemTieuDungs.Add(DiemTieuDung);
+            
+                _DBcontext.DiemTieuDungs.Add(diem);
+                _DBcontext.SaveChanges();
+                return true;
+            
+        }
+        
+        public bool deletediem(DiemTieuDung diem)
+        {
+            _DBcontext.DiemTieuDungs.Remove(diem);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool deleteDiemTieuDungu(DiemTieuDung DiemTieuDung)
-        {
-            _DBcontext.DiemTieuDungs.Remove(DiemTieuDung);
-            _DBcontext.SaveChanges();
-            return true;
-        }
+       
 
-        public List<DiemTieuDung> getlstDiemTieuDungfromDB()
+        public List<DiemTieuDung> getlstdiemfromDB()
         {
             _lstDiemTieuDungs = _DBcontext.DiemTieuDungs.ToList();
             return _lstDiemTieuDungs;
         }
 
-        public bool save(DiemTieuDung DiemTieuDung)
+        
+
+     
+
+        public bool updatediem(DiemTieuDung diem)
         {
+            _DBcontext.DiemTieuDungs.Update(diem);
             _DBcontext.SaveChanges();
             return true;
         }
 
-        public bool updateDiemTieuDung(DiemTieuDung DiemTieuDung)
-        {
-            _DBcontext.DiemTieuDungs.Update(DiemTieuDung);
-            _DBcontext.SaveChanges();
-            return true;
-        }
+       
     }
 }
