@@ -16,7 +16,8 @@ namespace _2_BUS_BussinessLayer.Services
         private IServicesHoaDon _iServicesHoaDon;
         private IServicesHoaDonChiTiet _iServicesHoaDonChiTiet;
         private IKhachHangServices _iKhachHangServices;
-        private IDiemTieuDungServices _iDiemTieuDungServices;
+        //   private IDiemTieuDungServices _iDiemTieuDungServices;
+        private IServiceDiemTieuDung idiemser;
         private IServicesNhanVien _iNhanVienServices;
         private IRolesServices _iRolesServices;
         private IServicesChiTietHangHoa _iChiTietHangHoa;
@@ -32,7 +33,7 @@ namespace _2_BUS_BussinessLayer.Services
             _iServicesHoaDon = new HoaDonBanServices();
             _iServicesHoaDonChiTiet = new HoaDonChiTietServices();
             _iKhachHangServices = new KhachHangService();
-            _iDiemTieuDungServices = new DiemTieuDungServices();
+            idiemser = new DiemTieuDungServices();
             _iNhanVienServices = new NhanVienServices();
             _iRolesServices = new RolesServices();
             _iChiTietHangHoa = new ChiTietHangHoaServices();
@@ -63,14 +64,14 @@ namespace _2_BUS_BussinessLayer.Services
             _lstViewHoaDons = (from a in _iServicesHoaDon.getlsthdbfromDB()
                     join b in _iServicesHoaDonChiTiet.getlsthdctfromDB() on a.IdhoaDon equals b.IdhoaDon
                     join c in _iKhachHangServices.getlstkhachhangformDB() on a.IdkhachHang equals c.IdkhachHang
-                    join d in _iDiemTieuDungServices.getlstDiemTieuDungfromDB() on c.IddiemTieuDung equals d
+                    join d in idiemser.getlstdiemfromDB() on c.IddiemTieuDung equals d
                         .IddiemTieuDung
                     join e in _iNhanVienServices.getlstnhanvienfromDB() on a.Iduser equals e.Iduser
                     join f in _iRolesServices.getListRole() on e.Idrole equals f.Idrole
                     join g in _iChiTietHangHoa.getlstchitietthanghoafromDB() on b.IdthongTinHangHoa equals g
                         .IdthongTinHangHoa
                     join h in _iServicesHangHoa.getlsthanghoafromDB() on g.IdhangHoa equals h.IdhangHoa
-                    join i in _iLichSuDiemTieuDung.getlstDiemTieuDungfromDB() on d.IdlichSuDiem equals i.IdlichSuDiem
+                    join i in _iLichSuDiemTieuDung.getlstDiemTieuDungfromDB() on c.IddiemTieuDung equals i.IddiemTieuDung
                     select new ViewHoaDon()
                     {
                         HoaDonBan = a,
