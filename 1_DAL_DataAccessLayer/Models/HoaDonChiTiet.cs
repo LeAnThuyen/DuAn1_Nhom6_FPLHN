@@ -25,6 +25,8 @@ namespace _1_DAL_DataAccessLayer.Models
         public int? TrangThai { get; set; }
         [Column("IDThongTinHangHoa")]
         public int? IdthongTinHangHoa { get; set; }
+        [StringLength(100)]
+        public string GhiChu { get; set; }
 
         [ForeignKey(nameof(IdhoaDon))]
         [InverseProperty(nameof(HoaDonBan.HoaDonChiTiets))]
