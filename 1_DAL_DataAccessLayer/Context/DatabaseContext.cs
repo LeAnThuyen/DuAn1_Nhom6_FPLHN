@@ -17,7 +17,7 @@ namespace _1_DAL_DataAccessLayer.Models
             : base(options)
         {
         }
-
+         
         public virtual DbSet<Anh> Anhs { get; set; }
         public virtual DbSet<ChatLieu> ChatLieus { get; set; }
         public virtual DbSet<ChiTietHangHoa> ChiTietHangHoas { get; set; }
