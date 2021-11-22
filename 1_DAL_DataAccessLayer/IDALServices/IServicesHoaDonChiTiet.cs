@@ -13,6 +13,6 @@ namespace _1_DAL_DataAccessLayer.IDALServices
         bool addhdct(HoaDonChiTiet hdct);
         bool deletehdct(HoaDonChiTiet hdct);
         bool updatehdct(HoaDonChiTiet hdct);
-        bool save(HoaDonChiTiet hdct);
+        bool save();
     }
 }
