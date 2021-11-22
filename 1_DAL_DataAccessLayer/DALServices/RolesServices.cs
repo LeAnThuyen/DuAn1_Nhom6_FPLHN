@@ -22,7 +22,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
         public List<Role> getListRole()
         {
             _lstRoles = _DBcontext.Roles.ToList();
-            return getListRole();
+            return _lstRoles;
         }
     }
 }
