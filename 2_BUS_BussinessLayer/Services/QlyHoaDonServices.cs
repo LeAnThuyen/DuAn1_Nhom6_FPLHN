@@ -23,7 +23,7 @@ namespace _2_BUS_BussinessLayer.Services
         private IServicesChiTietHangHoa _iChiTietHangHoa;
         private IServicesHangHoa _iServicesHangHoa;
         private ILichSuDiemTieuDung _iLichSuDiemTieuDung;
-        
+        private IServicesAnh _iServicesAnh;
         private List<ViewHoaDon> _lstViewHoaDons;
         private List<HoaDonBan> _lstHoaDonBans;
         private List<HoaDonChiTiet> _lstHoaDonChiTiets;
@@ -40,6 +40,7 @@ namespace _2_BUS_BussinessLayer.Services
             _iServicesHangHoa = new HangHoaServices();
             _iLichSuDiemTieuDung = new LichSuTieuDiemTieuDungService();
             _lstViewHoaDons = new List<ViewHoaDon>();
+            _iServicesAnh = new AnhServices();
             GetsList();
             GetsListHD();
             GetsListHDCT();
@@ -72,7 +73,8 @@ namespace _2_BUS_BussinessLayer.Services
                         .IdthongTinHangHoa
                     join h in _iServicesHangHoa.getlsthanghoafromDB() on g.IdhangHoa equals h.IdhangHoa
                     join i in _iLichSuDiemTieuDung.getlstDiemTieuDungfromDB() on c.IddiemTieuDung equals i.IddiemTieuDung
-                    select new ViewHoaDon()
+                    join k in _iServicesAnh.getlstanhfromDB() on g.Idanh equals k.Idanh
+                               select new ViewHoaDon()
                     {
                         HoaDonBan = a,
                         HoaDonChiTiet = b,
@@ -82,7 +84,8 @@ namespace _2_BUS_BussinessLayer.Services
                         Role = f,
                         ChiTietHangHoa = g,
                         HangHoa = h,
-                        LichSuTieuDungDiem = i
+                        LichSuTieuDungDiem = i,
+                        Anh=k
                     }
                 ).ToList();
 

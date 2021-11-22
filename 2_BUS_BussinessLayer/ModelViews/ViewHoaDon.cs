@@ -18,6 +18,8 @@ namespace _2_BUS_BussinessLayer.ModelViews
         public ChiTietHangHoa ChiTietHangHoa { get; set; }
         public HangHoa HangHoa { get; set; }
         public LichSuTieuDungDiem LichSuTieuDungDiem { get; set; }
+        public Anh Anh { get; set; }
+        
 
     }
 }
