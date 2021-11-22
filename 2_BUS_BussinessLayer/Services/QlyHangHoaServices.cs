@@ -89,6 +89,18 @@ namespace _2_BUS_BussinessLayer.Services
             return _lsViewHangHoas;
         }
 
+        public List<ChiTietHangHoa> GetsListCTHH()
+        {
+            _lsChiTietHangHoas = _iChiTietHangHoa.getlstchitietthanghoafromDB();
+            return _lsChiTietHangHoas;
+        }
+
+        public List<HangHoa> GetsListHH()
+        {
+            _lsHangHoas = _iServicesHangHoa.getlsthanghoafromDB();
+            return _lsHangHoas;
+        }
+
         public bool RemoveSP(HangHoa HangHoa)
         {
             _lsHangHoas.Remove(HangHoa);
