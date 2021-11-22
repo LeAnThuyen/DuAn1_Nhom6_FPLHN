@@ -39,7 +39,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsthoadonchitiet;
         }
 
-        public bool save(HoaDonChiTiet hdct)
+        public bool save()
         {
             _DBcontext.SaveChanges();
             return true;

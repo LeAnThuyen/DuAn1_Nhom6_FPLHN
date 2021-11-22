@@ -41,7 +41,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return _lsthoadonban;
         }
 
-        public bool save(HoaDonBan hdb)
+        public bool save()
         {
             _DBcontext.SaveChanges();
             return true;
