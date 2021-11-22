@@ -119,14 +119,14 @@ namespace _2_BUS_BussinessLayer.Services
             return true;
         }
 
-        public void SaveHD(HoaDonBan HoaDonBan)
+        public void SaveHD()
         {
-            _iServicesHoaDon.save(HoaDonBan);
+            _iServicesHoaDon.save();
         }
 
-        public void SaveHDCT(HoaDonChiTiet HoaDonChiTiet)
+        public void SaveHDCT()
         {
-            _iServicesHoaDonChiTiet.save(HoaDonChiTiet); 
+            _iServicesHoaDonChiTiet.save(); 
         }
 
         public void SenderDataHD()
