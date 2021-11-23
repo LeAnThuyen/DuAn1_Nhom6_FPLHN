@@ -2472,5 +2472,19 @@ namespace _3_GUI_PresentaionLayers
         {
 
         }
+
+        private void tbDark_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (tbDark.Checked)
+            {
+                this.BackColor = Color.RosyBrown;
+
+            }
+            else
+            {
+                this.BackColor = Color.DarkOliveGreen;
+
+            }
+        }
     }
 }

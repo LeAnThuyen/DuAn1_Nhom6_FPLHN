@@ -122,13 +122,13 @@ namespace _2_BUS_BussinessLayer.Services
 
         public void SaveHoaDon(HoaDonBan hdb)
         {
-            ihdbser.save(hdb);
+            ihdbser.save();
           
         }
 
         public void SaveHoaDonChiTiet(HoaDonChiTiet hdct)
         {
-            ihdctser.save(hdct);
+            ihdctser.save();
           
         }
 

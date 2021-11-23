@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _1_DAL_DataAccessLayer.Context;
+using _1_DAL_DataAccessLayer.Models;
 
 namespace _1_DAL_DataAccessLayer.Migrations
 {
@@ -57,7 +57,6 @@ namespace _1_DAL_DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TenChatLieu")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -285,8 +284,10 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Property<double?>("TongSoTien")
                         .HasColumnType("float");
 
-                    b.Property<int>("TrangThai")
-                        .HasColumnType("int");
+                    b.Property<int?>("TrangThai")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("((0))");
 
                     b.HasKey("IdhoaDon");
 
@@ -332,8 +333,6 @@ namespace _1_DAL_DataAccessLayer.Migrations
 
                     b.HasKey("IdhoaDonChiTiet");
 
-                    b.HasIndex("IdhoaDon");
-
                     b.HasIndex("IdthongTinHangHoa");
 
                     b.ToTable("HoaDonChiTiet");
@@ -363,8 +362,7 @@ namespace _1_DAL_DataAccessLayer.Migrations
 
                     b.Property<string>("SoDienThoai")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("SoCMND");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TenKhachHang")
                         .HasMaxLength(50)
@@ -483,8 +481,7 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.Property<bool?>("TrangThai")
                         .HasColumnType("bit");
 
-                    b.HasKey("Iduser")
-                        .HasName("PK_Users");
+                    b.HasKey("Iduser");
 
                     b.HasIndex("Idrole");
 
@@ -668,7 +665,7 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.HasOne("_1_DAL_DataAccessLayer.Models.NhanVien", "IduserNavigation")
                         .WithMany("HoaDonBans")
                         .HasForeignKey("Iduser")
-                        .HasConstraintName("FK_HoaDonBan_Users");
+                        .HasConstraintName("FK_HoaDonBan_NhanVien");
 
                     b.Navigation("IdkhachHangNavigation");
 
@@ -677,17 +674,10 @@ namespace _1_DAL_DataAccessLayer.Migrations
 
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.HoaDonChiTiet", b =>
                 {
-                    b.HasOne("_1_DAL_DataAccessLayer.Models.HoaDonBan", "IdhoaDonNavigation")
-                        .WithMany("HoaDonChiTiets")
-                        .HasForeignKey("IdhoaDon")
-                        .HasConstraintName("FK_HoaDonChiTiet_HoaDonBan");
-
                     b.HasOne("_1_DAL_DataAccessLayer.Models.ChiTietHangHoa", "IdthongTinHangHoaNavigation")
                         .WithMany("HoaDonChiTiets")
                         .HasForeignKey("IdthongTinHangHoa")
                         .HasConstraintName("FK_HoaDonChiTiet_ChiTietHangHoa");
-
-                    b.Navigation("IdhoaDonNavigation");
 
                     b.Navigation("IdthongTinHangHoaNavigation");
                 });
@@ -706,7 +696,8 @@ namespace _1_DAL_DataAccessLayer.Migrations
                 {
                     b.HasOne("_1_DAL_DataAccessLayer.Models.HoaDonBan", "IdhoaDonNavigation")
                         .WithMany("LichSuTieuDungDiems")
-                        .HasForeignKey("IdhoaDon");
+                        .HasForeignKey("IdhoaDon")
+                        .HasConstraintName("FK_LichSuTieuDungDiem_HoaDonBan");
 
                     b.Navigation("IdhoaDonNavigation");
                 });
@@ -716,7 +707,7 @@ namespace _1_DAL_DataAccessLayer.Migrations
                     b.HasOne("_1_DAL_DataAccessLayer.Models.Role", "IdroleNavigation")
                         .WithMany("NhanViens")
                         .HasForeignKey("Idrole")
-                        .HasConstraintName("FK_Users_Roles");
+                        .HasConstraintName("FK_NhanVien_Roles");
 
                     b.Navigation("IdroleNavigation");
                 });
@@ -758,8 +749,6 @@ namespace _1_DAL_DataAccessLayer.Migrations
 
             modelBuilder.Entity("_1_DAL_DataAccessLayer.Models.HoaDonBan", b =>
                 {
-                    b.Navigation("HoaDonChiTiets");
-
                     b.Navigation("LichSuTieuDungDiems");
                 });
 

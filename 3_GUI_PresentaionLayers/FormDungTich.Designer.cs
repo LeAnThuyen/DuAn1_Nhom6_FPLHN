@@ -116,7 +116,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.dgv_DungTich.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_DungTich.Location = new System.Drawing.Point(50, 149);
-            this.dgv_DungTich.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv_DungTich.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_DungTich.Name = "dgv_DungTich";
             this.dgv_DungTich.RowHeadersWidth = 62;
             this.dgv_DungTich.RowTemplate.Height = 33;
@@ -139,7 +139,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.ForeColor = System.Drawing.Color.White;
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "FormDungTich";
             this.Text = "DungTich";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DungTich)).EndInit();

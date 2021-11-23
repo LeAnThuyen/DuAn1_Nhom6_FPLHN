@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _2_BUS_BussinessLayer.IServices;
+using _2_BUS_BussinessLayer.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,26 +9,52 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace _3_GUI_PresentaionLayers
 {
     public partial class FrmLogin : Form
     {
+        private IServiceForDangNhap iserlogin;
         private Button currentButton;
+        public Button btnsp;
         private Random random;
         private int tempIndex;
         private Form activeForm;
+        //sender
+        //
+        public static FrmLogin backsender;
+        public Label lbl;
+        public TextBox txt;
+   
+        public PictureBox pic;
+      
+        public int role;
+        public string email;
+        public string anhs;
+    
         public FrmLogin()
         {
             InitializeComponent();
+            iserlogin = new DangNhapServies();
+          
             random = new Random();
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-        }
+            //
+            pic = pictureBox4;
+            backsender = this;
+            txt = txt_email;
+            btnsp = btnSanPham;
 
+
+
+
+        }
+        
         public void Alert(string mess)
         {
             FrmAlert frmAlert = new FrmAlert();
@@ -205,29 +233,27 @@ namespace _3_GUI_PresentaionLayers
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Đăng Xuất Hay Không ?", "Thông Báo", MessageBoxButtons.YesNo);
+           
+        }
+        void Application_Start(object sender, EventArgs e)
+        {
+            // Code that runs on application startup
+            System.Timers.Timer myTimer = new System.Timers.Timer();
+            // Set the Interval to 5 seconds (5000 milliseconds).
+            myTimer.Interval = 5000;
+            myTimer.AutoReset = true;
+            myTimer.Elapsed += new ElapsedEventHandler(myTimer_Elapsed);
+            myTimer.Enabled = true;
+            
+        }
+        public void myTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
+        {
+         
+        }
 
-            if (dialogResult == DialogResult.Yes)
-            {
-
-                FormDangNhap formDangNhap = new FormDangNhap();
-                formDangNhap.Show();
-                this.Close();
-
-              
-              
-                for (int i = 0; i < 2; i++)
-                {
-                    this.Alert("Tạm Biệt Và Hẹn Gặp Lại Bạn Sớm Nhất <3");
-
-                }
-                return;
-            };
-
-            if (dialogResult == DialogResult.No)
-            {
-                return;
-            }
+        private void time_autosendemil_Tick(object sender, EventArgs e)
+        {
+          
         }
 
         private void timer3_Tick(object sender, EventArgs e)

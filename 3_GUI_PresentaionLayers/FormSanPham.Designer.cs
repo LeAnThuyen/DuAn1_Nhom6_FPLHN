@@ -83,6 +83,7 @@ namespace _3_GUI_PresentaionLayers
             this.chk_locnam = new System.Windows.Forms.CheckBox();
             this.pDSanPham = new System.Drawing.Printing.PrintDocument();
             this.ppDSanPham = new System.Windows.Forms.PrintPreviewDialog();
+            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -389,6 +390,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.tbDark);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label6);
@@ -659,6 +661,21 @@ namespace _3_GUI_PresentaionLayers
             this.ppDSanPham.Name = "ppDSanPham";
             this.ppDSanPham.Visible = false;
             // 
+            // tbDark
+            // 
+            this.tbDark.AutoSize = true;
+            this.tbDark.Location = new System.Drawing.Point(7, 3);
+            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbDark.Name = "tbDark";
+            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
+            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbDark.Size = new System.Drawing.Size(45, 22);
+            this.tbDark.TabIndex = 109;
+            this.tbDark.UseVisualStyleBackColor = true;
+            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged_1);
+            // 
             // FormSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -750,5 +767,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.CheckBox chk_buoi;
         private System.Drawing.Printing.PrintDocument pDSanPham;
         private System.Windows.Forms.PrintPreviewDialog ppDSanPham;
+        private RJControls.RJToggleButton rjToggleButton1;
     }
 }

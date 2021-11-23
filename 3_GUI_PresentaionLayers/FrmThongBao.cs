@@ -8,20 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
+using S22.Imap;
+
 
 namespace _3_GUI_PresentaionLayers
 {
     public partial class FrmThongBao : Form
     {
-
+        static FrmThongBao f;
         public static FrmThongBao backsender;
         public RichTextBox rtx;
         public FrmThongBao()
         {
             InitializeComponent();
             backsender = this;
-            rtx = rtx_noticafitions;
+           // rtx = rtx_noticafitions;
             loadsugesstion();
+            f = this;
+            //revcie();
         }
         public void loadsugesstion()
         {
@@ -41,7 +46,7 @@ namespace _3_GUI_PresentaionLayers
             }
 
 
-            cbo_tennv.AutoCompleteCustomSource = col;
+        //    cbo_tennv.AutoCompleteCustomSource = col;
             connection.Close();
         }
         public void Alert(string mess)
@@ -56,8 +61,7 @@ namespace _3_GUI_PresentaionLayers
         }
 
         private void pic_send_Click(object sender, EventArgs e)
-        {
-           
+        {revcie();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -75,6 +79,57 @@ namespace _3_GUI_PresentaionLayers
             if (dialogResult == DialogResult.No)
             {
                 return;
+            }
+        }
+       private void revcie()
+        {
+            try
+            {
+                Task.Run(() =>
+                {
+
+                    using (ImapClient client = new ImapClient("imap.gmail.com", 993,"thuyenlaph16978@fpt.edu.vn", "anthuyenle08", AuthMethod.Login,true))
+                    {
+                        if (client.Supports("IDLE") == false)
+                        {
+                            MessageBox.Show("Email của bạn không được hỗ trợ");
+                            return;
+                        }
+                        client.NewMessage += new EventHandler<IdleMessageEventArgs>(OnNewMessage);
+                        while (true) ;
+                    }
+                });
+            }
+            catch
+            {
+                MessageBox.Show("lỗi");
+            }
+        }
+        public void mail()
+        {
+           
+
+        }
+        void abcd()
+        {
+          
+        }
+        static void OnNewMessage(object sender, IdleMessageEventArgs e)
+        {
+            try
+            {
+
+                MessageBox.Show("Email Mới Nhất Đã Được Nhận");
+                MailMessage mailMessage = e.Client.GetMessage(e.MessageUID, FetchOptions.Normal);
+                f.Invoke((MethodInvoker)delegate
+                {
+                    f.rtx_content.AppendText("From : " + mailMessage.From + "\n " + "Subject :" + mailMessage.Subject + "\n" + "Body :" + mailMessage.Body + "\n");
+                });
+            }
+            catch 
+            {
+
+                MessageBox.Show("lỗi");
             }
         }
     }

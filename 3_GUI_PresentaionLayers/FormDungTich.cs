@@ -22,6 +22,9 @@ namespace _3_GUI_PresentaionLayers
         public FormDungTich()
         {
             InitializeComponent();
+            dungTich = new QLyDungTich();
+            _dungTichSer = new DungTichServices();
+            loadata();
         }
 
 

@@ -4,6 +4,9 @@
     <Compile Update="BanHang.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormBestseller.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormChatLieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +58,12 @@
     <Compile Update="FRMDatHang.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmHideSendEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmInfoNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +74,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmThongBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmThongKeALL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmThongKeDoanhThuNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmThongKeKhachHangUuTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmTinhTrangHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Frm_EditHangHoa.cs">

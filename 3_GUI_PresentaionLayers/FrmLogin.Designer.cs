@@ -39,6 +39,8 @@ namespace _3_GUI_PresentaionLayers
             this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.lblTime = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.bntMinimize = new System.Windows.Forms.Button();
@@ -57,6 +59,7 @@ namespace _3_GUI_PresentaionLayers
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.time_autosendemil = new System.Windows.Forms.Timer(this.components);
             this.panelhome.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -153,6 +156,8 @@ namespace _3_GUI_PresentaionLayers
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitle.Controls.Add(this.txt_email);
+            this.panelTitle.Controls.Add(this.label1);
             this.panelTitle.Controls.Add(this.pictureBox4);
             this.panelTitle.Controls.Add(this.lblTitle);
             this.panelTitle.Controls.Add(this.bntMinimize);
@@ -165,6 +170,28 @@ namespace _3_GUI_PresentaionLayers
             this.panelTitle.Size = new System.Drawing.Size(1671, 64);
             this.panelTitle.TabIndex = 1;
             this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseDown);
+            // 
+            // txt_email
+            // 
+            this.txt_email.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.txt_email.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_email.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txt_email.ForeColor = System.Drawing.Color.Maroon;
+            this.txt_email.Location = new System.Drawing.Point(1209, 23);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(233, 23);
+            this.txt_email.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
+            this.label1.Location = new System.Drawing.Point(1112, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 28);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Xin Chào :";
             // 
             // pictureBox4
             // 
@@ -389,6 +416,11 @@ namespace _3_GUI_PresentaionLayers
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // time_autosendemil
+            // 
+            this.time_autosendemil.Enabled = true;
+            this.time_autosendemil.Tick += new System.EventHandler(this.time_autosendemil_Tick);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -398,7 +430,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.panelMenu);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "s";
+            this.Text = "Cua Hang Nuoc Hoa PerSoft";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.panelhome.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -444,5 +476,8 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Timer time_autosendemil;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_email;
     }
 }
