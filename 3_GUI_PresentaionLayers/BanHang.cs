@@ -9,16 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
 using _2_BUS_BussinessLayer.IServices;
 using AForge.Video.DirectShow;
+using ZXing;
+using System.Threading;
 
 namespace _3_GUI_PresentaionLayers
 {
     public partial class BanHang : Form
     {
         private IQlyHoaDon _iQlyHoaDon;
+        private IQLyBanHang iQLyBanHang;
         private IQlyHangHoa _iQlyHangHoa;
         private List<HoaDonBan> _lstHoaDonBans;
         private List<HoaDonChiTiet> _lstHoaDonChiTiets;
@@ -27,21 +31,23 @@ namespace _3_GUI_PresentaionLayers
         private int IDHH;
         int flag = -1;
         private float tongtien = 0;
-        private FilterInfoCollection CaptureDevices;
-        private VideoCaptureDevice FinalFrame;
+        FilterInfoCollection filterInfoCollection;
+        VideoCaptureDevice videoCaptureDevice;
         public BanHang()
         {
             InitializeComponent();
             _iQlyHoaDon = new QlyHoaDonServices();
+            iQLyBanHang = new QLyBanHangServices();
             _iQlyHangHoa = new QlyHangHoaServices();
-            LoadData();
-            LoadHDCT();
-            dgrid_sanpham.AllowUserToAddRows = false;
-
             _iQlyNhanVien = new QlyNhanVienServices();
             _iQlyKhachHang = new QLyKhachHangServices();
             _lstHoaDonBans = new List<HoaDonBan>();
             _lstHoaDonChiTiets = new List<HoaDonChiTiet>();
+            LoadData();
+            LoadHDCT();
+            dgrid_sanpham.AllowUserToAddRows = false;
+
+       
             this.dgrid_sanpham.DefaultCellStyle.ForeColor = Color.Black;
             this.dgridGioHang.DefaultCellStyle.ForeColor = Color.Black;
             LoadCbxNV();
@@ -51,17 +57,20 @@ namespace _3_GUI_PresentaionLayers
             LoadCbxRank();
             panel11.Hide();
         }
+       
         private void button8_Click(object sender, EventArgs e)
         {
             //for (int i = 0; i < 2; i++)
             //{
-            //    MessageBox.Show("Mở Camera Thành Công", "Thông báo");
+            //    this.Alert("Mở Camera Thành Công");
             //}
 
-            //FinalFrame = new VideoCaptureDevice(FinalFrame[cbxNV.SelectedIndex].MonikerString);
-            //FinalFrame.NewFrame += VideoCaptureDevice_NewFrame;
-            //FinalFrame.Start();
+            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbo_webcam.SelectedIndex].MonikerString);
+            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            videoCaptureDevice.Start();
         }
+       
+
         void css()
         {
             label11.AutoSize = false;
@@ -85,7 +94,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[3].Name = "Tên sản phẩm";
             dgrid_sanpham.Columns[4].Name = "Đơn giá";
             dgrid_sanpham.Columns[5].Name = "Tồn kho";
-            dgrid_sanpham.Columns[6].Name = "IDD";
+            dgrid_sanpham.Columns[6].Name = "IDHD";
             dgrid_sanpham.Columns[6].Visible = false;
 
             dgrid_sanpham.Rows.Clear();
@@ -151,7 +160,157 @@ namespace _3_GUI_PresentaionLayers
 
             dgridGioHang.Columns.Add(buttonColumn);
         }
+        void acd()
+        {
+            if (InvokeRequired) // Line #1
+            {
+                this.Invoke(new MethodInvoker(acd));
+                return;
+            }
 
+            dgridGioHang.ColumnCount = 6;
+                dgridGioHang.Columns[0].Name = "ID";
+                dgridGioHang.Columns[0].Visible = false;
+                dgridGioHang.Columns[1].Name = "Mã sản phẩm";
+                dgridGioHang.Columns[2].Name = "Tên sản phẩm";
+                dgridGioHang.Columns[3].Name = "Số lượng";
+                dgridGioHang.Columns[4].Name = "Đơn giá";
+                dgridGioHang.Columns[5].Name = "Thành tiền";
+                dgridGioHang.Rows.Clear();
+                DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+                buttonColumn.HeaderText = "Xác nhận";
+                buttonColumn.Text = "Sửa";
+                buttonColumn.Name = "Sửa";
+                buttonColumn.UseColumnTextForButtonValue = true;
+
+                dgridGioHang.Columns.Add(buttonColumn);
+                foreach (var x in _lstHoaDonChiTiets)
+                {
+                    dgridGioHang.Rows.Add(x.IdhoaDonChiTiet,
+                        _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                            .Select(c => c.HangHoa.MaHangHoa).FirstOrDefault(),
+                        _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                            .Select(c => c.HangHoa.TenHangHoa).FirstOrDefault() + " " +
+                        _iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.IdthongTinHangHoa == x.IdthongTinHangHoa)
+                            .Select(c => c.ChiTietHangHoa.Model).FirstOrDefault(), x.SoLuong,
+
+                        x.DonGia, x.SoLuong * x.DonGia);
+                }
+                int count = dgridGioHang.Rows.Count;
+                tongtien = 0;
+                for (int i = 0; i < count - 1; i++)
+                {
+                    tongtien += float.Parse(dgridGioHang.Rows[i].Cells[5].Value.ToString()); //i++;
+                }
+                txtTongTien.Text = Convert.ToString(tongtien);
+
+            //
+            dgrid_sanpham.ColumnCount = 7;
+            dgrid_sanpham.Columns[0].Name = "ID";
+            dgrid_sanpham.Columns[0].Visible = false;
+            dgrid_sanpham.Columns[1].Name = "IDHHCT";
+            dgrid_sanpham.Columns[1].Visible = false;
+            dgrid_sanpham.Columns[2].Name = "Mã sản phẩm";
+            dgrid_sanpham.Columns[3].Name = "Tên sản phẩm";
+            dgrid_sanpham.Columns[4].Name = "Đơn giá";
+            dgrid_sanpham.Columns[5].Name = "Tồn kho";
+            dgrid_sanpham.Columns[6].Name = "IDhD";
+            dgrid_sanpham.Columns[6].Visible = false;
+            dgrid_sanpham.Rows.Clear();
+            var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
+            foreach (var x in _iQlyHangHoa.GetsList())
+            {
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
+                    x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
+                    x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+            }
+
+            int counts = dgridGioHang.Rows.Count;
+            tongtien = 0;
+            for (int i = 0; i < counts - 1; i++)
+            {
+                tongtien += float.Parse(dgridGioHang.Rows[i].Cells[5].Value.ToString());
+            }
+
+            txtTongTien.Text = Convert.ToString(tongtien);
+
+
+
+
+
+
+        }
+        private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        {
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            BarcodeReader reader = new BarcodeReader();
+            var result = reader.Decode(bitmap);
+            if (result != null)
+            {
+
+
+
+                for (int a = 0; a < _iQlyHangHoa.GetsList().Count; a++)
+                {
+                    if (Convert.ToString(result) == _iQlyHangHoa.GetsList()[a].ChiTietHangHoa.Mavach)
+                    {
+
+
+                      
+                            string content = Interaction.InputBox("Mời Bạn Nhập Số Lượng Muốn Thêm", "Thêm Vào Giỏ Hàng","0", 500, 300);
+                            if (content !="" && Convert.ToInt32( content) < Convert.ToInt32(_iQlyHangHoa.GetsList()[a].ChiTietHangHoa.SoLuong) &&Convert.ToInt32( _iQlyHangHoa.GetsList()[a].ChiTietHangHoa.SoLuong )>=1)
+                            {
+                                HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet()
+                                {
+                                    IdhoaDonChiTiet = iQLyBanHang.GetsList().Max(c=>c.HoaDonChiTiet.IdhoaDonChiTiet)+1,
+                                    MaHoaDonChiTiet = "HDCT000" +Convert.ToString(iQLyBanHang.GetsList().Max(c => c.HoaDonChiTiet.IdhoaDonChiTiet) + 1) ,
+                                    DonGia = _iQlyHangHoa.GetsList().Where(c=>c.ChiTietHangHoa.Mavach==Convert.ToString( result)).Select(c=>c.ChiTietHangHoa.DonGiaBan).FirstOrDefault(),
+                                
+                                    SoLuong =Convert.ToInt32( content),
+                                    IdthongTinHangHoa = _iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.Mavach == Convert.ToString(result)).Select(c => c.ChiTietHangHoa.IdthongTinHangHoa).FirstOrDefault(),
+                                    TrangThai = 1,
+                                    IdhoaDon = iQLyBanHang.GetsList().Max(c => c.HoaDonBan.IdhoaDon),
+                                    ThanhTien =Convert.ToDouble(Convert.ToInt32( content)*(_iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.Mavach == Convert.ToString(result)).Select(c => c.ChiTietHangHoa.DonGiaBan).FirstOrDefault()))
+                                };
+
+                                _iQlyHoaDon.addHDCT(hoaDonChiTiet);
+                                _iQlyHoaDon.SaveHDCT();
+                                _lstHoaDonChiTiets.Add(hoaDonChiTiet);
+                                acd();
+
+                              
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sản Phẩm Không Đủ Để Thêm", "Noticafition");
+                                return;
+                            }
+                         
+                       
+
+                        break;
+                    }
+
+
+
+
+
+
+                   
+                }
+
+
+
+
+
+            }
+            pic_cam.Image = bitmap;
+        
+
+
+
+        }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -183,6 +342,12 @@ namespace _3_GUI_PresentaionLayers
         {
             //    var row = dgrid_sanpham.Rows;
             //    dgrid_sanpham.Rows[e.RowIndex].Cells["img_sp"].Value = Image.FromFile(Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells["Dường Dẫn"].Value));
+
+            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo device in filterInfoCollection)
+                cbo_webcam.Items.Add(device.Name);
+            cbo_webcam.SelectedIndex = 0;
+
         }
 
         private void dgridGioHang_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -247,7 +412,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[3].Name = "Tên sản phẩm";
             dgrid_sanpham.Columns[4].Name = "Đơn giá";
             dgrid_sanpham.Columns[5].Name = "Tồn kho";
-            dgrid_sanpham.Columns[6].Name = "Tồn kho";
+            dgrid_sanpham.Columns[6].Name = "IDHD";
             dgrid_sanpham.Columns[6].Visible = false;
             dgrid_sanpham.Rows.Clear();
             var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
@@ -261,6 +426,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void dgrid_sanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             int row = e.RowIndex;
             int countHDCT = _iQlyHoaDon.GetsListHDCT().Max(x => x.IdhoaDonChiTiet) + 1;
             if (_lstHoaDonChiTiets.Where(x =>
@@ -280,7 +446,7 @@ namespace _3_GUI_PresentaionLayers
                     IdhoaDon = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[6].Value.ToString()),
                     ThanhTien = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[4].Value.ToString())
                 };
-            
+
                 _iQlyHoaDon.addHDCT(hoaDonChiTiet);
                 _iQlyHoaDon.SaveHDCT();
                 _lstHoaDonChiTiets.Add(hoaDonChiTiet);
@@ -359,7 +525,7 @@ namespace _3_GUI_PresentaionLayers
                     IdthongTinHangHoa = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString()),
                     TrangThai = 1,
                     IdhoaDon = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[6].Value.ToString()),
-                    ThanhTien = float.Parse(dgrid_sanpham.Rows[row].Cells[4].Value.ToString())* (_lstHoaDonChiTiets.Where(x => x.IdthongTinHangHoa == Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString())).Select(x => x.SoLuong).LastOrDefault() + 1)
+                    ThanhTien = float.Parse(dgrid_sanpham.Rows[row].Cells[4].Value.ToString()) * (_lstHoaDonChiTiets.Where(x => x.IdthongTinHangHoa == Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString())).Select(x => x.SoLuong).LastOrDefault() + 1)
                 };
                 var hoadon = _lstHoaDonChiTiets.FirstOrDefault(x =>
                     x.IdthongTinHangHoa == Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString()));
@@ -438,6 +604,7 @@ namespace _3_GUI_PresentaionLayers
                 txtTongTien.Text = Convert.ToString(tongtien);
 
             }
+
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
@@ -848,7 +1015,7 @@ namespace _3_GUI_PresentaionLayers
             
             f.Show();
         }
-
+        int a;
         private void button4_Click(object sender, EventArgs e)
         {
             var idhd = _iQlyHoaDon.GetsListHD().Max(x => x.IdhoaDon);
@@ -863,6 +1030,7 @@ namespace _3_GUI_PresentaionLayers
             _lstHoaDonBans.Add(hoaDonBan);
             _iQlyHoaDon.addHD(hoaDonBan);
             _iQlyHoaDon.SaveHD();
+         
             dgrid_sanpham.ColumnCount = 7;
             dgrid_sanpham.Columns[0].Name = "ID";
             dgrid_sanpham.Columns[0].Visible = false;
@@ -919,7 +1087,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void button9_Click(object sender, EventArgs e)
         {
-           
+          
             _iQlyHoaDon.SaveHDCT();
         }
     }

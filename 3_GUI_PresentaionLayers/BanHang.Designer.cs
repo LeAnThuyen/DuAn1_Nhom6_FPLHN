@@ -32,6 +32,7 @@ namespace _3_GUI_PresentaionLayers
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BanHang));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbo_webcam = new System.Windows.Forms.ComboBox();
             this.btnMenu = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -96,7 +97,7 @@ namespace _3_GUI_PresentaionLayers
             this.pDHoaDon = new System.Drawing.Printing.PrintDocument();
             this.pPreDHoaDon = new System.Windows.Forms.PrintPreviewDialog();
             this.pDDatHang = new System.Drawing.Printing.PrintDocument();
-            this.picB_Cam = new System.Windows.Forms.PictureBox();
+            this.pic_cam = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -115,12 +116,14 @@ namespace _3_GUI_PresentaionLayers
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picB_Cam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_cam)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PeachPuff;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cbo_webcam);
             this.panel1.Controls.Add(this.btnMenu);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
@@ -131,6 +134,14 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1689, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // cbo_webcam
+            // 
+            this.cbo_webcam.FormattingEnabled = true;
+            this.cbo_webcam.Location = new System.Drawing.Point(526, 11);
+            this.cbo_webcam.Name = "cbo_webcam";
+            this.cbo_webcam.Size = new System.Drawing.Size(199, 28);
+            this.cbo_webcam.TabIndex = 106;
             // 
             // btnMenu
             // 
@@ -187,7 +198,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.groupBox1.Controls.Add(this.dgridGioHang);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(22, 137);
+            this.groupBox1.Location = new System.Drawing.Point(20, 270);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -871,19 +882,19 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.pDDatHang.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDDatHang_PrintPage);
             // 
-            // picB_Cam
+            // pic_cam
             // 
-            this.picB_Cam.Location = new System.Drawing.Point(89, 419);
-            this.picB_Cam.Name = "picB_Cam";
-            this.picB_Cam.Size = new System.Drawing.Size(377, 125);
-            this.picB_Cam.TabIndex = 104;
-            this.picB_Cam.TabStop = false;
+            this.pic_cam.Location = new System.Drawing.Point(527, 50);
+            this.pic_cam.Name = "pic_cam";
+            this.pic_cam.Size = new System.Drawing.Size(609, 230);
+            this.pic_cam.TabIndex = 104;
+            this.pic_cam.TabStop = false;
             // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button8.Location = new System.Drawing.Point(570, 454);
+            this.button8.Location = new System.Drawing.Point(402, 204);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(113, 52);
             this.button8.TabIndex = 105;
@@ -895,7 +906,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.button9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button9.Location = new System.Drawing.Point(725, 454);
+            this.button9.Location = new System.Drawing.Point(402, 132);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(113, 52);
             this.button9.TabIndex = 105;
@@ -911,7 +922,7 @@ namespace _3_GUI_PresentaionLayers
             this.ClientSize = new System.Drawing.Size(1689, 919);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.picB_Cam);
+            this.Controls.Add(this.pic_cam);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label1);
@@ -922,7 +933,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BanHang";
@@ -948,7 +959,7 @@ namespace _3_GUI_PresentaionLayers
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picB_Cam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_cam)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1021,8 +1032,9 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.PictureBox picB_Cam;
+        private System.Windows.Forms.PictureBox pic_cam;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ComboBox cbo_webcam;
     }
 }
