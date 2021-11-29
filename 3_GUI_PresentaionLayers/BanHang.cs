@@ -56,6 +56,7 @@ namespace _3_GUI_PresentaionLayers
             css();
             LoadCbxRank();
             panel11.Hide();
+            txtMaHDD.Visible = false;
             //txtMaHDD.Hide();
         }
 
@@ -701,6 +702,11 @@ namespace _3_GUI_PresentaionLayers
             }
             var x = MessageBox.Show("Bạn có chắc chắn muốn thanh toán không?", "Thông báo", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+            if (x == DialogResult.Yes)
+            {
+                MessageBox.Show("Thanh Toán Thành Công","Thông Báo");
+                return;
+            }
             if (x == DialogResult.No)
             {
                 return;
@@ -1217,7 +1223,7 @@ namespace _3_GUI_PresentaionLayers
             if (txtDiscount.Text != "" || textBox2.Text !="")
             {
                 string thue = Convert.ToString(Convert.ToInt32(txtTongTien.Text) - (1 - Convert.ToInt32(textBox2.Text) * 0.01)*(Convert.ToInt32(txtTongTien.Text)));
-                txt_ts.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 -Convert.ToInt32(txtDiscount.Text) * 0.01)+Convert.ToInt32(thue));
+                txtKhachTra.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 -Convert.ToInt32(txtDiscount.Text) * 0.01)+Convert.ToInt32(thue));
 
             }
            
@@ -1234,9 +1240,22 @@ namespace _3_GUI_PresentaionLayers
             if (txtDiscount.Text != "" || textBox2.Text != "")
             {
                 string thue = Convert.ToString(Convert.ToInt32(txtTongTien.Text) - (1 - Convert.ToInt32(textBox2.Text) * 0.01) * (Convert.ToInt32(txtTongTien.Text)));
-                txt_ts.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 - Convert.ToInt32(txtDiscount.Text) * 0.01) + Convert.ToInt32(thue));
+                txtKhachTra.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 - Convert.ToInt32(txtDiscount.Text) * 0.01) + Convert.ToInt32(thue));
 
             }
+        }
+
+        private void txtKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            if (txtKhachDua.Text != "")
+            {
+                txtTienthua.Text = Convert.ToString(Convert.ToInt32(txtKhachDua.Text) - Convert.ToInt32(txtKhachTra.Text));
+            }
+        }
+
+        private void label10_TextChanged(object sender, EventArgs e)
+        {
+            NumberToText(Convert.ToDouble( txtKhachTra.Text), true);
         }
     }
 }

@@ -50,26 +50,25 @@ namespace _3_GUI_PresentaionLayers
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.txt_ts = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnDathang = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTienthua = new System.Windows.Forms.TextBox();
             this.txtKhachDua = new System.Windows.Forms.TextBox();
             this.txtKhachTra = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtDiscount = new System.Windows.Forms.TextBox();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
@@ -331,7 +330,6 @@ namespace _3_GUI_PresentaionLayers
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
-            this.panel5.Controls.Add(this.txt_ts);
             this.panel5.Controls.Add(this.label11);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.panel10);
@@ -357,13 +355,28 @@ namespace _3_GUI_PresentaionLayers
             this.panel5.Size = new System.Drawing.Size(530, 638);
             this.panel5.TabIndex = 3;
             // 
-            // txt_ts
+            // label11
             // 
-            this.txt_ts.Location = new System.Drawing.Point(173, 40);
-            this.txt_ts.Name = "txt_ts";
-            this.txt_ts.Size = new System.Drawing.Size(125, 27);
-            this.txt_ts.TabIndex = 16;
-            this.txt_ts.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Location = new System.Drawing.Point(241, 190);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(233, 20);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "........................................................";
+            this.label11.TextChanged += new System.EventHandler(this.label11_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(38, 170);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 31);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Giảm giá ";
             // 
             // panel10
             // 
@@ -373,6 +386,19 @@ namespace _3_GUI_PresentaionLayers
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(15, 621);
             this.panel10.TabIndex = 15;
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDiscount.Location = new System.Drawing.Point(252, 160);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(230, 27);
+            this.txtDiscount.TabIndex = 10;
+            this.txtDiscount.Text = "0";
+            this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
+            this.txtDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyUp);
             // 
             // btnThanhToan
             // 
@@ -431,18 +457,6 @@ namespace _3_GUI_PresentaionLayers
             this.label12.Text = "........................................................";
             this.label12.TextChanged += new System.EventHandler(this.label12_TextChanged);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(241, 190);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(233, 20);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "........................................................";
-            this.label11.TextChanged += new System.EventHandler(this.label11_TextChanged);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -452,6 +466,7 @@ namespace _3_GUI_PresentaionLayers
             this.label10.Size = new System.Drawing.Size(58, 20);
             this.label10.TabIndex = 12;
             this.label10.Text = "label10";
+            this.label10.TextChanged += new System.EventHandler(this.label10_TextChanged);
             // 
             // txtTienthua
             // 
@@ -472,11 +487,12 @@ namespace _3_GUI_PresentaionLayers
             this.txtKhachDua.Size = new System.Drawing.Size(233, 27);
             this.txtKhachDua.TabIndex = 8;
             this.txtKhachDua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKhachDua.TextChanged += new System.EventHandler(this.txtKhachDua_TextChanged);
             this.txtKhachDua.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKhachDua_KeyDown);
             // 
             // txtKhachTra
             // 
-            this.txtKhachTra.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtKhachTra.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtKhachTra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtKhachTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtKhachTra.ForeColor = System.Drawing.Color.DarkOrange;
@@ -494,20 +510,9 @@ namespace _3_GUI_PresentaionLayers
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(230, 27);
             this.textBox2.TabIndex = 10;
+            this.textBox2.Text = "0";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // txtDiscount
-            // 
-            this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDiscount.Location = new System.Drawing.Point(252, 160);
-            this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(230, 27);
-            this.txtDiscount.TabIndex = 10;
-            this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
-            this.txtDiscount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyUp);
             // 
             // txtTongTien
             // 
@@ -563,17 +568,6 @@ namespace _3_GUI_PresentaionLayers
             this.label9.Size = new System.Drawing.Size(64, 31);
             this.label9.TabIndex = 5;
             this.label9.Text = "Thuế";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(38, 170);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 31);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Giảm giá ";
             // 
             // label8
             // 
@@ -1051,7 +1045,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ComboBox cbo_webcam;
-        private System.Windows.Forms.TextBox txt_ts;
         private System.Windows.Forms.TextBox txtMaHDD;
         public System.Windows.Forms.PictureBox pictureBox1;
         public System.Windows.Forms.ComboBox cbxKH;
