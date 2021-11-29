@@ -142,7 +142,7 @@ namespace _2_BUS_BussinessLayer.Services
         public bool updateHD(HoaDonBan HoaDonBan)
         {
             _iServicesHoaDon.updatehdb(HoaDonBan);
-            _lstHoaDonBans.Add(HoaDonBan);
+            //_lstHoaDonBans.Add(HoaDonBan);
             return true;
         }
 
