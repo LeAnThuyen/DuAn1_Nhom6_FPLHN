@@ -35,7 +35,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public List<HoaDonChiTiet> getlsthdctfromDB()
         {
-            _lsthoadonchitiet = _DBcontext.HoaDonChiTiets.AsNoTracking().ToList();
+            _lsthoadonchitiet = _DBcontext.HoaDonChiTiets.ToList();
             return _lsthoadonchitiet;
         }
 
