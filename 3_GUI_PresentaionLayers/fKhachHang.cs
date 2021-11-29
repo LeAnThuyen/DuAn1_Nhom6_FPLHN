@@ -57,7 +57,16 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("Email bạn thêm đã bị trùng/n", "Thông báo");
             }
 
-            
+            DiemTieuDung diemTieuDung = new DiemTieuDung()
+            {
+                IddiemTieuDung = _iQlyKhachHang.GetsListDTD().Max(x => x.IddiemTieuDung) + 1,
+                TrangThai = 0,
+                SoDiem = 0,
+            };
+            _iQlyKhachHang.addDiemTD(diemTieuDung);
+            _iQlyKhachHang.SaveDTD(diemTieuDung);
+            List<DiemTieuDung> _lstDiemTieuDungs = new List<DiemTieuDung>();
+            _lstDiemTieuDungs.Add(diemTieuDung);
         
             var x = MessageBox.Show("Bạn có chắc chắn muốn thêm khách hàng không?", "Thông báo", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -75,6 +84,7 @@ namespace _3_GUI_PresentaionLayers
                 Email = txtEmail.Text,
                 MaKhachHang = "KH00"+(_iQlyKhachHang.GetsListKH().Max(x => x.IdkhachHang) + 1),
                 TrangThai = rbtCaNhan.Checked==true?true:false,
+                IddiemTieuDung = _lstDiemTieuDungs.Select(x=>x.IddiemTieuDung).FirstOrDefault()
             };
             _iQlyKhachHang.addKH(khachHang);
             _iQlyKhachHang.SaveKH(khachHang);

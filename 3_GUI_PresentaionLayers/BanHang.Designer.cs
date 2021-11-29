@@ -32,6 +32,7 @@ namespace _3_GUI_PresentaionLayers
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BanHang));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtMaHDD = new System.Windows.Forms.TextBox();
             this.cbo_webcam = new System.Windows.Forms.ComboBox();
             this.btnMenu = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -123,6 +124,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.panel1.BackColor = System.Drawing.Color.PeachPuff;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtMaHDD);
             this.panel1.Controls.Add(this.cbo_webcam);
             this.panel1.Controls.Add(this.btnMenu);
             this.panel1.Controls.Add(this.button1);
@@ -134,6 +136,14 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1689, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // txtMaHDD
+            // 
+            this.txtMaHDD.Location = new System.Drawing.Point(888, 8);
+            this.txtMaHDD.Name = "txtMaHDD";
+            this.txtMaHDD.Size = new System.Drawing.Size(127, 27);
+            this.txtMaHDD.TabIndex = 107;
+            this.txtMaHDD.Text = "ok";
             // 
             // cbo_webcam
             // 
@@ -1006,24 +1016,13 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox cbxKH;
-        private System.Windows.Forms.ComboBox cbxRank;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDTD;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtDT;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Drawing.Printing.PrintDocument pDHoaDon;
         private System.Windows.Forms.PrintPreviewDialog pPreDHoaDon;
         private System.Windows.Forms.Button btnMenu;
-        private System.Windows.Forms.ComboBox cbxNV;
         private System.Drawing.Printing.PrintDocument pDDatHang;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnHistory;
@@ -1036,5 +1035,17 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ComboBox cbo_webcam;
+        private System.Windows.Forms.TextBox txtMaHDD;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.ComboBox cbxKH;
+        public System.Windows.Forms.ComboBox cbxRank;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TextBox txtDTD;
+        public System.Windows.Forms.TextBox txtEmail;
+        public System.Windows.Forms.TextBox txtDT;
+        public System.Windows.Forms.PictureBox pictureBox5;
+        public System.Windows.Forms.PictureBox pictureBox4;
+        public System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.ComboBox cbxNV;
     }
 }
