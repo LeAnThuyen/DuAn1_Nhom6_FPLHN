@@ -89,36 +89,38 @@ namespace _3_GUI_PresentaionLayers
             row.Add("Sửa");
             row.Add("Xóa");
 
-            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.ColumnCount = 20;
             dgrid_sanpham.Columns[0].Name = "IDHH";
             dgrid_sanpham.Columns[0].Visible = false;
-            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
-            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
-            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
-            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
-            dgrid_sanpham.Columns[5].Name = "Danh Mục";
-            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
-            dgrid_sanpham.Columns[7].Name = "Số Lượng";
-            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
-            dgrid_sanpham.Columns[9].Name = "Gía Bán";
-            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            dgrid_sanpham.Columns[1].Name = "IDHH";
+            dgrid_sanpham.Columns[1].Visible = false;
+            dgrid_sanpham.Columns[2].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[3].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[4].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[5].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[6].Name = "Danh Mục";
+            dgrid_sanpham.Columns[7].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[8].Name = "Số Lượng";
+            dgrid_sanpham.Columns[9].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[10].Name = "Gía Bán";
+            dgrid_sanpham.Columns[11].Name = "Ngày Nhập Kho";
             //   dgrid_sanpham.Columns[10].Visible = false;
-            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
-            dgrid_sanpham.Columns[11].Visible = false;
-            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Name = "Tên Chất Liệu";
             dgrid_sanpham.Columns[12].Visible = false;
-            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Name = "Tên Vật Chứa";
             dgrid_sanpham.Columns[13].Visible = false;
-            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Name = "Nhóm Hương";
             dgrid_sanpham.Columns[14].Visible = false;
-            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Name = "Tên Quốc Gia";
             dgrid_sanpham.Columns[15].Visible = false;
-            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Name = "Số Dung Tích";
             dgrid_sanpham.Columns[16].Visible = false;
-            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Name = "Ảnh";// đường dẫn
             dgrid_sanpham.Columns[17].Visible = false;
-            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Name = "Hạn Sử Dụng";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
+            dgrid_sanpham.Columns[19].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[19].Visible = false;
             // combobox
             DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
             cbo.HeaderText = "Chức Năng";
@@ -138,7 +140,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1))
             {
-                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa,x.ChiTietHangHoa.IdthongTinHangHoa ,x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
                     x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
             }
 
@@ -154,36 +156,38 @@ namespace _3_GUI_PresentaionLayers
             row.Add("Sửa");
             row.Add("Xóa");
 
-            dgrid_sanpham.ColumnCount = 19;
+            dgrid_sanpham.ColumnCount = 20;
             dgrid_sanpham.Columns[0].Name = "IDHH";
             dgrid_sanpham.Columns[0].Visible = false;
-            dgrid_sanpham.Columns[1].Name = "Mã Hàng Hóa";
-            dgrid_sanpham.Columns[2].Name = "Mã Vạch";
-            dgrid_sanpham.Columns[3].Name = "Tên Hàng Hóa";
-            dgrid_sanpham.Columns[4].Name = "Nhà Sản Xuất";
-            dgrid_sanpham.Columns[5].Name = "Danh Mục";
-            dgrid_sanpham.Columns[6].Name = "Trạng Thái";
-            dgrid_sanpham.Columns[7].Name = "Số Lượng";
-            dgrid_sanpham.Columns[8].Name = "Gía Nhập";
-            dgrid_sanpham.Columns[9].Name = "Gía Bán";
-            dgrid_sanpham.Columns[10].Name = "Ngày Nhập Kho";
+            dgrid_sanpham.Columns[1].Name = "IDHH";
+            dgrid_sanpham.Columns[1].Visible = false;
+            dgrid_sanpham.Columns[2].Name = "Mã Hàng Hóa";
+            dgrid_sanpham.Columns[3].Name = "Mã Vạch";
+            dgrid_sanpham.Columns[4].Name = "Tên Hàng Hóa";
+            dgrid_sanpham.Columns[5].Name = "Nhà Sản Xuất";
+            dgrid_sanpham.Columns[6].Name = "Danh Mục";
+            dgrid_sanpham.Columns[7].Name = "Trạng Thái";
+            dgrid_sanpham.Columns[8].Name = "Số Lượng";
+            dgrid_sanpham.Columns[9].Name = "Gía Nhập";
+            dgrid_sanpham.Columns[10].Name = "Gía Bán";
+            dgrid_sanpham.Columns[11].Name = "Ngày Nhập Kho";
             //   dgrid_sanpham.Columns[10].Visible = false;
-            dgrid_sanpham.Columns[11].Name = "Tên Chất Liệu";
-            dgrid_sanpham.Columns[11].Visible = false;
-            dgrid_sanpham.Columns[12].Name = "Tên Vật Chứa";
+            dgrid_sanpham.Columns[12].Name = "Tên Chất Liệu";
             dgrid_sanpham.Columns[12].Visible = false;
-            dgrid_sanpham.Columns[13].Name = "Nhóm Hương";
+            dgrid_sanpham.Columns[13].Name = "Tên Vật Chứa";
             dgrid_sanpham.Columns[13].Visible = false;
-            dgrid_sanpham.Columns[14].Name = "Tên Quốc Gia";
+            dgrid_sanpham.Columns[14].Name = "Nhóm Hương";
             dgrid_sanpham.Columns[14].Visible = false;
-            dgrid_sanpham.Columns[15].Name = "Số Dung Tích";
+            dgrid_sanpham.Columns[15].Name = "Tên Quốc Gia";
             dgrid_sanpham.Columns[15].Visible = false;
-            dgrid_sanpham.Columns[16].Name = "Ảnh";// đường dẫn
+            dgrid_sanpham.Columns[16].Name = "Số Dung Tích";
             dgrid_sanpham.Columns[16].Visible = false;
-            dgrid_sanpham.Columns[17].Name = "Hạn Sử Dụng";// đường dẫn
+            dgrid_sanpham.Columns[17].Name = "Ảnh";// đường dẫn
             dgrid_sanpham.Columns[17].Visible = false;
-            dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[18].Name = "Hạn Sử Dụng";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
+            dgrid_sanpham.Columns[19].Name = "Model";// đường dẫn
+            dgrid_sanpham.Columns[19].Visible = false;
             // combobox
             DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
             cbo.HeaderText = "Chức Năng";
@@ -203,7 +207,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.MaHangHoa.StartsWith(txt_timkiem.Text)))
             {
-                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa,x.ChiTietHangHoa.IdthongTinHangHoa ,x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
                     x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
             }
 
@@ -214,27 +218,28 @@ namespace _3_GUI_PresentaionLayers
         {
 
             int idhh = Convert.ToInt32(dgrid_sanpham.Rows[e.RowIndex].Cells[0].Value);
-            string mahh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
-            string mavach = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
+            int idcthh = Convert.ToInt32(dgrid_sanpham.Rows[e.RowIndex].Cells[1].Value);
+            string mahh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[2].Value);
+            string mavach = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[3].Value);
 
-            string tenhh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[3].Value);
-            string nsx = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[4].Value);
-            string danhmuc = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[5].Value);
-            string trangthai = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[6].Value);
-            string soluong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[7].Value);
-            string dongianhap = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[8].Value);
-            string dongiaban = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[9].Value);
-            DateTime ngaynhapkho = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[10].Value);
-            string tencl = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[11].Value);
-            string tenvt = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[12].Value);
-            string nhomhuong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[13].Value);
-            string tenquocgia = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
-            string sodungtich = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
-            string anh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
-            DateTime hsd = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
-            string model = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
+            string tenhh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[4].Value);
+            string nsx = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[5].Value);
+            string danhmuc = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[6].Value);
+            string trangthai = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[7].Value);
+            string soluong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[8].Value);
+            string dongianhap = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[9].Value);
+            string dongiaban = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[10].Value);
+            DateTime ngaynhapkho = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[11].Value);
+            string tencl = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[12].Value);
+            string tenvt = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[13].Value);
+            string nhomhuong = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[14].Value);
+            string tenquocgia = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[15].Value);
+            string sodungtich = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[16].Value);
+            string anh = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[17].Value);
+            DateTime hsd = Convert.ToDateTime(dgrid_sanpham.Rows[e.RowIndex].Cells[18].Value);
+            string model = Convert.ToString(dgrid_sanpham.Rows[e.RowIndex].Cells[19].Value);
             this.Alert("Chào Mừng Bạn Đến Với Thông Tin Chi Tiết Sản Phẩm");
-            FrmBackView frmBackView = new FrmBackView(idhh, mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh, hsd, model);
+            FrmBackView frmBackView = new FrmBackView(idhh,idcthh ,mahh, tenhh, nsx, danhmuc, trangthai, mavach, soluong, dongianhap, dongiaban, ngaynhapkho, tencl, tenvt, nhomhuong, tenquocgia, sodungtich, anh, hsd, model);
 
 
 

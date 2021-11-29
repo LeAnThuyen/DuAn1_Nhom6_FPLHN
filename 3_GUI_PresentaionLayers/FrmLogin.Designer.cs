@@ -60,6 +60,7 @@ namespace _3_GUI_PresentaionLayers
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.time_autosendemil = new System.Windows.Forms.Timer(this.components);
+            this.txt_ten = new System.Windows.Forms.TextBox();
             this.panelhome.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -156,6 +157,7 @@ namespace _3_GUI_PresentaionLayers
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitle.Controls.Add(this.txt_ten);
             this.panelTitle.Controls.Add(this.txt_email);
             this.panelTitle.Controls.Add(this.label1);
             this.panelTitle.Controls.Add(this.pictureBox4);
@@ -195,11 +197,12 @@ namespace _3_GUI_PresentaionLayers
             // 
             // pictureBox4
             // 
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(1569, 10);
+            this.pictureBox4.Location = new System.Drawing.Point(1550, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(90, 51);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.Size = new System.Drawing.Size(118, 58);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 9;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
@@ -421,6 +424,13 @@ namespace _3_GUI_PresentaionLayers
             this.time_autosendemil.Enabled = true;
             this.time_autosendemil.Tick += new System.EventHandler(this.time_autosendemil_Tick);
             // 
+            // txt_ten
+            // 
+            this.txt_ten.Location = new System.Drawing.Point(102, 18);
+            this.txt_ten.Name = "txt_ten";
+            this.txt_ten.Size = new System.Drawing.Size(125, 27);
+            this.txt_ten.TabIndex = 14;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -479,5 +489,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Timer time_autosendemil;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.TextBox txt_ten;
     }
 }

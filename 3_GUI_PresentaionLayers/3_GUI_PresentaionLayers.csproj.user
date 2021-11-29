@@ -4,6 +4,12 @@
     <Compile Update="BanHang.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="fKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="fLichSuDungDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormBestseller.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Frm_EditHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="fXuLiDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="NhomHuong.cs">

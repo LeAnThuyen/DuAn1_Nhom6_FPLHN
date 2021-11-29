@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
@@ -141,6 +142,282 @@ namespace _3_GUI_PresentaionLayers
             }
             
         }
+
+        public bool check()
+        {
+            if (string.IsNullOrEmpty(cbo_mahh.Text))
+            {
+                MessageBox.Show("mã hàng hóa không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (string.IsNullOrEmpty(cbo_tenhh.Text))
+            {
+                MessageBox.Show("Tên hàng hóa không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (string.IsNullOrEmpty(cbo_tencl.Text))
+            {
+                MessageBox.Show("Tên chất liệu không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txt_soluong.Text))
+            {
+                MessageBox.Show("Số lượng không được bỏ trống", "Thông báo");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txt_gianhap.Text))
+            {
+                MessageBox.Show("giá nhập không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txt_giaban.Text))
+            {
+                MessageBox.Show("giá bán không được bỏ trống", "Thông báo");
+                return false;
+            }
+
+            //
+            if (cbo_mahh.Text.Length <= 3)
+            {
+                MessageBox.Show("Mã nước hoa phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_mahh.Text, @"[0-9]+") == false)
+            {
+
+                MessageBox.Show("Mã nước hoa Bắt buộc phải chứa số", "ERR");
+                return false;
+            }
+            for (int i = 0; i < _qlhhser.GetsList().Count; i++)
+            {
+                if (_qlhhser.GetsList()[i].HangHoa.MaHangHoa == cbo_mahh.Text)
+                {
+                    MessageBox.Show("Mã hàng hóa Đã tồn Tại yêu cầu nhập mã sinh viên khác", "ERR");
+                    return false;
+                }
+            }
+            for (int i = 0; i < _qlhhser.GetsList().Count; i++)
+            {
+                if (_qlhhser.GetsList()[i].ChiTietHangHoa.Mavach == txt_mavach.Text)
+                {
+                    MessageBox.Show("Mã hàng Vạch Đã tồn Tại yêu cầu nhập mã sinh viên khác", "ERR");
+                    return false;
+                }
+            }
+            //check trùng
+            //danh mục
+            for (int i = 0; i < _dmser.getlstdanhmucfromDB().Count; i++)
+            {
+                if (_dmser.getlstdanhmucfromDB()[i].TenDanhMuc != cbo_danhmuc.Text)
+                {
+                    MessageBox.Show("Tên Danh Mục Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            // nhà sản xuất
+            for (int i = 0; i < _nsxser.getlstnxsfromDB().Count; i++)
+            {
+                if (_nsxser.getlstnxsfromDB()[i].TenNhaSanXuat != cbo_nsx.Text)
+                {
+                    MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            //chất kiệu
+            for (int i = 0; i < _clser.getlstchatlieufromDB().Count; i++)
+            {
+                if (_clser.getlstchatlieufromDB()[i].TenChatLieu != cbo_tencl.Text)
+                {
+                    MessageBox.Show("Tên Chất Liệu Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            //ảnh
+            for (int i = 0; i < _imgser.getlstanhfromDB().Count; i++)
+            {
+                if (_imgser.getlstanhfromDB()[i].DuongDan != cbo_anh.Text)
+                {
+                    MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            //vật chứa
+            for (int i = 0; i < _vtser.getlstvatchuafromDB().Count; i++)
+            {
+                if (_vtser.getlstvatchuafromDB()[i].TenVatChua != cbo_tenvatchua.Text)
+                {
+                    MessageBox.Show("Tên Vật Chứa Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            // nhóm hương
+            for (int i = 0; i < _nhser.getlstnhomhuongfromDB().Count; i++)
+            {
+                if (_nhser.getlstnhomhuongfromDB()[i].TenNhomHuong != cbo_tennhomhuong.Text)
+                {
+                    MessageBox.Show("Tên Nhóm Hương Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            //dung tích
+            for (int i = 0; i < _dtser.getlstdungtichfromDB().Count; i++)
+            {
+                if (_dtser.getlstdungtichfromDB()[i].SoDungTich !=Convert.ToDouble( cbo_soduntich.Text))
+                {
+                    MessageBox.Show(" Số Dung Tích Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+            // quốc gia
+            for (int i = 0; i < _xxser.getlstxuatxufromDB().Count; i++)
+            {
+                if (_xxser.getlstxuatxufromDB()[i].TenQuocGia != cbo_tenquocgia.Text)
+                {
+                    MessageBox.Show("Tên Quốc Gia Không Hợp Lệ", "ERR");
+                    return false;
+                }
+            }
+
+
+
+
+            //macl
+            if (cbo_tencl.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên chất liệu nước hóa phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_mahh.Text, @"[0-9]+") == false)
+            {
+
+                MessageBox.Show("Mã nước hoa Bắt buộc phải chứa số", "ERR");
+                return false;
+            }
+
+
+            //tên
+            if (cbo_tenhh.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên hàng hóa phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tenhh.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên hàng hóa không được chứa số", "ERR");
+                return false;
+            }
+
+
+            if (Regex.IsMatch(txt_soluong.Text, @"^\d+$") == false)
+            {
+
+                MessageBox.Show("số số lượng  không được chứa chữ cái", "ERR");
+                return false;
+            }
+
+            if (Regex.IsMatch(txt_gianhap.Text, @"^\d+$") == false)
+            {
+
+                MessageBox.Show("đơn giá nhập không được chứa chữ cái", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(txt_giaban.Text, @"^\d+$") == false)
+            {
+
+                MessageBox.Show("đơn giá bán không được chứa chữ cái", "ERR");
+                return false;
+            }
+            //danh mục
+            if (cbo_danhmuc.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên danh mục phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_danhmuc.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên danh mục không được chứa số", "ERR");
+                return false;
+            }
+            //nhà sản xuất
+            if (cbo_nsx.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên Nhà Sản Xuất phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_nsx.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên Nhà Sản Xuất không được chứa số", "ERR");
+                return false;
+            }
+            //chất liệu
+            if (cbo_tencl.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên Chất Liệu phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tencl.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên Chất Liệu  không được chứa số", "ERR");
+                return false;
+            }
+            //vật chứa
+            if (cbo_tenvatchua.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên Vật Chứa phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tenvatchua.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên Vật Chứa  không được chứa số", "ERR");
+                return false;
+            }
+            // nhóm hương
+            if (cbo_tennhomhuong.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên Nhóm Hương phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tennhomhuong.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên Nhóm Hương  không được chứa số", "ERR");
+                return false;
+            }
+            //quốc gia
+            if (cbo_tenquocgia.Text.Length <= 3)
+            {
+                MessageBox.Show("Tên Quốc Gia phải trên 3 ký tự", "ERR");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tenquocgia.Text, @"^[a-zA-Z]") == false)
+            {
+
+                MessageBox.Show("Tên Quốc Gia  không được chứa số", "ERR");
+                return false;
+            }
+            // dung tích
+            if (Regex.IsMatch(cbo_soduntich.Text, @"^\d+$") == false)
+            {
+
+                MessageBox.Show("số dung tích không được chứa chữ cái", "ERR");
+                return false;
+            }
+
+
+
+
+
+            return true;
+        }
+
+
+
 
         private void FrmBackView_Load(object sender, EventArgs e)
         {
@@ -291,7 +568,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void pic_hanghoa_DoubleClick(object sender, EventArgs e)
         {
-            FrmBackView frmBackView = new FrmBackView(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1, "", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"), "");
+            FrmBackView frmBackView = new FrmBackView(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,_cthhser.getlstchitietthanghoafromDB().Max(c=>c.IdthongTinHangHoa)+1 ,"", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"), "");
             frmBackView.Show();
 
 
@@ -310,6 +587,7 @@ namespace _3_GUI_PresentaionLayers
 
             if (dialogResult == DialogResult.Yes)
             {
+                check();
                 _qlhhser.AddSP(new HangHoa()
                 {
                     IdhangHoa = _hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,
@@ -360,7 +638,7 @@ namespace _3_GUI_PresentaionLayers
         {
 
             DialogResult dialogResult = MessageBox.Show("bạn có muốn sửa hay không", "Thông Báo", MessageBoxButtons.YesNo);
-
+            check();
             if (dialogResult == DialogResult.Yes)
             {
                 hh.IdhangHoa = id;

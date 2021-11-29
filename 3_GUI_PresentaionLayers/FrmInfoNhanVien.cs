@@ -17,11 +17,20 @@ namespace _3_GUI_PresentaionLayers
     public partial class FrmInfoNhanVien : Form
     {
         Attachment attach = null;
+        public static FrmInfoNhanVien backsender;
+        public Label lbl1;
+        public Label lbl2;
+    
+        public PictureBox pic;
         public FrmInfoNhanVien()
         {
             InitializeComponent();
             loadpic();
-           
+            backsender = this;
+            lbl1 = lbl_tennv;
+            lbl2 = lbl_email;
+            pic = pictureBox1;
+
         }
         void loadpic()
         {

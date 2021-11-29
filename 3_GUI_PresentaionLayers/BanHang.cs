@@ -1090,5 +1090,57 @@ namespace _3_GUI_PresentaionLayers
           
             _iQlyHoaDon.SaveHDCT();
         }
+
+        private void label11_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label12_TextChanged(object sender, EventArgs e)
+        {
+            // if (txtDiscount.Text== "") return;
+
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void txtDiscount_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "" && txtDiscount.Text == "")
+            {
+                txtDiscount.Text = "0";
+                  textBox2.Text = "0";
+            }
+            if (txtDiscount.Text != "" || textBox2.Text !="")
+            {
+                string thue = Convert.ToString(Convert.ToInt32(txtTongTien.Text) - (1 - Convert.ToInt32(textBox2.Text) * 0.01)*(Convert.ToInt32(txtTongTien.Text)));
+                txt_ts.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 -Convert.ToInt32(txtDiscount.Text) * 0.01)+Convert.ToInt32(thue));
+
+            }
+           
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "" && txtDiscount.Text=="")
+            {
+                txtDiscount.Text = "0";
+                textBox2.Text = "0";
+            }
+            if (txtDiscount.Text != "" || textBox2.Text != "")
+            {
+                string thue = Convert.ToString(Convert.ToInt32(txtTongTien.Text) - (1 - Convert.ToInt32(textBox2.Text) * 0.01) * (Convert.ToInt32(txtTongTien.Text)));
+                txt_ts.Text = Convert.ToString(Convert.ToInt32(txtTongTien.Text) * (1 - Convert.ToInt32(txtDiscount.Text) * 0.01) + Convert.ToInt32(thue));
+
+            }
+        }
     }
 }

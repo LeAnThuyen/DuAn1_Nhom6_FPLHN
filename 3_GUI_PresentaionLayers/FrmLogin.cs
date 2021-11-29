@@ -27,6 +27,7 @@ namespace _3_GUI_PresentaionLayers
         public static FrmLogin backsender;
         public Label lbl;
         public TextBox txt;
+        public TextBox txt1;
    
         public PictureBox pic;
       
@@ -49,12 +50,18 @@ namespace _3_GUI_PresentaionLayers
             backsender = this;
             txt = txt_email;
             btnsp = btnSanPham;
-
-
-
+            txt1 = txt_ten;
+            loadpic();
+            txt_ten.Visible = false;
 
         }
-        
+        void loadpic()
+        {
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pictureBox4.Width - 3, pictureBox4.Height - 3);
+            Region rg = new Region(gp);
+            pictureBox4.Region = rg;
+        }
         public void Alert(string mess)
         {
             FrmAlert frmAlert = new FrmAlert();
@@ -233,7 +240,16 @@ namespace _3_GUI_PresentaionLayers
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-           
+            //sender
+            FrmInfoNhanVien frmInfoNhanVien = new FrmInfoNhanVien();
+            FrmInfoNhanVien.backsender.lbl2.Text = txt_email.Text;
+            FrmInfoNhanVien.backsender.pic.Image = pictureBox4.Image;
+            FrmInfoNhanVien.backsender.lbl1.Text = txt_ten.Text;
+            frmInfoNhanVien.Show();
+
+
+
+
         }
         void Application_Start(object sender, EventArgs e)
         {

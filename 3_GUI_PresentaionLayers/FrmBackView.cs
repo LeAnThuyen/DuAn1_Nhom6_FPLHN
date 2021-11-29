@@ -22,6 +22,7 @@ namespace _3_GUI_PresentaionLayers
         #region
         private string mahh = "";
         private int id ;
+        private int idhh ;
         private string tenhh = "";
         private string nsx = "";
         private string danhmuc = "";
@@ -58,7 +59,7 @@ namespace _3_GUI_PresentaionLayers
         private ChiTietHangHoa cthh;
         private AnhServices _imgser;
 
-        public FrmBackView(int id,string mahh,string tenhh, string nsx,string danhmuc, string trangthai, string mavach,string soluong,
+        public FrmBackView(int id,int idhh,string mahh,string tenhh, string nsx,string danhmuc, string trangthai, string mavach,string soluong,
            string gianhap, string giaban,DateTime ngaynhap, string tenchatlieu, string tenvatchua, string nhomhuong, string tenquocgia,
            string sodungtich, string anh, DateTime hsd, string model)
         {
@@ -66,7 +67,7 @@ namespace _3_GUI_PresentaionLayers
             #region
             this.mahh = mahh;
             this.id = id;
-         
+            this.idhh = idhh;
             this.tenhh = tenhh;
             this.nsx = nsx;
             this.danhmuc = danhmuc;
@@ -186,8 +187,21 @@ namespace _3_GUI_PresentaionLayers
         {
         
            
-            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault(), _cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == _hhser.getlsthanghoafromDB().Where(c => c.MaHangHoa == cbo_mahh.Text).Select(c => c.IdhangHoa).FirstOrDefault())
-                .Select(c => c.IdthongTinHangHoa).FirstOrDefault(),cbo_mahh.Text ,cbo_tenhh.Text,cbo_nsx.Text,cbo_danhmuc.Text,a,txt_mavach.Text+" ",txt_soluong.Text,txt_gianhap.Text,txt_giaban.Text,dtp_ngaynhap.Value,cbo_tencl.Text,cbo_tenvatchua.Text,cbo_tennhomhuong.Text,cbo_tenquocgia.Text,cbo_soduntich.Text,cbo_anh.Text,dtp_hsd.Value,txt_model.Text);
+            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(id,idhh,mahh
+               ,
+               tenhh,
+               nsx,
+               danhmuc,a,mavach+" ",
+                soluong,
+                gianhap,
+                giaban,
+                dtp_ngaynhap.Value,tenchatlieu,
+                tenvatchua,
+               nhomhuong,
+                tennquocgia,
+               sodungtich,anh,
+                dtp_hsd.Value,
+                model);
             for (int i = 0; i < 1; i++)
             {
                 this.Alert("Tiến Hành Cập Nhật !");

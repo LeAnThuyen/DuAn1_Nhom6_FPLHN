@@ -542,7 +542,7 @@ namespace _3_GUI_PresentaionLayers
                 smtpClient.Credentials = new NetworkCredential("leanthuyen08122002.work@gmail.com", "anthuyenle08");
                 smtpClient.Send(mailMessage);
 
-           
+
             //try
             //{
             //    SmtpClient client = new SmtpClient("smtp.gmail.com", 25);
@@ -561,6 +561,10 @@ namespace _3_GUI_PresentaionLayers
             //{
 
             //}
+
+
+
+           
         }
 
 
