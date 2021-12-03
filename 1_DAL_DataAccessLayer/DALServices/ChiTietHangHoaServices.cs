@@ -37,7 +37,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public List<ChiTietHangHoa> getlstchitietthanghoafromDB()
         {
-            _lstchitiethanghoa = _DBcontext.ChiTietHangHoas.AsNoTracking().ToList();
+            _lstchitiethanghoa = _DBcontext.ChiTietHangHoas.ToList();
             return _lstchitiethanghoa;
         }
 
