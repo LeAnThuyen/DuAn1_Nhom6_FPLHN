@@ -147,24 +147,7 @@ namespace _3_GUI_PresentaionLayers
 
 
         }
-        void dcmmm()
-        {
-            DataGridViewImageColumn img = new DataGridViewImageColumn();
-            img.HeaderText = "Ảnh";
-            img.Name = "img_sp";
-            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            dgrid_sanpham.Columns.Add(img);
-            //dgrid_sanpham.Columns["IDHD"].Width = 200;
-            //dgrid_sanpham.RowTemplate.Height = 80;
-            //
-            for (int i = 0; i < dgrid_sanpham.RowCount; i++)
-            {
-                Image img1 = Image.FromFile(Convert.ToString(dgrid_sanpham.Rows[i].Cells["Đường Dẫn"].Value));
-
-                dgrid_sanpham.Rows[i].Cells["img_sp"].Value = img1;
-
-            }
-        }
+        
         void LoadCbxKH()
         {
             foreach (var x in _iQlyKhachHang.GetsListKH())
@@ -205,6 +188,47 @@ namespace _3_GUI_PresentaionLayers
             buttonColumn.UseColumnTextForButtonValue = true;
 
             dgridGioHang.Columns.Add(buttonColumn);
+        }
+        void dcmmm()
+        {
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            img.HeaderText = "Ảnh";
+            img.Name = "img_sp";
+            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            dgrid_sanpham.Columns.Add(img);
+            //dgrid_sanpham.Columns["IDHD"].Width = 200;
+            //dgrid_sanpham.RowTemplate.Height = 80;
+            //
+            for (int i = 0; i < dgrid_sanpham.RowCount; i++)
+            {
+                Image img1 = Image.FromFile(Convert.ToString(dgrid_sanpham.Rows[i].Cells["Đường Dẫn"].Value));
+
+                dgrid_sanpham.Rows[i].Cells["img_sp"].Value = img1;
+
+            }
+        }
+        void dcmmm1()
+        {
+            if (InvokeRequired) // Line #1
+            {
+                this.Invoke(new MethodInvoker(dcmmm1));
+                return;
+            }
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            img.HeaderText = "Ảnh";
+            img.Name = "img_sp";
+            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            dgrid_sanpham.Columns.Add(img);
+            //dgrid_sanpham.Columns["IDHD"].Width = 200;
+            //dgrid_sanpham.RowTemplate.Height = 80;
+            //
+            for (int i = 0; i < dgrid_sanpham.RowCount; i++)
+            {
+                Image img1 = Image.FromFile(Convert.ToString(dgrid_sanpham.Rows[i].Cells["Đường Dẫn"].Value));
+
+                dgrid_sanpham.Rows[i].Cells["img_sp"].Value = img1;
+
+            }
         }
         void acd()
         {
@@ -274,6 +298,7 @@ namespace _3_GUI_PresentaionLayers
                     x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
             }
 
+            dcmmm1();
             int count1 = dgridGioHang.Rows.Count;
             tongtien = 0;
             for (int i = 0; i < count1 - 1; i++)
@@ -286,6 +311,7 @@ namespace _3_GUI_PresentaionLayers
 
 
         }
+        
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
             Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
@@ -318,11 +344,14 @@ namespace _3_GUI_PresentaionLayers
                                     IdhoaDon = iQLyBanHang.GetsList().Max(c => c.HoaDonBan.IdhoaDon),
                                     ThanhTien = Convert.ToDouble(Convert.ToInt32(content) * (_iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.Mavach == Convert.ToString(result)).Select(c => c.ChiTietHangHoa.DonGiaBan).FirstOrDefault()))
                                 };
+                            _iQlyHoaDon.addHDCT(hoaDonChiTiet);
+                            _iQlyHoaDon.SaveHDCT();
+                            _lstHoaDonChiTiets.Add(hoaDonChiTiet);
 
-                                
-                                result = null;
+
+                            result = null;
                                 acd();
-                            dcmmm();
+                      
                            // pic_cam.Image = null;
                             }
                             else
@@ -344,9 +373,9 @@ namespace _3_GUI_PresentaionLayers
 
                     }
 
-                 
 
-                
+                pic_cam.Image = null;
+
             }
 
 
@@ -469,7 +498,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[6].Visible = false;
             dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
             dgrid_sanpham.Columns[7].Visible = false;
-
+         
             dgrid_sanpham.Rows.Clear();
             var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
             foreach (var x in _iQlyHangHoa.GetsList())
@@ -478,6 +507,7 @@ namespace _3_GUI_PresentaionLayers
                     x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
                     x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) + Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
             }
+            dcmmm();
         }
 
         bool checkSoluong(int x)
@@ -572,7 +602,7 @@ namespace _3_GUI_PresentaionLayers
                 {
                     dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                         x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) , idlhd,x.Anh.DuongDan);
                 }
                 dcmmm();
                 int count = dgridGioHang.Rows.Count;
@@ -678,7 +708,7 @@ namespace _3_GUI_PresentaionLayers
                 {
                     dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                         x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
                 }
                 dcmmm();
                 int count = dgridGioHang.Rows.Count;
@@ -744,7 +774,7 @@ namespace _3_GUI_PresentaionLayers
                                 .Select(x => x.SoDiem).LastOrDefault());
                         _iQlyKhachHang.updateDiemTD(diemtieudung);
                         _iQlyKhachHang.SaveDTD(diemtieudung);
-                        _iSendPoint.SendMail2("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                        _iSendPoint.SendMail2(txtEmail.Text, tien < 100000 ? 20 :
                             tien < 500000 ? 50 :
                             tien < 1000000 ? 100 :
                             tien < 5000000 ? 200 : 500, Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
@@ -775,7 +805,7 @@ namespace _3_GUI_PresentaionLayers
                     _iQlyKhachHang.SaveDTD(diemtieudung);
                     _iQlyKhachHang.addLichSu(lichSuTieuDungDiem);
                     _iQlyKhachHang.SaveLichSU(lichSuTieuDungDiem);
-                    _iSendPoint.SendMail("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                    _iSendPoint.SendMail(txtEmail.Text, tien < 100000 ? 20 :
                         tien < 500000 ? 50 :
                         tien < 1000000 ? 100 :
                         tien < 5000000 ? 200 : 500, Convert.ToDouble(txtDiscount.Text), Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
@@ -822,7 +852,7 @@ namespace _3_GUI_PresentaionLayers
               
                 try
                 {
-
+                    
                     var update = _iQlyHoaDon.GetsListHDCT()
                         .FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
                     var _lstPrice = (from a in _iQlyHoaDon.GetsListHDCT()
@@ -831,12 +861,12 @@ namespace _3_GUI_PresentaionLayers
                     update.GiamGia = Convert.ToDouble(textBox2.Text);
                         foreach (var x in _lstPrice)
                         {
-                            update.ThanhTien = Convert.ToDouble(textBox2.Text) * x.ThanhTien;
+                        update.ThanhTien = Convert.ToDouble(textBox2.Text) * x.ThanhTien;
                         }
 
                         //hdct.TrangThai = Convert.ToInt32(status);
                     //hdct.GhiChu = Convert.ToString(richTextBox1.Text);
-                    _iQlyHoaDon.updateHDCTV(update);
+                    _iQlyHoaDon.updateHDCTV(hdct);
                     _iQlyHoaDon.SaveHDCT();
 
 
@@ -1706,7 +1736,7 @@ namespace _3_GUI_PresentaionLayers
                                 .Select(x => x.SoDiem).FirstOrDefault()));
                         _iQlyKhachHang.updateDiemTD(diemtieudung);
                         _iQlyKhachHang.SaveDTD(diemtieudung);
-                        _iSendPoint.SendMail("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                        _iSendPoint.SendMail(txtEmail.Text, tien < 100000 ? 20 :
                             tien < 500000 ? 50 :
                             tien < 1000000 ? 100 :
                             tien < 5000000 ? 200 : 500, Convert.ToDouble(txtDiscount.Text), Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
@@ -1737,7 +1767,7 @@ namespace _3_GUI_PresentaionLayers
                     _iQlyKhachHang.SaveDTD(diemtieudung);
                     _iQlyKhachHang.addLichSu(lichSuTieuDungDiem);
                     _iQlyKhachHang.SaveLichSU(lichSuTieuDungDiem);
-                    _iSendPoint.SendMail2("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                    _iSendPoint.SendMail2(txtEmail.Text, tien < 100000 ? 20 :
                         tien < 500000 ? 50 :
                         tien < 1000000 ? 100 :
                         tien < 5000000 ? 200 : 500, Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
