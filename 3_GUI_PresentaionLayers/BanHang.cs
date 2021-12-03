@@ -1673,6 +1673,12 @@ namespace _3_GUI_PresentaionLayers
                                 .Select(x => x.SoDiem).FirstOrDefault()));
                         _iQlyKhachHang.updateDiemTD(diemtieudung);
                         _iQlyKhachHang.SaveDTD(diemtieudung);
+                        _iSendPoint.SendMail("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                            tien < 500000 ? 50 :
+                            tien < 1000000 ? 100 :
+                            tien < 5000000 ? 200 : 500, Convert.ToDouble(txtDiscount.Text), Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
+                                .Where(x => x.IddiemTieuDung == iddtd)
+                                .Select(x => x.SoDiem).LastOrDefault()));
                     }
 
                 }
@@ -1698,6 +1704,12 @@ namespace _3_GUI_PresentaionLayers
                     _iQlyKhachHang.SaveDTD(diemtieudung);
                     _iQlyKhachHang.addLichSu(lichSuTieuDungDiem);
                     _iQlyKhachHang.SaveLichSU(lichSuTieuDungDiem);
+                    _iSendPoint.SendMail2("mavuongjk@gmail.com", tien < 100000 ? 20 :
+                        tien < 500000 ? 50 :
+                        tien < 1000000 ? 100 :
+                        tien < 5000000 ? 200 : 500, Convert.ToDouble(_iQlyKhachHang.GetsListDTD()
+                            .Where(x => x.IddiemTieuDung == iddtd)
+                            .Select(x => x.SoDiem).LastOrDefault()));
                 }
 
                 //
@@ -1722,7 +1734,7 @@ namespace _3_GUI_PresentaionLayers
                     statusdt = 4;
                 }
 
-                hoadon.IdhoaDon = _iQlyHoaDon.GetsListHD().Max(c => c.IdhoaDon);
+                hoadon = _iQlyHoaDon.GetsListHD().FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
                 hoadon.TrangThai = Convert.ToInt32(statusdt);
                 hoadon.NgayLap = DateTime.Now;
                 hoadon.IdkhachHang = _ikhser.getlstkhachhangformDB().Where(c => c.Email == txtEmail.Text).Select(c => c.IdkhachHang).FirstOrDefault();
@@ -1741,19 +1753,35 @@ namespace _3_GUI_PresentaionLayers
                 _hdser.updatehdb(hoadon);
                 _hdser.save();
                 int idhd = Convert.ToInt32(_hdser.getlsthdbfromDB().Max(c => c.IdhoaDon));
-                hdct.IdhoaDonChiTiet = _hdctser.getlsthdctfromDB().Where(c => c.IdhoaDon == idhd).Select(c => c.IdhoaDonChiTiet).LastOrDefault();
-               
-                hdct.MaHoaDonChiTiet = _hdctser.getlsthdctfromDB().Where(c => c.IdhoaDonChiTiet == hdct.IdhoaDonChiTiet).Select(c => c.MaHoaDonChiTiet).LastOrDefault();
-                hdct.DonGia = Convert.ToDouble(_hdctser.getlsthdctfromDB().Where(c => c.IdhoaDonChiTiet == hdct.IdhoaDonChiTiet).Select(c => c.DonGia).LastOrDefault());
-                hdct.SoLuong = Convert.ToInt32(_hdctser.getlsthdctfromDB().Where(c => c.IdhoaDonChiTiet == hdct.IdhoaDonChiTiet).Select(c => c.SoLuong).LastOrDefault());
-                hdct.IdhoaDon = Convert.ToInt32(_hdctser.getlsthdctfromDB().Where(c => c.IdhoaDonChiTiet == hdct.IdhoaDonChiTiet).Select(c => c.IdhoaDon).LastOrDefault());
-                hdct.IdthongTinHangHoa = Convert.ToInt32(_hdctser.getlsthdctfromDB().Where(c => c.IdhoaDonChiTiet == hdct.IdhoaDonChiTiet).Select(c => c.IdthongTinHangHoa).LastOrDefault());
-                hdct.GiamGia = Convert.ToDouble(txt_dathanggiamgia.Text);
-                hdct.ThanhTien = Convert.ToDouble(txt_dathangkhachtra.Text);
-                hdct.TrangThai = Convert.ToInt32(statusdt);
-                hdct.GhiChu = Convert.ToString(rtx_ghichu2.Text);
-                _hdctser.updatehdct(hdct);
-                _hdctser.save();
+            
+
+                try
+                {
+
+                    var update = _iQlyHoaDon.GetsListHDCT()
+                        .FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
+                    var _lstPrice = (from a in _iQlyHoaDon.GetsListHDCT()
+                        where a.IdhoaDonChiTiet == Convert.ToInt32(txtMaHDD.Text)
+                        select a).ToList();
+                    update.GiamGia = Convert.ToDouble(textBox2.Text);
+                    foreach (var x in _lstPrice)
+                    {
+                        update.ThanhTien = Convert.ToDouble(textBox2.Text) * x.ThanhTien;
+                    }
+
+                    //hdct.TrangThai = Convert.ToInt32(status);
+                    //hdct.GhiChu = Convert.ToString(richTextBox1.Text);
+                    _iQlyHoaDon.updateHDCTV(update);
+                    _iQlyHoaDon.SaveHDCT();
+
+
+                    loadhoadonduyet();//IDHHCT
+                }
+                catch (System.FormatException FormatException)
+                {
+                    Console.WriteLine(FormatException);
+                    throw;
+                }
                 loadhoadonduyet();
                 dgridGioHang.ColumnCount = 6;
                 dgridGioHang.Columns[0].Name = "ID";
