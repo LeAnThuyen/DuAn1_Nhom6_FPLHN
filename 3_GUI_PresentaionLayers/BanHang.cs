@@ -73,6 +73,7 @@ namespace _3_GUI_PresentaionLayers
             css();
             LoadCbxRank();
            loadhoadonduyet();
+            dcmmm();
             txtMaHDD.Visible = false;
             //txtMaHDD.Hide();
             rbt_chuathanhtoan.Checked = true;
@@ -116,7 +117,7 @@ namespace _3_GUI_PresentaionLayers
         }
         void LoadData()
         {
-            dgrid_sanpham.ColumnCount = 7;
+            dgrid_sanpham.ColumnCount = 8;
             dgrid_sanpham.Columns[0].Name = "ID";
             dgrid_sanpham.Columns[0].Visible = false;
             dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -127,7 +128,9 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[5].Name = "Tồn kho";
             dgrid_sanpham.Columns[6].Name = "IDHD";
             dgrid_sanpham.Columns[6].Visible = false;
-          
+            dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+            dgrid_sanpham.Columns[7].Visible = false;
+
 
             dgrid_sanpham.Rows.Clear();
 
@@ -135,17 +138,30 @@ namespace _3_GUI_PresentaionLayers
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                     x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                    x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.SoLuong);
-            }
-            //DataGridViewImageColumn img = new DataGridViewImageColumn();
-            //img.HeaderText = "Ảnh";
-            //img.Name = "img_sp";
-            //img.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                    x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.SoLuong,x.Anh.DuongDan,x.Anh.DuongDan);
+            };
+           
 
-              
-            //dgrid_sanpham.Columns.Add(img);
+
         }
+        void dcmmm()
+        {
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            img.HeaderText = "Ảnh";
+            img.Name = "img_sp";
+            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            dgrid_sanpham.Columns.Add(img);
+            //dgrid_sanpham.Columns["IDHD"].Width = 200;
+            //dgrid_sanpham.RowTemplate.Height = 80;
+            //
+            for (int i = 0; i < dgrid_sanpham.RowCount; i++)
+            {
+                Image img1 = Image.FromFile(Convert.ToString(dgrid_sanpham.Rows[i].Cells["Đường Dẫn"].Value));
 
+                dgrid_sanpham.Rows[i].Cells["img_sp"].Value = img1;
+
+            }
+        }
         void LoadCbxKH()
         {
             foreach (var x in _iQlyKhachHang.GetsListKH())
@@ -232,7 +248,7 @@ namespace _3_GUI_PresentaionLayers
             txtTongTien.Text = Convert.ToString(tongtien);
 
             //
-            dgrid_sanpham.ColumnCount = 7;
+            dgrid_sanpham.ColumnCount = 8;
             dgrid_sanpham.Columns[0].Name = "ID";
             dgrid_sanpham.Columns[0].Visible = false;
             dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -243,13 +259,16 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[5].Name = "Tồn kho";
             dgrid_sanpham.Columns[6].Name = "IDhD";
             dgrid_sanpham.Columns[6].Visible = false;
+            dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+            dgrid_sanpham.Columns[7].Visible = false;
+
             dgrid_sanpham.Rows.Clear();
             var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
             foreach (var x in _iQlyHangHoa.GetsList())
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                     x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                    x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                    x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
             }
 
             int count1 = dgridGioHang.Rows.Count;
@@ -300,6 +319,7 @@ namespace _3_GUI_PresentaionLayers
                                 
                                 result = null;
                                 acd();
+                            dcmmm();
                            // pic_cam.Image = null;
                             }
                             else
@@ -432,7 +452,7 @@ namespace _3_GUI_PresentaionLayers
                 tongtien += float.Parse(dgridGioHang.Rows[i].Cells[5].Value.ToString()); //i++;
             }
             txtTongTien.Text = Convert.ToString(tongtien);
-            dgrid_sanpham.ColumnCount = 7;
+            dgrid_sanpham.ColumnCount = 8;
             dgrid_sanpham.Columns[0].Name = "ID";
             dgrid_sanpham.Columns[0].Visible = false;
             dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -443,13 +463,16 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[5].Name = "Tồn kho";
             dgrid_sanpham.Columns[6].Name = "IDHD";
             dgrid_sanpham.Columns[6].Visible = false;
+            dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+            dgrid_sanpham.Columns[7].Visible = false;
+
             dgrid_sanpham.Rows.Clear();
             var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
             foreach (var x in _iQlyHangHoa.GetsList())
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                     x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                    x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) + Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                    x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) + Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
             }
         }
 
@@ -509,7 +532,7 @@ namespace _3_GUI_PresentaionLayers
                         x.DonGia, x.SoLuong * x.DonGia);
                 }
 
-                dgrid_sanpham.ColumnCount = 7;
+                dgrid_sanpham.ColumnCount = 8;
                 dgrid_sanpham.Columns[0].Name = "ID";
                 dgrid_sanpham.Columns[0].Visible = false;
                 dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -520,15 +543,18 @@ namespace _3_GUI_PresentaionLayers
                 dgrid_sanpham.Columns[5].Name = "Tồn kho";
                 dgrid_sanpham.Columns[6].Name = "IDhD";
                 dgrid_sanpham.Columns[6].Visible = false;
+                dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+                dgrid_sanpham.Columns[7].Visible = false;
+
                 dgrid_sanpham.Rows.Clear();
                 var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
                 foreach (var x in _iQlyHangHoa.GetsList())
                 {
                     dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                         x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
                 }
-
+                dcmmm();
                 int count = dgridGioHang.Rows.Count;
                 tongtien = 0;
                 for (int i = 0; i < count - 1; i++)
@@ -609,7 +635,7 @@ namespace _3_GUI_PresentaionLayers
 
                         x.DonGia, x.SoLuong * x.DonGia);
                 }
-                dgrid_sanpham.ColumnCount = 7;
+                dgrid_sanpham.ColumnCount = 8;
                 dgrid_sanpham.Columns[0].Name = "ID";
                 dgrid_sanpham.Columns[0].Visible = false;
                 dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -620,14 +646,18 @@ namespace _3_GUI_PresentaionLayers
                 dgrid_sanpham.Columns[5].Name = "Tồn kho";
                 dgrid_sanpham.Columns[6].Name = "IDhD";
                 dgrid_sanpham.Columns[6].Visible = false;
+                dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+                dgrid_sanpham.Columns[7].Visible = false;
+
                 dgrid_sanpham.Rows.Clear();
                 var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
                 foreach (var x in _iQlyHangHoa.GetsList())
                 {
                     dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                         x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd);
+                        x.ChiTietHangHoa.DonGiaBan, Convert.ToInt32(x.ChiTietHangHoa.SoLuong) - Convert.ToInt32(_lstHoaDonChiTiets.Where(c => c.IdthongTinHangHoa == x.ChiTietHangHoa.IdthongTinHangHoa).Select(c => c.SoLuong).LastOrDefault()), idlhd,x.Anh.DuongDan);
                 }
+                dcmmm();
                 int count = dgridGioHang.Rows.Count;
                 tongtien = 0;
                 for (int i = 0; i < count - 1; i++)
@@ -1282,7 +1312,7 @@ namespace _3_GUI_PresentaionLayers
                 _iQlyHoaDon.addHD(hoaDonBan);
                 _iQlyHoaDon.SaveHD();
                 txtMaHDD.Text = Convert.ToString(_lstHoaDonBans.Select(x => x.IdhoaDon).FirstOrDefault());
-                dgrid_sanpham.ColumnCount = 7;
+                dgrid_sanpham.ColumnCount = 8;
                 dgrid_sanpham.Columns[0].Name = "ID";
                 dgrid_sanpham.Columns[0].Visible = false;
                 dgrid_sanpham.Columns[1].Name = "IDHHCT";
@@ -1293,15 +1323,18 @@ namespace _3_GUI_PresentaionLayers
                 dgrid_sanpham.Columns[5].Name = "Tồn kho";
                 dgrid_sanpham.Columns[6].Name = "IDhD";
                 dgrid_sanpham.Columns[6].Visible = false;
+                dgrid_sanpham.Columns[7].Name = "Đường Dẫn";
+                dgrid_sanpham.Columns[7].Visible = false;
+
                 dgrid_sanpham.Rows.Clear();
                 var idlhd = _lstHoaDonBans.Select(x => x.IdhoaDon).LastOrDefault();
                 foreach (var x in _iQlyHangHoa.GetsList())
                 {
                     dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa,
                         x.HangHoa.TenHangHoa + x.ChiTietHangHoa.Model,
-                        x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.SoLuong, idlhd);
+                        x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.SoLuong, idlhd,x.Anh.DuongDan);
                 }
-                
+                dcmmm();
                 return;
             }
             if (dialogResult == DialogResult.No)

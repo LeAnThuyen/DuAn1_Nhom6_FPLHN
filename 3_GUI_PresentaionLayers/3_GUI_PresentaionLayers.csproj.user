@@ -67,6 +67,9 @@
     <Compile Update="FrmHideSendEmail.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmInfoBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmInfoNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>

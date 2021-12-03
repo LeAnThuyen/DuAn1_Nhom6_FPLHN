@@ -292,7 +292,7 @@ namespace _3_GUI_PresentaionLayers
             this.dgrid_sanpham.Margin = new System.Windows.Forms.Padding(2);
             this.dgrid_sanpham.Name = "dgrid_sanpham";
             this.dgrid_sanpham.RowHeadersWidth = 62;
-            this.dgrid_sanpham.RowTemplate.Height = 33;
+            this.dgrid_sanpham.RowTemplate.Height = 80;
             this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgrid_sanpham.Size = new System.Drawing.Size(985, 344);
             this.dgrid_sanpham.TabIndex = 1;

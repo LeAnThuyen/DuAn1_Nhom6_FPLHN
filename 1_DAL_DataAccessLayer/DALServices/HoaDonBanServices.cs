@@ -37,7 +37,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public List<HoaDonBan> getlsthdbfromDB()
         {
-            _lsthoadonban = _DBcontext.HoaDonBans.ToList();
+            _lsthoadonban = _DBcontext.HoaDonBans.AsNoTracking().ToList();
             return _lsthoadonban;
         }
 
