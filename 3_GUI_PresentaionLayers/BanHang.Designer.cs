@@ -89,7 +89,6 @@ namespace _3_GUI_PresentaionLayers
             this.rbt_chogiaohang = new System.Windows.Forms.RadioButton();
             this.rbt_dathanhtoan = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.btnThanhToan = new System.Windows.Forms.Button();
@@ -138,6 +137,7 @@ namespace _3_GUI_PresentaionLayers
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.flhoadon = new System.Windows.Forms.FlowLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -369,6 +369,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
             this.panel5.Controls.Add(this.pn_dathang);
+            this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.richTextBox1);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.rbt_chuathanhtoan);
@@ -377,7 +378,6 @@ namespace _3_GUI_PresentaionLayers
             this.panel5.Controls.Add(this.rbt_chogiaohang);
             this.panel5.Controls.Add(this.rbt_dathanhtoan);
             this.panel5.Controls.Add(this.label11);
-            this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.panel10);
             this.panel5.Controls.Add(this.txtDiscount);
             this.panel5.Controls.Add(this.btnThanhToan);
@@ -437,7 +437,7 @@ namespace _3_GUI_PresentaionLayers
             this.pn_dathang.Controls.Add(this.label27);
             this.pn_dathang.Controls.Add(this.label28);
             this.pn_dathang.Controls.Add(this.label29);
-            this.pn_dathang.Location = new System.Drawing.Point(1, 17);
+            this.pn_dathang.Location = new System.Drawing.Point(0, 17);
             this.pn_dathang.Name = "pn_dathang";
             this.pn_dathang.Size = new System.Drawing.Size(526, 621);
             this.pn_dathang.TabIndex = 22;
@@ -608,13 +608,13 @@ namespace _3_GUI_PresentaionLayers
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label19.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label19.Location = new System.Drawing.Point(20, 108);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(151, 31);
+            this.label19.Size = new System.Drawing.Size(227, 28);
             this.label19.TabIndex = 25;
-            this.label19.Text = "Giảm giá (%) ";
+            this.label19.Text = "Giảm giá (1Point=200đ) ";
             // 
             // txt_dathanggiamgia
             // 
@@ -872,23 +872,12 @@ namespace _3_GUI_PresentaionLayers
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(207, 159);
+            this.label11.Location = new System.Drawing.Point(241, 158);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(233, 20);
             this.label11.TabIndex = 13;
             this.label11.Text = "........................................................";
             this.label11.TextChanged += new System.EventHandler(this.label11_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(6, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 31);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Giảm giá (%)";
             // 
             // panel10
             // 
@@ -903,7 +892,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDiscount.Location = new System.Drawing.Point(218, 129);
+            this.txtDiscount.Location = new System.Drawing.Point(241, 128);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(230, 27);
             this.txtDiscount.TabIndex = 10;
@@ -963,7 +952,7 @@ namespace _3_GUI_PresentaionLayers
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label13.Location = new System.Drawing.Point(210, 284);
+            this.label13.Location = new System.Drawing.Point(247, 280);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(233, 20);
             this.label13.TabIndex = 13;
@@ -974,7 +963,7 @@ namespace _3_GUI_PresentaionLayers
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(210, 91);
+            this.label12.Location = new System.Drawing.Point(244, 91);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(233, 20);
             this.label12.TabIndex = 13;
@@ -997,7 +986,7 @@ namespace _3_GUI_PresentaionLayers
             this.txtTienthua.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTienthua.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtTienthua.ForeColor = System.Drawing.Color.Maroon;
-            this.txtTienthua.Location = new System.Drawing.Point(218, 324);
+            this.txtTienthua.Location = new System.Drawing.Point(250, 324);
             this.txtTienthua.Name = "txtTienthua";
             this.txtTienthua.Size = new System.Drawing.Size(230, 27);
             this.txtTienthua.TabIndex = 7;
@@ -1008,7 +997,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.txtKhachDua.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtKhachDua.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtKhachDua.Location = new System.Drawing.Point(210, 254);
+            this.txtKhachDua.Location = new System.Drawing.Point(244, 254);
             this.txtKhachDua.Name = "txtKhachDua";
             this.txtKhachDua.Size = new System.Drawing.Size(233, 27);
             this.txtKhachDua.TabIndex = 8;
@@ -1022,7 +1011,7 @@ namespace _3_GUI_PresentaionLayers
             this.txtKhachTra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtKhachTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtKhachTra.ForeColor = System.Drawing.Color.DarkOrange;
-            this.txtKhachTra.Location = new System.Drawing.Point(210, 206);
+            this.txtKhachTra.Location = new System.Drawing.Point(247, 208);
             this.txtKhachTra.Name = "txtKhachTra";
             this.txtKhachTra.Size = new System.Drawing.Size(230, 27);
             this.txtKhachTra.TabIndex = 9;
@@ -1032,7 +1021,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(221, 61);
+            this.textBox2.Location = new System.Drawing.Point(241, 61);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(230, 27);
             this.textBox2.TabIndex = 10;
@@ -1044,7 +1033,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTongTien.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtTongTien.Location = new System.Drawing.Point(210, 27);
+            this.txtTongTien.Location = new System.Drawing.Point(241, 31);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.Size = new System.Drawing.Size(230, 27);
             this.txtTongTien.TabIndex = 11;
@@ -1420,6 +1409,17 @@ namespace _3_GUI_PresentaionLayers
             this.flhoadon.Size = new System.Drawing.Size(326, 610);
             this.flhoadon.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(12, 144);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(227, 28);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Giảm giá (1Point=200đ) ";
+            // 
             // BanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1510,7 +1510,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel9;
@@ -1583,5 +1582,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label4;
     }
 }
