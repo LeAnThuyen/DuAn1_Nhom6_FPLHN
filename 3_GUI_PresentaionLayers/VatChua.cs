@@ -79,7 +79,7 @@ namespace _3_GUI_PresentaionLayers
                     _1_DAL_DataAccessLayer.Models.VatChua VatChua = new _1_DAL_DataAccessLayer.Models.VatChua()
                     {
                         IdvatChua = _iQlyVatChua.GetsList().Max(x => x.IdvatChua) + 1,
-                        MaVatChua = "CL0001" + _iQlyVatChua.GetsList().Max(x => x.IdvatChua) + 1,
+                        MaVatChua = "VC0001" + _iQlyVatChua.GetsList().Max(x => x.IdvatChua) + 1,
                         TenVatChua = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString(),
                         TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
                     };
@@ -100,15 +100,14 @@ namespace _3_GUI_PresentaionLayers
                         return;
                     }
 
-                    _1_DAL_DataAccessLayer.Models.VatChua VatChua = new _1_DAL_DataAccessLayer.Models.VatChua()
-                    {
-                        TenVatChua = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
-                    };
+                    var nhomhuong = _iQlyVatChua.GetsList().FirstOrDefault(x =>
+                        x.IdvatChua == Convert.ToInt32(dgridVatChua.Rows[rowIndex].Cells[0].Value.ToString()));
+                    nhomhuong.TenVatChua = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString();
+                    nhomhuong.TrangThai = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0;
 
-                    _iQlyVatChua.updateNV(VatChua);
+
+                    _iQlyVatChua.updateNV(nhomhuong);
                     LoadData();
-                    return;
                 }
 
                 if (Convert.ToString(dgridVatChua.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Xóa")
@@ -142,10 +141,11 @@ namespace _3_GUI_PresentaionLayers
         private void dgridVatChua_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if ((rowIndex > _iQlyVatChua.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = dgridVatChua.Rows[rowIndex].Cells[1].Value.ToString();
-            txtTenChatLieu.Text = dgridVatChua.Rows[rowIndex].Cells[2].Value.ToString();
-            chkOFF.Checked = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? true : false;
+            //if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
+            txtMaCL.Text = Convert.ToString(dgridVatChua.Rows[rowIndex].Cells[1].Value);
+            txtTenChatLieu.Text = Convert.ToString(dgridVatChua.Rows[rowIndex].Cells[2].Value);
+            ckbON.Checked = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Sử dụng" ? true : false;
+            chkOFF.Checked = dgridVatChua.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? true : false;
         }
     }
 }
