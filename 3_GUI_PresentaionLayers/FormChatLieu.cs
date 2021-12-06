@@ -107,15 +107,15 @@ namespace _3_GUI_PresentaionLayers
                         return;
                     }
 
-                    ChatLieu ChatLieu1 = new ChatLieu()
-                    {
-                        TenChatLieu = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
-                    };
 
-                    _iQlyChatLieu.updateNV(ChatLieu1);
+                    var nhomhuong = _iQlyChatLieu.GetsList().FirstOrDefault(x =>
+                        x.IdchatLieu == Convert.ToInt32(dgridChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
+                    nhomhuong.TenChatLieu = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString();
+                    nhomhuong.TrangThai = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0;
+
+
+                    _iQlyChatLieu.updateNV(nhomhuong);
                     LoadData();
-                    return;
                 }
 
                 if (Convert.ToString(dgridChatLieu.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Xóa")
@@ -140,10 +140,11 @@ namespace _3_GUI_PresentaionLayers
         private void dgridChatLieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if ((rowIndex > _iQlyChatLieu.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = dgridChatLieu.Rows[rowIndex].Cells[1].Value.ToString();
-            txtTenChatLieu.Text = dgridChatLieu.Rows[rowIndex].Cells[2].Value.ToString();
-            chkOFF.Checked = dgridChatLieu.Rows[rowIndex].Cells[2].Value == "Đang sử dụng" ? true : false;
+            //if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
+            txtMaCL.Text = Convert.ToString(dgridChatLieu.Rows[rowIndex].Cells[1].Value);
+            txtTenChatLieu.Text = Convert.ToString(dgridChatLieu.Rows[rowIndex].Cells[2].Value);
+            ckbON.Checked = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Sử dụng" ? true : false;
+            chkOFF.Checked = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? true : false;
         }
     }
 }

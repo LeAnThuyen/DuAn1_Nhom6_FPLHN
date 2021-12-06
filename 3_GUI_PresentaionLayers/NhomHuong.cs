@@ -80,15 +80,14 @@ namespace _3_GUI_PresentaionLayers
                     _1_DAL_DataAccessLayer.Models.NhomHuong nhomHuong = new _1_DAL_DataAccessLayer.Models.NhomHuong()
                     {
                         IdnhomHuong = _iQlyNhomHuong.GetsList().Max(x => x.IdnhomHuong) + 1,
-                        MaNhomHuong = "CL0001" + _iQlyNhomHuong.GetsList().Max(x => x.IdnhomHuong) + 1,
-                         TenNhomHuong = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString(),
+                        MaNhomHuong = "NH0001" + _iQlyNhomHuong.GetsList().Max(x => x.IdnhomHuong) + 1,
+                        TenNhomHuong = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString(),
                         TrangThai = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
                     };
                     _iQlyNhomHuong.addNV(nhomHuong);
                     LoadData();
 
                     MessageBox.Show("Thêm thành công");
-                    return;
                 }
 
                 if (Convert.ToString(dgridNhomHuong.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Sửa")
@@ -100,15 +99,14 @@ namespace _3_GUI_PresentaionLayers
                         return;
                     }
 
-                    _1_DAL_DataAccessLayer.Models.NhomHuong NhomHuong = new _1_DAL_DataAccessLayer.Models.NhomHuong()
-                    {
-                        TenNhomHuong = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString(),
-                        TrangThai = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0
-                    };
+                    var nhomhuong = _iQlyNhomHuong.GetsList().FirstOrDefault(x =>
+                        x.IdnhomHuong == Convert.ToInt32(dgridNhomHuong.Rows[rowIndex].Cells[0].Value.ToString()));
+                    nhomhuong.TenNhomHuong = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString();
+                    nhomhuong.TrangThai = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? 1 : 0;
 
-                    _iQlyNhomHuong.updateNV(NhomHuong);
+
+                    _iQlyNhomHuong.updateNV(nhomhuong);
                     LoadData();
-                    return;
                 }
 
                 if (Convert.ToString(dgridNhomHuong.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value) == "Xóa")
@@ -124,7 +122,6 @@ namespace _3_GUI_PresentaionLayers
                         x.IdnhomHuong == Convert.ToInt32(dgridNhomHuong.Rows[rowIndex].Cells[0].Value.ToString()));
                     _iQlyNhomHuong.removeNV(NhpmHuong);
                     LoadData();
-                    return;
                 }
 
                 LoadData();
@@ -135,9 +132,10 @@ namespace _3_GUI_PresentaionLayers
         {
             int rowIndex = e.RowIndex;
             //if ((rowIndex > _iQlyNhomHuong.GetsList().Count) || rowIndex < 0) return;
-            txtMaCL.Text = dgridNhomHuong.Rows[rowIndex].Cells[1].Value.ToString();
-            txtTenChatLieu.Text = dgridNhomHuong.Rows[rowIndex].Cells[2].Value.ToString();
-            chkOFF.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Đang sử dụng" ? true : false;
+            txtMaCL.Text = Convert.ToString(dgridNhomHuong.Rows[rowIndex].Cells[1].Value);
+            txtTenChatLieu.Text = Convert.ToString(dgridNhomHuong.Rows[rowIndex].Cells[2].Value);
+            ckbON.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Sử dụng" ? true : false;
+            chkOFF.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? true : false;
         }
     }
 }

@@ -81,6 +81,8 @@ namespace _3_GUI_PresentaionLayers
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.ckbIn = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.rbt_chuathanhtoan = new System.Windows.Forms.RadioButton();
@@ -137,7 +139,6 @@ namespace _3_GUI_PresentaionLayers
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.flhoadon = new System.Windows.Forms.FlowLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -267,6 +268,7 @@ namespace _3_GUI_PresentaionLayers
             this.dgridGioHang.RowTemplate.Height = 33;
             this.dgridGioHang.Size = new System.Drawing.Size(983, 238);
             this.dgridGioHang.TabIndex = 0;
+            this.dgridGioHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridGioHang_CellContentClick);
             this.dgridGioHang.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridGioHang_CellDoubleClick);
             // 
             // groupBox2
@@ -369,6 +371,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
             this.panel5.Controls.Add(this.pn_dathang);
+            this.panel5.Controls.Add(this.ckbIn);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.richTextBox1);
             this.panel5.Controls.Add(this.label14);
@@ -781,6 +784,29 @@ namespace _3_GUI_PresentaionLayers
             this.label29.Size = new System.Drawing.Size(178, 31);
             this.label29.TabIndex = 27;
             this.label29.Text = "Tổng tiền (VND)";
+            // 
+            // ckbIn
+            // 
+            this.ckbIn.AutoSize = true;
+            this.ckbIn.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ckbIn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ckbIn.Location = new System.Drawing.Point(41, 522);
+            this.ckbIn.Name = "ckbIn";
+            this.ckbIn.Size = new System.Drawing.Size(47, 27);
+            this.ckbIn.TabIndex = 27;
+            this.ckbIn.Text = "In";
+            this.ckbIn.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(12, 144);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(227, 28);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Giảm giá (1Point=200đ) ";
             // 
             // richTextBox1
             // 
@@ -1409,17 +1435,6 @@ namespace _3_GUI_PresentaionLayers
             this.flhoadon.Size = new System.Drawing.Size(326, 610);
             this.flhoadon.TabIndex = 0;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(12, 144);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(227, 28);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Giảm giá (1Point=200đ) ";
-            // 
             // BanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1583,5 +1598,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox ckbIn;
     }
 }
