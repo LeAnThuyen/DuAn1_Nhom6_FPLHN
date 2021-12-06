@@ -440,6 +440,12 @@ namespace _3_GUI_PresentaionLayers
             foreach (FilterInfo device in filterInfoCollection)
                 cbo_webcam.Items.Add(device.Name);
             cbo_webcam.SelectedIndex = 0;
+            dgridGioHang.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgridGioHang.AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue;
+            dgridGioHang.RowHeadersVisible = false;
+            dgrid_sanpham.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgrid_sanpham.AlternatingRowsDefaultCellStyle.BackColor = Color.LightBlue;
+            dgrid_sanpham.RowHeadersVisible = false;
 
         }
 

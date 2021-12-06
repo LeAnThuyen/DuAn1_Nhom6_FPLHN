@@ -17,7 +17,7 @@ namespace _3_GUI_PresentaionLayers
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReportFileToPDF());
+            Application.Run(new BanHang());
         }
     }
 }
