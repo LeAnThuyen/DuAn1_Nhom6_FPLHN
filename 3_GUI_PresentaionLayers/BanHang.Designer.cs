@@ -192,7 +192,6 @@ namespace _3_GUI_PresentaionLayers
             this.txtMaHDD.Name = "txtMaHDD";
             this.txtMaHDD.Size = new System.Drawing.Size(127, 27);
             this.txtMaHDD.TabIndex = 107;
-            this.txtMaHDD.Text = "ok";
             // 
             // cbo_webcam
             // 

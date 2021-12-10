@@ -35,16 +35,18 @@ namespace _3_GUI_PresentaionLayers
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDatetime = new System.Windows.Forms.Button();
             this.dgridLichSu = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblMaKH = new System.Windows.Forms.Label();
+            this.lblBacKH = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblBac = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTenKH = new System.Windows.Forms.Label();
             this.lblTen = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblDiem = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtMa = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgridLichSu)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -105,27 +107,27 @@ namespace _3_GUI_PresentaionLayers
             this.dgridLichSu.Size = new System.Drawing.Size(495, 272);
             this.dgridLichSu.TabIndex = 15;
             // 
-            // label5
+            // lblMaKH
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(387, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 23);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Bậc:";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMaKH.ForeColor = System.Drawing.Color.Red;
+            this.lblMaKH.Location = new System.Drawing.Point(387, 95);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(43, 23);
+            this.lblMaKH.TabIndex = 9;
+            this.lblMaKH.Text = "Bậc:";
             // 
-            // label3
+            // lblBacKH
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(61, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 23);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Bậc:";
+            this.lblBacKH.AutoSize = true;
+            this.lblBacKH.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblBacKH.ForeColor = System.Drawing.Color.Red;
+            this.lblBacKH.Location = new System.Drawing.Point(61, 131);
+            this.lblBacKH.Name = "lblBacKH";
+            this.lblBacKH.Size = new System.Drawing.Size(43, 23);
+            this.lblBacKH.TabIndex = 10;
+            this.lblBacKH.Text = "Bậc:";
             // 
             // label4
             // 
@@ -147,16 +149,16 @@ namespace _3_GUI_PresentaionLayers
             this.lblBac.TabIndex = 12;
             this.lblBac.Text = "Bậc:";
             // 
-            // label2
+            // lblTenKH
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(162, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 23);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Tên khách hàng: ";
+            this.lblTenKH.AutoSize = true;
+            this.lblTenKH.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTenKH.ForeColor = System.Drawing.Color.Red;
+            this.lblTenKH.Location = new System.Drawing.Point(162, 95);
+            this.lblTenKH.Name = "lblTenKH";
+            this.lblTenKH.Size = new System.Drawing.Size(144, 23);
+            this.lblTenKH.TabIndex = 7;
+            this.lblTenKH.Text = "Tên khách hàng: ";
             // 
             // lblTen
             // 
@@ -178,16 +180,29 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Size = new System.Drawing.Size(519, 60);
             this.panel1.TabIndex = 6;
             // 
-            // label7
+            // btnLoad
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(270, 130);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 23);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Bậc:";
+            this.btnLoad.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnLoad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLoad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLoad.Location = new System.Drawing.Point(352, 461);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(138, 46);
+            this.btnLoad.TabIndex = 1;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = false;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // lblDiem
+            // 
+            this.lblDiem.AutoSize = true;
+            this.lblDiem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblDiem.ForeColor = System.Drawing.Color.Red;
+            this.lblDiem.Location = new System.Drawing.Point(270, 130);
+            this.lblDiem.Name = "lblDiem";
+            this.lblDiem.Size = new System.Drawing.Size(43, 23);
+            this.lblDiem.TabIndex = 13;
+            this.lblDiem.Text = "Bậc:";
             // 
             // label6
             // 
@@ -199,23 +214,32 @@ namespace _3_GUI_PresentaionLayers
             this.label6.TabIndex = 14;
             this.label6.Text = "Số điểm còn lại";
             // 
+            // txtMa
+            // 
+            this.txtMa.Location = new System.Drawing.Point(436, 66);
+            this.txtMa.Name = "txtMa";
+            this.txtMa.Size = new System.Drawing.Size(54, 27);
+            this.txtMa.TabIndex = 19;
+            // 
             // fLichSuDungDiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 450);
+            this.ClientSize = new System.Drawing.Size(519, 508);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.txtMa);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnDatetime);
             this.Controls.Add(this.dgridLichSu);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblMaKH);
+            this.Controls.Add(this.lblBacKH);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBac);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTenKH);
             this.Controls.Add(this.lblTen);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblDiem);
             this.Controls.Add(this.label6);
             this.Name = "fLichSuDungDiem";
             this.Text = "fLichSuDungDiem";
@@ -236,13 +260,15 @@ namespace _3_GUI_PresentaionLayers
         public System.Windows.Forms.Button btnUp;
         public System.Windows.Forms.Button btnDatetime;
         public System.Windows.Forms.DataGridView dgridLichSu;
-        public System.Windows.Forms.Label label5;
-        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lblMaKH;
+        public System.Windows.Forms.Label lblBacKH;
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label lblBac;
-        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label lblTenKH;
         public System.Windows.Forms.Label lblTen;
-        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label lblDiem;
         public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox txtMa;
+        private System.Windows.Forms.Button btnLoad;
     }
 }

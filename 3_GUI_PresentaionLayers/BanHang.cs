@@ -81,7 +81,7 @@ namespace _3_GUI_PresentaionLayers
             loadhoadonduyet();
             loadhoadonduyet3();
             dcmmm();
-            txtMaHDD.Visible = false;
+            //txtMaHDD.Visible = false;
             //txtMaHDD.Hide();
             rbt_chuathanhtoan.Checked = true;
             rbt_dathangchuathanhtoan.Checked = true;
@@ -190,6 +190,7 @@ namespace _3_GUI_PresentaionLayers
             dgridGioHang.Columns[2].Name = "Tên sản phẩm";
             dgridGioHang.Columns[3].Name = "Số lượng";
             dgridGioHang.Columns[4].Name = "Đơn giá";
+            dgridGioHang.Columns[5].Name = "Thành tiền";
             dgridGioHang.Columns[5].Name = "Thành tiền";
             dgridGioHang.Rows.Clear();
 
@@ -471,19 +472,23 @@ namespace _3_GUI_PresentaionLayers
             var id = _iQlyHangHoa.GetsList()
                 .Where(x => x.HangHoa.MaHangHoa == dgridGioHang.Rows[row].Cells[1].Value.ToString())
                 .Select(x => x.HangHoa.IdhangHoa).FirstOrDefault();
-            var hoadon = _lstHoaDonChiTiets.FirstOrDefault(x =>
-                x.IdthongTinHangHoa == Convert.ToInt32(id));
-            _lstHoaDonChiTiets.Remove(hoadon);
-            _iQlyHoaDon.removeHDCT(hoadon);
-            _iQlyHoaDon.SaveHDCT();
-            var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == IDHH);
+            var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == id);
             Cthh.SoLuong =
                 Convert.ToString(
-                    Convert.ToInt32(_iQlyHangHoa.GetsListCTHH().Where(x => x.IdthongTinHangHoa == IDHH)
-                        .Select(x => x.SoLuong).FirstOrDefault()) -
+                    Convert.ToInt32(_iQlyHangHoa.GetsListCTHH().Where(x => x.IdthongTinHangHoa == id)
+                        .Select(x => x.SoLuong).FirstOrDefault()) +
                     Convert.ToInt32(dgridGioHang.Rows[row].Cells[3].Value.ToString()));
             _iQlyHangHoa.UpdateSPChiTiet(Cthh);
             _iQlyHangHoa.SaveChiTietHangHoa(Cthh);
+            var hoadon = _lstHoaDonChiTiets.FirstOrDefault(x =>
+                x.IdhoaDonChiTiet == Convert.ToInt32(dgridGioHang.Rows[row].Cells[0].Value.ToString()));
+            var hoadon2 = _iQlyHoaDon.GetsListHDCT().FirstOrDefault(x =>
+                x.IdhoaDonChiTiet == Convert.ToInt32(dgridGioHang.Rows[row].Cells[0].Value.ToString()));
+            _iQlyHoaDon.removeHDCT(hoadon2);
+            _iQlyHoaDon.SaveHDCT();
+       
+            _lstHoaDonChiTiets.Remove(hoadon);
+        
             dgridGioHang.ColumnCount = 6;
             dgridGioHang.Columns[0].Name = "ID";
             dgridGioHang.Columns[0].Visible = false;
@@ -565,6 +570,11 @@ namespace _3_GUI_PresentaionLayers
         private void dgrid_sanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int row = e.RowIndex;
+            if (String.IsNullOrEmpty(txtMaHDD.Text))
+            {
+                MessageBox.Show("Vui lòng tạo hóa đơn", "Thông báo");
+                return;
+            }
             if (checkSoluong(Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[5].Value.ToString())) == false) return;
 
             int countHDCT = _iQlyHoaDon.GetsListHDCT().Max(x => x.IdhoaDonChiTiet) + 1;
@@ -575,25 +585,25 @@ namespace _3_GUI_PresentaionLayers
             {
                 IDHH = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString());
                 HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet()
-                {
-                    IdhoaDonChiTiet = countHDCT,
-                    MaHoaDonChiTiet = "HDCT000" + countHDCT,
-                    DonGia = float.Parse(dgrid_sanpham.Rows[row].Cells[4].Value.ToString()),
-                    SoLuong = 1,
-                    IdthongTinHangHoa = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString()),
-                    TrangThai = 1,
-                    IdhoaDon = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[6].Value.ToString()),
-                    ThanhTien = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[4].Value.ToString())
-                };
-                var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == IDHH);
-                Cthh.SoLuong = Convert.ToString(Convert.ToInt32(_iQlyHangHoa.GetsListCTHH()
-                    .Where(x => x.IdthongTinHangHoa == IDHH).Select(x => x.SoLuong).FirstOrDefault()) - 1);
-                _iQlyHangHoa.UpdateSPChiTiet(Cthh);
-                _iQlyHangHoa.SaveChiTietHangHoa(Cthh);
-                _iQlyHoaDon.addHDCT(hoaDonChiTiet);
-                _iQlyHoaDon.SaveHDCT();
-                _lstHoaDonChiTiets.Add(hoaDonChiTiet);
-
+                    {
+                        IdhoaDonChiTiet = countHDCT,
+                        MaHoaDonChiTiet = "HDCT000" + countHDCT,
+                        DonGia = float.Parse(dgrid_sanpham.Rows[row].Cells[4].Value.ToString()),
+                        SoLuong = 1,
+                        IdthongTinHangHoa = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[1].Value.ToString()),
+                        TrangThai = 1,
+                        IdhoaDon = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[6].Value.ToString()),
+                        ThanhTien = Convert.ToInt32(dgrid_sanpham.Rows[row].Cells[4].Value.ToString())
+                    };
+                    var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == IDHH);
+                    Cthh.SoLuong = Convert.ToString(Convert.ToInt32(_iQlyHangHoa.GetsListCTHH()
+                        .Where(x => x.IdthongTinHangHoa == IDHH).Select(x => x.SoLuong).FirstOrDefault()) - 1);
+                    _iQlyHangHoa.UpdateSPChiTiet(Cthh);
+                    _iQlyHangHoa.SaveChiTietHangHoa(Cthh);
+                    _iQlyHoaDon.addHDCT(hoaDonChiTiet);
+                    _iQlyHoaDon.SaveHDCT();
+                    _lstHoaDonChiTiets.Add(hoaDonChiTiet);
+           
                 dgridGioHang.ColumnCount = 6;
                 dgridGioHang.Columns[0].Name = "ID";
                 dgridGioHang.Columns[0].Visible = false;
@@ -801,7 +811,16 @@ namespace _3_GUI_PresentaionLayers
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-
+            if (String.IsNullOrEmpty(txtTongTien.Text))
+            {
+                MessageBox.Show("Giỏ hàng rỗng", "Thông báo");
+                return;
+            }
+            if (String.IsNullOrEmpty(txtTienthua.Text))
+            {
+                MessageBox.Show("Vui lòng kiểm tra lại tiền khách trả", "Thông báo");
+                return;
+            }
             DialogResult dialogResult =
                 MessageBox.Show("bạn có muốn thanh toán hay không", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -846,9 +865,6 @@ namespace _3_GUI_PresentaionLayers
                     }
 
                 }
-
-
-
                 if (!string.IsNullOrEmpty(txtDiscount.Text))
                 {
                     LichSuTieuDungDiem lichSuTieuDungDiem = new LichSuTieuDungDiem()
@@ -972,7 +988,7 @@ namespace _3_GUI_PresentaionLayers
                 dgridGioHang.Columns[4].Name = "Đơn giá";
                 dgridGioHang.Columns[5].Name = "Thành tiền";
                 dgridGioHang.Rows.Clear();
-
+                txtMaHDD.Text = "";
                 DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
                 buttonColumn.HeaderText = "Xác nhận";
                 buttonColumn.Text = "Sửa";
@@ -996,18 +1012,12 @@ namespace _3_GUI_PresentaionLayers
                 }
                 clear();
                 return;
-
             }
-
             if (dialogResult == DialogResult.No)
             {
                 return;
             }
-
-
-
         }
-
         public static string NumberToText(double inputNumber, bool suffix = true)
         {
             string[] unitNumbers = new string[]
@@ -1103,18 +1113,24 @@ namespace _3_GUI_PresentaionLayers
 
         private void txtKhachDua_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                decimal a, b;
-                a = Decimal.Parse(txtTongTien.Text);
-                b = Decimal.Parse(txtKhachDua.Text);
-                txtTienthua.Text = (b - a).ToString();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    decimal a, b;
+                    a = Decimal.Parse(txtTongTien.Text);
+                    b = Decimal.Parse(txtKhachDua.Text);
+                    txtTienthua.Text = (b - a).ToString();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Bạn nhập vào phải là số", "Thông báo");
             }
         }
 
         private void btnsender_Click(object sender, EventArgs e)
         {
-
             dgridGioHang.Rows.Clear();
             int acbc = ((sender as Button).Tag as HoaDonBan).IdhoaDon;
             dgridGioHang.ColumnCount = 6;
@@ -1125,7 +1141,6 @@ namespace _3_GUI_PresentaionLayers
             dgridGioHang.Columns[3].Name = "Số lượng";
             dgridGioHang.Columns[4].Name = "Đơn giá";
             dgridGioHang.Columns[5].Name = "Thành tiền";
-           
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.HeaderText = "Xác nhận";
             buttonColumn.Text = "Sửa";
@@ -1133,33 +1148,43 @@ namespace _3_GUI_PresentaionLayers
             buttonColumn.UseColumnTextForButtonValue = true;
             dgridGioHang.Rows.Clear();
             dgridGioHang.Columns.Add(buttonColumn);
-            foreach(var x in _hdctser.getlsthdctfromDB().Where(c => c.IdhoaDon == acbc))
+            txtMaHDD.Text =Convert.ToString(_hdctser.getlsthdctfromDB().Where(c => c.IdhoaDon == acbc).Select(x => x.IdhoaDon)
+                .FirstOrDefault());
+            foreach (var x in _hdctser.getlsthdctfromDB().Where(c => c.IdhoaDon == acbc))
             {
                 var qlhh = _iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.IdthongTinHangHoa == x.IdthongTinHangHoa).FirstOrDefault();
                 var hh = _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == qlhh.ChiTietHangHoa.IdhangHoa).FirstOrDefault();
-                dgridGioHang.Rows.Add(x.IdhoaDonChiTiet, hh.HangHoa.MaHangHoa, hh.HangHoa.TenHangHoa, x.SoLuong, x.DonGia, x.ThanhTien);
+                dgridGioHang.Rows.Add(x.IdhoaDonChiTiet,
+                    _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.HangHoa.MaHangHoa).FirstOrDefault(),
+                    _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.HangHoa.TenHangHoa).FirstOrDefault() + " " +
+                    _iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.IdthongTinHangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.ChiTietHangHoa.Model).FirstOrDefault(), x.SoLuong,
+                    x.DonGia, x.SoLuong * x.DonGia);
             }
             CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
-           
+            int count = dgridGioHang.Rows.Count;
+            tongtien = 0;
+            for (int i = 0; i < count - 1; i++)
+            {
+                tongtien += float.Parse(dgridGioHang.Rows[i].Cells[5].Value.ToString()); //i++;
+            }
             double tongtientaiquan =Convert.ToDouble( _hdser.getlsthdbfromDB().Where(c => c.IdhoaDon == acbc).Select(c => c.TongSoTien).FirstOrDefault());
             double thuetaiquan =Convert.ToDouble( _hdser.getlsthdbfromDB().Where(c => c.IdhoaDon == acbc).Select(c => c.Thue).FirstOrDefault());
             double thanhtien =Convert.ToDouble( _hdser.getlsthdbfromDB().Where(c => c.IdhoaDon == acbc).Select(c => c.Tien).FirstOrDefault());
             double giamgiataiquan =Convert.ToDouble( _hdctser.getlsthdctfromDB().Where(c => c.IdhoaDon == acbc).Select(c => c.GiamGia).FirstOrDefault());
-            txtTongTien.Text = Convert.ToInt32(thanhtien).ToString("#,###", cul.NumberFormat);
+            txtTongTien.Text = Convert.ToInt32(tongtien).ToString("#,###", cul.NumberFormat);
             txtKhachTra.Text = Convert.ToInt32(tongtientaiquan).ToString("#,###", cul.NumberFormat);
             textBox2.Text = Convert.ToInt32(thuetaiquan).ToString("#,###", cul.NumberFormat);
-            
             txtDiscount.Text = Convert.ToInt32(giamgiataiquan).ToString("#,###", cul.NumberFormat);
-            
         }
 
         public void loadhoadonduyet()
         {
-
             flhoadon.Controls.Clear();
             foreach (var x in _hdser.getlsthdbfromDB().Where(c => c.TrangThai == 2))
             {
-
                 Button btn = new Button() { Width = 80, Height = 80 };
                 btn.Text = x.MaHoaDon + Environment.NewLine + (x.TrangThai == 2
                     ? "Chưa Thanh Toán"
@@ -1180,7 +1205,6 @@ namespace _3_GUI_PresentaionLayers
 
                 flhoadon.Controls.Add(btn);
             }
-
         }
         void clear()
         {
@@ -1195,7 +1219,6 @@ namespace _3_GUI_PresentaionLayers
         }
         public void loadhoadonduyet3()
         {
-
             flhd3.Controls.Clear();
             foreach (var x in _hdser.getlsthdbfromDB().Where(c => c.TrangThai == 3))
             {
@@ -1217,13 +1240,9 @@ namespace _3_GUI_PresentaionLayers
                         btn.BackColor = Color.BlueViolet;
                         break;
                 }
-
                 flhd3.Controls.Add(btn);
             }
-
         }
-
-
         private void txtTongTien_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1234,13 +1253,11 @@ namespace _3_GUI_PresentaionLayers
                 txtTienthua.Text = (b - a).ToString();
             }
         }
-
         void inHoaDon()
         {
             pPreDHoaDon.Document = pDHoaDon;
             pPreDHoaDon.ShowDialog();
         }
-
         private void pDHoaDon_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
 
@@ -1350,7 +1367,6 @@ namespace _3_GUI_PresentaionLayers
             pPreDHoaDon.Document = pDDatHang;
             pPreDHoaDon.ShowDialog();
         }
-
         private void pDDatHang_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             var w = pDHoaDon.DefaultPageSettings.PaperSize.Width;
@@ -1496,32 +1512,13 @@ namespace _3_GUI_PresentaionLayers
         }
 
         #endregion
-
         private void btnDathang_Click(object sender, EventArgs e)
         {
 
         }
-
         private void cbxKH_TextChanged(object sender, EventArgs e)
         {
-            //string str;
-            ////if (cbxKH.Text == "")
-            ////{
-            ////    txtEmail.Text = "";
-            ////    txtDTD.Text = "";
-            ////}
-
-            //string n = Convert.ToString(cbxKH.SelectedValue);
-            //str = _iQlyKhachHang.GetsList().Where(x => x.KhachHang.TenKhachHang == n).Select(x => x.KhachHang.Email).FirstOrDefault();
-            ////txtEmail.Text = str;
-            //txtDT.Text= _iQlyKhachHang.GetsList().Where(x => x.KhachHang.TenKhachHang == cbxKH.SelectedItem.ToString()).Select(x => x.KhachHang.SoDienThoai).FirstOrDefault();
-            //var _lst = from a in _iQlyKhachHang.GetsList()
-            //    where a.KhachHang.TenKhachHang == cbxKH.SelectedValue
-            //    select a;
-            //txtEmail.Text = _lst.Select(x => x.KhachHang.Email).FirstOrDefault();
-
         }
-
         private void cbxKH_SelectedValueChanged(object sender, EventArgs e)
         {
             string str;
@@ -1556,7 +1553,6 @@ namespace _3_GUI_PresentaionLayers
                 bac < 200 ? "Vàng" :
                 string.IsNullOrEmpty(Convert.ToString(bac)) ? "Bạc" : "Kim cương";
         }
-
         private void btnAddKH_Click(object sender, EventArgs e)
         {
             fKhachHang f = new fKhachHang();
@@ -1639,47 +1635,38 @@ namespace _3_GUI_PresentaionLayers
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
-
             BanHang fbanhang = new BanHang();
             //int iddtd = Convert.ToInt32(_iQlyKhachHang.GetsListKH().Where(x => x.TenKhachHang == cbxKH.Text)
             //    .Select(x => x.IddiemTieuDung).FirstOrDefault());
             //////SetBounds(Screen.GetWorkingArea(f).Width-Width,Screen.GetWorkingArea(f).Height-Height,Width-1000,Height+300);
+            var id = _iQlyKhachHang.GetsListKH().Where(x => x.TenKhachHang == cbxKH.Text).Select(c => c.IddiemTieuDung)
+                .FirstOrDefault();
             fLichSuDungDiem f = new fLichSuDungDiem();
+            f.txtMa.Text = Convert.ToString(Convert.ToInt32(id));
+            f.lblTenKH.Text = cbxKH.Text;
+            f.lblBacKH.Text = cbxRank.Text;
+            f.lblMaKH.Text = Convert.ToString(_iQlyKhachHang.GetsListKH().Where(x => x.TenKhachHang == cbxKH.Text)
+                .Select(c => c.MaKhachHang)
+                .FirstOrDefault());
+            f.lblDiem.Text = Convert.ToString(_iQlyKhachHang.GetsListDTD().Where(x => x.IddiemTieuDung == id)
+                .Select(c => c.SoDiem)
+                .FirstOrDefault());
             f.StartPosition = FormStartPosition.CenterScreen;
             f.StartPosition = FormStartPosition.Manual;
             //f.Location = new Point(fbanhang.Width / 2 - f.Width / 2 + fbanhang.Location.X,
             //    fbanhang.Height / 2 - f.Height / 2 + fbanhang.Location.Y);
             f.Location = new Point(f.Width + 762, 260);
-
-
-            f.label2.Text = cbxKH.Text;
-            f.Show();
-
-        }
-
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            fXuLiDonHang f = new fXuLiDonHang();
+            f.lblTenKH.Text = cbxKH.Text;
             f.Show();
         }
-
 
         private void button9_Click(object sender, EventArgs e)
         {
-
-           
         }
 
         private void label11_TextChanged(object sender, EventArgs e)
         {
-
         }
-
         private void label12_TextChanged(object sender, EventArgs e)
         {
             // if (txtDiscount.Text== "") return;
@@ -1698,10 +1685,6 @@ namespace _3_GUI_PresentaionLayers
 
         private void txtKhachDua_TextChanged(object sender, EventArgs e)
         {
-
-         
-
-            //
             try
             {
                 if (txtKhachDua.Text != "")
@@ -1723,26 +1706,19 @@ namespace _3_GUI_PresentaionLayers
                     //
                  
                     double  ftienthua =Convert.ToDouble(Convert.ToDouble(tkhachdua)-Convert.ToDouble(tkhachtra));
-                  
-                  
-
+                    
                     txtTienthua.Text = Convert.ToInt32(ftienthua).ToString("#,###", cul.NumberFormat);
-
                 }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception + "", "Thông báo");
-
             }
         }
-
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-
             try
             {
-
                 if (txtDiscount.Text != "" && textBox2.Text != "")
                 {
                     decimal thue;
@@ -1760,6 +1736,7 @@ namespace _3_GUI_PresentaionLayers
                     CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
 
                     txtKhachTra.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
+                    txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
 
                 }
             }
@@ -1767,21 +1744,13 @@ namespace _3_GUI_PresentaionLayers
             {
                 Console.WriteLine("Bạn phải nhập vào số nguyên" + fe);
             }
-
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
-          
-
             if (txtDiscount.Text != "" && textBox2.Text != "")
             {
-
-
-
-
                 decimal thue;
                 decimal giamgia;
          
@@ -1795,14 +1764,11 @@ namespace _3_GUI_PresentaionLayers
                                                     Convert.ToDouble(thue) * 0.01 *
                                                     Convert.ToInt32(fn));
                 CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
-
                 txtKhachTra.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
+                txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
 
             }
         }
-
-
-
         private void label10_TextChanged(object sender, EventArgs e)
         {
             //NumberToText(Convert.ToDouble( txtKhachTra.Text), true);
@@ -1866,10 +1832,6 @@ namespace _3_GUI_PresentaionLayers
 
         private void txtTienthua_TextChanged(object sender, EventArgs e)
         {
-
-
-
-
         }
 
         private void txt_dathangthue_TextChanged_1(object sender, EventArgs e)
@@ -1910,66 +1872,6 @@ namespace _3_GUI_PresentaionLayers
             }
         }
 
-      
-      
-
-        private void rbt_dathangchuathanhtoan_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbt_dathangchuathanhtoan.Checked)
-            {
-                rbt_dathangdacoc.Checked = false;
-                rbt_dathangdahuy.Checked = false;
-                rbt_dathanhtoan.Checked = false;
-                rbt_dathangchogiaohang.Checked = false;
-            }
-        }
-
-        private void rbt_dathangdathanhtoan_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbt_dathanhtoan.Checked)
-            {
-                rbt_dathangdacoc.Checked = false;
-                rbt_dathangdahuy.Checked = false;
-                rbt_dathangchuathanhtoan.Checked = false;
-                rbt_dathangchogiaohang.Checked = false;
-            }
-        }
-
-        private void rbt_dathangchogiaohang_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbt_dathangchogiaohang.Checked)
-            {
-                rbt_dathangdacoc.Checked = false;
-                rbt_dathangdahuy.Checked = false;
-                rbt_dathangchuathanhtoan.Checked = false;
-                rbt_dathanhtoan.Checked = false;
-            }
-        }
-
-        private void rbt_dathangdacoc_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbt_dathangdacoc.Checked)
-            {
-                rbt_dathangchogiaohang.Checked = false;
-                rbt_dathangdahuy.Checked = false;
-                rbt_dathangchuathanhtoan.Checked = false;
-                rbt_dathanhtoan.Checked = false;
-            }
-        }
-
-        private void rbt_dathangdahuy_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbt_dathangdahuy.Checked)
-            {
-                rbt_dathangchogiaohang.Checked = false;
-                rbt_dathangdacoc.Checked = false;
-                rbt_dathangchuathanhtoan.Checked = false;
-                rbt_dathanhtoan.Checked = false;
-            }
-        }
-
-    
-
         private void dgridGioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -1983,7 +1885,7 @@ namespace _3_GUI_PresentaionLayers
                     .Select(c => c.ChiTietHangHoa.SoLuong).FirstOrDefault()) + "Mời chọn sản phẩm khác","Thông báo");
                 return;
             }
-                if (e.ColumnIndex == dgridGioHang.Columns["Sửa"].Index)
+            if (e.ColumnIndex == dgridGioHang.Columns["Sửa"].Index)
             {
 
                 var diaglog = MessageBox.Show("Bạn có chắc chắn muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo,
@@ -1993,19 +1895,35 @@ namespace _3_GUI_PresentaionLayers
                     return;
                 }
 
+                
+                var id = _iQlyHangHoa.GetsList()
+                    .Where(x => x.HangHoa.MaHangHoa == dgridGioHang.Rows[row].Cells[1].Value.ToString())
+                    .Select(x => x.HangHoa.IdhangHoa).FirstOrDefault();
+                //int idhhct = Convert.ToInt32(_iQlyHangHoa
+                //    .GetsList().Where(c => c.HangHoa.MaHangHoa == dgridGioHang.Rows[row].Cells[1].Value.ToString())
+                //    .Select(c => c.ChiTietHangHoa.IdthongTinHangHoa).FirstOrDefault());
+                var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == id);
+                //Cthh.SoLuong = (Convert.ToInt32(_iQlyHangHoa.GetsListCTHH()
+                //    .Where(x => x.IdthongTinHangHoa == idhhct).Select(x => x.SoLuong).FirstOrDefault()) +
+                //    Convert.ToInt32(_lstHoaDonChiTiets.Where(x => x.IdthongTinHangHoa == idhhct).Select(x => x.SoLuong).FirstOrDefault())
+                //    - Convert.ToInt32(dgridGioHang.Rows[row].Cells[3].Value.ToString())).ToString();
+                var slgoc = _iQlyHangHoa.GetsListCTHH()
+                    .Where(x => x.IdthongTinHangHoa == id).Select(x => x.SoLuong).FirstOrDefault();
+                var slHtai = Convert.ToInt32(_lstHoaDonChiTiets.Where(x => x.IdthongTinHangHoa == id)
+                    .Select(x => x.SoLuong).LastOrDefault());
+                var sltru= Convert.ToInt32(dgridGioHang.Rows[row].Cells[3].Value.ToString());
+                int tong = 0;
+                tong = Convert.ToInt32(slgoc) + slHtai - sltru;
+                Cthh.SoLuong = Convert.ToString(tong);
+                _iQlyHangHoa.UpdateSPChiTiet(Cthh);
+                _iQlyHangHoa.SaveChiTietHangHoa(Cthh);
                 var hdctiet = _iQlyHoaDon.GetsListHDCT()
-                    .FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
+                    .FirstOrDefault(x => x.IdhoaDonChiTiet == Convert.ToInt32(dgridGioHang.Rows[row].Cells[0].Value.ToString()));
                 hdctiet.SoLuong = Convert.ToInt32(dgridGioHang.Rows[row].Cells[3].Value.ToString());
                 _iQlyHoaDon.updateHDCTV(hdctiet);
                 _iQlyHoaDon.SaveHDCT();
-                int idhhct = Convert.ToInt32(_iQlyHangHoa
-                    .GetsList().Where(c => c.HangHoa.MaHangHoa == dgridGioHang.Rows[row].Cells[1].Value.ToString())
-                    .Select(c => c.ChiTietHangHoa.IdthongTinHangHoa).FirstOrDefault());
-                var Cthh = _iQlyHangHoa.GetsListCTHH().FirstOrDefault(x => x.IdthongTinHangHoa == idhhct);
-                Cthh.SoLuong = Convert.ToString(Convert.ToInt32(_iQlyHangHoa.GetsListCTHH()
-                    .Where(x => x.IdthongTinHangHoa == idhhct).Select(x => x.SoLuong).FirstOrDefault()) +Convert.ToInt32(_lstHoaDonChiTiets.Where(x=>x.IdthongTinHangHoa== idhhct).Select(x=>x.SoLuong).FirstOrDefault())- Convert.ToInt32(dgridGioHang.Rows[row].Cells[3].Value.ToString()));
-                _iQlyHangHoa.UpdateSPChiTiet(Cthh);
-                _iQlyHangHoa.SaveChiTietHangHoa(Cthh);
+                
+                LoadGioHang2();
                 dgrid_sanpham.ColumnCount = 8;
                 dgrid_sanpham.Columns[0].Name = "ID";
                 dgrid_sanpham.Columns[0].Visible = false;
@@ -2040,6 +1958,38 @@ namespace _3_GUI_PresentaionLayers
                 CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
                 txtTongTien.Text = Convert.ToInt32(tongtien).ToString("#,###", cul.NumberFormat);
                 txt_dathangtongtien.Text = Convert.ToInt32(tongtien).ToString("#,###", cul.NumberFormat);
+            }
+        }
+
+        void LoadGioHang2()
+        {
+            dgridGioHang.ColumnCount = 6;
+            dgridGioHang.Columns[0].Name = "ID";
+            dgridGioHang.Columns[0].Visible = false;
+            dgridGioHang.Columns[1].Name = "Mã sản phẩm";
+            dgridGioHang.Columns[2].Name = "Tên sản phẩm";
+            dgridGioHang.Columns[3].Name = "Số lượng";
+            dgridGioHang.Columns[4].Name = "Đơn giá";
+            dgridGioHang.Columns[5].Name = "Thành tiền";
+            dgridGioHang.Rows.Clear();
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.HeaderText = "Xác nhận";
+            buttonColumn.Text = "Sửa";
+            buttonColumn.Name = "Sửa";
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgridGioHang.Columns.Add(buttonColumn);
+            foreach (var x in _lstHoaDonChiTiets)
+            {
+                dgridGioHang.Rows.Add(x.IdhoaDonChiTiet,
+                    _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.HangHoa.MaHangHoa).FirstOrDefault(),
+                    _iQlyHangHoa.GetsList().Where(c => c.HangHoa.IdhangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.HangHoa.TenHangHoa).FirstOrDefault() + " " +
+                    _iQlyHangHoa.GetsList().Where(c => c.ChiTietHangHoa.IdthongTinHangHoa == x.IdthongTinHangHoa)
+                        .Select(c => c.ChiTietHangHoa.Model).FirstOrDefault(), x.SoLuong,
+
+                    x.DonGia, x.SoLuong * x.DonGia);
             }
         }
         private void txt_dathangthue_TextChanged(object sender, EventArgs e)
@@ -2133,9 +2083,6 @@ namespace _3_GUI_PresentaionLayers
                     }
 
                 }
-
-
-
                 if (!string.IsNullOrEmpty(txtDiscount.Text))
                 {
                     LichSuTieuDungDiem lichSuTieuDungDiem = new LichSuTieuDungDiem()
@@ -2223,11 +2170,8 @@ namespace _3_GUI_PresentaionLayers
                 _hdser.save();
                 int idhd = Convert.ToInt32(_hdser.getlsthdbfromDB().Max(c => c.IdhoaDon));
 
-
                 try
                 {
-
-
                     int max = _hdser.getlsthdbfromDB().Max(c => c.IdhoaDon);
                     //var update = _iQlyHoaDon.GetsListHDCT()
                     //    .FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
