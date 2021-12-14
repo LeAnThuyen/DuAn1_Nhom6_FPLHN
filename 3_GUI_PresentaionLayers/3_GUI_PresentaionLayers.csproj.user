@@ -34,13 +34,10 @@
     <Compile Update="FormMoRong.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormSanPham.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="FormSendRequest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="FormThongTinBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormXuatXu.cs">
@@ -61,7 +58,10 @@
     <Compile Update="FrmCreateNewBarCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FRMDatHang.cs">
+    <Compile Update="FrmDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmDoiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmHideSendEmail.cs">
@@ -73,16 +73,19 @@
     <Compile Update="FrmInfoNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmNSX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmThatBaiAlert.cs">
+    <Compile Update="FrmQuenMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmThongBao.cs">
+    <Compile Update="FrmThatBaiAlert.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmThongKeALL.cs">
@@ -103,7 +106,7 @@
     <Compile Update="fXuLiDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="NhomHuong.cs">
+    <Compile Update="Frmnhomhuong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ReportFileToPDF.cs">
@@ -115,7 +118,7 @@
     <Compile Update="RJControls\RJToggleButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="VatChua.cs">
+    <Compile Update="FrmVatChua.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

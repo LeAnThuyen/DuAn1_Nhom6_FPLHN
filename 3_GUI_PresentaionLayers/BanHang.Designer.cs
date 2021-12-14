@@ -700,6 +700,7 @@ namespace _3_GUI_PresentaionLayers
             this.txt_coc.ForeColor = System.Drawing.Color.SaddleBrown;
             this.txt_coc.Location = new System.Drawing.Point(252, 207);
             this.txt_coc.Name = "txt_coc";
+            this.txt_coc.ReadOnly = true;
             this.txt_coc.Size = new System.Drawing.Size(210, 27);
             this.txt_coc.TabIndex = 29;
             this.txt_coc.Text = "0";
@@ -1447,9 +1448,9 @@ namespace _3_GUI_PresentaionLayers
             // 
             // pic_cam
             // 
-            this.pic_cam.Location = new System.Drawing.Point(489, 50);
+            this.pic_cam.Location = new System.Drawing.Point(519, 60);
             this.pic_cam.Name = "pic_cam";
-            this.pic_cam.Size = new System.Drawing.Size(616, 248);
+            this.pic_cam.Size = new System.Drawing.Size(586, 231);
             this.pic_cam.TabIndex = 104;
             this.pic_cam.TabStop = false;
             // 

@@ -17,14 +17,18 @@ namespace _2_BUS_BussinessLayer.ModelViews
         public double? TongTien { get; set; }
         public int? TrangThai { get; set; }
         public string GhiChu { get; set; }
-        public DateTime? NgayLap { get; set; }
+        public string NgayLap { get; set; }
         public string Days { get; set; }
         public string Months { get; set; }
         public string Years { get; set; }
         public double? Totals { get; set; }
+        public int? tongdon { get; set; }
+        public int? donhuy { get; set; }
+        public int? donthanhcong { get; set; }
+        public int? chuathanhtoan { get; set; }
 
 
-        public ViewTinhTrangHoaDon(string mahd, string manv,string makh,string tenkh,string sdt, string email,double? tongtien, int?  trangthai,string ghichu,DateTime? fulltime,string Day ,string Month, string Year,double? total)
+        public ViewTinhTrangHoaDon(string fulltime,string mahd, string manv,string makh,string tenkh,string sdt, string email,double? tongtien, int?  trangthai,string ghichu, int? countdon, int? countdonhuy, int? countdontc,int? countchuatt)
         {
             MaHoaDon = mahd;
             MaNhanVien = manv;
@@ -36,10 +40,11 @@ namespace _2_BUS_BussinessLayer.ModelViews
             TrangThai = trangthai;
             GhiChu = ghichu;
             NgayLap = fulltime;
-            Days = Day;
-            Months = Month;
-            Years = Year;
-            Totals = total;
+            tongdon = countdon;
+            donhuy = countdonhuy;
+            donthanhcong = countdontc;
+            chuathanhtoan = countchuatt;
+       
         }
 
     }

@@ -18,9 +18,13 @@ namespace _3_GUI_PresentaionLayers
     {
         private QlyHangHoaServices qlhhser;
         private ChiTietHangHoaServices _cthhser;
+       
+        private static FormSanPham _sender;
+     
         public FormSanPham()
         {
             InitializeComponent();
+            _sender = this;
             qlhhser = new QlyHangHoaServices();
             _cthhser = new ChiTietHangHoaServices();
             loaddata();
@@ -42,13 +46,13 @@ namespace _3_GUI_PresentaionLayers
 
         private void menuNhomHuong_Click_1(object sender, EventArgs e)
         {
-            NhomHuong frmNhomHuong = new NhomHuong();
+            Frmnhomhuong frmNhomHuong = new Frmnhomhuong();
             frmNhomHuong.ShowDialog();
         }
 
         private void menuVatChua_Click_1(object sender, EventArgs e)
         {
-            VatChua frmVatChua = new VatChua(); //Khởi tạo đối tượng
+            FrmVatChua frmVatChua = new FrmVatChua(); //Khởi tạo đối tượng
             frmVatChua.ShowDialog(); //Hiển thị
         }
 
@@ -121,26 +125,62 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[18].Visible = false;
             dgrid_sanpham.Columns[19].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[19].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1))
             {
                 dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa,x.ChiTietHangHoa.IdthongTinHangHoa ,x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
+                    x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
+            }
+
+
+        }
+        public static void loaddatasender()
+        {
+            ArrayList row = new ArrayList();
+
+            row = new ArrayList();
+            row.Add("Thêm");
+            row.Add("Sửa");
+            row.Add("Xóa");
+
+           _sender.dgrid_sanpham.ColumnCount = 20;
+            _sender.dgrid_sanpham.Columns[0].Name = "IDHH";
+            _sender.dgrid_sanpham.Columns[0].Visible = false;
+            _sender.dgrid_sanpham.Columns[1].Name = "IDHH";
+            _sender.dgrid_sanpham.Columns[1].Visible = false;
+            _sender.dgrid_sanpham.Columns[2].Name = "Mã Hàng Hóa";
+            _sender.dgrid_sanpham.Columns[3].Name = "Mã Vạch";
+            _sender.dgrid_sanpham.Columns[4].Name = "Tên Hàng Hóa";
+            _sender.dgrid_sanpham.Columns[5].Name = "Nhà Sản Xuất";
+            _sender.dgrid_sanpham.Columns[6].Name = "Danh Mục";
+            _sender.dgrid_sanpham.Columns[7].Name = "Trạng Thái";
+            _sender.dgrid_sanpham.Columns[8].Name = "Số Lượng";
+            _sender.dgrid_sanpham.Columns[9].Name = "Gía Nhập";
+            _sender.dgrid_sanpham.Columns[10].Name = "Gía Bán";
+            _sender.dgrid_sanpham.Columns[11].Name = "Ngày Nhập Kho";
+            //   dgrid_sanpham.Columns[10].Visible = false;
+            _sender.dgrid_sanpham.Columns[12].Name = "Tên Chất Liệu";
+            _sender.dgrid_sanpham.Columns[12].Visible = false;
+            _sender.dgrid_sanpham.Columns[13].Name = "Tên Vật Chứa";
+            _sender.dgrid_sanpham.Columns[13].Visible = false;
+            _sender.dgrid_sanpham.Columns[14].Name = "Nhóm Hương";
+            _sender.dgrid_sanpham.Columns[14].Visible = false;
+            _sender.dgrid_sanpham.Columns[15].Name = "Tên Quốc Gia";
+            _sender.dgrid_sanpham.Columns[15].Visible = false;
+            _sender.dgrid_sanpham.Columns[16].Name = "Số Dung Tích";
+            _sender.dgrid_sanpham.Columns[16].Visible = false;
+            _sender.dgrid_sanpham.Columns[17].Name = "Ảnh";// đường dẫn
+            _sender.dgrid_sanpham.Columns[17].Visible = false;
+            _sender.dgrid_sanpham.Columns[18].Name = "Hạn Sử Dụng";// đường dẫn
+            _sender.dgrid_sanpham.Columns[18].Visible = false;
+            _sender.dgrid_sanpham.Columns[19].Name = "Model";// đường dẫn
+            _sender.dgrid_sanpham.Columns[19].Visible = false;
+            // combobox
+            _sender.dgrid_sanpham.Rows.Clear();
+            foreach (var x in _sender.qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1))
+            {
+                _sender.dgrid_sanpham.Rows.Add(x.HangHoa.IdhangHoa, x.ChiTietHangHoa.IdthongTinHangHoa, x.HangHoa.MaHangHoa, x.ChiTietHangHoa.Mavach, x.HangHoa.TenHangHoa, x.NhaSanXuat.TenNhaSanXuat, x.DanhMuc.TenDanhMuc, x.HangHoa.TrangThai == 1 ? "Còn Hàng" : "Hết Hàng", x.ChiTietHangHoa.SoLuong,
                     x.ChiTietHangHoa.DonGiaNhap, x.ChiTietHangHoa.DonGiaBan, x.ChiTietHangHoa.NgayNhapKho, x.ChatLieu.TenChatLieu, x.VatChua.TenVatChua, x.NhomHuong.TenNhomHuong, x.XuatXu.TenQuocGia, x.DungTich.SoDungTich, x.Anh.DuongDan, x.ChiTietHangHoa.HanSuDung, x.ChiTietHangHoa.Model);
             }
 
@@ -188,22 +228,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[18].Visible = false;
             dgrid_sanpham.Columns[19].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[19].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.MaHangHoa.StartsWith(txt_timkiem.Text)))
             {
@@ -244,7 +269,7 @@ namespace _3_GUI_PresentaionLayers
 
 
             frmBackView.Show();
-
+            
 
 
 
@@ -290,22 +315,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
 
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1).OrderByDescending(c => c.ChiTietHangHoa.DonGiaBan))
@@ -355,22 +365,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
 
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1).OrderByDescending(c => c.DungTich.SoDungTich))
@@ -420,22 +415,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
 
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1).OrderByDescending(c => c.ChiTietHangHoa.HanSuDung))
@@ -485,22 +465,8 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
+           
             dgrid_sanpham.Rows.Clear();
 
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1).OrderByDescending(c => c.ChiTietHangHoa.SoLuong))
@@ -596,37 +562,38 @@ namespace _3_GUI_PresentaionLayers
 
         private void pictureBox3_DoubleClick(object sender, EventArgs e)
         {
-            FrmAddDataFormExcelToDB frmAddDataFormExcelToDB = new FrmAddDataFormExcelToDB();
-            for (int a = 0; a < 2; a++)
-            {
-                this.Alert("Hãy Tiến Hành Thêm Số Lượng Lớn Thôi Nào !");
+            DialogResult dialogResult = MessageBox.Show("bạn có muốn thêm số lượng Lớn sản phẩm bằng file excel hay không", "Thông Báo", MessageBoxButtons.YesNo);
 
+            if (dialogResult == DialogResult.Yes)
+            {
+                FrmAddDataFormExcelToDB frmAddDataFormExcelToDB = new FrmAddDataFormExcelToDB();
+                for (int a = 0; a < 2; a++)
+                {
+                    this.Alert("Hãy Tiến Hành Thêm Số Lượng Lớn Thôi Nào !");
+
+                }
+                frmAddDataFormExcelToDB.Show();
+               
+
+            };
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
             }
-            frmAddDataFormExcelToDB.Show();
-            this.Close();
-            return;
+
+          
+            
         }
 
         private void pictureBox4_DoubleClick(object sender, EventArgs e)
         {
-            ReportFileToPDF reportFileToPDF = new ReportFileToPDF();
-            reportFileToPDF.Show();
-            for (int a = 0; a < 1; a++)
-            {
-                this.Alert("Hãy Tiến Hành Xuát Ra File PDF Thôi Nào !");
-
-            }
+          
         }
 
         private void pictureBox5_DoubleClick(object sender, EventArgs e)
         {
-            FormSendRequest formSendRequest = new FormSendRequest();
-            formSendRequest.Show();
-            for (int a = 0; a < 1; a++)
-            {
-                this.Alert("Hãy Tiến Hành Gửi Yêu Cầu Thôi Nào !");
-
-            }
+            
         }
 
         #region
@@ -670,22 +637,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+          
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 0))
             {
@@ -735,22 +687,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 1))
             {
@@ -800,22 +737,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+          
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IddanhMuc == 3))
             {
@@ -865,22 +787,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 0))
             {
@@ -930,22 +837,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 2))
             {
@@ -995,22 +887,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 2))
             {
@@ -1060,22 +937,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 3))
             {
@@ -1125,22 +987,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.HangHoa.IdnhaSanXuat == 4))
             {
@@ -1191,22 +1038,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 0))
             {
@@ -1256,22 +1088,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 1))
             {
@@ -1321,22 +1138,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 3))
             {
@@ -1386,22 +1188,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IddungTich == 3))
             {
@@ -1451,22 +1238,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan < 500))
             {
@@ -1516,22 +1288,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 500000 && c.ChiTietHangHoa.DonGiaBan < 1000000))
             {
@@ -1581,22 +1338,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 1000000 && c.ChiTietHangHoa.DonGiaBan < 2000000))
             {
@@ -1646,22 +1388,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+            
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.DonGiaBan > 2000000))
             {
@@ -1711,22 +1438,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 2))
             {
@@ -1776,22 +1488,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 1))
             {
@@ -1841,22 +1538,7 @@ namespace _3_GUI_PresentaionLayers
             dgrid_sanpham.Columns[17].Visible = false;
             dgrid_sanpham.Columns[18].Name = "Model";// đường dẫn
             dgrid_sanpham.Columns[18].Visible = false;
-            // combobox
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            cbo.HeaderText = "Chức Năng";
-            cbo.Name = "cbo";
-            cbo.Items.AddRange(row.ToArray());
-            dgrid_sanpham.Columns.Add(cbo);
-
-            ////
-
-            ////button
-            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            btn.Text = "Xác Nhận";
-            btn.HeaderText = "Xác Nhận";
-            btn.Name = "btn";
-            btn.UseColumnTextForButtonValue = true;
-            dgrid_sanpham.Columns.Add(btn);
+           
             dgrid_sanpham.Rows.Clear();
             foreach (var x in qlhhser.GetsList().Where(c => c.HangHoa.TrangThai == 1 && c.ChiTietHangHoa.IdnhomHuong == 3))
             {
@@ -2490,6 +2172,36 @@ namespace _3_GUI_PresentaionLayers
                 this.BackColor = Color.DarkOliveGreen;
 
             }
+        }
+
+        private void pictureBox4_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("bạn có muốn xuất file pdf  hay không", "Thông Báo", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                ReportFileToPDF reportFileToPDF = new ReportFileToPDF();
+                reportFileToPDF.Show();
+                for (int a = 0; a < 1; a++)
+                {
+                    this.Alert("Hãy Tiến Hành Xuát Ra File PDF Thôi Nào !");
+
+                }
+            };
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
+           
+        }
+
+        private void danhMụcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDanhMuc frmDanhMuc = new FrmDanhMuc();
+            frmDanhMuc.ShowDialog();
         }
     }
 }

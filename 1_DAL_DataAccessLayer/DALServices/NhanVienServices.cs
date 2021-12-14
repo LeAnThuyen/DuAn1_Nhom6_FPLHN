@@ -29,7 +29,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public bool deletenhanvien(NhanVien nv)
         {
-            _DBcontext.NhanViens.Add(nv);
+            _DBcontext.NhanViens.Remove(nv);
           
             return true;
         }

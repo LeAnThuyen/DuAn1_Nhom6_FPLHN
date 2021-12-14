@@ -159,7 +159,7 @@ namespace _3_GUI_PresentaionLayers
        
         private void pic_hanghoa_DoubleClick(object sender, EventArgs e)
         {
-            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,0 ,"", "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
+            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,0 ,Convert.ToString( "HHPS"+Convert.ToInt32( _hhser.getlsthanghoafromDB().Max(c=>c.IdhangHoa)+1)), "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"),"");
             for (int i = 0; i < 1; i++)
             {
                 this.Alert("Hãy Thêm Mới 1 Sản Phẩm Thôi Nào !");
@@ -230,12 +230,12 @@ namespace _3_GUI_PresentaionLayers
                 _qlhhser.UpdateSP(hh);
                 _qlhhser.SaveHangHoa(hh);
                
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     this.Alert("Xóa Thành Công");
 
                 }
-                return;
+               
             };
 
             if (dialogResult == DialogResult.No)
@@ -256,9 +256,59 @@ namespace _3_GUI_PresentaionLayers
 
             }
             frmCreateNewBarCode.Show();
-            this.Close();
+       
            
-            return;
+           
+        }
+
+        private void pic_hanghoa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_mavach_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_danhmuc_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_nsx_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_anhadd_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_cl_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_vt_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_nhomhuong_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_xuatxu_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pic_dungtich_DoubleClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

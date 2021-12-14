@@ -30,37 +30,108 @@ namespace _3_GUI_PresentaionLayers
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestseller));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgrid_bestseller = new System.Windows.Forms.DataGridView();
-            this.cbo_loc = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbo_nam = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbo_ngay = new System.Windows.Forms.ComboBox();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgrid_bestseller)).BeginInit();
+            this.grb_hide = new System.Windows.Forms.GroupBox();
+            this.dgrid_ss = new System.Windows.Forms.DataGridView();
+            this.dgrid_bestseller = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_reload = new System.Windows.Forms.Button();
+            this.dtp_end = new System.Windows.Forms.DateTimePicker();
+            this.dtp_start = new System.Windows.Forms.DateTimePicker();
+            this.btn_lockhoangtg = new System.Windows.Forms.Button();
+            this.lbl_end = new System.Windows.Forms.Label();
+            this.lbl_start = new System.Windows.Forms.Label();
+            this.lbl_ss = new System.Windows.Forms.Label();
+            this.lab_closedetail = new System.Windows.Forms.Label();
+            this.txt_lbllockhoang = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtp_loc = new System.Windows.Forms.DateTimePicker();
+            this.grb_ctsp = new System.Windows.Forms.GroupBox();
+            this.dgrid_cthh = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.grb_hide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_ss)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_bestseller)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.grb_ctsp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_cthh)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // panel1
             // 
-            this.groupBox1.Controls.Add(this.dgrid_bestseller);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.groupBox1.Location = new System.Drawing.Point(0, 195);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(919, 292);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thống Kê Sản Phẩm Bán Chạy";
+            this.panel1.BackColor = System.Drawing.Color.Sienna;
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1394, 138);
+            this.panel1.TabIndex = 8;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.ErrorImage = null;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(863, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(291, 124);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(550, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(291, 124);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(239, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(291, 124);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // grb_hide
+            // 
+            this.grb_hide.Controls.Add(this.dgrid_ss);
+            this.grb_hide.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grb_hide.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.grb_hide.Location = new System.Drawing.Point(0, 138);
+            this.grb_hide.Name = "grb_hide";
+            this.grb_hide.Size = new System.Drawing.Size(1394, 198);
+            this.grb_hide.TabIndex = 13;
+            this.grb_hide.TabStop = false;
+            this.grb_hide.Text = "So Sánh Với Tháng Trước";
+            // 
+            // dgrid_ss
+            // 
+            this.dgrid_ss.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_ss.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrid_ss.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_ss.Location = new System.Drawing.Point(3, 23);
+            this.dgrid_ss.Name = "dgrid_ss";
+            this.dgrid_ss.RowHeadersWidth = 51;
+            this.dgrid_ss.RowTemplate.Height = 29;
+            this.dgrid_ss.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrid_ss.Size = new System.Drawing.Size(1388, 172);
+            this.dgrid_ss.TabIndex = 0;
             // 
             // dgrid_bestseller
             // 
@@ -73,151 +144,227 @@ namespace _3_GUI_PresentaionLayers
             this.dgrid_bestseller.RowHeadersWidth = 51;
             this.dgrid_bestseller.RowTemplate.Height = 29;
             this.dgrid_bestseller.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_bestseller.Size = new System.Drawing.Size(913, 266);
+            this.dgrid_bestseller.Size = new System.Drawing.Size(1388, 266);
             this.dgrid_bestseller.TabIndex = 0;
             // 
-            // cbo_loc
+            // groupBox1
             // 
-            this.cbo_loc.FormattingEnabled = true;
-            this.cbo_loc.Location = new System.Drawing.Point(456, 161);
-            this.cbo_loc.Name = "cbo_loc";
-            this.cbo_loc.Size = new System.Drawing.Size(151, 28);
-            this.cbo_loc.TabIndex = 1;
-            this.cbo_loc.SelectedIndexChanged += new System.EventHandler(this.cbo_loc_SelectedIndexChanged);
+            this.groupBox1.Controls.Add(this.grb_ctsp);
+            this.groupBox1.Controls.Add(this.dgrid_bestseller);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.groupBox1.Location = new System.Drawing.Point(0, 537);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1394, 292);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thống Kê Sản Phẩm Bán Chạy";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Maroon;
+            this.button1.Location = new System.Drawing.Point(207, 485);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(205, 50);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "So Sánh Với Tháng Trước";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_reload
+            // 
+            this.btn_reload.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_reload.Location = new System.Drawing.Point(207, 431);
+            this.btn_reload.Name = "btn_reload";
+            this.btn_reload.Size = new System.Drawing.Size(205, 50);
+            this.btn_reload.TabIndex = 41;
+            this.btn_reload.Text = "ReLoad";
+            this.btn_reload.UseVisualStyleBackColor = true;
+            this.btn_reload.Click += new System.EventHandler(this.btn_reload_Click);
+            // 
+            // dtp_end
+            // 
+            this.dtp_end.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_end.Location = new System.Drawing.Point(622, 439);
+            this.dtp_end.Name = "dtp_end";
+            this.dtp_end.Size = new System.Drawing.Size(205, 27);
+            this.dtp_end.TabIndex = 38;
+            this.dtp_end.ValueChanged += new System.EventHandler(this.dtp_end_ValueChanged);
+            // 
+            // dtp_start
+            // 
+            this.dtp_start.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_start.Location = new System.Drawing.Point(622, 386);
+            this.dtp_start.Name = "dtp_start";
+            this.dtp_start.Size = new System.Drawing.Size(205, 27);
+            this.dtp_start.TabIndex = 39;
+            this.dtp_start.ValueChanged += new System.EventHandler(this.dtp_start_ValueChanged);
+            // 
+            // btn_lockhoangtg
+            // 
+            this.btn_lockhoangtg.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_lockhoangtg.Location = new System.Drawing.Point(207, 375);
+            this.btn_lockhoangtg.Name = "btn_lockhoangtg";
+            this.btn_lockhoangtg.Size = new System.Drawing.Size(205, 50);
+            this.btn_lockhoangtg.TabIndex = 30;
+            this.btn_lockhoangtg.Text = "Lọc Theo Khoảng Thời Gian Và Xem Chi Tiết";
+            this.btn_lockhoangtg.UseVisualStyleBackColor = true;
+            this.btn_lockhoangtg.Click += new System.EventHandler(this.btn_lockhoangtg_Click);
+            // 
+            // lbl_end
+            // 
+            this.lbl_end.AutoSize = true;
+            this.lbl_end.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbl_end.Location = new System.Drawing.Point(425, 444);
+            this.lbl_end.Name = "lbl_end";
+            this.lbl_end.Size = new System.Drawing.Size(140, 20);
+            this.lbl_end.TabIndex = 32;
+            this.lbl_end.Text = "Thời Gian Kết Thúc :";
+            // 
+            // lbl_start
+            // 
+            this.lbl_start.AutoSize = true;
+            this.lbl_start.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbl_start.Location = new System.Drawing.Point(424, 393);
+            this.lbl_start.Name = "lbl_start";
+            this.lbl_start.Size = new System.Drawing.Size(136, 20);
+            this.lbl_start.TabIndex = 33;
+            this.lbl_start.Text = "Thời Gian Bắt Đầu :";
+            // 
+            // lbl_ss
+            // 
+            this.lbl_ss.AutoSize = true;
+            this.lbl_ss.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbl_ss.Location = new System.Drawing.Point(4, 500);
+            this.lbl_ss.Name = "lbl_ss";
+            this.lbl_ss.Size = new System.Drawing.Size(177, 20);
+            this.lbl_ss.TabIndex = 34;
+            this.lbl_ss.Text = "So Sánh Với Tháng Trước:";
+            // 
+            // lab_closedetail
+            // 
+            this.lab_closedetail.AutoSize = true;
+            this.lab_closedetail.ForeColor = System.Drawing.Color.LightCoral;
+            this.lab_closedetail.Location = new System.Drawing.Point(7, 446);
+            this.lab_closedetail.Name = "lab_closedetail";
+            this.lab_closedetail.Size = new System.Drawing.Size(141, 20);
+            this.lab_closedetail.TabIndex = 35;
+            this.lab_closedetail.Text = "Đóng Xem Chi Tiết :";
+            // 
+            // txt_lbllockhoang
+            // 
+            this.txt_lbllockhoang.AutoSize = true;
+            this.txt_lbllockhoang.ForeColor = System.Drawing.Color.LightCoral;
+            this.txt_lbllockhoang.Location = new System.Drawing.Point(10, 393);
+            this.txt_lbllockhoang.Name = "txt_lbllockhoang";
+            this.txt_lbllockhoang.Size = new System.Drawing.Size(198, 20);
+            this.txt_lbllockhoang.TabIndex = 36;
+            this.txt_lbllockhoang.Text = "Lọc Theo Khoảng Thời Gian :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(356, 164);
+            this.label1.ForeColor = System.Drawing.Color.LightCoral;
+            this.label1.Location = new System.Drawing.Point(7, 347);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Theo Tháng :";
+            this.label1.Size = new System.Drawing.Size(172, 20);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Lọc Theo Mốc Thời Gian:";
             // 
-            // cbo_nam
+            // dtp_loc
             // 
-            this.cbo_nam.FormattingEnabled = true;
-            this.cbo_nam.Location = new System.Drawing.Point(734, 161);
-            this.cbo_nam.Name = "cbo_nam";
-            this.cbo_nam.Size = new System.Drawing.Size(151, 28);
-            this.cbo_nam.TabIndex = 1;
-            this.cbo_nam.SelectedIndexChanged += new System.EventHandler(this.cbo_nam_SelectedIndexChanged);
+            this.dtp_loc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_loc.Location = new System.Drawing.Point(207, 342);
+            this.dtp_loc.Name = "dtp_loc";
+            this.dtp_loc.Size = new System.Drawing.Size(205, 27);
+            this.dtp_loc.TabIndex = 31;
+            this.dtp_loc.ValueChanged += new System.EventHandler(this.dtp_loc_ValueChanged);
             // 
-            // label2
+            // grb_ctsp
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(647, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Theo Năm:";
+            this.grb_ctsp.Controls.Add(this.dgrid_cthh);
+            this.grb_ctsp.ForeColor = System.Drawing.Color.LightCoral;
+            this.grb_ctsp.Location = new System.Drawing.Point(3, 4);
+            this.grb_ctsp.Name = "grb_ctsp";
+            this.grb_ctsp.Size = new System.Drawing.Size(1391, 285);
+            this.grb_ctsp.TabIndex = 1;
+            this.grb_ctsp.TabStop = false;
+            this.grb_ctsp.Text = "Thống Kê Chi Tiết Sản Phẩm Bán Chạy";
             // 
-            // panel1
+            // dgrid_cthh
             // 
-            this.panel1.BackColor = System.Drawing.Color.Sienna;
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(919, 138);
-            this.panel1.TabIndex = 8;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.ErrorImage = null;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(624, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(291, 124);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(311, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(291, 124);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(291, 124);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label3.Location = new System.Drawing.Point(48, 159);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 20);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Theo Ngày:";
-            // 
-            // cbo_ngay
-            // 
-            this.cbo_ngay.FormattingEnabled = true;
-            this.cbo_ngay.Location = new System.Drawing.Point(149, 156);
-            this.cbo_ngay.Name = "cbo_ngay";
-            this.cbo_ngay.Size = new System.Drawing.Size(151, 28);
-            this.cbo_ngay.TabIndex = 11;
-            this.cbo_ngay.SelectedValueChanged += new System.EventHandler(this.cbo_ngay_SelectedValueChanged);
+            this.dgrid_cthh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_cthh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrid_cthh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_cthh.Location = new System.Drawing.Point(3, 23);
+            this.dgrid_cthh.Name = "dgrid_cthh";
+            this.dgrid_cthh.RowHeadersWidth = 51;
+            this.dgrid_cthh.RowTemplate.Height = 29;
+            this.dgrid_cthh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrid_cthh.Size = new System.Drawing.Size(1385, 259);
+            this.dgrid_cthh.TabIndex = 0;
             // 
             // FormBestseller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.ClientSize = new System.Drawing.Size(919, 487);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbo_ngay);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(1394, 829);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_reload);
+            this.Controls.Add(this.dtp_end);
+            this.Controls.Add(this.dtp_start);
+            this.Controls.Add(this.btn_lockhoangtg);
+            this.Controls.Add(this.lbl_end);
+            this.Controls.Add(this.lbl_start);
+            this.Controls.Add(this.lbl_ss);
+            this.Controls.Add(this.lab_closedetail);
+            this.Controls.Add(this.txt_lbllockhoang);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbo_nam);
-            this.Controls.Add(this.cbo_loc);
+            this.Controls.Add(this.dtp_loc);
+            this.Controls.Add(this.grb_hide);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.Color.AntiqueWhite;
             this.Name = "FormBestseller";
             this.Text = "Form Thong Ke San Pham Ban Chay";
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgrid_bestseller)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.grb_hide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_ss)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_bestseller)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.grb_ctsp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_cthh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dgrid_bestseller;
-        private System.Windows.Forms.ComboBox cbo_loc;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbo_nam;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbo_ngay;
+        private System.Windows.Forms.GroupBox grb_hide;
+        private System.Windows.Forms.DataGridView dgrid_ss;
+        private System.Windows.Forms.DataGridView dgrid_bestseller;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_reload;
+        private System.Windows.Forms.DateTimePicker dtp_end;
+        private System.Windows.Forms.DateTimePicker dtp_start;
+        private System.Windows.Forms.Button btn_lockhoangtg;
+        private System.Windows.Forms.Label lbl_end;
+        private System.Windows.Forms.Label lbl_start;
+        private System.Windows.Forms.Label lbl_ss;
+        private System.Windows.Forms.Label lab_closedetail;
+        private System.Windows.Forms.Label txt_lbllockhoang;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtp_loc;
+        private System.Windows.Forms.GroupBox grb_ctsp;
+        private System.Windows.Forms.DataGridView dgrid_cthh;
     }
 }

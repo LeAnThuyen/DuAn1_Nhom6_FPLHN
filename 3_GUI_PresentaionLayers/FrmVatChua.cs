@@ -12,10 +12,10 @@ using _2_BUS_BussinessLayer.Services;
 
 namespace _3_GUI_PresentaionLayers
 {
-    public partial class VatChua : Form
+    public partial class FrmVatChua : Form
     {
         private IQlyVatChua _iQlyVatChua;
-        public VatChua()
+        public FrmVatChua()
         {
             InitializeComponent();
             _iQlyVatChua = new QLyVatChuaServices();

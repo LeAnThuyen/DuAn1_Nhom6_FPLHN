@@ -45,7 +45,7 @@ namespace _2_BUS_BussinessLayer.Services
 
         public bool removeNV(NhanVien NhanVien)
         {
-            _lstNhanViens.Remove(NhanVien);
+           // _lstNhanViens.Remove(NhanVien);
             _iServicesNhanVien.deletenhanvien(NhanVien);
             return true;
         }

@@ -154,6 +154,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(530, 409);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_Timkiem);
@@ -165,6 +166,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmNSX";
             this.Text = "FrmNSX";

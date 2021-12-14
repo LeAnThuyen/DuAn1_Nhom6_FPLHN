@@ -61,34 +61,7 @@ namespace _3_GUI_PresentaionLayers
             this.anh = anh;
             this.hsd = hsd;
             this.model = model;
-            t1.Visible = false;
-            t2.Visible = false;
-            t3.Visible = false;
-            t4.Visible = false;
-            t5.Visible = false;
-            t6.Visible = false;
-            lb1.Visible = false;
-            lb2.Visible = false;
-            lb3.Visible = false;
-            lb4.Visible = false;
-            lb4.Visible = false;
-            lb5.Visible = false;
-            lb6.Visible = false;
-            p1.Visible = false;
-            p2.Visible = false;
-            p3.Visible = false;
-            p4.Visible = false;
-            p5.Visible = false;
-            p6.Visible = false;
-            chk0.Visible = false;
-            chk1.Visible = false;
-            chk2.Visible = false;
-            chk3.Visible = false;
-            chk4.Visible = false;
-            chk5.Visible = false;
-            chk6.Visible = false;
-          
-         
+           
         }
         public void Alert(string mess)
         {
@@ -153,188 +126,7 @@ namespace _3_GUI_PresentaionLayers
 
 
 
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-            t1.Visible = true;
-            t2.Visible = true;
-            t3.Visible = true;
-            t4.Visible = true;
-            t5.Visible = true;
-            t6.Visible = true;
-            lb1.Visible = true;
-            lb2.Visible = true;
-            lb3.Visible = true;
-            lb4.Visible = true;
-            lb4.Visible = true;
-            lb5.Visible = true;
-            lb6.Visible = true;
-            p1.Visible = true;
-            p2.Visible = true;
-            p3.Visible = true;
-            p4.Visible = true;
-            p5.Visible = true;
-            p6.Visible = true;
-            chk0.Visible = true;
-            chk1.Visible = true;
-            chk2.Visible = true;
-            chk3.Visible = true;
-            chk4.Visible = true;
-            chk5.Visible = true;
-            chk6.Visible = true;
-
-
-            StringBuilder builder = new StringBuilder();
-                t1.Text= Convert.ToString(builder.Append(RandomString(4, true)));
-                
-                t2.Text = Convert.ToString(builder.Append(RandomString(4, true)));
-          
-                t3.Text = Convert.ToString(builder.Append(RandomString(4, true)));
-             
-                t4.Text = Convert.ToString(builder.Append(RandomString(4, true)));
-           
-                t5.Text = Convert.ToString(builder.Append(RandomString(4, true)));
-            
-                t6.Text = Convert.ToString(builder.Append(RandomString(4, true)));
-            //1
-            QRCodeGenerator qRCode0 = new QRCodeGenerator();
-            QRCodeData qRCodeData0 = qRCode0.CreateQrCode(t1.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR0 = new QRCode(qRCodeData0);
-            p1.Image = qR0.GetGraphic(5);
-
-            //2
-            QRCodeGenerator qRCode2 = new QRCodeGenerator();
-            QRCodeData qRCodeData2 = qRCode2.CreateQrCode(t2.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR2 = new QRCode(qRCodeData2);
-            p2.Image = qR2.GetGraphic(5);
-            //3
-            QRCodeGenerator qRCode3 = new QRCodeGenerator();
-            QRCodeData qRCodeData3 = qRCode3.CreateQrCode(t3.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR3 = new QRCode(qRCodeData3);
-            p3.Image = qR3.GetGraphic(5);
-            //4
-            QRCodeGenerator qRCode4 = new QRCodeGenerator();
-            QRCodeData qRCodeData4 = qRCode4.CreateQrCode(t4.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR4 = new QRCode(qRCodeData4);
-            p4.Image = qR4.GetGraphic(5);
-            //5
-            QRCodeGenerator qRCode5 = new QRCodeGenerator();
-            QRCodeData qRCodeData5 = qRCode5.CreateQrCode(t5.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR5 = new QRCode(qRCodeData5);
-            p5.Image = qR5.GetGraphic(5);
-            //6
-            QRCodeGenerator qRCode6 = new QRCodeGenerator();
-            QRCodeData qRCodeData6 = qRCode6.CreateQrCode(t6.Text, QRCodeGenerator.ECCLevel.L);
-            QRCode qR6= new QRCode(qRCodeData6);
-            p6.Image = qR6.GetGraphic(5);
-
-        }
-        //checkedchanged
-        #region
-        private void chk1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk1.Checked)
-            {
-                sender = Convert.ToString(t1.Text);
-                chk0.Checked = false;
-                chk2.Checked = false;
-                chk3.Checked = false;
-                chk4.Checked = false;
-                chk5.Checked = false;
-                chk6.Checked = false;
-
-            }
-        }
-
-        private void chk3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk3.Checked)
-            {
-                sender = Convert.ToString(t3.Text);
-                chk1.Checked = false;
-                chk2.Checked = false;
-                chk0.Checked = false;
-                chk4.Checked = false;
-                chk5.Checked = false;
-                chk6.Checked = false;
-
-            }
-        }
-
-        private void chk5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk5.Checked)
-            {
-                sender =Convert.ToString( t5.Text);
-                chk1.Checked = false;
-                chk2.Checked = false;
-                chk3.Checked = false;
-                chk4.Checked = false;
-                chk0.Checked = false;
-                chk6.Checked = false;
-
-            }
-        }
-
-        private void chk2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk2.Checked)
-            {
-                sender = Convert.ToString(t2.Text);
-                chk1.Checked = false;
-                chk0.Checked = false;
-                chk3.Checked = false;
-                chk4.Checked = false;
-                chk5.Checked = false;
-                chk6.Checked = false;
-
-            }
-        }
-
-        private void chk4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk4.Checked)
-            {
-                sender = Convert.ToString(t4.Text);
-                chk1.Checked = false;
-                chk2.Checked = false;
-                chk3.Checked = false;
-                chk0.Checked = false;
-                chk5.Checked = false;
-                chk6.Checked = false;
-
-            }
-        }
-
-        private void chk6_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk6.Checked)
-            {
-                sender = Convert.ToString(t6.Text);//System.Windows.Forms.PictureBox, SizeMode: Zoom
-                chk1.Checked = false;
-                chk2.Checked = false;
-                chk3.Checked = false;
-                chk4.Checked = false;
-                chk5.Checked = false;
-                chk0.Checked = false;
-
-            }
-        }
-        private void chk0_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk0.Checked)
-            {
-                sender = Convert.ToString(txt_QRcode.Text);
-                chk1.Checked = false;
-                chk2.Checked = false;
-                chk3.Checked = false;
-                chk4.Checked = false;
-                chk5.Checked = false;
-                chk6.Checked = false;
-
-
-            }
-        }
-        #endregion
+       
 
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -343,16 +135,16 @@ namespace _3_GUI_PresentaionLayers
 
             if (dialogResult == DialogResult.Yes)
             {
-                Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(id, idcthh, mahh, tenhh, nsx, danhmuc, trangthai,txt_QRcode.Text, soluong, gianhap, giaban, Convert.ToDateTime(ngaynhap), tenchatlieu, tenvatchua, nhomhuong, tennquocgia, sodungtich, anh, Convert.ToDateTime(hsd), model);
-                frm_EditHangHoa.Show();
-               // this.Close();
+                Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(id, idcthh, mahh, tenhh, nsx, danhmuc, trangthai,Convert.ToString(txt_QRcode.Text), soluong, gianhap, giaban, Convert.ToDateTime(ngaynhap), tenchatlieu, tenvatchua, nhomhuong, tennquocgia, sodungtich, anh, Convert.ToDateTime(hsd), model);
+
+                this.Hide();
                 for (int i = 0; i < 2; i++)
                 {
                    
                     this.Alert("Thêm Mã Vạch Thành Công");
 
                 }
-                return;
+                
             }
             if (dialogResult == DialogResult.No)
             {

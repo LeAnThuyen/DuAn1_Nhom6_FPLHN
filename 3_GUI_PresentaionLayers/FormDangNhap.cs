@@ -51,12 +51,12 @@ namespace _3_GUI_PresentaionLayers
             if (chk_remmember.Checked == true)
             {
                 Properties.Settings.Default.UserName = txt_username.Text;
-                Properties.Settings.Default.UserName = txt_password.Text;
+                Properties.Settings.Default.Password = txt_password.Text;
                 Properties.Settings.Default.Save();
 
 
             }
-            if (chk_remmember.Checked == false)
+            else 
             {
                 Properties.Settings.Default.UserName = "";
                 Properties.Settings.Default.UserName = "";
@@ -67,7 +67,7 @@ namespace _3_GUI_PresentaionLayers
             for (int i = 0; i < iserlogin.getlstnhanvienfromDB().Count(); i++)
             {
 
-                if ((txt_username.Text == iserlogin.getlstnhanvienfromDB()[i].Email && iserlogin.getlstnhanvienfromDB()[i].PassWord == iserlogin.encryption(txt_password.Text)))
+                if ((txt_username.Text == iserlogin.getlstnhanvienfromDB()[i].Email && iserlogin.getlstnhanvienfromDB()[i].PassWord == txt_password.Text))
                 {
                     if (iserlogin.getlstnhanvienfromDB()[i].Idrole == 1 && iserlogin.getlstnhanvienfromDB()[i].Flag == false)
                     {
@@ -93,7 +93,7 @@ namespace _3_GUI_PresentaionLayers
                     FrmLogin.backsender.txt1.Text=  Convert.ToString(iserlogin.getlstnhanvienfromDB()[i].TenNhanVien);
                     if (iserlogin.getlstnhanvienfromDB()[i].Idrole == 1)
                     {
-                        FrmLogin.backsender.btnsp.Visible = false;
+                        //FrmLogin.backsender.btnsp.Visible = false;
                         //muốn ẩn cái gì thì ẩn
                     }
             
@@ -138,7 +138,11 @@ namespace _3_GUI_PresentaionLayers
                     if (iserlogin.getlstnhanvienfromDB()[i].Idrole == 0)
                     {
                         FrmLogin.backsender.btnsp.Visible = false;
-                        //muốn ẩn cái gì thì ẩn
+                        FrmLogin.backsender.btntk.Visible = false;
+                        FrmLogin.backsender.btnqlnv.Visible = false;
+                        FrmLogin.backsender.btnkh.Visible = false;
+
+                      
                     }
 
                     frmLogin.Show();
@@ -159,14 +163,14 @@ namespace _3_GUI_PresentaionLayers
 
         private void chk_hienpass_CheckedChanged(object sender, EventArgs e)
         {
-            //if (chk_hienpass.Checked == true)
-            //{
-            //    txt_password.PasswordChar ="\0";
-            //}
-            //else
-            //{
-            //    txt_password.PasswordChar = "*";
-            //}
+            if (chk_hienpass.Checked == true)
+            {
+                txt_password.PasswordChar = '\0';
+            }
+            else
+            {
+                txt_password.PasswordChar = '*';
+            }
         }
     }
 }

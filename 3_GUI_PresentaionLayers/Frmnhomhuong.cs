@@ -13,11 +13,11 @@ using _2_BUS_BussinessLayer.Services;
 
 namespace _3_GUI_PresentaionLayers
 {
-    public partial class NhomHuong : Form
+    public partial class Frmnhomhuong : Form
     {
         private IQlyNhomHuong _iQlyNhomHuong;
-        private NhomHuong NhomHuongg;
-        public NhomHuong()
+        private Frmnhomhuong NhomHuongg;
+        public Frmnhomhuong()
         {
             InitializeComponent();
             _iQlyNhomHuong = new QLyNhomHuongServices();

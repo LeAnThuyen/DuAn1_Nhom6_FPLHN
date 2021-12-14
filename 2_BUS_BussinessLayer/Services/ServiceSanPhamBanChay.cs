@@ -48,20 +48,21 @@ namespace _2_BUS_BussinessLayer.Services
                              join c in _hdctser.getlsthdctfromDB() on b.IdthongTinHangHoa equals c.IdthongTinHangHoa 
                              join d in _hdbser.getlsthdbfromDB() on c.IdhoaDon equals d.IdhoaDon
                              
-                             select new {a.MaHangHoa, a.TenHangHoa, c.SoLuong,d.NgayLap }).ToList();
+                             select new {a.MaHangHoa, a.TenHangHoa, c.SoLuong,d.NgayLap}).ToList();
 
             foreach(var x in lstcommit)
             {
-                tong = Convert.ToInt32  (_hdctser.getlsthdctfromDB().Where(c => c.IdthongTinHangHoa == cthh.IdthongTinHangHoa).Select(c => c.SoLuong).Sum());
-                day =x.NgayLap;
-                nam = x.NgayLap;
-               mon = day.Value.Month.ToString();
-                year = nam.Value.Year.ToString();
-                _viewbestseller = new ViewThongKeSanPhamBanChay(masp, x.TenHangHoa, tong,mon,year,x.NgayLap);
-                _lstspbanchay.Add(_viewbestseller);
+                //tong = Convert.ToInt32  (_hdctser.getlsthdctfromDB().Where(c => c.IdthongTinHangHoa == cthh.IdthongTinHangHoa).Select(c => c.SoLuong).Sum());
+                //nam = x.NgayLap;
+                //_viewbestseller = new ViewThongKeSanPhamBanChay(masp, x.TenHangHoa, tong,x.NgayLap);
+                //_lstspbanchay.Add(_viewbestseller);
             }
-            var _lstfinnal = lstcommit.OrderBy(c => c.SoLuong).GroupBy(c =>c.MaHangHoa).
-                Select(g => new ViewThongKeSanPhamBanChay(g.Key, g.Where(c => c.MaHangHoa == g.Key).Select(c => c.TenHangHoa).FirstOrDefault(), g.Sum(c => c.SoLuong),mon,year,g.Where(c=>c.MaHangHoa==g.Key).Select(c=>c.NgayLap).FirstOrDefault())).ToList();
+            var _lstfinnal = lstcommit.OrderByDescending(c => c.SoLuong).GroupBy(c => c.NgayLap.Value.ToString("MM-dd-yyyy")).
+                Select(g => new ViewThongKeSanPhamBanChay(g.Key,
+                g.Where(c => c.NgayLap.Value.ToString("MM-dd-yyyy") == g.Key).Select(c => c.MaHangHoa).FirstOrDefault(),
+                g.Where(c => c.NgayLap.Value.ToString("MM-dd-yyyy") == g.Key).Select(c => c.TenHangHoa).FirstOrDefault(),
+                g.Sum(c => c.SoLuong))
+                ).ToList();
             return _lstfinnal;
         }
     }

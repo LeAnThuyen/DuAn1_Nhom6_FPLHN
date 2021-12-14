@@ -53,7 +53,6 @@ namespace _3_GUI_PresentaionLayers
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbo_mahh = new System.Windows.Forms.ComboBox();
             this.cbo_nsx = new System.Windows.Forms.ComboBox();
             this.cbo_danhmuc = new System.Windows.Forms.ComboBox();
             this.dtp_ngaynhap = new System.Windows.Forms.DateTimePicker();
@@ -83,6 +82,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_updatehh = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pic_mavach = new System.Windows.Forms.PictureBox();
+            this.cbo_mahh = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_hanghoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_danhmuc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_nsx)).BeginInit();
@@ -164,9 +164,9 @@ namespace _3_GUI_PresentaionLayers
             this.label12.Location = new System.Drawing.Point(889, 603);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(100, 20);
+            this.label12.Size = new System.Drawing.Size(145, 20);
             this.label12.TabIndex = 61;
-            this.label12.Text = "Nhóm Hương";
+            this.label12.Text = "Mùi Hương Chủ Đạo";
             // 
             // tmrTime
             // 
@@ -191,9 +191,9 @@ namespace _3_GUI_PresentaionLayers
             this.label10.Location = new System.Drawing.Point(889, 520);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 20);
+            this.label10.Size = new System.Drawing.Size(138, 20);
             this.label10.TabIndex = 57;
-            this.label10.Text = "Tên Chất Liệu";
+            this.label10.Text = "Tên Chất Liệu Chính";
             // 
             // label9
             // 
@@ -330,14 +330,6 @@ namespace _3_GUI_PresentaionLayers
             this.label1.TabIndex = 39;
             this.label1.Text = "Mã Hàng Hóa";
             // 
-            // cbo_mahh
-            // 
-            this.cbo_mahh.FormattingEnabled = true;
-            this.cbo_mahh.Location = new System.Drawing.Point(241, 391);
-            this.cbo_mahh.Name = "cbo_mahh";
-            this.cbo_mahh.Size = new System.Drawing.Size(151, 28);
-            this.cbo_mahh.TabIndex = 72;
-            // 
             // cbo_nsx
             // 
             this.cbo_nsx.FormattingEnabled = true;
@@ -411,6 +403,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_hanghoa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_hanghoa.TabIndex = 78;
             this.pic_hanghoa.TabStop = false;
+            this.pic_hanghoa.Click += new System.EventHandler(this.pic_hanghoa_Click);
             this.pic_hanghoa.DoubleClick += new System.EventHandler(this.pic_hanghoa_DoubleClick);
             // 
             // pic_danhmuc
@@ -422,6 +415,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_danhmuc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_danhmuc.TabIndex = 78;
             this.pic_danhmuc.TabStop = false;
+            this.pic_danhmuc.DoubleClick += new System.EventHandler(this.pic_danhmuc_DoubleClick);
             // 
             // pic_nsx
             // 
@@ -432,6 +426,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_nsx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_nsx.TabIndex = 78;
             this.pic_nsx.TabStop = false;
+            this.pic_nsx.DoubleClick += new System.EventHandler(this.pic_nsx_DoubleClick);
             // 
             // pic_cl
             // 
@@ -442,6 +437,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_cl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_cl.TabIndex = 78;
             this.pic_cl.TabStop = false;
+            this.pic_cl.DoubleClick += new System.EventHandler(this.pic_cl_DoubleClick);
             // 
             // pic_vt
             // 
@@ -452,6 +448,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_vt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_vt.TabIndex = 78;
             this.pic_vt.TabStop = false;
+            this.pic_vt.DoubleClick += new System.EventHandler(this.pic_vt_DoubleClick);
             // 
             // pic_nhomhuong
             // 
@@ -462,6 +459,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_nhomhuong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_nhomhuong.TabIndex = 78;
             this.pic_nhomhuong.TabStop = false;
+            this.pic_nhomhuong.DoubleClick += new System.EventHandler(this.pic_nhomhuong_DoubleClick);
             // 
             // pic_xuatxu
             // 
@@ -472,6 +470,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_xuatxu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_xuatxu.TabIndex = 78;
             this.pic_xuatxu.TabStop = false;
+            this.pic_xuatxu.DoubleClick += new System.EventHandler(this.pic_xuatxu_DoubleClick);
             // 
             // pic_dungtich
             // 
@@ -482,6 +481,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_dungtich.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_dungtich.TabIndex = 78;
             this.pic_dungtich.TabStop = false;
+            this.pic_dungtich.DoubleClick += new System.EventHandler(this.pic_dungtich_DoubleClick);
             // 
             // pic_anhadd
             // 
@@ -492,6 +492,7 @@ namespace _3_GUI_PresentaionLayers
             this.pic_anhadd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_anhadd.TabIndex = 78;
             this.pic_anhadd.TabStop = false;
+            this.pic_anhadd.DoubleClick += new System.EventHandler(this.pic_anhadd_DoubleClick);
             // 
             // pic_anhhanghoa
             // 
@@ -608,7 +609,16 @@ namespace _3_GUI_PresentaionLayers
             this.pic_mavach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_mavach.TabIndex = 86;
             this.pic_mavach.TabStop = false;
+            this.pic_mavach.Click += new System.EventHandler(this.pic_mavach_Click);
             this.pic_mavach.DoubleClick += new System.EventHandler(this.pic_mavach_DoubleClick);
+            // 
+            // cbo_mahh
+            // 
+            this.cbo_mahh.Location = new System.Drawing.Point(241, 392);
+            this.cbo_mahh.Name = "cbo_mahh";
+            this.cbo_mahh.ReadOnly = true;
+            this.cbo_mahh.Size = new System.Drawing.Size(151, 27);
+            this.cbo_mahh.TabIndex = 87;
             // 
             // FrmBackView
             // 
@@ -616,6 +626,7 @@ namespace _3_GUI_PresentaionLayers
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1424, 875);
+            this.Controls.Add(this.cbo_mahh);
             this.Controls.Add(this.pic_mavach);
             this.Controls.Add(this.cbo_anh);
             this.Controls.Add(this.label16);
@@ -645,7 +656,6 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.cbo_tencl);
             this.Controls.Add(this.cbo_danhmuc);
             this.Controls.Add(this.cbo_nsx);
-            this.Controls.Add(this.cbo_mahh);
             this.Controls.Add(this.chk_hethang);
             this.Controls.Add(this.chk_conhang);
             this.Controls.Add(this.label15);
@@ -711,7 +721,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbo_mahh;
         private System.Windows.Forms.ComboBox cbo_nsx;
         private System.Windows.Forms.ComboBox cbo_danhmuc;
         private System.Windows.Forms.DateTimePicker dtp_ngaynhap;
@@ -741,5 +750,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.PictureBox pic_updatehh;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pic_mavach;
+        private System.Windows.Forms.TextBox cbo_mahh;
     }
 }

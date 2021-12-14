@@ -41,6 +41,7 @@ namespace _3_GUI_PresentaionLayers
         private DateTime? hsd;
         private string model = "";
         #endregion
+       
         private QlyHangHoaServices _qlhhser;
         private HangHoaServices _hhser;
         private ChiTietHangHoaServices _cthhser;
@@ -150,9 +151,26 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("mã hàng hóa không được bỏ trống", "Thông báo");
                 return false;
             }
+            if (Regex.IsMatch(cbo_mahh.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            {
+
+                MessageBox.Show("Mã Hàng Hóa không được chứa ký tự đặc biệt", "ERR");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(cbo_mahh.Text))
+            {
+                MessageBox.Show("mã hàng hóa không được có khoảng trắng", "Thông báo");
+                return false;
+            }
             if (string.IsNullOrEmpty(cbo_tenhh.Text))
             {
                 MessageBox.Show("Tên hàng hóa không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (Regex.IsMatch(cbo_tenhh.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            {
+
+                MessageBox.Show("Tên hàng hóa không được chứa ký tự đặc biệt", "ERR");
                 return false;
             }
             if (string.IsNullOrEmpty(cbo_tencl.Text))
@@ -165,10 +183,42 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("Số lượng không được bỏ trống", "Thông báo");
                 return false;
             }
+            if (Regex.IsMatch(txt_soluong.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            {
+
+                MessageBox.Show("Số lượng không được chứa ký tự đặc biệt", "ERR");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txt_soluong.Text))
+            {
+                MessageBox.Show("Số lượng không được có khoảng trắng", "Thông báo");
+                return false;
+            }
+            if (Convert.ToInt32( txt_soluong.Text)<=0 && Convert.ToInt32(txt_soluong.Text) > 2000)
+            {
+                MessageBox.Show("Số lượng không được âm hoặc nhỏ hơn không và phải nhỏ hơn 2000", "Thông báo");
+                return false;
+            }
 
             if (string.IsNullOrEmpty(txt_gianhap.Text))
             {
                 MessageBox.Show("giá nhập không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (Regex.IsMatch(txt_gianhap.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            {
+
+                MessageBox.Show("giá nhập không được chứa ký tự đặc biệt", "ERR");
+                return false;
+            }
+            if(Convert.ToInt32( txt_gianhap.Text)> Convert.ToInt32(txt_giaban.Text))
+            {
+                MessageBox.Show("giá nhập không được lớn hơn giá bán", "ERR");
+                return false;
+            }
+            if (Convert.ToInt32(txt_gianhap.Text) <=0 && Convert.ToInt32(txt_gianhap.Text)<50000000)
+            {
+                MessageBox.Show("giá nhập phải lơn hơn 0 và nhỏ hơn 50000000", "ERR");
                 return false;
             }
             if (string.IsNullOrEmpty(txt_giaban.Text))
@@ -176,11 +226,15 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("giá bán không được bỏ trống", "Thông báo");
                 return false;
             }
-
-            //
-            if (cbo_mahh.Text.Length <= 3)
+            if (Convert.ToInt32(txt_giaban.Text) <= 0 && Convert.ToInt32(txt_giaban.Text) < 100000000)
             {
-                MessageBox.Show("Mã nước hoa phải trên 3 ký tự", "ERR");
+                MessageBox.Show("giá bán phải lơn hơn 0 và nhỏ hơn 100000000", "ERR");
+                return false;
+            }
+            //
+            if (cbo_mahh.Text.Length <= 3 && cbo_mahh.Text.Length >= 10)
+            {
+                MessageBox.Show("Mã nước hoa phải trên 3 ký tự và nhỏ hơn 10 kí tự", "ERR");
                 return false;
             }
             if (Regex.IsMatch(cbo_mahh.Text, @"[0-9]+") == false)
@@ -189,95 +243,16 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("Mã nước hoa Bắt buộc phải chứa số", "ERR");
                 return false;
             }
-            for (int i = 0; i < _qlhhser.GetsList().Count; i++)
+            if (Regex.IsMatch(txt_giaban.Text, @"^[a-zA-Z0-9 ]*$") == false)
             {
-                if (_qlhhser.GetsList()[i].HangHoa.MaHangHoa == cbo_mahh.Text)
-                {
-                    MessageBox.Show("Mã hàng hóa Đã tồn Tại yêu cầu nhập mã sinh viên khác", "ERR");
-                    return false;
-                }
+
+                MessageBox.Show("giá bán không được chứa ký tự đặc biệt", "ERR");
+                return false;
             }
-            for (int i = 0; i < _qlhhser.GetsList().Count; i++)
-            {
-                if (_qlhhser.GetsList()[i].ChiTietHangHoa.Mavach == txt_mavach.Text)
-                {
-                    MessageBox.Show("Mã hàng Vạch Đã tồn Tại yêu cầu nhập mã sinh viên khác", "ERR");
-                    return false;
-                }
-            }
+
             //check trùng
             //danh mục
-            for (int i = 0; i < _dmser.getlstdanhmucfromDB().Count; i++)
-            {
-                if (_dmser.getlstdanhmucfromDB()[i].TenDanhMuc != cbo_danhmuc.Text)
-                {
-                    MessageBox.Show("Tên Danh Mục Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            // nhà sản xuất
-            for (int i = 0; i < _nsxser.getlstnxsfromDB().Count; i++)
-            {
-                if (_nsxser.getlstnxsfromDB()[i].TenNhaSanXuat != cbo_nsx.Text)
-                {
-                    MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            //chất kiệu
-            for (int i = 0; i < _clser.getlstchatlieufromDB().Count; i++)
-            {
-                if (_clser.getlstchatlieufromDB()[i].TenChatLieu != cbo_tencl.Text)
-                {
-                    MessageBox.Show("Tên Chất Liệu Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            //ảnh
-            for (int i = 0; i < _imgser.getlstanhfromDB().Count; i++)
-            {
-                if (_imgser.getlstanhfromDB()[i].DuongDan != cbo_anh.Text)
-                {
-                    MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            //vật chứa
-            for (int i = 0; i < _vtser.getlstvatchuafromDB().Count; i++)
-            {
-                if (_vtser.getlstvatchuafromDB()[i].TenVatChua != cbo_tenvatchua.Text)
-                {
-                    MessageBox.Show("Tên Vật Chứa Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            // nhóm hương
-            for (int i = 0; i < _nhser.getlstnhomhuongfromDB().Count; i++)
-            {
-                if (_nhser.getlstnhomhuongfromDB()[i].TenNhomHuong != cbo_tennhomhuong.Text)
-                {
-                    MessageBox.Show("Tên Nhóm Hương Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            //dung tích
-            for (int i = 0; i < _dtser.getlstdungtichfromDB().Count; i++)
-            {
-                if (_dtser.getlstdungtichfromDB()[i].SoDungTich !=Convert.ToDouble( cbo_soduntich.Text))
-                {
-                    MessageBox.Show(" Số Dung Tích Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
-            // quốc gia
-            for (int i = 0; i < _xxser.getlstxuatxufromDB().Count; i++)
-            {
-                if (_xxser.getlstxuatxufromDB()[i].TenQuocGia != cbo_tenquocgia.Text)
-                {
-                    MessageBox.Show("Tên Quốc Gia Không Hợp Lệ", "ERR");
-                    return false;
-                }
-            }
+
 
 
 
@@ -408,7 +383,12 @@ namespace _3_GUI_PresentaionLayers
                 MessageBox.Show("số dung tích không được chứa chữ cái", "ERR");
                 return false;
             }
+            if (Regex.IsMatch(cbo_soduntich.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            {
 
+                MessageBox.Show("số dung tích không được chứa ký tự đặc biệt", "ERR");
+                return false;
+            }
 
 
 
@@ -416,7 +396,7 @@ namespace _3_GUI_PresentaionLayers
             return true;
         }
 
-
+        
 
 
         private void FrmBackView_Load(object sender, EventArgs e)
@@ -444,13 +424,9 @@ namespace _3_GUI_PresentaionLayers
         }
         void loadmahh()
         {
-            foreach (var x in _hhser.getlsthanghoafromDB())
-            {
-                cbo_mahh.Items.Add(x.MaHangHoa);
-            }
-            cbo_mahh.SelectedIndex = 0;
+         
         }
-        void loadtenhh()
+        public void loadtenhh()
         {
             foreach (var x in _hhser.getlsthanghoafromDB())
             {
@@ -458,7 +434,7 @@ namespace _3_GUI_PresentaionLayers
             }
             
         }
-        void loadanhmuc()
+       public void loadanhmuc()
         {
             foreach (var x in _dmser.getlstdanhmucfromDB())
             {
@@ -466,7 +442,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_danhmuc.SelectedIndex = 0;
         }
-        void loadnsx()
+        public void loadnsx()
         {
             foreach (var x in _nsxser.getlstnxsfromDB())
             {
@@ -474,7 +450,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_nsx.SelectedIndex = 0;
         }
-        void loadchatlieu()
+        public void loadchatlieu()
         {
             foreach (var x in _clser.getlstchatlieufromDB())
             {
@@ -482,7 +458,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_tencl.SelectedIndex = 0;
         }
-        void loadvatchua()
+        public void loadvatchua()
         {
             foreach (var x in _vtser.getlstvatchuafromDB())
             {
@@ -490,7 +466,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_tenvatchua.SelectedIndex = 0;
         }
-        void loadnhomhuong()
+        public void loadnhomhuong()
         {
             foreach (var x in _nhser.getlstnhomhuongfromDB())
             {
@@ -498,7 +474,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_tennhomhuong.SelectedIndex = 0;
         }
-        void loadquocgia()
+        public void loadquocgia()
         {
             foreach (var x in _xxser.getlstxuatxufromDB())
             {
@@ -506,7 +482,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_tenquocgia.SelectedIndex = 0;
         }
-        void loadduntich()
+        public void loadduntich()
         {
             foreach (var x in _dtser.getlstdungtichfromDB())
             {
@@ -514,7 +490,7 @@ namespace _3_GUI_PresentaionLayers
             }
             cbo_soduntich.SelectedIndex = 0;
         }
-        void loaddpath()
+        public void loaddpath()
         {
             foreach (var x in _imgser.getlstanhfromDB())
             {
@@ -579,102 +555,277 @@ namespace _3_GUI_PresentaionLayers
             Image img1 = Image.FromFile(cbo_anh.Text);
             pic_anhhanghoa.Image = img1;
         }
-
+        void reset()
+        {
+            cbo_mahh.Text = Convert.ToString("HHPS" + Convert.ToInt32(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1));
+            cbo_tenhh.Text = "";
+            txt_mavach.Text = "";
+            txt_soluong.Text = "";
+            txt_giaban.Text = "";
+            txt_gianhap.Text = "";
+            txt_model.Text = "";
+        }
         private void btn_them_Click(object sender, EventArgs e)
         {
 
-            DialogResult dialogResult = MessageBox.Show("bạn có muốn thêm hay không", "Thông Báo", MessageBoxButtons.YesNo);
-
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                check();
-                _qlhhser.AddSP(new HangHoa()
+                DialogResult dialogResult = MessageBox.Show("bạn có muốn thêm hay không", "Thông Báo", MessageBoxButtons.YesNo);
+
+               if (dialogResult == DialogResult.Yes)
                 {
-                    IdhangHoa = _hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,
-                    TenHangHoa = cbo_tenhh.Text,
-                    MaHangHoa = cbo_mahh.Text,
-                    TrangThai = Convert.ToInt32(chk_conhang.Checked),
-                    IddanhMuc = _dmser.getlstdanhmucfromDB().Where(c => c.TenDanhMuc == cbo_danhmuc.Text).Select(c => c.IddanhMuc).FirstOrDefault(),
-                    IdnhaSanXuat = _nsxser.getlstnxsfromDB().Where(c => c.TenNhaSanXuat == cbo_nsx.Text).Select(c => c.IdnhaSanXuat).FirstOrDefault()
-                });
+                   
+
+                    if (_cthhser.getlstchitietthanghoafromDB().Any(c => c.Mavach == txt_mavach.Text) == true)
+                    {
+                        MessageBox.Show("Mã  Vạch Đã tồn Tại yêu cầu nhập mã khác", "ERR");
+                        return;
+                    }
+
+                    if (_dmser.getlstdanhmucfromDB().Any(c => c.TenDanhMuc == cbo_danhmuc.Text) == false)
+                    {
+                        MessageBox.Show("Tên Danh Mục Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // nhà sản xuất
+
+                    if (_nsxser.getlstnxsfromDB().Any(c => c.TenNhaSanXuat == cbo_nsx.Text) == false)
+                    {
+                        MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //chất kiệu
+
+                    if (_clser.getlstchatlieufromDB().Any(c => c.TenChatLieu == cbo_tencl.Text) == false)
+                    {
+                        MessageBox.Show("Tên Chất Liệu Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //ảnh
+
+                    if (_imgser.getlstanhfromDB().Any(c => c.DuongDan == cbo_anh.Text) == false)
+                    {
+                        MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
+                        return;
+
+                    }
+                        //vật chứa
+
+                        if (_vtser.getlstvatchuafromDB().Any(c => c.TenVatChua == cbo_tenvatchua.Text) == false)
+                        {
+                            MessageBox.Show("Tên Vật Chứa Không Hợp Lệ", "ERR");
+                            return;
+                        }
+
+                        // nhóm hương
+                        if (_nhser.getlstnhomhuongfromDB().Any(c => c.TenNhomHuong == cbo_tennhomhuong.Text) == false)
+                        {
+                            MessageBox.Show("Tên Nhóm Hương Không Hợp Lệ", "ERR");
+                            return;
+                        }
+
+                        //dung tích
+
+                        if (_dtser.getlstdungtichfromDB().Any(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)) == false)
+                        {
+                            MessageBox.Show(" Số Dung Tích Không Hợp Lệ", "ERR");
+                            return;
+                        }
+
+                        // quốc gia
+
+                        if (_xxser.getlstxuatxufromDB().Any(c => c.TenQuocGia == cbo_tenquocgia.Text) == false)
+                        {
+                            MessageBox.Show("Tên Quốc Gia Không Hợp Lệ", "ERR");
+                            return;
+                        }
 
 
-                _qlhhser.AddSpChiTiet(new ChiTietHangHoa()
-                {
-                    IdthongTinHangHoa = _cthhser.getlstchitietthanghoafromDB().Max(c => c.IdthongTinHangHoa) + 1,
-                    SoLuong = txt_soluong.Text,
-                    DonGiaNhap = Convert.ToDouble(txt_gianhap.Text),
-                    DonGiaBan = Convert.ToDouble(txt_giaban.Text),
-                    HanSuDung = dtp_hsd.Value,
-                    Model = txt_model.Text,
-                    NgayNhapKho = dtp_ngaynhap.Value,
-                    TrangThai = Convert.ToInt32(chk_conhang.Checked),
-                    IdchatLieu = _clser.getlstchatlieufromDB().Where(c => c.TenChatLieu == cbo_tencl.Text).Select(c => c.IdchatLieu).FirstOrDefault(),
-                    IdnhomHuong = _nhser.getlstnhomhuongfromDB().Where(c => c.TenNhomHuong == cbo_tennhomhuong.Text).Select(c => c.IdnhomHuong).FirstOrDefault(),
-                    IdhangHoa = _hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,
-                    IdquocGia = _xxser.getlstxuatxufromDB().Where(c => c.TenQuocGia == cbo_tenquocgia.Text).Select(c => c.IdquocGia).FirstOrDefault(),
-                    IddungTich = _dtser.getlstdungtichfromDB().Where(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)).Select(c => c.IddungTich).FirstOrDefault(),
-                    Idanh = _imgser.getlstanhfromDB().Where(c => c.DuongDan == cbo_anh.Text).Select(c => c.Idanh).FirstOrDefault(),
-                    IdvatChua = _vtser.getlstvatchuafromDB().Where(c => c.TenVatChua == cbo_tenvatchua.Text).Select(c => c.IdvatChua).FirstOrDefault(),
-                    Mavach = txt_mavach.Text.Trim()
-                }); 
-                _qlhhser.SaveHangHoa(hh);
-                _qlhhser.SaveChiTietHangHoa(cthh);
-                for (int i = 0; i < 2; i++)
-                {
-                    this.Alert("Thêm Thành Công");
+                        if (check() == false)
+                        {
+                            return;
+                        }
+                        _qlhhser.AddSP(new HangHoa()
+                        {
+                            IdhangHoa = _hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1,
+                            TenHangHoa = cbo_tenhh.Text,
+                            MaHangHoa = cbo_mahh.Text,
+                            TrangThai = Convert.ToInt32(chk_conhang.Checked),
+                            IddanhMuc = _dmser.getlstdanhmucfromDB().Where(c => c.TenDanhMuc == cbo_danhmuc.Text).Select(c => c.IddanhMuc).FirstOrDefault(),
+                            IdnhaSanXuat = _nsxser.getlstnxsfromDB().Where(c => c.TenNhaSanXuat == cbo_nsx.Text).Select(c => c.IdnhaSanXuat).FirstOrDefault()
+                        });
+                        _qlhhser.SaveHangHoa(hh);
 
-                }
-                return;
-            };
+                        _qlhhser.AddSpChiTiet(new ChiTietHangHoa()
+                        {
+                            IdthongTinHangHoa = _cthhser.getlstchitietthanghoafromDB().Max(c => c.IdthongTinHangHoa) + 1,
+                            SoLuong = txt_soluong.Text,
+                            DonGiaNhap = Convert.ToDouble(txt_gianhap.Text),
+                            DonGiaBan = Convert.ToDouble(txt_giaban.Text),
+                            HanSuDung = dtp_hsd.Value,
+                            Model = txt_model.Text,
+                            NgayNhapKho = dtp_ngaynhap.Value,
+                            TrangThai = Convert.ToInt32(chk_conhang.Checked),
+                            IdchatLieu = _clser.getlstchatlieufromDB().Where(c => c.TenChatLieu == cbo_tencl.Text).Select(c => c.IdchatLieu).FirstOrDefault(),
+                            IdnhomHuong = _nhser.getlstnhomhuongfromDB().Where(c => c.TenNhomHuong == cbo_tennhomhuong.Text).Select(c => c.IdnhomHuong).FirstOrDefault(),
+                            IdhangHoa = _hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa),
+                            IdquocGia = _xxser.getlstxuatxufromDB().Where(c => c.TenQuocGia == cbo_tenquocgia.Text).Select(c => c.IdquocGia).FirstOrDefault(),
+                            IddungTich = _dtser.getlstdungtichfromDB().Where(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)).Select(c => c.IddungTich).FirstOrDefault(),
+                            Idanh = _imgser.getlstanhfromDB().Where(c => c.DuongDan == cbo_anh.Text).Select(c => c.Idanh).FirstOrDefault(),
+                            IdvatChua = _vtser.getlstvatchuafromDB().Where(c => c.TenVatChua == cbo_tenvatchua.Text).Select(c => c.IdvatChua).FirstOrDefault(),
+                            Mavach = txt_mavach.Text.Trim()
+                        });
 
-            if (dialogResult == DialogResult.No)
+                        _qlhhser.SaveChiTietHangHoa(cthh);
+                    reset();
+                        for (int i = 0; i < 2; i++)
+                        {
+                            this.Alert("Thêm Thành Công");
+
+                        }
+
+                    };
+
+                    if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                
+            }
+            catch (Exception ex)
             {
+
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
                 return;
             }
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
 
-            DialogResult dialogResult = MessageBox.Show("bạn có muốn sửa hay không", "Thông Báo", MessageBoxButtons.YesNo);
-            check();
-            if (dialogResult == DialogResult.Yes)
+            try
             {
-                hh.IdhangHoa = id;
-                hh.MaHangHoa = cbo_mahh.Text;
-                hh.TenHangHoa = cbo_tenhh.Text;
-                hh.IdnhaSanXuat = _nsxser.getlstnxsfromDB().Where(c => c.TenNhaSanXuat == cbo_nsx.Text).Select(c => c.IdnhaSanXuat).FirstOrDefault();
-                hh.TrangThai = Convert.ToInt32(chk_conhang.Checked);
-                hh.IddanhMuc = _dmser.getlstdanhmucfromDB().Where(c => c.TenDanhMuc == cbo_danhmuc.Text).Select(c => c.IddanhMuc).FirstOrDefault();
-                cthh.IdthongTinHangHoa = idcthh;
-                cthh.SoLuong = txt_soluong.Text;
-                cthh.Mavach = txt_mavach.Text.Trim();
-                cthh.DonGiaNhap = Convert.ToInt32(txt_gianhap.Text);
-                cthh.DonGiaBan = Convert.ToInt32(txt_giaban.Text);
-                cthh.HanSuDung = dtp_hsd.Value;
-                cthh.Model = txt_model.Text;
-                cthh.NgayNhapKho = dtp_ngaynhap.Value;
-                cthh.TrangThai = Convert.ToInt32(chk_conhang.Checked);
-                cthh.IdchatLieu = _clser.getlstchatlieufromDB().Where(c => c.TenChatLieu == cbo_tencl.Text).Select(c => c.IdchatLieu).FirstOrDefault();
-                cthh.IdnhomHuong = _nhser.getlstnhomhuongfromDB().Where(c => c.TenNhomHuong == cbo_tennhomhuong.Text).Select(c => c.IdnhomHuong).FirstOrDefault();
-                cthh.IdhangHoa = id;
-                cthh.IdquocGia = _xxser.getlstxuatxufromDB().Where(c => c.TenQuocGia == cbo_tenquocgia.Text).Select(c => c.IdquocGia).FirstOrDefault();
-                cthh.Idanh = _imgser.getlstanhfromDB().Where(c => c.DuongDan == cbo_anh.Text).Select(c => c.Idanh).FirstOrDefault();
-                cthh.IdvatChua = _vtser.getlstvatchuafromDB().Where(c => c.TenVatChua == cbo_tenvatchua.Text).Select(c => c.IdvatChua).FirstOrDefault();
-                cthh.IddungTich = _dtser.getlstdungtichfromDB().Where(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)).Select(c => c.IddungTich).FirstOrDefault();
-                _qlhhser.UpdateSP(hh);
-                _qlhhser.UpdateSPChiTiet(cthh);
-                for (int i = 0; i < 2; i++)
+                DialogResult dialogResult = MessageBox.Show("bạn có muốn sửa hay không", "Thông Báo", MessageBoxButtons.YesNo);
+                
+                if (dialogResult == DialogResult.Yes)
                 {
-                    this.Alert("Đã Xác Nhận Cập Nhật Nếu Đồng Ý Hãy Tiến Hành Lưu");
+                    if (_cthhser.getlstchitietthanghoafromDB().Any(c => c.Mavach == txt_mavach.Text) == true)
+                    {
+                        MessageBox.Show("Mã  Vạch Đã tồn Tại yêu cầu nhập mã khác", "ERR");
+                        return;
+                    }
 
+                    if (_dmser.getlstdanhmucfromDB().Any(c => c.TenDanhMuc == cbo_danhmuc.Text) == false)
+                    {
+                        MessageBox.Show("Tên Danh Mục Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // nhà sản xuất
+
+                    if (_nsxser.getlstnxsfromDB().Any(c => c.TenNhaSanXuat == cbo_nsx.Text) == false)
+                    {
+                        MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //chất kiệu
+
+                    if (_clser.getlstchatlieufromDB().Any(c => c.TenChatLieu == cbo_tencl.Text) == false)
+                    {
+                        MessageBox.Show("Tên Chất Liệu Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //ảnh
+
+                    if (_imgser.getlstanhfromDB().Any(c => c.DuongDan == cbo_anh.Text) == false)
+                    {
+                        MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
+                        return;
+
+                    }
+                    //vật chứa
+
+                    if (_vtser.getlstvatchuafromDB().Any(c => c.TenVatChua == cbo_tenvatchua.Text) == false)
+                    {
+                        MessageBox.Show("Tên Vật Chứa Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // nhóm hương
+                    if (_nhser.getlstnhomhuongfromDB().Any(c => c.TenNhomHuong == cbo_tennhomhuong.Text) == false)
+                    {
+                        MessageBox.Show("Tên Nhóm Hương Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //dung tích
+
+                    if (_dtser.getlstdungtichfromDB().Any(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)) == false)
+                    {
+                        MessageBox.Show(" Số Dung Tích Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // quốc gia
+
+                    if (_xxser.getlstxuatxufromDB().Any(c => c.TenQuocGia == cbo_tenquocgia.Text) == false)
+                    {
+                        MessageBox.Show("Tên Quốc Gia Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+
+                    if (check() == false)
+                    {
+                        return;
+                    }
+
+                    hh.IdhangHoa = id;
+                    hh.MaHangHoa = cbo_mahh.Text;
+                    hh.TenHangHoa = cbo_tenhh.Text;
+                    hh.IdnhaSanXuat = _nsxser.getlstnxsfromDB().Where(c => c.TenNhaSanXuat == cbo_nsx.Text).Select(c => c.IdnhaSanXuat).FirstOrDefault();
+                    hh.TrangThai = Convert.ToInt32(chk_conhang.Checked);
+                    hh.IddanhMuc = _dmser.getlstdanhmucfromDB().Where(c => c.TenDanhMuc == cbo_danhmuc.Text).Select(c => c.IddanhMuc).FirstOrDefault();
+                    cthh.IdthongTinHangHoa = idcthh;
+                    cthh.SoLuong = txt_soluong.Text;
+                    cthh.Mavach = txt_mavach.Text.Trim();
+                    cthh.DonGiaNhap = Convert.ToInt32(txt_gianhap.Text);
+                    cthh.DonGiaBan = Convert.ToInt32(txt_giaban.Text);
+                    cthh.HanSuDung = dtp_hsd.Value;
+                    cthh.Model = txt_model.Text;
+                    cthh.NgayNhapKho = dtp_ngaynhap.Value;
+                    cthh.TrangThai = Convert.ToInt32(chk_conhang.Checked);
+                    cthh.IdchatLieu = _clser.getlstchatlieufromDB().Where(c => c.TenChatLieu == cbo_tencl.Text).Select(c => c.IdchatLieu).FirstOrDefault();
+                    cthh.IdnhomHuong = _nhser.getlstnhomhuongfromDB().Where(c => c.TenNhomHuong == cbo_tennhomhuong.Text).Select(c => c.IdnhomHuong).FirstOrDefault();
+                    cthh.IdhangHoa = id;
+                    cthh.IdquocGia = _xxser.getlstxuatxufromDB().Where(c => c.TenQuocGia == cbo_tenquocgia.Text).Select(c => c.IdquocGia).FirstOrDefault();
+                    cthh.Idanh = _imgser.getlstanhfromDB().Where(c => c.DuongDan == cbo_anh.Text).Select(c => c.Idanh).FirstOrDefault();
+                    cthh.IdvatChua = _vtser.getlstvatchuafromDB().Where(c => c.TenVatChua == cbo_tenvatchua.Text).Select(c => c.IdvatChua).FirstOrDefault();
+                    cthh.IddungTich = _dtser.getlstdungtichfromDB().Where(c => c.SoDungTich == Convert.ToDouble(cbo_soduntich.Text)).Select(c => c.IddungTich).FirstOrDefault();
+                    _qlhhser.UpdateSP(hh);
+                    _qlhhser.UpdateSPChiTiet(cthh);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        this.Alert("Đã Xác Nhận Cập Nhật Nếu Đồng Ý Hãy Tiến Hành Lưu");
+
+                    }
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
                 }
-                return;
-            };
-
-            if (dialogResult == DialogResult.No)
+            }
+            catch (Exception ex)
             {
+
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
                 return;
             }
         }
@@ -768,18 +919,25 @@ namespace _3_GUI_PresentaionLayers
 
             if (dialogResult == DialogResult.Yes)
             {
-                FormSanPham formSanPham = new FormSanPham();
+               // FormSanPham formSanPham = new FormSanPham();
 
-                formSanPham.loaddata();
-                FrmLogin frmLogin = new FrmLogin();
-                frmLogin.Show();
-                this.Close();
+                using (FormSanPham formSanPham = new FormSanPham())
+                {
+                    if (formSanPham.ShowDialog() == DialogResult.OK)
+                    {
+                        formSanPham.loaddata();
+                        this.Hide();
+                    }
+                }
+               
+
+              
                 for (int i = 0; i < 2; i++)
                 {
                     this.Alert("Chào Mừng Bạn Đến Với PerSoft Perfume <3");
 
                 }
-                return;
+              
             };
 
             if (dialogResult == DialogResult.No)
@@ -798,7 +956,7 @@ namespace _3_GUI_PresentaionLayers
         public void loadsugesstion()
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = "Data Source=TANA\\SQLEXPRESS;Initial Catalog=duan1;Persist Security Info=True;User ID=thuyen;Password=123";
+            connection.ConnectionString = "Data Source=TANA\\SQLEXPRESS;Initial Catalog=dcmmm;Persist Security Info=True;User ID=thuyen;Password=123";
 
             connection.Open();
             SqlCommand sqlCommand = new SqlCommand("select TenHangHoa FROM HangHoa", connection);
@@ -864,7 +1022,305 @@ namespace _3_GUI_PresentaionLayers
           
         }
 
+        private void pic_mavach_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mã Vạch Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FrmCreateNewBarCode frmCreateNewBarCode = new FrmCreateNewBarCode(id, Convert.ToInt32(_cthhser.getlstchitietthanghoafromDB().Where(c => c.IdhangHoa == id).Select(c => c.IdhangHoa).FirstOrDefault()), cbo_mahh.Text, cbo_tenhh.Text, cbo_nsx.Text, cbo_danhmuc.Text, trangthai, mavach, txt_soluong.Text, txt_gianhap.Text, txt_giaban.Text, dtp_ngaynhap.Value, cbo_tencl.Text, cbo_tenvatchua.Text, cbo_tennhomhuong.Text, cbo_tenquocgia.Text, cbo_soduntich.Text, cbo_anh.Text, dtp_hsd.Value, txt_model.Text);
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mã Vạch Thôi Nào");
+
+                    }
+                    frmCreateNewBarCode.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr(" Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+          
       
+
+        }
+
+        private void pic_danhmuc_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Danh Mục Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FrmDanhMuc frmDanhMuc = new FrmDanhMuc();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Danh Mục Thôi Nào");
+
+                    }
+                    frmDanhMuc.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr(" Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_anhadd_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới ảnh Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FrmAnh frmanh = new FrmAnh();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Ảnh  Thôi Nào");
+
+                    }
+                        frmanh.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_cl_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Chất Liệu Chính Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FormChatLieu  formChatLieu = new FormChatLieu();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Chất Liệu Chính Thôi Nào");
+
+                    }
+                    formChatLieu.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_vt_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Vật Chứa Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FrmVatChua frmVatChua  = new FrmVatChua();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Vật Chứa Thôi Nào");
+
+                    }
+                    frmVatChua.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_nhomhuong_DoubleClick(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Mùi Hương Chủ Đạo Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Frmnhomhuong frmnhomhuong  = new Frmnhomhuong();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Mới Mùi Hương Chủ Đạo Thôi Nào");
+
+                    }
+                    frmnhomhuong.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_xuatxu_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Xuất Xứ Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FormXuatXu formXuatXu  = new FormXuatXu();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Xuất Xứ Thôi Nào");
+
+                    }
+                    formXuatXu.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
+
+        private void pic_dungtich_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Tạo Mới Dung Tích Hay Không  ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FormDungTich formDungTich  = new FormDungTich();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        this.Alert("Tiến Hành Tạo Mới Xuất Xứ Thôi Nào");
+
+                    }
+                    formDungTich.Show();
+
+
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+                    for (int a = 0; a < 2; a++)
+                    {
+                        this.AlertErr("Thất Bại");
+
+                    }
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Thuyên");
+                return;
+
+            }
+        }
     }
     
 }

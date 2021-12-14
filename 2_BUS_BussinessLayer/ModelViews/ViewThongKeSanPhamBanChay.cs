@@ -11,16 +11,14 @@ namespace _2_BUS_BussinessLayer.ModelViews
         public string MaHangHoas { get; set; }
         public string TenHangHoas { get; set; }
         public int? tongsos{ get; set; }
-        public string Months{ get; set; }
-        public string Years{ get; set; }
-        public DateTime? NgayLap{ get; set; }
-        public ViewThongKeSanPhamBanChay(string MaHangHoa, string TenHangHoa, int? tongso,string Month ,string Year,DateTime? ngaylap)
+    
+        public string NgayLap{ get; set; }
+        public ViewThongKeSanPhamBanChay( string ngaylap,string MaHangHoa, string TenHangHoa, int? tongso)
         {
             MaHangHoas = MaHangHoa;
             TenHangHoas = TenHangHoa;
             tongsos = tongso;
-            Months = Month;
-            Years = Year;
+         
             NgayLap = ngaylap;
         }
 

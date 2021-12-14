@@ -16,176 +16,310 @@ namespace _3_GUI_PresentaionLayers
     {
 
         private IThongKeKhachHangServices _itkkhser;
+        private IThongKeKhachHangSer _tver2kh;
+      
         public FrmThongKeKhachHangUuTu()
         {
             InitializeComponent();
             _itkkhser = new DoanhThuKhachHangServices();
-            loaddoanhthu();
-            loadcbo();
-            loadnam();
-            loadngay();
+            _tver2kh = new ThongKeKhachHangSer();
+            grb_ctsp.Visible = false;
+            label1.Visible = false;
+            dtp_loc.Visible = false;
+            loaddoanhthudefaut();
+           
         }
-        public string[] Getnam()
+        public void Alert(string mess)
         {
-            string[] TempNs = new string[2030 - 2010];
-            for (int i = 0; i < TempNs.Length; i++)
+            FrmAlert frmAlert = new FrmAlert();
+            frmAlert.showAlert(mess);
+        }
+        public void AlertErr(string mess)
+        {
+            FrmThatBaiAlert frmThatBaiAlert = new FrmThatBaiAlert();
+            frmThatBaiAlert.showAlert(mess);
+        }
+        void loaddoanhthudefaut()
+        {
+            dgrid_khut.ColumnCount = 5;
+            dgrid_khut.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_khut.Columns[0].Visible = false;
+            dgrid_khut.Columns[1].Name = "Mã Khác Hàng";
+            //dgrid_khut.Columns[1].Visible =false;
+            dgrid_khut.Columns[2].Name = "Tên Khách Hàng";
+          //  dgrid_khut.Columns[2].Visible = false;
+            dgrid_khut.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+            dgrid_khut.Columns[4].Name = "Tổng Lượt Khách Hàng Đã Mua Ủng Hộ Cửa Hàng";
+            dgrid_khut.Columns[4].Visible = false;
+            dgrid_khut.Rows.Clear();
+            foreach (var x in _tver2kh.Getlisttkkhtheongay().OrderByDescending(c => c.TongSoTiens))
             {
-                TempNs[i] = Convert.ToString(2010 + i);
+
+                dgrid_khut.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
             }
-            return TempNs;
+           
         }
-        void loadnam()
+        void loaddoanhthudetail()
         {
-            foreach (var x in Getnam())
-            {
-                cbo_nam.Items.Add(x);
-            }
-
-        }
-        public string[] Getngay()
-        {
-            string[] TempNs = new string[32 - 1];
-            for (int i = 0; i < TempNs.Length; i++)
-            {
-                TempNs[i] = Convert.ToString(1 + i);
-            }
-            return TempNs;
-        }
-        void loadngay()
-        {
-            foreach (var x in Getngay())
-            {
-                cbo_ngay.Items.Add(x);
-            }
-
-        }
-        void loadcbo()
-        {
-
-            string[] lstmon = new string[12];
-            lstmon[0] = "1";
-            lstmon[1] = "2";
-            lstmon[2] = "3";
-            lstmon[3] = "4";
-            lstmon[4] = "5";
-            lstmon[5] = "6";
-            lstmon[6] = "7";
-            lstmon[7] = "8";
-            lstmon[8] = "9";
-            lstmon[9] = "10";
-            lstmon[10] = "11";
-            lstmon[11] = "12";
-
-            foreach (var x in lstmon)
-            {
-                cbo_loc.Items.Add(x);
-            }
-
-        }
-
-        void loaddoanhthu()
-        {
-            dgrid_doanhthu.ColumnCount = 3;
-            dgrid_doanhthu.Columns[0].Name = "Mã Khác Hàng";
-            dgrid_doanhthu.Columns[1].Name = "Tên Khách Hàng";
-            dgrid_doanhthu.Columns[2].Name = "Tổng Tiền Đã Mua Hàng";
-            dgrid_doanhthu.Rows.Clear();
+            dgrid_cthh.ColumnCount = 4;
+           
+            dgrid_cthh.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_cthh.Columns[1].Name = "Mã Khác Hàng";
+        
+            dgrid_cthh.Columns[2].Name = "Tên Khách Hàng";
+          
+            dgrid_cthh.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+         
+            dgrid_cthh.Rows.Clear();
             foreach (var x in _itkkhser.Getlisttkkh().OrderByDescending(c => c.TongSoTiens))
             {
-                dgrid_doanhthu.Rows.Add(x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+
+                dgrid_cthh.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
             }
         }
-        //ngày
-        void loaddataforlocngay(string ngay)
+        void loaddoanhthudetailforloc(DateTime? ngay)
         {
-            dgrid_doanhthu.ColumnCount = 3;
-            dgrid_doanhthu.Columns[0].Name = "Mã Khác Hàng";
-            dgrid_doanhthu.Columns[1].Name = "Tên Khách Hàng";
-            dgrid_doanhthu.Columns[2].Name = "Tổng Tiền Đã Mua Hàng";
-            dgrid_doanhthu.Rows.Clear();
-            foreach (var x in _itkkhser.Getlisttkkh().Where(c=>c.NgayLap.Value.Day.ToString()==ngay).OrderByDescending(c => c.TongSoTiens))
+            dgrid_cthh.ColumnCount = 4;
+
+            dgrid_cthh.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_cthh.Columns[1].Name = "Mã Khác Hàng";
+
+            dgrid_cthh.Columns[2].Name = "Tên Khách Hàng";
+
+            dgrid_cthh.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+
+            dgrid_cthh.Rows.Clear();
+            foreach (var x in _itkkhser.Getlisttkkh().Where(c=>Convert.ToDateTime(c.NgayLap)==ngay)  .OrderByDescending(c => c.TongSoTiens))
             {
-                dgrid_doanhthu.Rows.Add(x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+
+                dgrid_cthh.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+            }
+        }
+        //khoảng
+        void loaddoanhthudetailforlockhoang(DateTime? fisrtdate,DateTime? lastdate)
+        {
+            dgrid_cthh.ColumnCount = 4;
+
+            dgrid_cthh.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_cthh.Columns[1].Name = "Mã Khác Hàng";
+
+            dgrid_cthh.Columns[2].Name = "Tên Khách Hàng";
+
+            dgrid_cthh.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+
+            dgrid_cthh.Rows.Clear();
+            foreach (var x in _itkkhser.Getlisttkkh().Where(c => Convert.ToDateTime(c.NgayLap) >=fisrtdate && Convert.ToDateTime(c.NgayLap)<=lastdate).OrderByDescending(c => c.TongSoTiens))
+            {
+
+                dgrid_cthh.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+            }
+        }
+        //sss
+        void ss(string mon , string year)
+        {
+            dgrid_ss.ColumnCount = 4;
+
+            dgrid_ss.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_ss.Columns[1].Name = "Mã Khác Hàng";
+
+            dgrid_ss.Columns[2].Name = "Tên Khách Hàng";
+
+            dgrid_ss.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+
+            dgrid_ss.Rows.Clear();
+            foreach (var x in _itkkhser.Getlisttkkh().Where(c =>c.NgayLap.Substring(0,2)==mon && c.NgayLap.Substring(6,4)==year).OrderByDescending(c => c.TongSoTiens))
+            {
+
+                dgrid_ss.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+            }
+        }
+        ///fordtloc
+        void loaddoanhthudefautfordtploc(DateTime? ngay)
+        {
+            dgrid_khut.ColumnCount = 5;
+            dgrid_khut.Columns[0].Name = "Ngày Lập(Tháng-Ngày-Năm)";
+            dgrid_khut.Columns[1].Name = "Mã Khác Hàng";
+            dgrid_khut.Columns[1].Visible =false;
+            dgrid_khut.Columns[2].Name = "Tên Khách Hàng";
+            dgrid_khut.Columns[2].Visible = false;
+            dgrid_khut.Columns[3].Name = "Tổng Tiền Đã Mua Hàng";
+            dgrid_khut.Columns[4].Name = "Tổng Lượt Khách Hàng Đã Mua Ủng Hộ Cửa Hàng";
+            dgrid_khut.Rows.Clear();
+            foreach (var x in _itkkhser.Getlisttkkh().OrderByDescending(c => c.TongSoTiens).Where(c=>Convert.ToDateTime(c.NgayLap)==ngay))
+            {
+
+                dgrid_khut.Rows.Add(x.NgayLap, x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens, x.SoKhachs);
+            }
+}
+
+private void dtp_loc_ValueChanged(object sender, EventArgs e)
+        {
+           
+                 loaddoanhthudetailforloc(Convert.ToDateTime(dtp_loc.Value.ToString("MM-dd-yyyy")));
+           
+          
+        }
+
+        private void btn_lockhoangtg_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xem Chi Tiết Hay Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    label1.Visible = true;
+                    dtp_loc.Visible = true;
+                    lbl_end.Visible = true;
+                    lbl_start.Visible = true;
+                    dtp_end.Visible = true;
+                    dtp_start.Visible = true;
+                    grb_ctsp.Visible = true;
+                    //
+                    btn_reload.Visible = true;
+                    lab_closedetail.Visible = true;
+                    lbl_ss.Visible = true;
+                    button1.Visible = true;
+                    loaddoanhthudetail();
+                  //  loaddoanhthu();
+                    // lbl_chuathanhtoan.Text = "0";
+                    for (int i = 0; i < 2; i++)
+                    {
+                        this.Alert("Hãy Tiến Hành Xem Chi Tiết Thôi Nào");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(Convert.ToString(ex.Message), "Liên Hệ Với Thuyên");
+                    return;
+                }
+
+            }
+            if (dialogResult == DialogResult.No)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    this.AlertErr("Xem Chi Tiết Thất Bại");
+                }
+                return;
             }
         }
 
-        //Tháng
-        void loaddataforlocthang(string thang)
+        private void btn_reload_Click(object sender, EventArgs e)
         {
-            dgrid_doanhthu.ColumnCount = 3;
-            dgrid_doanhthu.Columns[0].Name = "Mã Khác Hàng";
-            dgrid_doanhthu.Columns[1].Name = "Tên Khách Hàng";
-            dgrid_doanhthu.Columns[2].Name = "Tổng Tiền Đã Mua Hàng";
-            dgrid_doanhthu.Rows.Clear();
-            foreach (var x in _itkkhser.Getlisttkkh().Where(c => c.NgayLap.Value.Month.ToString() == thang).OrderByDescending(c => c.TongSoTiens))
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn ReLoad Hay Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                dgrid_doanhthu.Rows.Add(x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
+                try
+                {
+                    lbl_end.Visible = false;
+                    lbl_start.Visible = false;
+                    dtp_end.Visible = false;
+                    dtp_start.Visible = false;
+                    grb_ctsp.Visible = false;
+                    btn_reload.Visible = false;
+                    lab_closedetail.Visible = false;
+                    lbl_ss.Visible = false;
+                    button1.Visible = false;
+                    loaddoanhthudefaut();
+                    label1.Visible = false;
+                    dtp_loc.Visible = false;
+                    grb_hide.Visible = false;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        this.Alert("Reload Thành Công");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(Convert.ToString(ex.Message), "Liên Hệ Với Thuyên");
+                    return;
+                }
+
             }
-        }
-        //năm
-        void loaddataforlocnam(string nam)
-        {
-            dgrid_doanhthu.ColumnCount = 3;
-            dgrid_doanhthu.Columns[0].Name = "Mã Khác Hàng";
-            dgrid_doanhthu.Columns[1].Name = "Tên Khách Hàng";
-            dgrid_doanhthu.Columns[2].Name = "Tổng Tiền Đã Mua Hàng";
-            dgrid_doanhthu.Rows.Clear();
-            foreach (var x in _itkkhser.Getlisttkkh().Where(c => c.NgayLap.Value.Year.ToString() == nam).OrderByDescending(c => c.TongSoTiens))
+            if (dialogResult == DialogResult.No)
             {
-                dgrid_doanhthu.Rows.Add(x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
-            }
-        }
-        private void cbo_loc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbo_ngay.Text == "" && cbo_nam.Text == "")
-            {
-                loaddataforlocthang(cbo_loc.Text);
+                for (int i = 0; i < 2; i++)
+                {
+                    this.AlertErr("Reload Thất Bại");
+                }
                 return;
             }
-            else
-            {
-                loaddoanhthuforlocall(cbo_ngay.Text, cbo_loc.Text, cbo_nam.Text);
-            }
+           
         }
-        private void cbo_ngay_SelectedValueChanged(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (cbo_loc.Text == "" && cbo_nam.Text == "")
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn So Sánh Với Tháng Trước Hay Không ", "Thông Báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                loaddataforlocngay(cbo_ngay.Text);
-                return;
+                try
+                {
+                    grb_hide.Visible = true;
+                    DateTime dtpmon = DateTime.Now;
+                    string forngay = dtpmon.Month.ToString();
+                    string foryear = dtpmon.Year.ToString();
+                    int fn = Convert.ToInt32(forngay) - 01;
+                    ss(Convert.ToString(fn), foryear);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        this.Alert("So Sánh Thành Công Với Tháng" + Convert.ToString(fn));
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(Convert.ToString(ex.Message), "Liên Hệ Với Thuyên");
+                    return;
+                }
+
             }
-            else
+            if (dialogResult == DialogResult.No)
             {
-                loaddoanhthuforlocall(cbo_ngay.Text, cbo_loc.Text, cbo_nam.Text);
+                for (int i = 0; i < 2; i++)
+                {
+                    DateTime dtpmon = DateTime.Now;
+                    string forngay = dtpmon.Month.ToString();
+                    int fn = Convert.ToInt32(forngay) - 01;
+                    this.AlertErr("So Sánh Thất Bại  Với Tháng" + Convert.ToString(fn));
+                }
                 return;
-            }
-        }
-        private void cbo_nam_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cbo_loc.Text == "" && cbo_ngay.Text == "")
-            {
-                loaddataforlocnam(cbo_nam.Text);
-                return;
-            }
-            else
-            {
-                loaddoanhthuforlocall(cbo_ngay.Text, cbo_loc.Text, cbo_nam.Text);
-                return;
-            }
-        }
-        void loaddoanhthuforlocall(string ngay,string thang, string nam)
-        {
-            dgrid_doanhthu.ColumnCount = 3;
-            dgrid_doanhthu.Columns[0].Name = "Mã Khác Hàng";
-            dgrid_doanhthu.Columns[1].Name = "Tên Khách Hàng";
-            dgrid_doanhthu.Columns[2].Name = "Tổng Tiền Đã Mua Hàng";
-            dgrid_doanhthu.Rows.Clear();
-            foreach (var x in _itkkhser.Getlisttkkh().Where(c => c.NgayLap.Value.Day.ToString() == ngay && c.NgayLap.Value.Month.ToString() == thang && c.NgayLap.Value.Year.ToString() == nam).OrderByDescending(c => c.TongSoTiens))
-            { 
-                dgrid_doanhthu.Rows.Add(x.MaKhachHangs, x.TenKhachHangs, x.TongSoTiens);
             }
         }
 
-       
+        private void dtp_start_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtp_start.Value > dtp_end.Value)
+            {
+                MessageBox.Show("Mốc Bắt Đầu Không Thể Lớn Hơn Mốc Kết Thúc");
+                dtp_start.Value = Convert.ToDateTime("12-01-2017");
+                return;
+            }
+        }
+
+        private void dtp_end_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtp_start.Value > dtp_end.Value)
+            {
+                MessageBox.Show("Mốc Bắt Đầu Không Thể Lớn Hơn Mốc Kết Thúc");
+                dtp_start.Value = Convert.ToDateTime("12-01-2017");
+                return;
+            }
+
+            try
+            {
+                loaddoanhthudetailforlockhoang(Convert.ToDateTime(dtp_start.Value.ToString("MM-dd-yyyy")), Convert.ToDateTime(dtp_end.Value.ToString("MM-dd-yyyy")));
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(Convert.ToString(ex.Message), "Liên Hệ Với Thuyên");
+                return;
+            }
+        }
     }
 }

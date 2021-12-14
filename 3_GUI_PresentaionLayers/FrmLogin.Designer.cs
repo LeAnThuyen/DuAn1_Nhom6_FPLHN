@@ -39,6 +39,7 @@ namespace _3_GUI_PresentaionLayers
             this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.lblTime = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.txt_ten = new System.Windows.Forms.TextBox();
             this.txt_email = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -49,10 +50,11 @@ namespace _3_GUI_PresentaionLayers
             this.btnCloseChildForm = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
+            this.btn_quanlynhanvien = new System.Windows.Forms.Button();
+            this.btn_thongke = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnSanPham = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.lblPer = new System.Windows.Forms.Label();
             this.tmr_time = new System.Windows.Forms.Timer(this.components);
@@ -60,7 +62,6 @@ namespace _3_GUI_PresentaionLayers
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.time_autosendemil = new System.Windows.Forms.Timer(this.components);
-            this.txt_ten = new System.Windows.Forms.TextBox();
             this.panelhome.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -173,13 +174,20 @@ namespace _3_GUI_PresentaionLayers
             this.panelTitle.TabIndex = 1;
             this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseDown);
             // 
+            // txt_ten
+            // 
+            this.txt_ten.Location = new System.Drawing.Point(102, 18);
+            this.txt_ten.Name = "txt_ten";
+            this.txt_ten.Size = new System.Drawing.Size(125, 27);
+            this.txt_ten.TabIndex = 14;
+            // 
             // txt_email
             // 
             this.txt_email.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.txt_email.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_email.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txt_email.ForeColor = System.Drawing.Color.Maroon;
-            this.txt_email.Location = new System.Drawing.Point(1209, 23);
+            this.txt_email.Location = new System.Drawing.Point(1191, 21);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(233, 23);
             this.txt_email.TabIndex = 13;
@@ -189,19 +197,20 @@ namespace _3_GUI_PresentaionLayers
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(1112, 19);
+            this.label1.Location = new System.Drawing.Point(1086, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 28);
             this.label1.TabIndex = 10;
             this.label1.Text = "Xin Chào :";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox4
             // 
             this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(1550, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(1557, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(118, 58);
+            this.pictureBox4.Size = new System.Drawing.Size(111, 58);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 9;
             this.pictureBox4.TabStop = false;
@@ -223,14 +232,14 @@ namespace _3_GUI_PresentaionLayers
             this.bntMinimize.AutoSize = true;
             this.bntMinimize.FlatAppearance.BorderSize = 0;
             this.bntMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bntMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bntMinimize.ForeColor = System.Drawing.Color.White;
-            this.bntMinimize.Location = new System.Drawing.Point(1429, 12);
+            this.bntMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.bntMinimize.ForeColor = System.Drawing.Color.Black;
+            this.bntMinimize.Location = new System.Drawing.Point(1429, -6);
             this.bntMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.bntMinimize.Name = "bntMinimize";
-            this.bntMinimize.Size = new System.Drawing.Size(49, 39);
+            this.bntMinimize.Size = new System.Drawing.Size(52, 68);
             this.bntMinimize.TabIndex = 7;
-            this.bntMinimize.Text = "O";
+            this.bntMinimize.Text = "-";
             this.bntMinimize.UseVisualStyleBackColor = true;
             this.bntMinimize.Click += new System.EventHandler(this.bntMinimize_Click);
             // 
@@ -242,12 +251,12 @@ namespace _3_GUI_PresentaionLayers
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnMaximize.ForeColor = System.Drawing.Color.White;
+            this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
             this.btnMaximize.Location = new System.Drawing.Point(1471, 12);
             this.btnMaximize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(49, 39);
             this.btnMaximize.TabIndex = 6;
-            this.btnMaximize.Text = "O";
             this.btnMaximize.UseVisualStyleBackColor = true;
             this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
@@ -258,13 +267,13 @@ namespace _3_GUI_PresentaionLayers
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.Location = new System.Drawing.Point(1514, 11);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 39);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "O";
+            this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -287,10 +296,11 @@ namespace _3_GUI_PresentaionLayers
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMenu.Controls.Add(this.button4);
+            this.panelMenu.Controls.Add(this.btn_quanlynhanvien);
+            this.panelMenu.Controls.Add(this.btn_thongke);
             this.panelMenu.Controls.Add(this.button3);
             this.panelMenu.Controls.Add(this.button2);
             this.panelMenu.Controls.Add(this.button1);
-            this.panelMenu.Controls.Add(this.btnSanPham);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
@@ -305,13 +315,50 @@ namespace _3_GUI_PresentaionLayers
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Location = new System.Drawing.Point(0, 256);
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button4.Location = new System.Drawing.Point(0, 304);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(174, 48);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Sản Phẩm";
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Khách Hàng";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // btn_quanlynhanvien
+            // 
+            this.btn_quanlynhanvien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_quanlynhanvien.FlatAppearance.BorderSize = 0;
+            this.btn_quanlynhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_quanlynhanvien.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_quanlynhanvien.Image = ((System.Drawing.Image)(resources.GetObject("btn_quanlynhanvien.Image")));
+            this.btn_quanlynhanvien.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_quanlynhanvien.Location = new System.Drawing.Point(0, 256);
+            this.btn_quanlynhanvien.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_quanlynhanvien.Name = "btn_quanlynhanvien";
+            this.btn_quanlynhanvien.Size = new System.Drawing.Size(174, 48);
+            this.btn_quanlynhanvien.TabIndex = 6;
+            this.btn_quanlynhanvien.Text = "Nhân Viên";
+            this.btn_quanlynhanvien.UseVisualStyleBackColor = true;
+            this.btn_quanlynhanvien.Click += new System.EventHandler(this.btn_quanlynhanvien_Click);
+            // 
+            // btn_thongke
+            // 
+            this.btn_thongke.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_thongke.FlatAppearance.BorderSize = 0;
+            this.btn_thongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_thongke.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_thongke.Image = ((System.Drawing.Image)(resources.GetObject("btn_thongke.Image")));
+            this.btn_thongke.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_thongke.Location = new System.Drawing.Point(0, 208);
+            this.btn_thongke.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_thongke.Name = "btn_thongke";
+            this.btn_thongke.Size = new System.Drawing.Size(174, 48);
+            this.btn_thongke.TabIndex = 5;
+            this.btn_thongke.Text = "Báo Cáo";
+            this.btn_thongke.UseVisualStyleBackColor = true;
+            this.btn_thongke.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -319,7 +366,9 @@ namespace _3_GUI_PresentaionLayers
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(0, 208);
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button3.Location = new System.Drawing.Point(0, 160);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(174, 48);
@@ -334,7 +383,9 @@ namespace _3_GUI_PresentaionLayers
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(0, 160);
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button2.Location = new System.Drawing.Point(0, 112);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(174, 48);
@@ -349,7 +400,9 @@ namespace _3_GUI_PresentaionLayers
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(0, 112);
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.Location = new System.Drawing.Point(0, 64);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(174, 48);
@@ -357,22 +410,6 @@ namespace _3_GUI_PresentaionLayers
             this.button1.Text = "Sản Phẩm";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnSanPham
-            // 
-            this.btnSanPham.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSanPham.FlatAppearance.BorderSize = 0;
-            this.btnSanPham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSanPham.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSanPham.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSanPham.Location = new System.Drawing.Point(0, 64);
-            this.btnSanPham.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSanPham.Name = "btnSanPham";
-            this.btnSanPham.Size = new System.Drawing.Size(174, 48);
-            this.btnSanPham.TabIndex = 1;
-            this.btnSanPham.Text = "Thông Báo";
-            this.btnSanPham.UseVisualStyleBackColor = true;
-            this.btnSanPham.Click += new System.EventHandler(this.btnSanPham_Click_1);
             // 
             // panelLogo
             // 
@@ -424,13 +461,6 @@ namespace _3_GUI_PresentaionLayers
             this.time_autosendemil.Enabled = true;
             this.time_autosendemil.Tick += new System.EventHandler(this.time_autosendemil_Tick);
             // 
-            // txt_ten
-            // 
-            this.txt_ten.Location = new System.Drawing.Point(102, 18);
-            this.txt_ten.Name = "txt_ten";
-            this.txt_ten.Size = new System.Drawing.Size(125, 27);
-            this.txt_ten.TabIndex = 14;
-            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -462,11 +492,10 @@ namespace _3_GUI_PresentaionLayers
 
         private System.Windows.Forms.Panel panelhome;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_thongke;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnSanPham;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Button btnCloseChildForm;
@@ -490,5 +519,7 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.TextBox txt_ten;
+        private System.Windows.Forms.Button btn_quanlynhanvien;
+        private System.Windows.Forms.Button button4;
     }
 }

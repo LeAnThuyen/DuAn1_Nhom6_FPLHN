@@ -1,6 +1,7 @@
 ﻿
 using _1_DAL_DataAccessLayer.IDALServices;
 using _1_DAL_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,15 @@ namespace _1_DAL_DataAccessLayer.DALServices
             _lstchatlieu = new List<ChatLieu>();
             getlstchatlieufromDB();
         }
+        public List<ChatLieu> getlstchatlieufromDB()
+        {
+            _lstchatlieu = _DBcontext.ChatLieus.AsNoTracking().ToList();
+            return _lstchatlieu;
+        }
         public bool addchatlieu(ChatLieu cl)
         {
             _DBcontext.ChatLieus.Add(cl);
-         
+        
             return true;
         }
 
@@ -33,11 +39,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
             return true;
         }
 
-        public List<ChatLieu> getlstchatlieufromDB()
-        {
-            _lstchatlieu = _DBcontext.ChatLieus.ToList();
-            return _lstchatlieu;
-        }
+       
 
         public bool save(ChatLieu cl)
         {

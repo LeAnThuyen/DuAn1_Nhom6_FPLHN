@@ -47,7 +47,7 @@ namespace _3_GUI_PresentaionLayers
             this.thốngKêKháchHàngƯuTúToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(918, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1394, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,7 +77,7 @@ namespace _3_GUI_PresentaionLayers
             this.panelhome.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelhome.Location = new System.Drawing.Point(0, 28);
             this.panelhome.Name = "panelhome";
-            this.panelhome.Size = new System.Drawing.Size(918, 531);
+            this.panelhome.Size = new System.Drawing.Size(1394, 801);
             this.panelhome.TabIndex = 1;
             // 
             // FrmThongKeALL
@@ -85,7 +85,7 @@ namespace _3_GUI_PresentaionLayers
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.ClientSize = new System.Drawing.Size(918, 559);
+            this.ClientSize = new System.Drawing.Size(1394, 829);
             this.Controls.Add(this.panelhome);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

@@ -69,12 +69,12 @@ namespace _3_GUI_PresentaionLayers
         {
             FrmHideSendEmail frmHideSendEmail = new FrmHideSendEmail();
             frmHideSendEmail.Show();
-            frmHideSendEmail.Close();
+            frmHideSendEmail.Hide();
            
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Đăng Xuất Hay Không ?", "Thông Báo", MessageBoxButtons.YesNo);
 
-            if (dialogResult == DialogResult.Yes)
-            {
+                if (dialogResult == DialogResult.Yes)
+                {
                 DateTime timer = DateTime.Now;
                 int a = timer.Hour;
                 int b = timer.Minute;
@@ -85,13 +85,13 @@ namespace _3_GUI_PresentaionLayers
                     SendEmail("thuyenlaph16978@fpt.edu.vn", "Doanh Thu Hằng Ngày", "Mời Anh Xem File Thống Kê Doanh Thu Ngày Hôm Nay ạ", attach);
                     FormDangNhap formDangNhap = new FormDangNhap();
                     formDangNhap.Show();
-                    this.Close();
+                    this.Hide();
                     
                 }
                 else{
                     FormDangNhap formDangNhap = new FormDangNhap();
                     formDangNhap.Show();
-                    this.Close();
+                    this.Hide();
                 }
                 return;
             };

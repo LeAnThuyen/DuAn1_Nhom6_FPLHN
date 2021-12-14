@@ -81,7 +81,7 @@ namespace _3_GUI_PresentaionLayers
             loadhoadonduyet();
             loadhoadonduyet3();
             dcmmm();
-            //txtMaHDD.Visible = false;
+            txtMaHDD.Visible = false;
             //txtMaHDD.Hide();
             rbt_chuathanhtoan.Checked = true;
             rbt_dathangchuathanhtoan.Checked = true;
@@ -101,14 +101,34 @@ namespace _3_GUI_PresentaionLayers
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    this.Alert("Mở Camera Thành Công");
-            //}
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Mở Camera Hay Không ?", "Thông Báo", MessageBoxButtons.YesNo);
 
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbo_webcam.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
+            if (dialogResult == DialogResult.Yes)
+            {
+
+
+                videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbo_webcam.SelectedIndex].MonikerString);
+                videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+                videoCaptureDevice.Start();
+                for (int i = 0; i < 1; i++)
+                {
+                    this.Alert("Mở Camera Thành Công");
+                }
+            };
+
+            if (dialogResult == DialogResult.No)
+            {
+
+                for (int i = 0; i < 2; i++)
+                {
+                    this.AlertErr("Mở Camera Thất Bại");
+                }
+                return;
+            }
+
+            
+
+            
         }
 
 
@@ -372,7 +392,7 @@ namespace _3_GUI_PresentaionLayers
                                     .Where(c => c.ChiTietHangHoa.Mavach == Convert.ToString(result))
                                     .Select(c => c.ChiTietHangHoa.IdthongTinHangHoa).FirstOrDefault(),
                                 TrangThai = 1,
-                                IdhoaDon = iQLyBanHang.GetsList().Max(c => c.HoaDonBan.IdhoaDon),
+                                IdhoaDon = _hdser.getlsthdbfromDB().Max(c => c.IdhoaDon),
                                 ThanhTien = Convert.ToDouble(Convert.ToInt32(content) * (_iQlyHangHoa.GetsList()
                                     .Where(c => c.ChiTietHangHoa.Mavach == Convert.ToString(result))
                                     .Select(c => c.ChiTietHangHoa.DonGiaBan).FirstOrDefault()))
@@ -923,8 +943,8 @@ namespace _3_GUI_PresentaionLayers
                 string fn = aa.Replace(".", "");
                 string bb = Convert.ToString(txtTongTien.Text);
                 string fn1 = bb.Replace(".", "");
-
-                hoadon = _iQlyHoaDon.GetsListHD().FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(txtMaHDD.Text));
+                int max1 = _hdser.getlsthdbfromDB().Max(c => c.IdhoaDon);
+                hoadon = _iQlyHoaDon.GetsListHD().FirstOrDefault(x => x.IdhoaDon == Convert.ToInt32(max1));
                 hoadon.TrangThai = Convert.ToInt32(status);
                 hoadon.NgayLap = DateTime.Now;
                 hoadon.MaHoaDon = _iQlyHoaDon.GetsListHD().Where(c => c.IdhoaDon == hoadon.IdhoaDon)
@@ -1216,6 +1236,11 @@ namespace _3_GUI_PresentaionLayers
             txtTienthua.Text = "";
             rbt_chuathanhtoan.Checked = true;
             richTextBox1.Text = "";
+            txt_dathanggiamgia.Text = "0";
+            txt_dathangthue.Text = "0";
+            txt_dathangtongtien.Text = "";
+            txt_coc.Text = "";
+            rbt_dathangchuathanhtoan.Checked = true;
         }
         public void loadhoadonduyet3()
         {
@@ -1736,7 +1761,7 @@ namespace _3_GUI_PresentaionLayers
                     CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
 
                     txtKhachTra.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
-                    txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
+                  //  txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
 
                 }
             }
@@ -1765,7 +1790,7 @@ namespace _3_GUI_PresentaionLayers
                                                     Convert.ToInt32(fn));
                 CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
                 txtKhachTra.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
-                txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
+              //  txtKhachDua.Text = Convert.ToInt32(khach).ToString("#,###", cul.NumberFormat);
 
             }
         }
@@ -2220,7 +2245,7 @@ namespace _3_GUI_PresentaionLayers
 
                     this.Alert("Thanh Toán Thành Công");
                 }
-
+                clear();
                 return;
             }
 
@@ -2238,15 +2263,15 @@ namespace _3_GUI_PresentaionLayers
 
         private void txt_dathangtongtien_TextChanged(object sender, EventArgs e)
         {
-            string ss = txt_dathangtongtien.Text;
-            string sss = ss.Replace(".", "");
-            if (Convert.ToInt32(sss) > 1000000) //trên 1tr cọc 30%
-            {
-                double tiencoc = Convert.ToDouble(Convert.ToInt32(sss) * 0.3);
-                CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+            //string ss = txt_dathangtongtien.Text;
+            //string sss = ss.Replace(".", "");
+            //if (Convert.ToInt32(sss) > 1000000) //trên 1tr cọc 30%
+            //{
+            //    double tiencoc = Convert.ToDouble(Convert.ToInt32(sss) * 0.3);
+            //    CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
 
-                txt_coc.Text = Convert.ToInt32(tiencoc).ToString("#,###", cul.NumberFormat);
-            }
+            //    txt_coc.Text = Convert.ToInt32(tiencoc).ToString("#,###", cul.NumberFormat);
+            //}
         }
 
         private void btn_reload_Click(object sender, EventArgs e)

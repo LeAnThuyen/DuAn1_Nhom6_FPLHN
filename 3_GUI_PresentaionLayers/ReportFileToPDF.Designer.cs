@@ -48,7 +48,7 @@ namespace _3_GUI_PresentaionLayers
             this.dgrid_sanpham.RowHeadersWidth = 51;
             this.dgrid_sanpham.RowTemplate.Height = 29;
             this.dgrid_sanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_sanpham.Size = new System.Drawing.Size(1721, 504);
+            this.dgrid_sanpham.Size = new System.Drawing.Size(1506, 504);
             this.dgrid_sanpham.TabIndex = 0;
             // 
             // panel1
@@ -58,15 +58,15 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 162);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1721, 56);
+            this.panel1.Size = new System.Drawing.Size(1506, 56);
             this.panel1.TabIndex = 1;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1584, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(1386, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(125, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(109, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -74,12 +74,13 @@ namespace _3_GUI_PresentaionLayers
             // 
             // ReportFileToPDF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.ClientSize = new System.Drawing.Size(1721, 722);
+            this.ClientSize = new System.Drawing.Size(1506, 722);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgrid_sanpham);
+            this.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "ReportFileToPDF";
             this.Text = "ReportFileToPDF";
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_sanpham)).EndInit();

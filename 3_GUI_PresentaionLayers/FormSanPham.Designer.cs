@@ -61,6 +61,7 @@ namespace _3_GUI_PresentaionLayers
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.chk_hoaly = new System.Windows.Forms.CheckBox();
             this.chk_Lavender = new System.Windows.Forms.CheckBox();
@@ -83,7 +84,7 @@ namespace _3_GUI_PresentaionLayers
             this.chk_locnam = new System.Windows.Forms.CheckBox();
             this.pDSanPham = new System.Drawing.Printing.PrintDocument();
             this.ppDSanPham = new System.Windows.Forms.PrintPreviewDialog();
-            this.tbDark = new _3_GUI_PresentaionLayers.RJControls.RJToggleButton();
+            this.danhMụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -159,7 +160,8 @@ namespace _3_GUI_PresentaionLayers
             this.menuNhomHuong,
             this.menuVatChua,
             this.menuXuatXu,
-            this.manuAnh});
+            this.manuAnh,
+            this.danhMụcToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -196,7 +198,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             // txt_timkiem
             // 
-            this.txt_timkiem.Location = new System.Drawing.Point(13, 28);
+            this.txt_timkiem.Location = new System.Drawing.Point(6, 25);
             this.txt_timkiem.Name = "txt_timkiem";
             this.txt_timkiem.PlaceholderText = "Tìm Kiếm Theo Mã Sản Phẩm";
             this.txt_timkiem.Size = new System.Drawing.Size(208, 27);
@@ -207,7 +209,7 @@ namespace _3_GUI_PresentaionLayers
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(227, 18);
+            this.pictureBox6.Location = new System.Drawing.Point(253, 16);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(57, 37);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -223,6 +225,7 @@ namespace _3_GUI_PresentaionLayers
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 91;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click_1);
             // 
             // pictureBox5
             // 
@@ -269,7 +272,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
             this.label1.Location = new System.Drawing.Point(1239, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 20);
@@ -404,6 +407,21 @@ namespace _3_GUI_PresentaionLayers
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1478, 186);
             this.panel3.TabIndex = 83;
+            // 
+            // tbDark
+            // 
+            this.tbDark.AutoSize = true;
+            this.tbDark.Location = new System.Drawing.Point(7, 3);
+            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbDark.Name = "tbDark";
+            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
+            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbDark.Size = new System.Drawing.Size(45, 22);
+            this.tbDark.TabIndex = 109;
+            this.tbDark.UseVisualStyleBackColor = true;
+            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged_1);
             // 
             // panel4
             // 
@@ -661,20 +679,12 @@ namespace _3_GUI_PresentaionLayers
             this.ppDSanPham.Name = "ppDSanPham";
             this.ppDSanPham.Visible = false;
             // 
-            // tbDark
+            // danhMụcToolStripMenuItem
             // 
-            this.tbDark.AutoSize = true;
-            this.tbDark.Location = new System.Drawing.Point(7, 3);
-            this.tbDark.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tbDark.Name = "tbDark";
-            this.tbDark.OffBackColor = System.Drawing.Color.Gray;
-            this.tbDark.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tbDark.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.tbDark.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.tbDark.Size = new System.Drawing.Size(45, 22);
-            this.tbDark.TabIndex = 109;
-            this.tbDark.UseVisualStyleBackColor = true;
-            this.tbDark.CheckedChanged += new System.EventHandler(this.tbDark_CheckedChanged_1);
+            this.danhMụcToolStripMenuItem.Name = "danhMụcToolStripMenuItem";
+            this.danhMụcToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.danhMụcToolStripMenuItem.Text = "Danh Mục";
+            this.danhMụcToolStripMenuItem.Click += new System.EventHandler(this.danhMụcToolStripMenuItem_Click);
             // 
             // FormSanPham
             // 
@@ -768,5 +778,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Drawing.Printing.PrintDocument pDSanPham;
         private System.Windows.Forms.PrintPreviewDialog ppDSanPham;
         private RJControls.RJToggleButton rjToggleButton1;
+        private System.Windows.Forms.ToolStripMenuItem danhMụcToolStripMenuItem;
     }
 }

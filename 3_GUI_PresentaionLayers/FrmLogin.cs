@@ -19,6 +19,8 @@ namespace _3_GUI_PresentaionLayers
         private IServiceForDangNhap iserlogin;
         private Button currentButton;
         public Button btnsp;
+        public Button btnkh;
+        public Button btnnv;
         private Random random;
         private int tempIndex;
         private Form activeForm;
@@ -28,7 +30,8 @@ namespace _3_GUI_PresentaionLayers
         public Label lbl;
         public TextBox txt;
         public TextBox txt1;
-   
+        public Button btntk;
+        public Button btnqlnv;
         public PictureBox pic;
       
         public int role;
@@ -46,11 +49,16 @@ namespace _3_GUI_PresentaionLayers
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             //
+           
             pic = pictureBox4;
             backsender = this;
             txt = txt_email;
-            btnsp = btnSanPham;
+          //  btnsp = btnSanPham;
             txt1 = txt_ten;
+            btnkh = button4;
+          
+           btntk = btn_thongke;
+            btnqlnv = btn_quanlynhanvien;
             loadpic();
             txt_ten.Visible = false;
 
@@ -153,7 +161,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void btnSanPham_Click_1(object sender, EventArgs e)
         {
-            OpenChildForm(new FrmThongBao(), sender);
+          
         }
 
 
@@ -235,7 +243,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void button3_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormHoaDonChiTiet(), sender);
+            OpenChildForm(new FrmTinhTrangHoaDon(), sender);
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -270,6 +278,26 @@ namespace _3_GUI_PresentaionLayers
         private void time_autosendemil_Tick(object sender, EventArgs e)
         {
           
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmHideSendEmail(), sender);
+        }
+
+        private void btn_quanlynhanvien_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormNhanVien(), sender);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmKhachHang(), sender);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void timer3_Tick(object sender, EventArgs e)

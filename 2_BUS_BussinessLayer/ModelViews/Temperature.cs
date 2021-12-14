@@ -8,24 +8,41 @@ namespace _2_BUS_BussinessLayer.ModelViews
 {
    public class Temperature
     {
-        public string Loaction { get; set; }
-        public decimal M1 { get; set; }
-        public decimal M2 { get; set; }
-        public decimal M3 { get; set; }
-        public decimal M4 { get; set; }
-        public decimal M5 { get; set; }
-        public decimal M6 { get; set; }
-        public decimal M7 { get; set; }
-        public decimal M8 { get; set; }
-        public decimal M9 { get; set; }
-        public decimal M10 { get; set; }
-        public decimal M11 { get; set; }
-        public decimal M12 { get; set; }
+        public string MaHoaDon { get; set; }
+        public string MaNhanVien { get; set; }
+        public string MaKhachHang { get; set; }
+        public string TenKhachHang { get; set; }
+        public string SoDienThoai { get; set; }
+        public string Email { get; set; }
+        public double? TongTien { get; set; }
+        public int? TrangThai { get; set; }
+        public string GhiChu { get; set; }
+        public string NgayLap { get; set; }
+        public string Days { get; set; }
+        public string Months { get; set; }
+        public string Years { get; set; }
+        public double? Totals { get; set; }
+        public int? tongdon { get; set; }
+        public int? donhuy { get; set; }
+        public int? donthanhcong { get; set; }
+        public int? chuathanhtoan { get; set; }
 
-        public object this [string propertiesName]
+
+        public Temperature( string mahd,string fulltime, string manv, string makh, string tenkh, string sdt, string email, double? tongtien, int? trangthai, string ghichu,int? coundonhuy, int? countdonchuathanhtoan,int? countdontc)
         {
-            get { return this.GetType().GetProperty(propertiesName).GetValue(this, null); }
-            set { this.GetType().GetProperty(propertiesName).SetValue(this, value,null); }
+            MaHoaDon = mahd;
+            MaNhanVien = manv;
+            MaKhachHang = makh;
+            TenKhachHang = tenkh;
+            SoDienThoai = sdt;
+            Email = email;
+            TongTien = tongtien;
+            TrangThai = trangthai;
+            GhiChu = ghichu;
+            NgayLap = fulltime;
+            donhuy = coundonhuy;
+            chuathanhtoan = countdonchuathanhtoan;
+            donthanhcong = countdontc;
         }
     }
 }
