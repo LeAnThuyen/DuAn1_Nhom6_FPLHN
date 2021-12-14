@@ -15,6 +15,7 @@ namespace _2_BUS_BussinessLayer.IServices
         bool removeHD(HoaDonBan HoaDonBan);
         bool updateHD(HoaDonBan HoaDonBan);
         List<HoaDonBan> GetsListHD();
+        List<HoaDonBan> GetsListHDNoAs();
         void SenderDataHD();
         //Hóa đơn Chi Tiết
         bool addHDCT(HoaDonChiTiet HoaDonChiTiet);
