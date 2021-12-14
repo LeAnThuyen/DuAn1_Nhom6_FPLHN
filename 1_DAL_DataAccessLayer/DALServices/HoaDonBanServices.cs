@@ -20,6 +20,7 @@ namespace _1_DAL_DataAccessLayer.DALServices
             _DBcontext = new DatabaseContext();
             _lsthoadonban = new List<HoaDonBan>();
             getlsthdbfromDB();
+            getlsthdbfromDBAsNo();
         }
         public bool addhdb(HoaDonBan hdb)
         {
@@ -37,7 +38,13 @@ namespace _1_DAL_DataAccessLayer.DALServices
 
         public List<HoaDonBan> getlsthdbfromDB()
         {
-            _lsthoadonban = _DBcontext.HoaDonBans.AsNoTracking().ToList();
+            _lsthoadonban = _DBcontext.HoaDonBans.ToList();
+            return _lsthoadonban;
+        }
+
+        public List<HoaDonBan> getlsthdbfromDBAsNo()
+        {
+            _lsthoadonban = _DBcontext.HoaDonBans.ToList();
             return _lsthoadonban;
         }
 

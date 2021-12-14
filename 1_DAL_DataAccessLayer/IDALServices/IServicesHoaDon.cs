@@ -9,6 +9,7 @@ namespace _1_DAL_DataAccessLayer.IDALServices
 {
    public interface IServicesHoaDon
     {
+        List<HoaDonBan> getlsthdbfromDBAsNo();
         List<HoaDonBan> getlsthdbfromDB();
         bool addhdb(HoaDonBan hdb);
         bool deletehdb(HoaDonBan hdb);

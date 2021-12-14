@@ -1526,6 +1526,7 @@ namespace _3_GUI_PresentaionLayers
             this.flhd3.Name = "flhd3";
             this.flhd3.Size = new System.Drawing.Size(182, 597);
             this.flhd3.TabIndex = 0;
+            this.flhd3.Paint += new System.Windows.Forms.PaintEventHandler(this.flhd3_Paint);
             // 
             // btn_reload
             // 
