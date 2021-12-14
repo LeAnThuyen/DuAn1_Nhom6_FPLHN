@@ -44,6 +44,7 @@ namespace _2_BUS_BussinessLayer.Services
             GetsList();
             GetsListHD();
             GetsListHDCT();
+            GetsListHDNoAs();
         }
 
         public bool addHD(HoaDonBan HoaDonBan)
@@ -103,6 +104,12 @@ namespace _2_BUS_BussinessLayer.Services
         {
             _lstHoaDonChiTiets = _iServicesHoaDonChiTiet.getlsthdctfromDB();
             return _lstHoaDonChiTiets;
+        }
+
+        public List<HoaDonBan> GetsListHDNoAs()
+        {
+            _lstHoaDonBans = _iServicesHoaDon.getlsthdbfromDBAsNo();
+            return _lstHoaDonBans;
         }
 
         public bool removeHD(HoaDonBan HoaDonBan)
