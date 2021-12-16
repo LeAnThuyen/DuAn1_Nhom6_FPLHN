@@ -243,8 +243,8 @@ namespace _3_GUI_PresentaionLayers
                 dgrid_ss.Columns[12].Name = "Đơn Thành Công";
                 dgrid_ss.Columns[12].Visible = false;
 
-                dgrid_ss.Rows.Clear();
-                foreach (var x in itest.Getlistviewdoanhthutheongay().Where(c =>c.NgayLap.Substring(0,2) == vl && c.NgayLap.Substring(6,4)==nam))
+                dgrid_ss.Rows.Clear();////
+                foreach (var x in itest.Getlistviewdoanhthutheongay().Where(c =>c.NgayLap.Substring(0, 2)==vl && c.NgayLap.Substring(6, 4)==nam))
                 {
                     dgrid_ss.Rows.Add(x.MaHoaDon, x.MaNhanVien, x.MaKhachHang, x.TenKhachHang, x.SoDienThoai,
                         x.Email, x.TongTien, x.TrangThai == 1 ? "Đã Thanh Toán" : (x.TrangThai == 0 ? "Đã Cọc" : (x.TrangThai == 2 ? "Chưa Thanh Toán" : (x.TrangThai == 3 ? "Đang Chờ Giao Hàng" : "Đã Hủy"))), x.GhiChu, x.NgayLap, x.donhuy, x.chuathanhtoan, x.donthanhcong);
@@ -1685,7 +1685,7 @@ namespace _3_GUI_PresentaionLayers
                     DateTime dtpmon = DateTime.Now;
                     string forngay = dtpmon.Month.ToString();
                     string foryear = dtpmon.Year.ToString();
-                    int fn = Convert.ToInt32(forngay) - 01;
+                    int fn = Convert.ToInt32(forngay) - 1;
                     ss(Convert.ToString(fn),foryear);
                     // lbl_chuathanhtoan.Text = "0";
                     for (int i = 0; i < 2; i++)
