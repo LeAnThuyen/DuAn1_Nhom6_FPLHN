@@ -351,6 +351,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_nsx.Name = "cbo_nsx";
             this.cbo_nsx.Size = new System.Drawing.Size(151, 28);
             this.cbo_nsx.TabIndex = 72;
+            this.cbo_nsx.Click += new System.EventHandler(this.cbo_nsx_Click);
             // 
             // cbo_danhmuc
             // 
@@ -359,6 +360,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_danhmuc.Name = "cbo_danhmuc";
             this.cbo_danhmuc.Size = new System.Drawing.Size(151, 28);
             this.cbo_danhmuc.TabIndex = 72;
+            this.cbo_danhmuc.Click += new System.EventHandler(this.cbo_danhmuc_Click);
             // 
             // dtp_ngaynhap
             // 
@@ -375,6 +377,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_tencl.Name = "cbo_tencl";
             this.cbo_tencl.Size = new System.Drawing.Size(151, 28);
             this.cbo_tencl.TabIndex = 72;
+            this.cbo_tencl.Click += new System.EventHandler(this.cbo_tencl_Click);
             // 
             // cbo_tenvatchua
             // 
@@ -383,6 +386,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_tenvatchua.Name = "cbo_tenvatchua";
             this.cbo_tenvatchua.Size = new System.Drawing.Size(151, 28);
             this.cbo_tenvatchua.TabIndex = 72;
+            this.cbo_tenvatchua.Click += new System.EventHandler(this.cbo_tenvatchua_Click);
             // 
             // cbo_tennhomhuong
             // 
@@ -391,6 +395,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_tennhomhuong.Name = "cbo_tennhomhuong";
             this.cbo_tennhomhuong.Size = new System.Drawing.Size(151, 28);
             this.cbo_tennhomhuong.TabIndex = 72;
+            this.cbo_tennhomhuong.Click += new System.EventHandler(this.cbo_tennhomhuong_Click);
             // 
             // cbo_tenquocgia
             // 
@@ -400,6 +405,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_tenquocgia.Size = new System.Drawing.Size(151, 28);
             this.cbo_tenquocgia.TabIndex = 72;
             this.cbo_tenquocgia.SelectedIndexChanged += new System.EventHandler(this.cbo_tenquocgia_SelectedIndexChanged);
+            this.cbo_tenquocgia.Click += new System.EventHandler(this.cbo_tenquocgia_Click);
             // 
             // cbo_soduntich
             // 
@@ -409,6 +415,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_soduntich.Size = new System.Drawing.Size(151, 28);
             this.cbo_soduntich.TabIndex = 72;
             this.cbo_soduntich.SelectedIndexChanged += new System.EventHandler(this.cbo_tenquocgia_SelectedIndexChanged);
+            this.cbo_soduntich.Click += new System.EventHandler(this.cbo_soduntich_Click);
             // 
             // pic_cammera
             // 
@@ -527,6 +534,7 @@ namespace _3_GUI_PresentaionLayers
             this.cbo_anh.Size = new System.Drawing.Size(151, 28);
             this.cbo_anh.TabIndex = 83;
             this.cbo_anh.SelectedIndexChanged += new System.EventHandler(this.cbo_anh_SelectedIndexChanged);
+            this.cbo_anh.Click += new System.EventHandler(this.cbo_anh_Click);
             // 
             // txt_model
             // 

@@ -80,16 +80,16 @@ namespace _3_GUI_PresentaionLayers
 
             hh = new HangHoa();
             cthh = new ChiTietHangHoa();
-            loadmahh();
-            loadtenhh();
-            loadanhmuc();
-            loadnsx();
-            loadchatlieu();
-            loadvatchua();
-            loadnhomhuong();
-            loadquocgia();
-            loadduntich();
-            loaddpath();
+            //loadmahh();
+            //loadtenhh();
+            //loadanhmuc();
+            //loadnsx();
+            //loadchatlieu();
+            //loadvatchua();
+            //loadnhomhuong();
+            //loadquocgia();
+            //loadduntich();
+            //loaddpath();
             loadsugesstion();
             #region
             this.mahh = mahh;
@@ -919,17 +919,11 @@ namespace _3_GUI_PresentaionLayers
 
             if (dialogResult == DialogResult.Yes)
             {
-               // FormSanPham formSanPham = new FormSanPham();
+                // FormSanPham formSanPham = new FormSanPham();
 
-                using (FormSanPham formSanPham = new FormSanPham())
-                {
-                    if (formSanPham.ShowDialog() == DialogResult.OK)
-                    {
-                        formSanPham.loaddata();
-                        this.Hide();
-                    }
-                }
-               
+                FrmLogin frmLogin = new FrmLogin();
+                frmLogin.Show();
+                this.Hide();
 
               
                 for (int i = 0; i < 2; i++)
@@ -1320,6 +1314,46 @@ namespace _3_GUI_PresentaionLayers
                 return;
 
             }
+        }
+
+        private void cbo_danhmuc_Click(object sender, EventArgs e)
+        {
+            loadanhmuc();
+        }
+
+        private void cbo_nsx_Click(object sender, EventArgs e)
+        {
+            loadnsx();
+        }
+
+        private void cbo_anh_Click(object sender, EventArgs e)
+        {
+            loaddpath();
+        }
+
+        private void cbo_tencl_Click(object sender, EventArgs e)
+        {
+            loadchatlieu();
+        }
+
+        private void cbo_tenvatchua_Click(object sender, EventArgs e)
+        {
+            loadvatchua();
+        }
+
+        private void cbo_tennhomhuong_Click(object sender, EventArgs e)
+        {
+            loadnhomhuong();
+        }
+
+        private void cbo_tenquocgia_Click(object sender, EventArgs e)
+        {
+            loadquocgia();
+        }
+
+        private void cbo_soduntich_Click(object sender, EventArgs e)
+        {
+            loadduntich();
         }
     }
     
