@@ -101,5 +101,12 @@ namespace _3_GUI_PresentaionLayers
                 return;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmDoiMatKhau frmDoiMatKhau = new FrmDoiMatKhau("thuyenlaph16978@fpt.edu.vn");
+            frmDoiMatKhau.Show();
+            this.Hide();
+        }
     }
 }
