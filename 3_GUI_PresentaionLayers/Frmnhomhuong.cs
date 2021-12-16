@@ -137,5 +137,10 @@ namespace _3_GUI_PresentaionLayers
             ckbON.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Sử dụng" ? true : false;
             chkOFF.Checked = dgridNhomHuong.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? true : false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

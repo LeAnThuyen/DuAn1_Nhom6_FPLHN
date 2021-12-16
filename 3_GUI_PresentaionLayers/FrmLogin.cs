@@ -282,7 +282,7 @@ namespace _3_GUI_PresentaionLayers
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FrmHideSendEmail(), sender);
+            OpenChildForm(new FrmThongKeALL(), sender);
         }
 
         private void btn_quanlynhanvien_Click(object sender, EventArgs e)
