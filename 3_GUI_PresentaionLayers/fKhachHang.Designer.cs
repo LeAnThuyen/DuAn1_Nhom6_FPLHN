@@ -162,9 +162,9 @@ namespace _3_GUI_PresentaionLayers
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(63, 151);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 25);
+            this.label2.Size = new System.Drawing.Size(92, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Loại khách hàng";
+            this.label2.Text = "Trạng Thái";
             // 
             // rbtCaNhan
             // 
@@ -172,10 +172,10 @@ namespace _3_GUI_PresentaionLayers
             this.rbtCaNhan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtCaNhan.Location = new System.Drawing.Point(256, 151);
             this.rbtCaNhan.Name = "rbtCaNhan";
-            this.rbtCaNhan.Size = new System.Drawing.Size(86, 24);
+            this.rbtCaNhan.Size = new System.Drawing.Size(106, 24);
             this.rbtCaNhan.TabIndex = 0;
             this.rbtCaNhan.TabStop = true;
-            this.rbtCaNhan.Text = "Cá nhân";
+            this.rbtCaNhan.Text = "Hoạt Động";
             this.rbtCaNhan.UseVisualStyleBackColor = true;
             // 
             // rbtnCongTy
@@ -184,10 +184,10 @@ namespace _3_GUI_PresentaionLayers
             this.rbtnCongTy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnCongTy.Location = new System.Drawing.Point(396, 151);
             this.rbtnCongTy.Name = "rbtnCongTy";
-            this.rbtnCongTy.Size = new System.Drawing.Size(84, 24);
+            this.rbtnCongTy.Size = new System.Drawing.Size(156, 24);
             this.rbtnCongTy.TabIndex = 1;
             this.rbtnCongTy.TabStop = true;
-            this.rbtnCongTy.Text = "Công ty";
+            this.rbtnCongTy.Text = "Không Hoạt Động";
             this.rbtnCongTy.UseVisualStyleBackColor = true;
             // 
             // label3
