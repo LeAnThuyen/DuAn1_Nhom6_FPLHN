@@ -40,6 +40,7 @@ namespace _3_GUI_PresentaionLayers
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.X = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgridVatChua)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,12 +156,24 @@ namespace _3_GUI_PresentaionLayers
             this.label1.TabIndex = 19;
             this.label1.Text = "Mã vật chứa";
             // 
+            // X
+            // 
+            this.X.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.X.Location = new System.Drawing.Point(398, -2);
+            this.X.Name = "X";
+            this.X.Size = new System.Drawing.Size(94, 29);
+            this.X.TabIndex = 30;
+            this.X.Text = "X";
+            this.X.UseVisualStyleBackColor = true;
+            this.X.Click += new System.EventHandler(this.X_Click);
+            // 
             // FrmVatChua
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(492, 346);
+            this.Controls.Add(this.X);
             this.Controls.Add(this.chkOFF);
             this.Controls.Add(this.ckbON);
             this.Controls.Add(this.label5);
@@ -172,7 +185,8 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmVatChua";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VatChua";
@@ -195,5 +209,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button X;
     }
 }
