@@ -32,6 +32,8 @@ namespace _3_GUI_PresentaionLayers
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BanHang));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_createnew = new System.Windows.Forms.TextBox();
+            this.txt_idhoadoncho = new System.Windows.Forms.TextBox();
             this.txtMaHDD = new System.Windows.Forms.TextBox();
             this.cbo_webcam = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -71,7 +73,6 @@ namespace _3_GUI_PresentaionLayers
             this.label26 = new System.Windows.Forms.Label();
             this.txt_dathanggiamgia = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.txt_coc = new System.Windows.Forms.TextBox();
             this.txt_dathangkhachtra = new System.Windows.Forms.TextBox();
             this.txt_dathangthue = new System.Windows.Forms.TextBox();
@@ -148,6 +149,7 @@ namespace _3_GUI_PresentaionLayers
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.flhd3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_reload = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -174,6 +176,8 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.panel1.BackColor = System.Drawing.Color.PeachPuff;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txt_createnew);
+            this.panel1.Controls.Add(this.txt_idhoadoncho);
             this.panel1.Controls.Add(this.txtMaHDD);
             this.panel1.Controls.Add(this.cbo_webcam);
             this.panel1.Controls.Add(this.button1);
@@ -185,6 +189,21 @@ namespace _3_GUI_PresentaionLayers
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1663, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // txt_createnew
+            // 
+            this.txt_createnew.Location = new System.Drawing.Point(1386, 11);
+            this.txt_createnew.Name = "txt_createnew";
+            this.txt_createnew.Size = new System.Drawing.Size(125, 27);
+            this.txt_createnew.TabIndex = 108;
+            // 
+            // txt_idhoadoncho
+            // 
+            this.txt_idhoadoncho.Location = new System.Drawing.Point(1534, 16);
+            this.txt_idhoadoncho.Name = "txt_idhoadoncho";
+            this.txt_idhoadoncho.ReadOnly = true;
+            this.txt_idhoadoncho.Size = new System.Drawing.Size(127, 27);
+            this.txt_idhoadoncho.TabIndex = 107;
             // 
             // txtMaHDD
             // 
@@ -222,6 +241,10 @@ namespace _3_GUI_PresentaionLayers
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(290, 27);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Tìm Kiếm Theo Mã Sản Phẩm Hoặc Tên";
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // menuStrip1
             // 
@@ -368,7 +391,6 @@ namespace _3_GUI_PresentaionLayers
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
-            this.panel5.Controls.Add(this.pn_dathang);
             this.panel5.Controls.Add(this.label19);
             this.panel5.Controls.Add(this.label18);
             this.panel5.Controls.Add(this.label16);
@@ -433,7 +455,6 @@ namespace _3_GUI_PresentaionLayers
             this.pn_dathang.Controls.Add(this.label26);
             this.pn_dathang.Controls.Add(this.txt_dathanggiamgia);
             this.pn_dathang.Controls.Add(this.button5);
-            this.pn_dathang.Controls.Add(this.button6);
             this.pn_dathang.Controls.Add(this.txt_coc);
             this.pn_dathang.Controls.Add(this.txt_dathangkhachtra);
             this.pn_dathang.Controls.Add(this.txt_dathangthue);
@@ -445,9 +466,9 @@ namespace _3_GUI_PresentaionLayers
             this.pn_dathang.Controls.Add(this.label35);
             this.pn_dathang.Controls.Add(this.label36);
             this.pn_dathang.Controls.Add(this.label37);
-            this.pn_dathang.Location = new System.Drawing.Point(1, -5);
+            this.pn_dathang.Location = new System.Drawing.Point(1132, 296);
             this.pn_dathang.Name = "pn_dathang";
-            this.pn_dathang.Size = new System.Drawing.Size(527, 649);
+            this.pn_dathang.Size = new System.Drawing.Size(519, 619);
             this.pn_dathang.TabIndex = 31;
             // 
             // label33
@@ -548,7 +569,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             // dtp_nhanhang
             // 
-            this.dtp_nhanhang.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_nhanhang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_nhanhang.Location = new System.Drawing.Point(287, 318);
             this.dtp_nhanhang.Name = "dtp_nhanhang";
             this.dtp_nhanhang.Size = new System.Drawing.Size(201, 27);
@@ -556,7 +577,7 @@ namespace _3_GUI_PresentaionLayers
             // 
             // dtp_ship
             // 
-            this.dtp_ship.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_ship.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_ship.Location = new System.Drawing.Point(287, 260);
             this.dtp_ship.Name = "dtp_ship";
             this.dtp_ship.Size = new System.Drawing.Size(201, 27);
@@ -672,25 +693,13 @@ namespace _3_GUI_PresentaionLayers
             this.button5.BackColor = System.Drawing.SystemColors.Highlight;
             this.button5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button5.Location = new System.Drawing.Point(52, 526);
+            this.button5.Location = new System.Drawing.Point(75, 525);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(436, 86);
             this.button5.TabIndex = 22;
             this.button5.Text = "Đặt Hàng";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click_2);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button6.Location = new System.Drawing.Point(52, 526);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(439, 86);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "Đặt hàng";
-            this.button6.UseVisualStyleBackColor = false;
             // 
             // txt_coc
             // 
@@ -714,8 +723,10 @@ namespace _3_GUI_PresentaionLayers
             this.txt_dathangkhachtra.ForeColor = System.Drawing.Color.Firebrick;
             this.txt_dathangkhachtra.Location = new System.Drawing.Point(252, 154);
             this.txt_dathangkhachtra.Name = "txt_dathangkhachtra";
+            this.txt_dathangkhachtra.ReadOnly = true;
             this.txt_dathangkhachtra.Size = new System.Drawing.Size(210, 27);
             this.txt_dathangkhachtra.TabIndex = 30;
+            this.txt_dathangkhachtra.Text = "0";
             this.txt_dathangkhachtra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txt_dathangthue
@@ -739,8 +750,10 @@ namespace _3_GUI_PresentaionLayers
             this.txt_dathangtongtien.ForeColor = System.Drawing.Color.DarkRed;
             this.txt_dathangtongtien.Location = new System.Drawing.Point(252, 11);
             this.txt_dathangtongtien.Name = "txt_dathangtongtien";
+            this.txt_dathangtongtien.ReadOnly = true;
             this.txt_dathangtongtien.Size = new System.Drawing.Size(210, 27);
             this.txt_dathangtongtien.TabIndex = 33;
+            this.txt_dathangtongtien.Text = "0";
             this.txt_dathangtongtien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txt_dathangtongtien.TextChanged += new System.EventHandler(this.txt_dathangtongtien_TextChanged);
             // 
@@ -1092,6 +1105,7 @@ namespace _3_GUI_PresentaionLayers
             this.txtKhachDua.Name = "txtKhachDua";
             this.txtKhachDua.Size = new System.Drawing.Size(198, 27);
             this.txtKhachDua.TabIndex = 8;
+            this.txtKhachDua.Text = "0";
             this.txtKhachDua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKhachDua.TextChanged += new System.EventHandler(this.txtKhachDua_TextChanged);
             this.txtKhachDua.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKhachDua_KeyDown);
@@ -1104,8 +1118,10 @@ namespace _3_GUI_PresentaionLayers
             this.txtKhachTra.ForeColor = System.Drawing.Color.DarkOrange;
             this.txtKhachTra.Location = new System.Drawing.Point(247, 208);
             this.txtKhachTra.Name = "txtKhachTra";
+            this.txtKhachTra.ReadOnly = true;
             this.txtKhachTra.Size = new System.Drawing.Size(195, 27);
             this.txtKhachTra.TabIndex = 9;
+            this.txtKhachTra.Text = "0";
             this.txtKhachTra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox2
@@ -1126,8 +1142,10 @@ namespace _3_GUI_PresentaionLayers
             this.txtTongTien.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtTongTien.Location = new System.Drawing.Point(241, 31);
             this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.ReadOnly = true;
             this.txtTongTien.Size = new System.Drawing.Size(201, 27);
             this.txtTongTien.TabIndex = 11;
+            this.txtTongTien.Text = "0";
             this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTien.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTongTien_KeyDown);
             // 
@@ -1316,8 +1334,10 @@ namespace _3_GUI_PresentaionLayers
             this.cbxKH.Size = new System.Drawing.Size(397, 28);
             this.cbxKH.TabIndex = 4;
             this.cbxKH.Text = "--Tên khách hàng--";
+            this.cbxKH.SelectedIndexChanged += new System.EventHandler(this.cbxKH_SelectedIndexChanged);
             this.cbxKH.SelectedValueChanged += new System.EventHandler(this.cbxKH_SelectedValueChanged);
             this.cbxKH.TextChanged += new System.EventHandler(this.cbxKH_TextChanged);
+            this.cbxKH.Click += new System.EventHandler(this.cbxKH_Click);
             // 
             // cbxNV
             // 
@@ -1482,9 +1502,9 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.groupBox3.Controls.Add(this.flhoadon);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.groupBox3.Location = new System.Drawing.Point(729, 298);
+            this.groupBox3.Location = new System.Drawing.Point(729, 342);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(194, 621);
+            this.groupBox3.Size = new System.Drawing.Size(194, 577);
             this.groupBox3.TabIndex = 106;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " Các HĐChưa Thanh Toán";
@@ -1496,7 +1516,7 @@ namespace _3_GUI_PresentaionLayers
             this.flhoadon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flhoadon.Location = new System.Drawing.Point(3, 23);
             this.flhoadon.Name = "flhoadon";
-            this.flhoadon.Size = new System.Drawing.Size(188, 595);
+            this.flhoadon.Size = new System.Drawing.Size(188, 551);
             this.flhoadon.TabIndex = 0;
             // 
             // splitter1
@@ -1511,9 +1531,9 @@ namespace _3_GUI_PresentaionLayers
             // 
             this.groupBox4.Controls.Add(this.flhd3);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.groupBox4.Location = new System.Drawing.Point(926, 297);
+            this.groupBox4.Location = new System.Drawing.Point(926, 342);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(188, 623);
+            this.groupBox4.Size = new System.Drawing.Size(188, 578);
             this.groupBox4.TabIndex = 107;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Các HĐĐang Chờ Giao Hàng";
@@ -1524,7 +1544,7 @@ namespace _3_GUI_PresentaionLayers
             this.flhd3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flhd3.Location = new System.Drawing.Point(3, 23);
             this.flhd3.Name = "flhd3";
-            this.flhd3.Size = new System.Drawing.Size(182, 597);
+            this.flhd3.Size = new System.Drawing.Size(182, 552);
             this.flhd3.TabIndex = 0;
             this.flhd3.Paint += new System.Windows.Forms.PaintEventHandler(this.flhd3_Paint);
             // 
@@ -1539,12 +1559,25 @@ namespace _3_GUI_PresentaionLayers
             this.btn_reload.UseVisualStyleBackColor = true;
             this.btn_reload.Click += new System.EventHandler(this.btn_reload_Click);
             // 
+            // button7
+            // 
+            this.button7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button7.Location = new System.Drawing.Point(732, 305);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(379, 35);
+            this.button7.TabIndex = 109;
+            this.button7.Text = "Cập Nhật";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // BanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.ClientSize = new System.Drawing.Size(1663, 919);
+            this.Controls.Add(this.pn_dathang);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.btn_reload);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -1704,7 +1737,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txt_dathanggiamgia;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox txt_coc;
         private System.Windows.Forms.TextBox txt_dathangkhachtra;
         private System.Windows.Forms.TextBox txt_dathangthue;
@@ -1717,5 +1749,8 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Button btn_reload;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox txt_idhoadoncho;
+        private System.Windows.Forms.TextBox txt_createnew;
     }
 }
