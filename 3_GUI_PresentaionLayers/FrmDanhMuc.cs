@@ -225,8 +225,6 @@ namespace _3_GUI_PresentaionLayers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Frm_EditHangHoa frm_EditHangHoa = new Frm_EditHangHoa(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1, 0, Convert.ToString("HHPS" + Convert.ToInt32(_hhser.getlsthanghoafromDB().Max(c => c.IdhangHoa) + 1)), "", "", "", "Còn Hàng", "", "", "", "", Convert.ToDateTime("08-08-2020"), "", "", "", "", "", "", Convert.ToDateTime("08-08-2020"), "");
-            frm_EditHangHoa.loadsugesstion();
             this.Hide();
         }
     }
