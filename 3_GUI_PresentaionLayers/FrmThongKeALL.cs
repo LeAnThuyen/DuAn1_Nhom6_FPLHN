@@ -38,7 +38,7 @@ namespace _3_GUI_PresentaionLayers
         }
         private void thốngKêDoanhThuNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FrmThongKeDoanhThuNhanVien(), sender);
+            OpenChildForm(new FrmTinhTrangHoaDon(), sender);
         }
 
         private void thốngKêSảnPhẩmBánChạyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,11 +47,6 @@ namespace _3_GUI_PresentaionLayers
            
         }
 
-        private void thốngKêKháchHàngƯuTúToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            OpenChildForm(new FrmThongKeKhachHangUuTu(), sender);
-            
-        }
+        
     }
 }
