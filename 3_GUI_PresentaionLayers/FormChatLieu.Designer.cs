@@ -39,6 +39,7 @@ namespace _3_GUI_PresentaionLayers
             this.label6 = new System.Windows.Forms.Label();
             this.ckbON = new System.Windows.Forms.CheckBox();
             this.chkOFF = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgridChatLieu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,12 +155,23 @@ namespace _3_GUI_PresentaionLayers
             this.chkOFF.Text = "Ngừng sử dụng";
             this.chkOFF.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(434, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormChatLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(528, 368);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.chkOFF);
             this.Controls.Add(this.ckbON);
             this.Controls.Add(this.label5);
@@ -171,6 +183,7 @@ namespace _3_GUI_PresentaionLayers
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormChatLieu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -194,5 +207,6 @@ namespace _3_GUI_PresentaionLayers
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox ckbON;
         private System.Windows.Forms.CheckBox chkOFF;
+        private System.Windows.Forms.Button button1;
     }
 }

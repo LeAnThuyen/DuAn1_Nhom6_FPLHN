@@ -67,7 +67,7 @@ namespace _3_GUI_PresentaionLayers
             for (int i = 0; i < iserlogin.getlstnhanvienfromDB().Count(); i++)
             {
 
-                if ((txt_username.Text == iserlogin.getlstnhanvienfromDB()[i].Email && iserlogin.getlstnhanvienfromDB()[i].PassWord == txt_password.Text))
+                if ((txt_username.Text == iserlogin.getlstnhanvienfromDB()[i].Email && iserlogin.getlstnhanvienfromDB()[i].PassWord ==iserlogin.encryption( txt_password.Text)))
                 {
                     if (iserlogin.getlstnhanvienfromDB()[i].Idrole == 1 && iserlogin.getlstnhanvienfromDB()[i].Flag == false)
                     {
@@ -75,11 +75,13 @@ namespace _3_GUI_PresentaionLayers
                         {
                             this.Alert("Lần Đầu Đăng Nhập Hãy Đổi Mật Khẩu Mới Thôi Nào");
                         }
-                        //chỗ này để đợi thiết kế form đổi mật khẩu lần đầu!
+                        FrmDoiMatKhau frmDoiMatKhau = new FrmDoiMatKhau(txt_username.Text);
+                        frmDoiMatKhau.Show();
+                        this.Hide();
                     }
                 }
                 if (txt_username.Text ==Convert.ToString(iserlogin.getlstnhanvienfromDB()[i].Email)
-                    && iserlogin.getlstnhanvienfromDB()[i].PassWord == txt_password.Text &&
+                    && iserlogin.getlstnhanvienfromDB()[i].PassWord == iserlogin.encryption(txt_password.Text) &&
                     iserlogin.getlstnhanvienfromDB()[i].Idrole == 1 && iserlogin.getlstnhanvienfromDB()[i].Flag == true)
                 {
                     //FormLoading frmLoading = new FormLoading();
@@ -103,6 +105,7 @@ namespace _3_GUI_PresentaionLayers
                         this.Alert("Xin Chào Quản Lý :"+" "+ iserlogin.getlstnhanvienfromDB()[i].Email);
                     }
                     this.Hide();
+                    return;
                 }
                
                
@@ -119,11 +122,14 @@ namespace _3_GUI_PresentaionLayers
                         {
                             this.Alert("Lần Đầu Đăng Nhập Hãy Đổi Mật Khẩu Mới Thôi Nào");
                         }
-                        //chỗ này để đợi thiết kế form đổi mật khẩu lần đầu!
+                        FrmDoiMatKhau  frmDoiMatKhau = new FrmDoiMatKhau(txt_username.Text);
+                        frmDoiMatKhau.Show();
+                        this.Hide();
+                        return;
                     }
                 }
                 if (txt_username.Text == Convert.ToString(iserlogin.getlstnhanvienfromDB()[i].Email)
-                    && iserlogin.getlstnhanvienfromDB()[i].PassWord == txt_password.Text &&
+                    && iserlogin.getlstnhanvienfromDB()[i].PassWord == iserlogin.encryption(txt_password.Text) &&
                     iserlogin.getlstnhanvienfromDB()[i].Idrole == 0 && iserlogin.getlstnhanvienfromDB()[i].Flag == true)
                 {
                     //FormLoading frmLoading = new FormLoading();
@@ -151,6 +157,7 @@ namespace _3_GUI_PresentaionLayers
                         this.Alert("Xin Chào Nhân Viên :" + " " + iserlogin.getlstnhanvienfromDB()[i].Email);
                     }
                     this.Hide();
+                    return;
                 }
 
 
@@ -158,7 +165,8 @@ namespace _3_GUI_PresentaionLayers
 
 
 
-
+            MessageBox.Show("Đăng Nhập Thất Bại", "Thông Báo");
+            return;
         }
 
         private void chk_hienpass_CheckedChanged(object sender, EventArgs e)
@@ -171,6 +179,13 @@ namespace _3_GUI_PresentaionLayers
             {
                 txt_password.PasswordChar = '*';
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmQuenMatKhau frmQuenMatKhau = new FrmQuenMatKhau();
+            frmQuenMatKhau.Show();
+            this.Hide();
         }
     }
 }

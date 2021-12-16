@@ -146,5 +146,10 @@ namespace _3_GUI_PresentaionLayers
             ckbON.Checked = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Sử dụng" ? true : false;
             chkOFF.Checked = dgridChatLieu.Rows[rowIndex].Cells[3].Value == "Không sử dụng" ? true : false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
